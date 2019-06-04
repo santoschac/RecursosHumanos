@@ -1,0 +1,39 @@
+<?php
+
+include ("Conexion.php");
+
+$Usuario = $_POST['Usuario'];
+$Contrasena = $_POST['Contrasena'];
+$nombre= $_POST['Nombre'];
+$apellidopaterno = $_POST['ApellidoPaterno'];
+$apellidomaterno = $_POST['ApellidoMaterno'];
+
+//Para verificar si el usuario existe
+$sql = 'SELECT * FROM usuario WHERE Usuario = ?';
+$sentencia = $pdo->prepare($sql);
+$sentencia->execute(array($Usuario));
+$resultado = $sentencia->fetch();
+
+
+if ($resultado) {
+  header("location: ../Vistas/Registro.php?existe=true");
+    die();
+}
+
+
+//La contraseña se pasa al hash(encriptacion)
+$Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
+
+
+$sql_agregar = 'INSERT INTO usuario (Usuario, Contrasena, Nombre, ApellidoPaterno, ApellidoMaterno) VALUES (?,?,?,?,?)';
+$agregar = $pdo->prepare($sql_agregar);
+
+
+if ($agregar->execute(array($Usuario, $Contrasena, $nombre, $apellidopaterno, $apellidomaterno))) {
+
+  header("location: ../Vistas/login.php?creado=true");
+}else{
+  echo "Error al crear el usuario.";
+}
+      
+?>
