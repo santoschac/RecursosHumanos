@@ -18,16 +18,17 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
+                                <h4>Lista de las empresas</h4>
                                 
                                 <div class="add-product">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Puesto</button>
+								<button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar empresa</button>
+								
                             </div>
                                 </div>
 							</div>
-							    <!--Alertas-->
-                                <div class="alert alert-success" id="exito"  style="display:none">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							   <!--Alertas-->
+							   <div class="alert alert-success" id="exito"  style="display:none">
+							    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     Datos insertados con éxito
@@ -40,7 +41,8 @@ include("../Modelo/Conexion.php");
                                     Datos actualizados con éxito
                                 </div>
 
-                                <div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
+								<div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
+								<br/>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -50,7 +52,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaPuestos"></div> <!-- products will be load here -->
+<div id="TablaEmpresa"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -65,10 +67,10 @@ include("../Modelo/Conexion.php");
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
                             <div class="modal-dialog">
-                                <form method="post" id="formulario" enctype="multipart/form-data">
+                                <form  id="formulario" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
-                                        <h4 class="modal-title">Agregar puesto</h4>
+                                        <h4 class="modal-title">Agregar Empresa</h4>
                                        
                                         <div class="modal-close-area modal-close-df">
                                             <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
@@ -76,15 +78,21 @@ include("../Modelo/Conexion.php");
                                     </div>
                                     
                                     <div class="modal-body">
-                                     
+                                      
                                        <!--Agregar form dentro del moal-->
                                       
                                        <div class="row" >
                                        
                                        <div class="form-group-inner">
                                                         <br/>
-                                                        <label>Nombre del Puesto</label>
-                                                        <input type="text" id="NombrePuesto" name="NombrePuesto" class="form-control" placeholder="Escriba el nombre del puesto" required maxlength="50"/>
+                                                        <label>Nombre de la empresa</label>
+                                                        <input type="text" id="NombreEmpresa" name="NombreEmpresa" class="form-control" placeholder="Escribe el nombre de la empresa" required maxlength="50"/>
+                                                        <br/>
+													</div>
+													<div class="form-group-inner">
+                                                        <br/>
+                                                        <label>Clave de la empresa</label>
+                                                        <input type="text" id="ClaveEmpresa" name="ClaveEmpresa" class="form-control" placeholder="Escribe la clave de la empresa" required maxlength="10"/>
                                                         <br/>
                                                     </div>
                                                     <!-- <div class="login-btn-inner">
@@ -99,10 +107,11 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="puesto_id" id="puesto_id" />
-										<input type="hidden" name="operation" id="operation" />
+                                        <input type="text" name="empresa_id" id="empresa_id" />
+										<input type="text" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
-                                        <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
+										<button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>
+										
                                     </div>
                                 </div>
                                 <form>
@@ -128,7 +137,7 @@ include("../Modelo/Conexion.php");
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
 		$('#formulario')[0].reset();
-		$('.modal-title').text("Agregar Puesto");
+		$('.modal-title').text("Agregar Empresa");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
         
@@ -138,14 +147,14 @@ $(document).ready(function(){
 
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
-		var Nombre = $('#NombrePuesto').val();
+		var datos = $('#formulario').serialize();
+		
+		//alert(datos);
 		
 		
-		if(Nombre != '')
-		{
 			
 			$.ajax({
-				url:"Alta/Alta_Puestos.php",
+				url:"Alta/Alta_Empresa.php",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -155,52 +164,49 @@ $(document).ready(function(){
 				    //alert(data);
 					//$('#formulario')[0].reset();
 					if(data==1){
-					readPuesto();
+					readEmpresa();
 					$('#ModalAgregar').modal('hide');
 					$("#exito").fadeIn();
 					setTimeout(function(){
 					$("#exito").fadeOut();
 					},2000);
-					$('#NombrePuesto').val('');
+					$('#NombreEmpresa').val('');
+					$('#ClaveEmpresa').val('');
 					}
                     else if(data ==2)
                     {
-						readPuesto();
-						$('#ModalAgregar').modal('hide');
+					   readEmpresa();
+					   $('#ModalAgregar').modal('hide');
 					$("#actu").fadeIn();
 					setTimeout(function(){
 					$("#actu").fadeOut();
-					},2000);
-					$('#NombrePuesto').val('');
-					// }else{
-
-                    //     $("#error").fadeIn();
-					// setTimeout(function(){
-					// $("#error").fadeOut();
-					// },2000);
+					 },2000);
+					$('#NombreEmpresa').val('');
+					$('#ClaveEmpresa').val('');
+					
 
                     }
 
 				}
 			});
-		}
+		
 		
 	});
 
     $(document).on('click', '.update', function(){
-		var puesto_id = $(this).attr("id");
+		var empresa_id = $(this).attr("id");
 		$.ajax({
-			url:"Editar/Editar_Puesto.php",
+			url:"Editar/Editar_Empresa.php",
 			method:"POST",
-			data:{puesto_id:puesto_id},
+			data:{empresa_id:empresa_id},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#ModalAgregar').modal('show');
-				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
-				$('.modal-title').text("Actualizar puesto");
-				$('#puesto_id').val(puesto_id);
+				$('#NombreEmpresa').val(data.NombreEmpresa);
+				$('#ClaveEmpresa').val(data.ClaveEmpresa);
+				$('.modal-title').text("Actualizar Empresa");
+				$('#empresa_id').val(empresa_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
                 
@@ -221,19 +227,19 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		
-		readPuesto(); /* it will load products when document loads */
+		readEmpresa(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdPuesto = $(this).data('id');
-			SwalDelete(IdPuesto);
+			var IdEmpresa = $(this).data('id');
+			SwalDelete(IdEmpresa);
             e.preventDefault();
-            //alert(IdPuesto);
+           
 		});
 		
 	});
 	
-	function SwalDelete(IdPuesto){
+	function SwalDelete(IdEmpresa){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -249,15 +255,15 @@ $(document).ready(function(){
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Puesto.php",
+			   		url: "Eliminar/Eliminar_Empresa.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdPuesto,
+			       	data: 'delete='+IdEmpresa,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readPuesto();
+                     readEmpresa();
                     
 			     })
 			     .fail(function(){
@@ -270,8 +276,8 @@ $(document).ready(function(){
 		
 	}
 
-    function readPuesto(){
-		$('#TablaPuestos').load('Tablas/TablaPuesto.php');	
+    function readEmpresa(){
+		$('#TablaEmpresa').load('Tablas/TablaEmpresa.php');	
 	}
     
 </script> 

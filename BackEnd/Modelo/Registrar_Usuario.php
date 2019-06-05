@@ -4,9 +4,10 @@ include ("Conexion.php");
 
 $Usuario = $_POST['Usuario'];
 $Contrasena = $_POST['Contrasena'];
-$nombre= $_POST['Nombre'];
-$apellidopaterno = $_POST['ApellidoPaterno'];
-$apellidomaterno = $_POST['ApellidoMaterno'];
+$tipo = 1;
+// $nombre= $_POST['Nombre'];
+// $apellidopaterno = $_POST['ApellidoPaterno'];
+// $apellidomaterno = $_POST['ApellidoMaterno'];
 
 //Para verificar si el usuario existe
 $sql = 'SELECT * FROM usuario WHERE Usuario = ?';
@@ -25,15 +26,16 @@ if ($resultado) {
 $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
 
 
-$sql_agregar = 'INSERT INTO usuario (Usuario, Contrasena, Nombre, ApellidoPaterno, ApellidoMaterno) VALUES (?,?,?,?,?)';
+$sql_agregar = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES (?,?,?)';
 $agregar = $pdo->prepare($sql_agregar);
 
 
-if ($agregar->execute(array($Usuario, $Contrasena, $nombre, $apellidopaterno, $apellidomaterno))) {
+if ($agregar->execute(array($Usuario, $Contrasena, $tipo))) {
 
   header("location: ../Vistas/login.php?creado=true");
 }else{
   echo "Error al crear el usuario.";
+  
 }
       
 ?>

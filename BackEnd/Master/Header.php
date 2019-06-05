@@ -96,9 +96,9 @@ if(isset($_SESSION['Usuario'])){
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                        <a title="Empleados" href="../Vistas/Empleados.php" aria-expanded="false"><span
-        class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
-        class="mini-click-non">Empleados</span></a>
+                            <a title="Empleados" href="../Vistas/Empleados.php" aria-expanded="false"><span
+                                    class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
+                                    class="mini-click-non">Empleados</span></a>
                         </li>
 
                         <li>
@@ -127,19 +127,16 @@ if(isset($_SESSION['Usuario'])){
 
                             </ul>
                         </li>
-                        
+                        <a title="Capacitación" href="../Vistas/Capacitacion.php" aria-expanded="false"><span
+                                class="educate-icon educate-course icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Capacitación</span></a>
+                        </li>
 
-<a title="Capacitación" href="../Vistas/Capacitacion.php" aria-expanded="false"><span
-        class="educate-icon educate-course icon-wrap" aria-hidden="true"></span> <span
-        class="mini-click-non">Capacitación</span></a>
-</li>
-                        
-                        <li>
-
-<a title="Cursos" href="../Vistas/Cursos.php" aria-expanded="false"><span
-        class="educate-icon educate-data-table icon-wrap" aria-hidden="true"></span> <span
-        class="mini-click-non">Cursos</span></a>
-</li>
+                        <!-- <li>
+                            <a title="Cursos" href="../Vistas/Cursos.php" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap" aria-hidden="true"></span> <span
+                                    class="mini-click-non">Cursos</span></a>
+                        </li>
                         <li>
                             <a title="Empresa/Sucursal" class="has-arrow" href="all-courses.html"
                                 aria-expanded="false"><span class="educate-icon educate-home icon-wrap"></span> <span
@@ -155,14 +152,25 @@ if(isset($_SESSION['Usuario'])){
                             <a title="Puestos" href="Puestos.php" aria-expanded="false"><span
                                     class="educate-icon educate-department icon-wrap" aria-hidden="true"></span> <span
                                     class="mini-click-non">Puestos</span></a>
-                        </li>
+                        </li> -->
                         <li>
+                            <a title="Configuración" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Configuración</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Puestos" href="../Vistas/Puestos.php"><span class="mini-sub-pro">Puestos</span></a></li>
+                                <li><a title="Cursos" href="../Vistas/Cursos.php"><span class="mini-sub-pro">Cursos</span></a></li>
+                                <li><a title="Empresa" href="../Vistas/Empresa.php"><span class="mini-sub-pro">Empresa</span></a></li>
+                                <li><a title="Sucursal" href="../Vistas/Sucursal.php"><span class="mini-sub-pro">Sucursal</span></a></li>
+                            </ul>
+                        </li>
+                        <!-- <li>
                             <a title="Vacaciones" href="Vacaciones.php" aria-expanded="false"><span
                                     class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
                                 <span class="mini-click-non">Vacaciones</span></a>
-                        </li>
+                        </li> -->
 
-
+                        <!-- 
                         <li>
                             <a title="Ubicaciones" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
                                     class="educate-icon educate-interface icon-wrap"></span> <span
@@ -175,7 +183,7 @@ if(isset($_SESSION['Usuario'])){
                                 <li><a title="Región" href="../Vistas/Region.php"><span
                                             class="mini-sub-pro">Región</span></a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </nav>

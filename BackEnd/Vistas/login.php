@@ -121,7 +121,7 @@
                                 ?>
 
               <button class="btn btn-success btn-block loginbtn" type="submit">Iniciar</button>
-              <a class="btn btn-default btn-block" href="Registro.php">Registrarse</a>
+              <!-- <a class="btn btn-default btn-block" href="Registro.php">Registrarse</a> -->
 
             </form>
            
