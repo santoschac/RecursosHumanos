@@ -98,8 +98,8 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="text" name="puesto_id" id="puesto_id" />
-                                        <input type="text" name="operation" id="operation" />
+                                        <input type="hidden" name="puesto_id" id="puesto_id" />
+                                        <input type="hidden" name="operation" id="operation" />
                                         <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
                                        <!-- <button type="submit" name="action" id="action" class="btn btn-primary" >Agregar</button> data-dismiss="modal" -->
                                        <input type="submit" name="action" id="action" class="btn btn-primary" value="Add" />
@@ -145,7 +145,7 @@ $(document).ready(function(){
 		{
 			
 			$.ajax({
-				url:"Alta_Puestos.php",
+				url:"Alta/Alta_Puestos.php",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -153,13 +153,14 @@ $(document).ready(function(){
 				success:function(data)
 				{
 				    //alert(data);
-					$('#formulario')[0].reset();
+					//$('#formulario')[0].reset();
 					if(data==1){
 					readPuesto();
 					$("#exito").fadeIn();
 					setTimeout(function(){
 					$("#exito").fadeOut();
-					},3000);
+					},2000);
+					$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
                     {
@@ -167,13 +168,14 @@ $(document).ready(function(){
 					$("#actu").fadeIn();
 					setTimeout(function(){
 					$("#actu").fadeOut();
-					},3000);
-					}else{
+					},2000);
+					$('#NombrePuesto').val('');
+					// }else{
 
-                        $("#error").fadeIn();
-					setTimeout(function(){
-					$("#error").fadeOut();
-					},3000);
+                    //     $("#error").fadeIn();
+					// setTimeout(function(){
+					// $("#error").fadeOut();
+					// },2000);
 
                     }
 
@@ -186,7 +188,7 @@ $(document).ready(function(){
     $(document).on('click', '.update', function(){
 		var puesto_id = $(this).attr("id");
 		$.ajax({
-			url:"Editar_Puesto.php",
+			url:"Editar/Editar_Puesto.php",
 			method:"POST",
 			data:{puesto_id:puesto_id},
 			dataType:"json",
@@ -197,7 +199,6 @@ $(document).ready(function(){
 				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
 				$('#puesto_id').val(puesto_id);
-				//$('#user_uploaded_image').html(data.user_image);
 				$('#action').val("Edit");
                 $('#operation').val("Edit");
                 
@@ -246,7 +247,7 @@ $(document).ready(function(){
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: 'Eliminar_Puesto.php',
+			   		url: "Eliminar/Eliminar_Puesto.php",
 			    	type: 'POST',
 			       	data: 'delete='+IdPuesto,
                     dataType: 'json'

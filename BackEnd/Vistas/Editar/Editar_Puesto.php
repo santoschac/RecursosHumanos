@@ -1,5 +1,5 @@
 <?php
-include("../Modelo/Conexion.php");
+include("../../Modelo/Conexion.php");
 
 if(isset($_POST["puesto_id"]))
 {

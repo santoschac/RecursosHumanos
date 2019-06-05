@@ -6,7 +6,7 @@
 	
 	if ($_POST['delete']) {
 		
-		require_once '../Modelo/Conexion.php';
+		require_once '../../Modelo/Conexion.php';
 		
 		$IdPuesto = $_POST['delete'];
 		$sql = "DELETE FROM puestos WHERE IdPuesto=:IdPuesto";

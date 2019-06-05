@@ -2,38 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$message="";
-
-if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['DescripcionCurso']) && isset($_POST['Tipo'])){
-
-
-    $Nombre = $_POST['NombreCurso'];
-    $Descripcion = $_POST['DescripcionCurso'];
-    $Fecha = date("Y-m-d", strtotime($_POST['Fecha']));
-    $Tipo = $_POST['Tipo'];
-
-
-    $sql = 'SELECT * FROM cursos WHERE Nombre = ?';
-    $sentencia = $pdo->prepare($sql);
-    $sentencia ->execute(array($Nombre));
-    $result = $sentencia->fetch();
-
-    if($result){
-        $message= "El curso ya existe";
-    }else{
-
-        $sql = 'INSERT INTO cursos(Nombre, DescripcionCurso, Tipo, Fecha) values (:Nombre, :DescripcionCurso, :Tipo, :Fecha)';
-        $sentencia = $pdo->prepare($sql);
-        if($sentencia->execute([':Nombre'=>$Nombre, ':DescripcionCurso'=>$Descripcion, ':Tipo'=>$Tipo, ':Fecha'=>$Fecha])){
-            $message = "Datos insertados con éxito";
-        }else{
-            echo "error";
-        }
-    }
-
-
-
-}
 
 
 ?>
@@ -80,24 +48,22 @@ if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['Descr
                                 <li class="active"><a href="#description">Agregar Curso</a></li>
                                 
                             </ul>
-
-                            <?php if($message=="Datos insertados con éxito"):?>
-                            <div class="alert alert-success">
+                              <!--Alertas-->
+                              <div class="alert alert-success" id="exito"  style="display:none">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <?= $message;?>
+                                    Datos insertados con éxito
                                 </div>
-                            <?php endif;?>
-                            
-                        <?php if ($message=="El curso ya existe"):?>
-                        <div class="alert alert-danger alert-mg-b">
+
+                                <div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    <?= $message;?>
+                                    El curso ya existe
                             </div>
-                            <?php endif;?>
+                             
+                             <!--Fin alertas-->
 
 
 
@@ -106,7 +72,7 @@ if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['Descr
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" method="POST" class="add-department">
+                                                <form id="formulario" method="POST" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
@@ -117,7 +83,7 @@ if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['Descr
                                                                 <label>Tipo de capacitación</label>
                                                                     <select name="Tipo" id="Tipo" class="form-control">
 																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="Intera">Intera</option>
+																			<option value="Interna">Interna</option>
 																			<option value="Externa">Externa</option>
 																			
 																		</select>
@@ -131,7 +97,7 @@ if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['Descr
                                                              <label>Fecha del Curso</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("d/m/Y"); ?>" >
+                                            <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("Y-m-d"); ?>" >
                                         </div>
                                     </div>
 
@@ -168,4 +134,60 @@ if(isset($_POST['NombreCurso']) && isset($_POST['Fecha']) && isset($_POST['Descr
 include ("../Master/Footer.php");
 ?>
 
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+   
+	
+
+   $(document).on('submit', '#formulario', function(event){
+       event.preventDefault();
+       var datos = $('#formulario').serialize();
+       
+       //alert(datos);
+       if(datos != '' )
+       {
+           
+           $.ajax({
+               url:"Alta/Alta_Curso.php",
+               method:'POST',
+               data:new FormData(this),
+               contentType:false,
+               processData:false,
+               success:function(data)
+               {
+                   //alert(data);
+                   //$('#formulario')[0].reset();
+                   if(data==1){
+                   //readCurso();
+                   $("#error").fadeIn();
+                   setTimeout(function(){
+                   $("#error").fadeOut();
+                   },2000);
+                   
+                   }
+                   else if(data==2)
+                   {
+                    $("#exito").fadeIn();
+                   setTimeout(function(){
+                   $("#exito").fadeOut();
+                   },2000);
+                   $('#formulario')[0].reset();
+                   
+                   
+
+                   }
+
+               }
+           });
+        
+       }
+       
+   });
+
+   
+   
+   
+   
+});
+</script>
 

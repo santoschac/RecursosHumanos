@@ -56,12 +56,21 @@ include("../Master/Header.php");
                                                 <form id="add-department" action="#" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        
-                                                                <div class="form-group data-custon-pick" id="data_2">
+                                                        <div class="form-group">
+                                                                    <label class="control-label" for="Personal">Personal</label>
+                                                                    <div class="input-group custom-go-button">
+                                                                      <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
+                                                                        required="" value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>" maxlength="60" readonly="">
+                                                                      <span class="input-group-btn"><a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"
+                                                                          ><span class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                                    </div>
+                                                                    
+                                                                  </div>
+                                                                <div class="form-group data-custon-pick" >
                                                              <label>Fecha cambio</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" class="form-control" value="<?php echo date("d/m/Y"); ?>" readonly="readonly">
+                                            <input type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                         </div>
                                     </div>
                                                                 <div class="form-group">
@@ -77,10 +86,7 @@ include("../Master/Header.php");
 																		
 																		</select>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                <label>Personal</label>
-                                                                <input name="Personal" type="text" class="form-control" placeholder="Personal" required="">
-                                                            </div>
+                                                                
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

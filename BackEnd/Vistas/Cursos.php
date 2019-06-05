@@ -1,19 +1,11 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
-$sql = $pdo->prepare('SELECT * FROM cursos') ;
-$sql->execute();
-$result=$sql->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
          
-
-    <!-- normalize CSS
+         <!-- Sweet Alert
 		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
-    
+        <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
 
           <!-- Static Table Start -->
@@ -26,43 +18,21 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                     <h4>Lista de cursos</h4>
-                                    <div class="add-product">
-                                <a href="Alta_Curso.php">Agregar Curso</a>
-                            </div>
+                                    
+                                
+                                <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Curso</button></a>
+                            
                                 </div>
                             </div>
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Nombre del curso</th>
-                                            <th>Fecha</th>
-                                            <th>Tipo</th>
-                                            <th>Descripción</th>
-                                            <th>Configuración</th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>
-                                        <?php foreach ($result as $dato) {?>
-                                            <tr>
-                                                <td><?php echo $dato['IdCurso']; ?></td>
-                                                <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo date("Y-m-d", strtotime($dato['Fecha'])) ; ?></td>
-                                                <td><?php echo $dato['Tipo']; ?></td>
-                                                <td><?php echo $dato['DescripcionCurso']; ?></td>
-                                                
-                                                <td>
-                                                    <a href="Editar_Curso.php?IdCurso=<?php echo $dato['IdCurso'];?>"><button id="Editar" data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        </tbody>
-                                    </table> <br>
+                                   
+                                   
+                                   <!--tabla-->
+                                   <div id="TablaCurso"></div>
+                                   <!--fin tabla-->
+                                   
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -71,6 +41,10 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div> <br>
         <!-- Static Table End -->
+
+          
+                                       
+                                      
         
          
         
@@ -78,10 +52,155 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
         include ("../Master/Footer.php");
         ?>
 
+<script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-            <!-- data table JS
-		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
- 
 
+
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+   
+	
+
+	$(document).on('submit', '#formulario', function(event){
+        event.preventDefault();
+        var datos = $('#formulario').serialize();
+		// var Nombre = $('#NombreCurso').val();
+        // var Descripcion = $('#DescripcionCurso').val();
+        // var Tipo = $('Tipo').val();
+        // var Fecha = $('Fecha').val();
+		//alert(datos);
+		if(Nombre != '' && Descripcion != '')
+		{
+			
+			$.ajax({
+				url:"Alta/Alta_Curso.php",
+				method:'POST',
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				success:function(data)
+				{
+				    //alert(data);
+					//$('#formulario')[0].reset();
+					if(data==1){
+					readCurso();
+					$("#exito").fadeIn();
+					setTimeout(function(){
+					$("#exito").fadeOut();
+					},2000);
+					$('#NombreCurso').val('');
+					}
+                    else if(data ==2)
+                    {
+                        readCurso();
+					$("#actu").fadeIn();
+					setTimeout(function(){
+					$("#actu").fadeOut();
+					},2000);
+					$('#NombreCurso').val('');
+					// }else{
+
+                    //     $("#error").fadeIn();
+					// setTimeout(function(){
+					// $("#error").fadeOut();
+					// },2000);
+
+                    }
+
+				}
+			});
+		}
+		
+	});
+
+    $(document).on('click', '.update', function(){
+        var curso_id = $(this).attr("id");
+    //    alert(curso_id);
+		$.ajax({
+			url:"Editar/Editar_Curso.php",
+			method:"POST",
+			data:{curso_id:curso_id},
+			dataType:"json",
+			success:function(data)
+			{
+				$('#ModalAgregar').modal('show');
+                $('#NombreCurso').val(data.Nombre);
+                $('#DescripcionCurso').val(data.Fecha);
+                $('Tipo').val(data.Tipo);
+                $('Fecha').val(data.Fecha);
+				//$('#last_name').val(data.last_name);
+				$('.modal-title').text("Actualizar puesto");
+				$('#curso_id').val(curso_id);
+				$('#action').val("Edit");
+                $('#operation').val("Edit");
+
+			}
+		})
+	});
+	
+	
+	
+	
+});
+</script>
+
+
+<script >
+
+	$(document).ready(function(){
+		
+		readCurso(); /* it will load products when document loads */
+		
+		$(document).on('click', '#Eliminar', function(e){
+			
+			var IdCurso = $(this).data('id');
+			SwalDelete(IdCurso);
+            e.preventDefault();
+            //alert(IdPuesto);
+		});
+		
+	});
+	
+	function SwalDelete(IdCurso){
+		
+		swal({
+			title: '¿Estás seguro?',
+			text: "Será eliminado permanentemente!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, borralo!',
+			showLoaderOnConfirm: true,
+			 
+			preConfirm: function() {
+			  return new Promise(function(resolve) {
+			        
+			     $.ajax({
+			   		url: 'Eliminar/Eliminar_Curso.php',
+			    	type: 'POST',
+			       	data: 'delete='+IdCurso,
+                    dataType: 'json'
+                      
+			     })
+			     .done(function(response){
+			     	swal('Eliminado!', response.message, response.status);
+                     readCurso();
+                    
+			     })
+			     .fail(function(){
+			     	swal('Oops...', 'Algo salió mal con el ajax. !', 'error');
+			     });
+			  });
+		    },
+			allowOutsideClick: false			  
+		});	
+		
+	}
+
+    function readCurso(){
+		$('#TablaCurso').load('Tablas/TablaCurso.php');	
+	}
     
+</script>
+           
