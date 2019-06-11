@@ -1,6 +1,28 @@
 <?php
 include("../Master/Header.php");
+include("../Modelo/Conexion.php");
+
+
+$sql= $pdo->prepare("SELECT * FROM puestos");
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+
+if(isset($_GET['IdPuesto'])){
+
+    $id = $_GET['IdPuesto'];
+    $sql = 'SELECT * FROM puestos WHERE IdPuesto=:IdPuesto';
+    $statement = $pdo->prepare($sql);
+    $statement-> execute([':IdPuesto'=> $id]);
+    $Puesto = $statement->fetch(PDO::FETCH_OBJ);
+    }
 ?>
+
+<!-- normalize CSS
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
+
 
  <!-- datapicker CSS
 		============================================ -->
@@ -66,11 +88,8 @@ include("../Master/Header.php");
                                                                     class="form-control" placeholder="Nombre Personal"
                                                                     required=""
                                                                     value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>"
-                                                                    maxlength="60" readonly="">
-                                                                <span class="input-group-btn"><a class="Primary mg-b-10"
-                                                                        href="#" data-toggle="modal"
-                                                                        data-target="#ModalTablaPersonal"><button
-                                                                            class="btn btn-primary" type="button"><span
+                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                        href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                                 class="glyphicon glyphicon-zoom-in"></span></button></span></a>
                                                             </div>
 
@@ -162,11 +181,81 @@ include("../Master/Header.php");
         </div>
 
 
+ <!--Modal tabla-->
+ <div id="ModalTablaPersonal" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header header-color-modal bg-color-1">
+                                        <h4 class="modal-title">Lista del personal</h4>
+                                        <div class="modal-close-area modal-close-df">
+                                            <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                        </div>
+                                    </div>
+                                    
+                                    
+               <!-- Static Table Start -->
+         <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                <h4>Lista de Puestos</h4>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">                                                
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
+                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                            <th>No</th>
+                                            <th>Puesto</th>
+                                            <th>Seleccionar</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                        <tbody>
+                                        <?php foreach ($resultado as $dato) {?>
+                                            <tr>
+                                                <td><?php echo $dato['IdPuesto']; ?></td>
+                                                <td><?php echo $dato['NombrePuesto']; ?></td>
+                                                
+                                                <td>
+                                                <a href="VAlta_Cambio.php?IdPuesto=<?php echo $dato['IdPuesto']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                    
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table> <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <br>
+        <!-- Static Table End -->
+           
+                                
+                            
+                                        
+                                    
+                                </div>
+                            </div>
+                        </div>
+        <!--Fin modal tabla-->
+
 
 <?php
  include ("../Master/Footer.php");
 ?>
 
+ <!-- data table JS
+		============================================ -->
+        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
   <!-- datapicker JS
 		============================================ -->

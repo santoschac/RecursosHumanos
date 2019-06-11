@@ -16,7 +16,7 @@ include("../Modelo/Conexion.php");
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
+                                <div >
                                     <h4>Lista de cursos</h4>
                                     
                                 

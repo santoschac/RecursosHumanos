@@ -36,7 +36,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                             <tr>
                                                 <td><?php echo $dato['IdCurso']; ?></td>
                                                 <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo date("Y-m-d", strtotime($dato['Fecha'])) ; ?></td>
+                                                <td><?php echo date("d-m-Y", strtotime($dato['Fecha'])) ; ?></td>
                                                 <td><?php echo $dato['Tipo']; ?></td>
                                                 <td><?php echo $dato['DescripcionCurso']; ?></td>
                                                 

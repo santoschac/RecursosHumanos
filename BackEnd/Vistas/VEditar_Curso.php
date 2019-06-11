@@ -25,22 +25,11 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
     $Tipo = $_POST['Tipo'];
     $Fecha = $_POST['Fecha'];
 
-    // $sql = 'SELECT * FROM cursos WHERE Nombre = ?';
-    // $sentencia = $pdo->prepare($sql);
-    // $sentencia ->execute(array($Nombre));
-    // $result = $sentencia->fetch();
-
-    // if($result){
-    //     $message="El curso ya existe";
-    // }else{
-
         $sql = 'UPDATE cursos SET Nombre=:Nombre, DescripcionCurso=:DescripcionCurso, Tipo=:Tipo, Fecha=:Fecha WHERE IdCurso=:IdCurso';
         $sentencia=$pdo->prepare($sql);
         if($sentencia->execute([':Nombre'=>$Nombre, ':DescripcionCurso'=>$Descripcion, ':Tipo'=>$Tipo, ':Fecha'=>$Fecha, ':IdCurso'=>$IdCurso])){
             $message="Datos Actualizados con éxito";
         }
-   // }
-
 
 }
 
@@ -127,8 +116,7 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
                                                     <div class="form-group">
                                                         <label>Tipo de capacitación</label>
                                                         <select name="Tipo" id="Tipo" class="form-control">
-                                                            <option value="<?= $cursos->Tipo;?>" disabled="">Seleccionar
-                                                            </option>
+                                                            <option value="<?= $cursos->Tipo;?>" disabled="">Seleccionar</option>
                                                             <option value="Interna">Interna</option>
                                                             <option value="Externa">Externa</option>
 

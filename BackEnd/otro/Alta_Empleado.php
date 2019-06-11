@@ -8,6 +8,7 @@ $message="";
  if(isset($_POST['Nombre']) && isset($_POST['ApellidoPaterno']) && isset($_POST['ApellidoMaterno']) && isset($_POST['Curp']) && isset($_POST['Direccion']) ){
     
     
+   
     $Nombre= $_POST['Nombre'];
     $ApellidoPaterno = $_POST['ApellidoPaterno'];
     $ApellidoMaterno = $_POST['ApellidoMaterno'];
@@ -16,9 +17,6 @@ $message="";
     $Direccion = $_POST['Direccion'];
     $Colonia = $_POST['Colonia'];
     $Delegacion = $_POST['Delegacion'];
-    $Poblacion = $_POST['Poblacion'];
-    $Estado = $_POST['Estado'];
-    $Pais = $_POST['Pais'];
     $CodigoPostal = $_POST['CodigoPostal'];
     $Rfc = $_POST['Rfc'];
     $Imss = $_POST['Imss'];
@@ -29,9 +27,7 @@ $message="";
     $Hijos = $_POST['Hijos'];
     $Padre = $_POST['Padre'];
     $Madre = $_POST['Madre'];
-    $CentroCosto = $_POST['CentroCosto'];
     $Departamento = $_POST['Departamento'];
-    //$Puesto = $_POST['Puesto'];
     $Jornada = $_POST['Jornada'];
     $SueldoDiario = $_POST['SueldoDiario'];
     $SueldoAnterior = $_POST['SueldoAnterior'];
@@ -42,9 +38,13 @@ $message="";
     $FechaAntiguedad = date("Y-m-d", strtotime($_POST['FechaAntiguedad']));
     $UltimaModificacion = date("Y-m-d", strtotime( $_POST['UltimaModificacion']));
     $TipoContrato = $_POST['TipoContrato'];
-    $Usuario = "pruebausuario";
     $IdPuesto= $_POST['IdPuesto'];
-
+    $IdSucursal = $_POST['IdSucursal'];
+    $IdPoblacion = $_POST['IdPoblacion'];
+    
+    echo $Usuario1=$Nombre[0] + $ApellidoPaterno;
+    $Usuario="pruebausuario";
+    $IdTipoUsuario=2;
     
     //verificar si el personal existe
 
@@ -57,16 +57,24 @@ $message="";
         $message = "El personal ya existe";
     }else{
 
-        $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, Poblacion, Estado, Pais, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, CentroCosto, Departamento, Jornada, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, Usuario, IdPuesto)
-           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :Poblacion, :Estado, :Pais, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :CentroCosto, :Departamento, :Jornada, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :Usuario, :IdPuesto)';
-   
-           $statement = $pdo->prepare($sql);
-          if($statement->execute([':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion, ':Poblacion'=>$Poblacion,
-             'Estado'=>$Estado, ':Pais' =>$Pais, ':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
-            ':Madre'=>$Madre, ':CentroCosto'=>$CentroCosto, ':Departamento'=>$Departamento, ':Jornada'=>$Jornada, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, 
-            ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':Usuario'=>$Usuario, 'IdPuesto'=>$IdPuesto])){
-              $message="Personal agregado con éxito";
-                 }
+        $sql1 = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES(:Usuario, :Contrasena, :IdTipoUsuario)';
+        $sentencia = $pdo->prepare($sql1);
+        $sentencia->execute([':Usuario'=>$Usuario, ':Contrasena'=>$Rfc, ':IdTipoUsuario'=>$IdTipoUsuario]);
+    
+        $IdUsuario = $pdo->lastInsertId();
+    
+        $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, Jornada, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
+               VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :Jornada, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
+       
+        $statement = $pdo->prepare($sql);
+        if($statement->execute([':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion,':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
+            ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':Jornada'=>$Jornada, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
+            {
+                $message="Personal agregado con éxito";
+    
+            }  
+              
+                 
 
     }
 }
@@ -164,7 +172,7 @@ $message="";
                                                    
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                <div class="form-group">
+                                                            <div class="form-group">
                                                                 <label>Nombres</label>
                                                                    <input name="Nombre" id="Nombre" type="text" class="form-control" placeholder="Nombre" required="" maxlength="60">
                                                                 </div>
@@ -177,6 +185,31 @@ $message="";
                                                                     <input name="ApellidoMaterno" id="ApellidoMaterno" type="text" class="form-control" placeholder="Apellido Materno" required="" maxlength="60" required>
                                                                 </div>
                                                                 <div class="form-group">
+                                                                    <label><strong>Fecha de nacimiento</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i
+                                                                                class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="FechaNacimiento"
+                                                                            id="FechaNacimiento" class="form-control"
+                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Sexo</label>
+                                                                    <select name="Sexo" id="Sexo" class="form-control">
+																		<option value="none" selected="" disabled="">Seleccionar</option>
+																		<option value="Masculino">Masculino</option>
+																		<option value="Femenino">Femenino</option>
+																	</select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Nivel Academico</label>
+                                                                    <input name="NivelAcademico" id="NivelAcademico"
+                                                                        type="text" class="form-control"
+                                                                        placeholder="Nivel Academico" maxlength="60"
+                                                                        required>
+                                                                </div>
+                                                                <div class="form-group">
                                                                 <label>Rfc</label>                                                                
                                                                     <input name="Rfc" id="Rfc" type="text" class="form-control" placeholder="Rfc" maxlength="13" required>
                                                                 </div>
@@ -185,29 +218,45 @@ $message="";
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
-                                                                <div class="form-group">
-                                                             <label><strong>Fecha de nacimiento</strong></label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" value="<?php echo date("Y/m/d"); ?>"  >
-                                        </div>
-                                    </div>
-                                                               
                                                             <div class="form-group">
-                                                     
-                                                            <label>Nivel Academico</label>
-                                                                    <input name="NivelAcademico" id="NivelAcademico" type="text" class="form-control" placeholder="Nivel Academico" maxlength="60" required>
+                                                                    <label>Curp</label>
+                                                                    <input name="Curp" id="Curp" type="text"
+                                                                        class="form-control" placeholder="Curp"
+                                                                        maxlength="18" required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                <label>Curp</label>
-                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" required>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                <label>IMSS</label>
-                                                                    <input name="Imss"  id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11" required>
+                                                                    <label>IMSS</label>
+                                                                    <input name="Imss" id="Imss" type="text"
+                                                                        class="form-control" placeholder="IMSS"
+                                                                        maxlength="11" required>
                                                                 </div>
                                                                 
-                                                               
+                                                                <div class="form-group">
+                                                                <label>Padre</label>
+                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Madre</label>
+                                                                    <input name="Madre" name="Madre" id="Madre" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Estado Civil</label>
+                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control">
+                                                                    <option value="none" selected="" disabled="">
+                                                                        Seleccionar</option>
+                                                                    <option value="Soltero(a)">Soltero(a)</option>
+                                                                    <option value="Comprometido(a)">Comprometido(a)</option>
+                                                                    <option value="Casado(a)">Casado(a)</option>
+                                                                    <option value="Unión libre o unión de hecho">Unión libre o unión de hecho</option>
+                                                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                                                    <option value="Viudo(a)">Viudo(a)</option>
+
+                                                                </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Hijos</label>
+                                                                    <input name="Hijos" id="Hijos" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
+                                                                </div>
                                                                 
                                                                 
                                                             </div>
@@ -225,86 +274,7 @@ $message="";
                 </div>
                 <!--Fin Informacion basica-->
               
-                <!--Informacion Personal-->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="product-payment-inner-st">
-                         
-                        <ul id="myTabedu1" class="tab-review-design">
-                            
-                                <li class="active"><a href="#description">Información Personal</a></li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="description">
-                                    <div class="row">
-                                    
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="review-content-section">
-                                                <div id="dropzone1" class="pro-ad">
-                                                   
-                                                        <div class="row">
-                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label>Padre</label>
-                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" required>
-                                                                </div>
-                                                                <label>Estado Civil</label>
-                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control">
-                                                                    <option value="none" selected="" disabled="">
-                                                                        Seleccionar</option>
-                                                                    <option value="Soltero(a)">Soltero(a)</option>
-                                                                    <option value="Casado(a)">Casado(a)</option>
-                                                                    <option value="Divorciado(a)">Divorciado(a)</option>
-                                                                    <option value="Viudo(a)">Viudo(a)</option>
-
-                                                                </select>
-                                                                </div>
-
-
-                                                                <div class="form-group">
-                                                                <label>Hijos</label>
-                                                                    <input name="Hijos" id="Hijos" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
-                                                                </div>
-
-
-                                                                </div>
-                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <label>Madre</label>
-                                                                        <input name="Madre" id="Madre" type="text"
-                                                                            class="form-control"
-                                                                            placeholder="Nombre completo de la Madre"
-                                                                            maxlength="60" required>
-                                                                    </div>
-                                                                    
-                                                                    <div class="form-group">
-                                                                <label>Sexo</label>
-                                                                    <select name="Sexo" id="Sexo" class="form-control">
-																		<option value="none" selected="" disabled="">Seleccionar</option>
-																		<option value="Masculino">Masculino</option>
-																		<option value="Femenino">Femenino</option>
-																	</select>
-                                                                </div>
-                                                                  
-                                                            </div>
-                                                               
-                                                                
-                                                                
-                                                            </div>
-                                                        </div>
-                                                        
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-         
-                <!--Fin Informacion Personal-->
+               
 
                 <!--Informacion Direccion-->
                 <div class="row">
@@ -327,54 +297,43 @@ $message="";
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
                                                             <div class="form-group">
-                                                                <label>País</label>
-                                                                    <select name="Pais" id="Pais" class="form-control">
-																		<option value="none" selected="" disabled="">Seleccionar País</option>
-																		<option value="México">México</option>
-																		<option value="Chile">Chile</option>
-                                                                        <option value="Venezuela">Venezuela</option>
-																	</select>
-                                                                </div>
-                                                                <div class="form-group">
+                                                                <label>Pais</label>
+
+                                                                <select name="IdPais" id="IdPais"
+                                                                    class="form-control">
+                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
+                                                                    echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
+                                                                    }
+                                                                  ?>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Estado</label>
+                                                                <select name="IdEstado" id="IdEstado" class="form-control">
+                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label>Población</label>
-                                                                    <select name="Poblacion"  id="Poblacion" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar Población</option>
-																			<option value="0">Gujarat</option>
-																			<option value="1">Maharastra</option>
-																			<option value="2">Rajastan</option>
-																			<option value="3">Maharastra</option>
-																			<option value="4">Rajastan</option>
-																			<option value="5">Gujarat</option>
-																		</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                <label>Código Postal</label>
-                                                                    <input name="CodigoPostal" id="CodigoPostal" type="text" class="form-control" placeholder="Código Postal" maxlength="5" onkeypress="return numeros(event)" required>
-                                                                </div>
+                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control">
+                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                </select>
+                                                            </div>
                                                                 
+                                                                <div class="form-group">
+                                                                <label>Delegación</label>
+                                                                    <input name="Delegacion" id="Delegacion" type="text" class="form-control" placeholder="Delegacion" maxlength="49"  required>
+                                                                </div>
                                                   
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
-                                                                <label>Estado</label>
-                                                                    <select name="Estado"  id="Estado" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar Estado</option>
-																			<option value="0">Yucatán</option>
-																			<option value="1">Campeche</option>
-																		
-																		</select>
+                                                                <label>Código Postal</label>
+                                                                    <input name="CodigoPostal" id="CodigoPostal" type="text" class="form-control" placeholder="Código Postal" maxlength="5" onkeypress="return numeros(event)" required>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                <label>Delegación</label>
-                                                                    <select name="Delegacion" id="Delegacion" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar Delegación</option>
-																			<option value="0">Surat</option>
-																			<option value="1">Baroda</option>
-																			<option value="2">Navsari</option>
-																			<option value="3">Baroda</option>
-																			<option value="4">Surat</option>
-																		</select>
-                                                                </div>
+                                                               
                                                                 <div class="form-group">
                                                                 <label>Colonia</label>
                                                                     <input name="Colonia" id="Colonia" type="text" class="form-control" placeholder="Colonia" maxlength="70" required>
@@ -384,6 +343,10 @@ $message="";
                                                                     <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
                                                                 </div>
                                                             
+                                                               
+                                                                
+                                                                
+                                                            </div>
                                                                
                                                                 
                                                                 
@@ -399,7 +362,7 @@ $message="";
                             </div>
                         </div>
                     </div>
-                </div>
+                
                 <!--Fin Informacion Direccion-->
 
                  <!--Informacion laboral-->
@@ -430,10 +393,7 @@ $message="";
 																		
 																	</select>
                                                                 </div>
-                                                            <div class="form-group">
-                                                                <label>Centro costo</label>
-                                                                    <input name="CentroCosto" id="CentroCosto" type="text" class="form-control" placeholder="Centro costo" maxlength="60" required>
-                                                                </div>
+                                                           
                                                                 <div class="form-group">
                                                                 <label>Departamento</label>
                                                                     <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60" required>
@@ -443,33 +403,55 @@ $message="";
                                                                     <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                <label>Sueldo Anterior</label>
-                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required>
+                                                                    <label>Sueldo Anterior</label>
+                                                                    <input name="SueldoAnterior" id="SueldoAnterior"
+                                                                        type="text" class="form-control"
+                                                                        placeholder="Sueldo Anterior" maxlenght="10"
+                                                                        required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required>
+                                                                    <label>Sueldo Actual</label>
+                                                                    <input name="SueldoActual" id="SueldoActual"
+                                                                        type="text" class="form-control"
+                                                                        placeholder="Sueldo Actual" maxlenght="10"
+                                                                        required>
                                                                 </div>
-                                                                
+
                                                                 <div class="form-group">
-                                        <label><strong>Fecha Alta</strong></label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" name="FechaAlta" id="FechaAlta" class="form-control" value="<?php echo date("d/m/Y"); ?>">
-                                        </div>
-                                    </div>
-                                                                
+                                                                    <label><strong>Fecha Alta</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i
+                                                                                class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="FechaAlta"
+                                                                            id="FechaAlta" class="form-control"
+                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="form-group">
-                                        <label><strong>Ultima Modificación</strong></label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?php echo date("d/m/Y"); ?>">
-                                        </div>
-                                    </div>
+                                                                    <label><strong>Ultima Modificación</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i
+                                                                                class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="UltimaModificacion"
+                                                                            id="UltimaModificacion" class="form-control"
+                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    </div>
+                                                                </div>
                                                   
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            
+                                                            <div class="chosen-select-single mg-b-20">
+                                                                <label><strong>Sucursal</strong></label>
+                                                                <?php 
+                                                                    echo '<select name="IdSucursal" id="IdSucursal" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
+                                                                    echo '<option value="">Seleccionar</option>';
+                                                                    foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
+                                                                    echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
+                                                                    }
+                                                                    echo'</select>';
+                                                                ?>
+                                                            </div>
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                 <?php 
@@ -481,46 +463,52 @@ $message="";
                                                                     echo'</select>';
                                                                 ?>
                                                             </div>
-                                                                <div class="form-group">
+                                                            <div class="form-group">
                                                                 <label>Jornada</label>
-                                                                    <input name="Jornada" id="Jornada" type="text" class="form-control" placeholder="Jornada" required>
+                                                                <input name="Jornada" id="Jornada" type="text"
+                                                                    class="form-control" placeholder="Jornada" required>
+                                                            </div>
+
+                                                            <div class="form-group ">
+                                                                <label><strong>Fecha Baja</strong></label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon"><i
+                                                                            class="fa fa-calendar"></i></span>
+                                                                    <input name="FechaBaja" id="FechaBaja" type="date"
+                                                                        class="form-control"
+                                                                        value="<?php echo date("Y-m-d"); ?>">
                                                                 </div>
-                                                                <!-- <div class="form-group">
-                                                                <label>Fecha Baja</label>
-                                                                    <input name="FechaBaja" id="finish1" type="text" class="form-control" placeholder="Fecha Baja">
-                                                             </div> -->
-                                                             <div class="form-group ">
-                                                             <label><strong>Fecha Baja</strong></label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input name="FechaBaja" id="FechaBaja" type="date" class="form-control" value="<?php echo date("d/m/Y"); ?>" >
-                                        </div>
-                                    </div>
-                                                                <div class="form-group res-mg-t-15">
+                                                            </div>
+                                                            <div class="form-group res-mg-t-15">
                                                                 <label>Concepto Baja</label>
-                                                                    <textarea name="ConceptoBaja" id="ConceptoBaja" placeholder="Concepto Baja" required></textarea>
-                                                                </div>
-                                                            
+                                                                <textarea name="ConceptoBaja" id="ConceptoBaja"
+                                                                    placeholder="Concepto Baja" required></textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+
                                                                 <div class="form-group">
-                                                                <!-- <label>Fecha de Antigüedad</label>
-                                                                    <input name="FechaAntiguedad" id="finish2" type="text" class="form-control" placeholder="Fecha Antigüedad">
-                                                                </div> -->
-                                                                <div class="form-group">
-                                                             <label><strong>Fecha de Antigüedad</strong></label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input name="FechaAntiguedad"  id="FechaAntiguedad" type="date" class="form-control" value="<?php echo date("d/m/Y"); ?>">
-                                        </div>
-                                                                
-                                                                <div class="form-group">
-                                                                <label><strong>Tipo Contrato</strong></label>
-                                                                    <select name="TipoContrato" id="TipoContrato" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="Fijo">Fijo</option>
-																			<option value="Temporal">Temporal</option>
-																		
-																		</select>
-                                                                </div>
+                                                                    <label><strong>Fecha de Antigüedad</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i
+                                                                                class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAntiguedad"
+                                                                            id="FechaAntiguedad" type="date"
+                                                                            class="form-control"
+                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label><strong>Tipo Contrato</strong></label>
+                                                                        <select name="TipoContrato" id="TipoContrato"
+                                                                            class="form-control">
+                                                                            <option value="none" selected=""
+                                                                                disabled="">Seleccionar</option>
+                                                                            <option value="Fijo">Fijo</option>
+                                                                            <option value="Temporal">Temporal</option>
+
+                                                                        </select>
+                                                                    </div>
                                                                 
                                                             </div>
                                                         </div>
@@ -594,4 +582,39 @@ $message="";
     
   
     
-    
+    <script type="text/javascript" language="javascript" >
+
+$(document).ready(function () {
+        $("#IdPais").change(function () {
+            // e.preventDefault();
+
+            $("#IdPais option:selected").each(function () {
+                IdPais = $(this).val();
+                $.post("Combo/Seleccionar_Estado.php", {
+                    IdPais: IdPais
+                    },
+                    function (data) {
+                        $("#IdEstado").html(data);
+                    });
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $("#IdEstado").change(function () {
+            // e.preventDefault();
+
+            $("#IdEstado option:selected").each(function () {
+                IdEstado = $(this).val();
+                $.post("Combo/Seleccionar_Poblacion.php", {
+                    IdEstado: IdEstado
+                    },
+                    function (data) {
+                        $("#IdPoblacion").html(data);
+                    });
+            });
+        });
+    });
+
+    </script>

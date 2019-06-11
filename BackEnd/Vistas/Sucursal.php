@@ -72,7 +72,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                         <div class="form-group">
                                 <label>Empresa</label>
 
-                                <select name="Empresa" Id="Empresa" class="form-control">
+                                <select name="Empresa" id="Empresa" class="form-control">
                                     <!-- <option value="none"  disabled="">Seleccionar</option> -->
                                     <?php foreach ($result as $dato) {?>
 

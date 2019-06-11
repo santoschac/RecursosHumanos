@@ -26,6 +26,7 @@ include("../../Modelo/Conexion.php");
     $SueldoAnterior = $_POST['SueldoAnterior'];
     $SueldoActual = $_POST['SueldoActual'];
     $FechaBaja = date("Y-m-d", strtotime($_POST['FechaBaja']));
+
     $ConceptoBaja = $_POST['ConceptoBaja'];
     $FechaAlta = date("Y-m-d", strtotime($_POST['FechaAlta']));
     $FechaAntiguedad = date("Y-m-d", strtotime($_POST['FechaAntiguedad']));
@@ -34,12 +35,12 @@ include("../../Modelo/Conexion.php");
     $IdPuesto= $_POST['IdPuesto'];
     $IdSucursal = $_POST['IdSucursal'];
     $IdPoblacion = $_POST['IdPoblacion'];
-    
-    $Usuario=$Nombre[0] + $ApellidoPaterno;
-
+  
+    $Usuario = strtoupper ($Nombre[0] . $ApellidoPaterno);
+    //$Usuario = "pruebausuario";
 
     $IdTipoUsuario=2;
-    $sql1 = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES(:Usuario, :Contrasena, ;IdTipoUsuario)';
+    $sql1 = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES(:Usuario, :Contrasena, :IdTipoUsuario)';
     $sentencia = $pdo->prepare($sql1);
     $sentencia->execute([':Usuario'=>$Usuario, ':Contrasena'=>$Rfc, ':IdTipoUsuario'=>$IdTipoUsuario]);
 

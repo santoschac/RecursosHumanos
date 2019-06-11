@@ -2,18 +2,15 @@
 include ("../Master/Header.php");
 include ("../Modelo/Conexion.php");
 
-
-$sql= $pdo->prepare("SELECT * FROM personal");
-$sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 ?>
-           <!-- normalize CSS
+         
+          <!-- Sweet Alert
 		============================================ -->
-    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
+        <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
+
 
                    <!-- Mobile Menu end -->
-            <div class="breadcome-area">
+            <!-- <div class="breadcome-area">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -41,69 +38,31 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         
          <!-- Static Table Start -->
          <div class="data-table-area mg-b-15">
+         <br/>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
+                                <h4>Lista de Empleados</h4>
                                 </div>
-                                <div class="add-product">
-                                <a href="Alta_Empleado.php">Agregar Empleado</a>
-                            </div>
+                                <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
+                            
                             </div>
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>                                       
-                                        <th>Nombre</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Curp</th>
-                                        <th>Tipo</th>
-                                        <th>Dirección</th>
-                                        <th>Colonia</th>
-                                        <th>Delegación</th>
-                                        <th>Población</th>
-                                        <th>Estado</th>
-                                        <th>Pais</th>
-                                        <th>Configuración</th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>
-                                        <?php foreach ($resultado as $dato) {?>
-                                            <tr>
-                                               
-                                                <td><?php echo $dato['IdPersonal']; ?></td>
-                                        <td><?php echo $dato['Nombre']; ?></td>
-                                        <td><?php echo $dato['ApellidoPaterno']; ?></td>
-                                        <td><?php echo $dato['ApellidoMaterno']; ?></td>
-                                        <td><?php echo $dato['Curp']; ?></td>
-                                        <td><?php echo $dato['Tipo']; ?></td>
-                                        <td><?php echo $dato['Direccion']; ?></td>
-                                        <td><?php echo $dato['Colonia']; ?></td>
-                                        <td><?php echo $dato['Delegacion']; ?></td>
-                                        <td><?php echo $dato['Poblacion']; ?></td>
-                                        <td><?php echo $dato['Estado']; ?></td>
-                                        <td><?php echo $dato['Pais']; ?></td>
-                                                
-                                                <td>
-                                                <a href="Editar_Empleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar empleado?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        </tbody>
-                                    </table> <br>
+                                    
+                                    <!--tabla-->
+                                    <div id="TablaPersonal"></div>
+                                    <!--fin tabla-->
+                                    
+                                    
+                                     <br>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +77,65 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
         include ("../Master/Footer.php");
         ?>
 
-           
-    <!-- data table JS
-		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+<script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
+
+
+
+<script >
+
+	$(document).ready(function(){
+		
+		readPersonal(); /* it will load products when document loads */
+		
+		$(document).on('click', '#Eliminar', function(e){
+			
+			var IdPersonal = $(this).data('id');
+			SwalDelete(IdPersonal);
+            e.preventDefault();
+           // alert(IdPersonal);
+		});
+		
+	});
+	
+	function SwalDelete(IdPersonal){
+		
+		swal({
+			title: '¿Estás seguro?',
+			text: "Será eliminado permanentemente!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, borralo!',
+			showLoaderOnConfirm: true,
+			 
+			preConfirm: function() {
+			  return new Promise(function(resolve) {
+			        
+			     $.ajax({
+			   		url: 'Eliminar/Eliminar_Personal.php',
+			    	type: 'POST',
+			       	data: 'delete='+IdPersonal,
+                    dataType: 'json'
+                      
+			     })
+			     .done(function(response){
+			     	swal('Eliminado!', response.message, response.status);
+                     readPersonal();
+                    
+			     })
+			     .fail(function(){
+			     	swal('Oops...', 'Algo salió mal con el ajax. !', 'error');
+			     });
+			  });
+		    },
+			allowOutsideClick: false			  
+		});	
+		
+	}
+
+    function readPersonal(){
+		$('#TablaPersonal').load('Tablas/TablaPersonal.php');	
+	}
+    
+</script>
