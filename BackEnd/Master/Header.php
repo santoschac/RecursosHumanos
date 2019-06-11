@@ -117,16 +117,12 @@ if(isset($_SESSION['Usuario'])){
                                 <li><a title="Imss" href="#"><span class="mini-sub-pro">Imss</span></a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a title="Cambios" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
-                                    class="educate-icon educate-professor icon-wrap"></span> <span
-                                    class="mini-click-non">Cambios</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Cambios" href="Cambios.php"><span class="mini-sub-pro">Cambios</span></a>
-                                </li>
-
-                            </ul>
                         </li>
+                        <a title="Capacitación" href="../Vistas/Cambios.php" aria-expanded="false"><span
+                                class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Cambios</span></a>
+                        </li>
+                        
                         <a title="Capacitación" href="../Vistas/Capacitacion.php" aria-expanded="false"><span
                                 class="educate-icon educate-course icon-wrap" aria-hidden="true"></span> <span
                                 class="mini-click-non">Capacitación</span></a>

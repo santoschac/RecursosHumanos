@@ -5,6 +5,9 @@ include("../Master/Header.php");
  <!-- datapicker CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/datapicker/datepicker3.css">
+ <!-- chosen CSS
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
   
     
     
@@ -57,66 +60,89 @@ include("../Master/Header.php");
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
-                                                                    <label class="control-label" for="Personal">Personal</label>
-                                                                    <div class="input-group custom-go-button">
-                                                                      <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-                                                                        required="" value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>" maxlength="60" readonly="">
-                                                                      <span class="input-group-btn"><a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"
-                                                                          ><span class="glyphicon glyphicon-zoom-in"></span></button></span></a>
-                                                                    </div>
-                                                                    
-                                                                  </div>
-                                                                <div class="form-group data-custon-pick" >
-                                                             <label>Fecha cambio</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
-                                        </div>
-                                    </div>
-                                                                <div class="form-group">
-                                                                <label>Puesto</label>
-                                                                    <select name="country" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="0">Administrativo Cedis</option>
-                                                                            <option value="1">Almacenista</option>
-                                                                            <option value="2">Asesoría Técnica</option>
-                                                                            <option value="3">Auditoría</option>
-                                                                            <option value="4">Auxiliar de Herrajes</option>
-                                                                            <option value="5">Auxiliar de Ventas</option>
-																		
-																		</select>
-                                                                </div>
-                                                                
+                                                            <label class="control-label" for="Personal">Personal</label>
+                                                            <div class="input-group custom-go-button">
+                                                                <input type="text" name="Personal" id="Personal"
+                                                                    class="form-control" placeholder="Nombre Personal"
+                                                                    required=""
+                                                                    value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>"
+                                                                    maxlength="60" readonly="">
+                                                                <span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                        href="#" data-toggle="modal"
+                                                                        data-target="#ModalTablaPersonal"><button
+                                                                            class="btn btn-primary" type="button"><span
+                                                                                class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Empresa Anterior</label>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Sucursal Anterior</label>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Puesto Anterior</label>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                        </div>
+                                                        
+                                                               
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Inicio</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i
+                                                                        class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control"
+                                                                    value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Nueva Empresa</label>
+                                                            <?php
+                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
+                                                            $sql->execute();
+                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                             
-                                                            <div class="form-group">
-                                                                <label>Empresa</label>
-                                                                    <select name="country" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="0">Almacen</option>
-                                                                            <option value="1">Alpina</option>
-                                                                            <option value="2">Alumayab</option>
-                                                                            <option value="3">Alumik</option>  
-																		</select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                <label>Sucursal</label>
-                                                                    <select name="country" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="0">1</option>
-                                                                            <option value="1">2</option>
-                                                                            <option value="2">3</option>
-                                                                            <option value="3">4</option>  
-																		</select>
-                                                                </div>
+                                                            ?>
+                                                            <select name="NuevaEmpresa" id="NuevaEmpresa" class="form-control">
+                                                            <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                <?php foreach ($result as $dato) {?>
+                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                                                <?php } ?>
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Nueva Sucursal</label>
+                                                            <select name="NuevaSucursal" id="NuevaSucursal"class="form-control">
+                                                                <option value="none" selected="" disabled="">Seleccionar</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="chosen-select-single mg-b-20">
+                                                                <label><strong>Puesto</strong></label>
+                                                                <?php 
+                                                                    echo '<select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
+                                                                    echo '<option value="">Seleccionar</option>';
+                                                                    foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
+                                                                    echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
+                                                                    }
+                                                                    echo'</select>';
+                                                                ?>
+                                                            </div>
+                                                                
                                                            
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
+                                                                <br/>
                                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
                                                                     <a href="Cambios.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                             </div>
@@ -146,4 +172,29 @@ include("../Master/Header.php");
 		============================================ -->
         <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
     <script src="../Recursos/js/datapicker/datepicker-active.js"></script>
+
+    <!-- chosen JS
+		============================================ -->
+        <script src="../Recursos/js/chosen/chosen.jquery.js"></script>
+    <script src="../Recursos/js/chosen/chosen-active.js"></script>
     
+    <script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $("#NuevaEmpresa").change(function () {
+            // e.preventDefault();
+
+            $("#NuevaEmpresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#NuevaSucursal").html(data);
+                    });
+            });
+        });
+    });
+
+    </script>

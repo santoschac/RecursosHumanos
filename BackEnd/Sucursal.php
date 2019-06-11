@@ -17,10 +17,10 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                    <h4>Lista de cursos</h4>
+                                    <h4>Lista de Sucursales</h4>
                                     
                                 
-                                <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Curso</button></a>
+                                <a href="VAlta_Sucursal.php"><button type="button" class="btn btn-primary" >Agregar Sucursal</button></a>
                             
                                 </div>
                             </div>
@@ -29,7 +29,7 @@ include("../Modelo/Conexion.php");
                                    
                                    
                                    <!--tabla-->
-                                   <div id="TablaCurso"></div>
+                                   <div id="TablaSucursal"></div>
                                    <!--fin tabla-->
                                    
                                     <br>
@@ -56,7 +56,93 @@ include("../Modelo/Conexion.php");
 
 
 
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+   
+	
 
+	$(document).on('submit', '#formulario', function(event){
+        event.preventDefault();
+        var datos = $('#formulario').serialize();
+		// var Nombre = $('#NombreCurso').val();
+        // var Descripcion = $('#DescripcionCurso').val();
+        // var Tipo = $('Tipo').val();
+        // var Fecha = $('Fecha').val();
+		//alert(datos);
+		if(Nombre != '' && Descripcion != '')
+		{
+			
+			$.ajax({
+				url:"Alta/Alta_Curso.php",
+				method:'POST',
+				data:new FormData(this),
+				contentType:false,
+				processData:false,
+				success:function(data)
+				{
+				    //alert(data);
+					//$('#formulario')[0].reset();
+					if(data==1){
+					readCurso();
+					$("#exito").fadeIn();
+					setTimeout(function(){
+					$("#exito").fadeOut();
+					},2000);
+					$('#NombreCurso').val('');
+					}
+                    else if(data ==2)
+                    {
+                        readCurso();
+					$("#actu").fadeIn();
+					setTimeout(function(){
+					$("#actu").fadeOut();
+					},2000);
+					$('#NombreCurso').val('');
+					// }else{
+
+                    //     $("#error").fadeIn();
+					// setTimeout(function(){
+					// $("#error").fadeOut();
+					// },2000);
+
+                    }
+
+				}
+			});
+		}
+		
+	});
+
+    $(document).on('click', '.update', function(){
+        var curso_id = $(this).attr("id");
+    //    alert(curso_id);
+		$.ajax({
+			url:"Editar/Editar_Curso.php",
+			method:"POST",
+			data:{curso_id:curso_id},
+			dataType:"json",
+			success:function(data)
+			{
+				$('#ModalAgregar').modal('show');
+                $('#NombreCurso').val(data.Nombre);
+                $('#DescripcionCurso').val(data.Fecha);
+                $('Tipo').val(data.Tipo);
+                $('Fecha').val(data.Fecha);
+				//$('#last_name').val(data.last_name);
+				$('.modal-title').text("Actualizar puesto");
+				$('#curso_id').val(curso_id);
+				$('#action').val("Edit");
+                $('#operation').val("Edit");
+
+			}
+		})
+	});
+	
+	
+	
+	
+});
+</script>
 
 
 <script >
@@ -67,15 +153,15 @@ include("../Modelo/Conexion.php");
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdCurso = $(this).data('id');
-			SwalDelete(IdCurso);
+			var IdSucursal = $(this).data('id');
+			SwalDelete(IdSucursal);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdCurso){
+	function SwalDelete(IdSucursal){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -91,9 +177,9 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: 'Eliminar/Eliminar_Curso.php',
+			   		url: 'Eliminar/Eliminar_Sucursal.php',
 			    	type: 'POST',
-			       	data: 'delete='+IdCurso,
+			       	data: 'delete='+IdSucursal,
                     dataType: 'json'
                       
 			     })
@@ -113,7 +199,7 @@ include("../Modelo/Conexion.php");
 	}
 
     function readCurso(){
-		$('#TablaCurso').load('Tablas/TablaCurso.php');	
+		$('#TablaSucursal').load('Tablas/TablaSucursal.php');	
 	}
     
 </script>

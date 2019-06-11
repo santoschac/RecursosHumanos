@@ -107,8 +107,8 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="text" name="empresa_id" id="empresa_id" />
-										<input type="text" name="operation" id="operation" />
+                                        <input type="hidden" name="empresa_id" id="empresa_id" />
+										<input type="hidden" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
 										<button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>
 										
