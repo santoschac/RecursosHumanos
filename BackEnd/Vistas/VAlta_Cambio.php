@@ -3,18 +3,26 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-$sql= $pdo->prepare("SELECT * FROM puestos");
+$sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+from personal p
+inner join puestos pu on p.IdPuesto= pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 
-if(isset($_GET['IdPuesto'])){
+if(isset($_GET['IdPersonal'])){
 
-    $id = $_GET['IdPuesto'];
-    $sql = 'SELECT * FROM puestos WHERE IdPuesto=:IdPuesto';
+    $IdPersonal = $_GET['IdPersonal'];
+    $sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+    from personal p
+    inner join puestos pu on p.IdPuesto= pu.IdPuesto
+    inner join sucursal s on p.IdSucursal = s.IdSucursal
+    inner join empresa e on s.IdEmpresa = e.IdEmpresa WHERE IdPersonal=:IdPersonal';
     $statement = $pdo->prepare($sql);
-    $statement-> execute([':IdPuesto'=> $id]);
-    $Puesto = $statement->fetch(PDO::FETCH_OBJ);
+    $statement-> execute([':IdPersonal'=> $IdPersonal]);
+    $Personal = $statement->fetch(PDO::FETCH_OBJ);
     }
 ?>
 
@@ -73,39 +81,54 @@ if(isset($_GET['IdPuesto'])){
                                 <li class="active"><a href="#description">Agregar Cambio</a></li>
                                 
                             </ul>
+                            <!--Alertas-->
+                            <div class="alert alert-success" id="exito" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  Datos insertados con éxito
+                              </div>
+                              <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  El  ya existe
+                              </div>
+                             <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" action="#" class="add-department">
+                                                <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="input-group custom-go-button">
-                                                                <input type="text" name="Personal" id="Personal"
-                                                                    class="form-control" placeholder="Nombre Personal"
-                                                                    required=""
-                                                                    value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>"
+                                                                <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
+                                                                    required="" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
                                                                     maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
-                                                                        href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                                class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                                    href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
                                                             </div>
 
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Empresa Anterior</label>
-                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal Anterior</label>
-                                                            <input name="SucursalAnterior" id="SucursalAnterior" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto Anterior</label>
-                                                            <input name="PuestoAnterior" id="PuestoAnterior" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
                                                         
                                                                
@@ -129,7 +152,7 @@ if(isset($_GET['IdPuesto'])){
                                                             $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                             
                                                             ?>
-                                                            <select name="NuevaEmpresa" id="NuevaEmpresa" class="form-control">
+                                                            <select name="EmpresaNuevo" id="EmpresaNuevo" class="form-control">
                                                             <option value="none" selected="" disabled="">Seleccionar</option>
                                                                 <?php foreach ($result as $dato) {?>
                                                                     <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
@@ -139,17 +162,17 @@ if(isset($_GET['IdPuesto'])){
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nueva Sucursal</label>
-                                                            <select name="NuevaSucursal" id="NuevaSucursal"class="form-control">
+                                                            <select name="SucursalNuevo" id="SucursalNuevo"class="form-control">
                                                                 <option value="none" selected="" disabled="">Seleccionar</option>
                                                             </select>
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                 <?php 
-                                                                    echo '<select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
+                                                                    echo '<select name="PuestoNuevo" id="PuestoNuevo" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
                                                                     echo '<option value="">Seleccionar</option>';
                                                                     foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
-                                                                    echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
+                                                                    echo '<option value="'.$row['NombrePuesto'].'">'.$row['NombrePuesto'].'</option>';
                                                                     }
                                                                     echo'</select>';
                                                                 ?>
@@ -179,11 +202,16 @@ if(isset($_GET['IdPuesto'])){
                 </div>
             </div>
         </div>
-
+   <style>
+    #mdialTamanio{
+      width: 60% !important;
+      
+      }
+  </style>
 
  <!--Modal tabla-->
  <div id="ModalTablaPersonal" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" id="mdialTamanio">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
                                         <h4 class="modal-title">Lista del personal</h4>
@@ -199,11 +227,7 @@ if(isset($_GET['IdPuesto'])){
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
-                                </div>
-                            </div>
+                           
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
@@ -211,7 +235,13 @@ if(isset($_GET['IdPuesto'])){
                                         <thead>
                                             <tr>
                                             <th>No</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            
+                                            <th>Empresa</th>
+                                            <th>Sucursal</th>
                                             <th>Puesto</th>
+                                            <th>Departamento</th>
                                             <th>Seleccionar</th>
                                             </tr>
                                         </thead>
@@ -219,11 +249,17 @@ if(isset($_GET['IdPuesto'])){
                                         <tbody>
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
-                                                <td><?php echo $dato['IdPuesto']; ?></td>
+                                                <td><?php echo $dato['IdPersonal']; ?></td>
+                                                <td><?php echo $dato['Nombre']; ?></td>
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
+                                                
+                                                <td><?php echo $dato['NombreEmpresa']; ?></td>
+                                                <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>
+                                                <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VAlta_Cambio.php?IdPuesto=<?php echo $dato['IdPuesto']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_Cambio.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -236,7 +272,7 @@ if(isset($_GET['IdPuesto'])){
                     </div>
                 </div>
             </div>
-        </div> <br>
+        </div> 
         <!-- Static Table End -->
            
                                 
@@ -269,10 +305,10 @@ if(isset($_GET['IdPuesto'])){
     
     <script type="text/javascript" language="javascript">
     $(document).ready(function () {
-        $("#NuevaEmpresa").change(function () {
+        $("#EmpresaNuevo").change(function () {
             // e.preventDefault();
 
-            $("#NuevaEmpresa option:selected").each(function () {
+            $("#EmpresaNuevo option:selected").each(function () {
                 IdEmpresa = $(this).val();
                 
                 $.post("Combo/Seleccionar_Sucursal.php", {
@@ -280,10 +316,85 @@ if(isset($_GET['IdPuesto'])){
                     },
                     function (data) {
                         
-                        $("#NuevaSucursal").html(data);
+                        $("#SucursalNuevo").html(data);
                     });
             });
         });
     });
 
+
+    $(document).ready(function(){
+       
+
+       $(document).on('submit', '#formulario', function(event){
+           event.preventDefault();
+           var datos = $('#formulario').serialize();
+//alert(datos);
+
+               $.ajax({
+                   url:"Alta/Alta_Cambio.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     alert(data);
+                       if(data==1){
+                       $("#exito").fadeIn();
+                       setTimeout(function(){
+                       $("#exito").fadeOut();
+                       },3000);
+                       $('#formulario')[0].reset();
+
+                       }
+                       else if(data==2)
+                       {
+                        $("#error").fadeIn();
+                       setTimeout(function(){
+                       $("#error").fadeOut();
+                       },3000);
+                       }
+    
+                   }
+               });
+       });
+  
+    });
+
     </script>
+
+    <!-- <script>
+    $(document).ready(function(){
+    $(document).on('submit', '$formulario', function(event){
+        event.preventDefault();
+
+        var = datos = $('#formulario').serialize();
+
+        $ajax({
+            url:"Alta/Alta_Cambio.php",
+            method:"POST",
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            succes: function(data){
+
+                if(data==1){
+                    $("#exito").fadeIn();
+                    setTimeout(function(){
+                    $("#exito").fadeOut();
+                    }, 3000);
+
+                    $("#formulario")[0].reset();
+                }else if(data==2){
+                    $("#error").fadeIn();
+                    setTimeout(function(){
+                    $("#error").fadeOut();
+                    }, 3000);
+                }
+            }
+
+        });
+    });
+});
+    </script> -->

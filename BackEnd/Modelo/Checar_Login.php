@@ -17,9 +17,10 @@ if (password_verify($_POST['Contrasena'], $resultado['Contrasena'])) {
 
 	$_SESSION['IdUsuario'] = $resultado['IdUsuario'];
 	$_SESSION['Usuario'] = $resultado['Usuario'];
-	$_SESSION['Nombre'] = $resultado['Nombre'];
-	$_SESSION['ApellidoPaterno'] = $resultado['ApellidoPaterno'];
-	$_SESSION['ApellidoMaterno'] = $resultado['ApellidoMaterno'];
+	// $_SESSION['Nombre'] = $resultado['Nombre'];
+	// $_SESSION['ApellidoPaterno'] = $resultado['ApellidoPaterno'];
+	// $_SESSION['ApellidoMaterno'] = $resultado['ApellidoMaterno'];
+	$_SESSION['IdTipoUsuario'] = $resultado['IdTipoUsuario'];
 
 	header("location: ../Vistas/index.php");
 }else

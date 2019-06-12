@@ -42,7 +42,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['EmpresaAnterior']; ?></td>
                                                 <td><?php echo $dato['SucursalAnterior']; ?></td>
                                                 <td><?php echo $dato['PuestoAnterior']; ?></td>
-                                                <td><?php echo $dato['FechaInicio']; ?></td>
+                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaInicio'])); ?></td>
                                                 <td><?php echo $dato['EmpresaNuevo']; ?></td>
                                                 <td><?php echo $dato['SucursalNuevo']; ?></td>
                                                 <td><?php echo $dato['PuestoNuevo']; ?></td>

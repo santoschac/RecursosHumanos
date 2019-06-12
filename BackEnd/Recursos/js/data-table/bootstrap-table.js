@@ -476,13 +476,13 @@
             return sprintf('Mostrando %s filas', totalRows);
         },
         formatSearch: function () {
-            return 'Buscando';
+            return 'Buscar';
         },
         formatNoMatches: function () {
             return 'No se encontraron resultados';
         },
         formatPaginationSwitch: function () {
-            return 'Hide/Show pagination';
+            return 'Ocultar/Mostrar paginación';
         },
         formatRefresh: function () {
             return 'Refresh';

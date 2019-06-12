@@ -1,174 +1,120 @@
 <?php
 include("../Master/Header.php");
+include("../Modelo/Conexion.php");
 ?>
          
+         <!-- Sweet Alert
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
-         <!-- forms CSS
-		para el diseño del calendario azul pequeño================= -->
-    <link rel="stylesheet" href="../Recursos/css/form/all-type-forms.css">
-   
-    
-                   <!-- Mobile Menu end -->
-            <div class="breadcome-area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list single-page-breadcome">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Buscar..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <ul class="breadcome-menu">
-                                            <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Lista de Incidencias</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+
+          <!-- Static Table Start -->
+          <div class="data-table-area mg-b-15">
+          <br/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div >
+                                    <h4>Lista de Incidencias</h4>
+                                    
+                                
+                                <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Incidencia</button></a>
+                            
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">                                                
+                                   
+                                   
+                                   <!--tabla-->
+                                   <div id="TablaIncidencia"></div>
+                                   <!--fin tabla-->
+                                   
+                                    <br>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="product-status mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="product-status-wrap">
-                            <h4>Lista de Incidencias</h4>
-                            <div class="add-product">
-                                <a href="Alta_Incidencias.php">Agregar Incidencia</a>
-                            </div>
-                            <div class="asset-inner">
-                                <table>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Image</th>
-                                        <th>Fecha Incidencia</th>
-                                        <th>Descripción</th>
-                                        <th>Personal</th>
-                                        <th>Reporta</th>
-                                        <th>Autoriza</th>
-                                        <th>Accidente</th>
-                                        <th>Configuración</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><img src="../Recursos/img/product/book-1.jpg" alt="" /></td>
-                                        <td>Web Development Book</td>
-                                        <td>Java</td>
-                                        <td>Html, Css</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1500</td>
-                                        <td>
-                                            
-                                            <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><img src="../Recursos/img/product/book-2.jpg" alt="" /></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>Java</td>
-                                        <td>PHP</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1700</td>
-                                        <td>
-                                        <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><img src="../Recursos/img/product/book-3.jpg" alt="" /></td>
-                                        <td>Box of pendrive</td>
-                                        <td>Java</td>
-                                        <td>Java</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1500</td>
-                                        <td>
-                                        <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><img src="../Recursos/img/product/book-4.jpg" alt="" /></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>Java</td>
-                                        <td>PHP</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1200</td>
-                                        <td>
-                                        <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td><img src="../Recursos/img/product/book-1.jpg" alt="" /></td>
-                                        <td>Web Development Book</td>
-                                        <td>Java</td>
-                                        <td>Wordpress</td>
-                                        <td>CSE</td>
-                                        <td>Book</td>
-                                        <td>$1800</td>
-                                        <td>
-                                        <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td><img src="../Recursos/img/product/book-2.jpg" alt="" /></td>
-                                        <td>Quality Bol pen</td>
-                                        <td>Java</td>
-                                        <td>Java</td>
-                                        <td>CSE</td>
-                                        <td>CD</td>
-                                        <td>$1000</td>
-                                        <td>
-                                        <a href="Editar_Incidencias.php"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                            <button data-toggle="tooltip" title="Eliminar" onclick="return confirm('¿Eliminar incidencia?')"  class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="custom-pagination">
-								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a></li>
-								</ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>   
+        </div> <br>
+        <!-- Static Table End -->
+
+          
+                                       
+                                      
+        
          
-     
+        
         <?php
         include ("../Master/Footer.php");
         ?>
 
-     
-           <!-- datepicker JS
-		para el calendario azul pequeño============================ -->
-        <script src="../Recursos/js/datepicker/jquery-ui.min.js"></script>
-    <script src="../Recursos/js/datepicker/datepicker-active.js"></script>
+<script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
+
+
+
+
+
+
+<script >
+
+	$(document).ready(function(){
+		
+		readIncidencia(); /* it will load products when document loads */
+		
+		$(document).on('click', '#Eliminar', function(e){
+			
+			var IdIncidencias = $(this).data('id');
+			SwalDelete(IdIncidencias);
+            e.preventDefault();
+            //alert(IdPuesto);
+		});
+		
+	});
+	
+	function SwalDelete(IdIncidencias){
+		
+		swal({
+			title: '¿Estás seguro?',
+			text: "Será eliminado permanentemente!",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, borralo!',
+			showLoaderOnConfirm: true,
+			 
+			preConfirm: function() {
+			  return new Promise(function(resolve) {
+			        
+			     $.ajax({
+			   		url: 'Eliminar/Eliminar_Incidencia.php',
+			    	type: 'POST',
+			       	data: 'delete='+IdIncidencias,
+                    dataType: 'json'
+                      
+			     })
+			     .done(function(response){
+			     	swal('Eliminado!', response.message, response.status);
+                     readIncidencia();
+                    
+			     })
+			     .fail(function(){
+			     	swal('Oops...', 'Algo salió mal con el ajax. !', 'error');
+			     });
+			  });
+		    },
+			allowOutsideClick: false			  
+		});	
+		
+	}
+
+    function readIncidencia(){
+		$('#TablaIncidencia').load('Tablas/TablaIncidencia.php');	
+	}
+    
+</script>
+           
