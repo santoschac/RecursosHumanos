@@ -20,7 +20,7 @@ include("../Modelo/Conexion.php");
                                     <h4>Lista de Incidencias</h4>
                                     
                                 
-                                <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Incidencia</button></a>
+                                <a href="VAlta_Incidencias.php"><button type="button" class="btn btn-primary" >Agregar Incidencia</button></a>
                             
                                 </div>
                             </div>

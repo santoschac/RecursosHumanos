@@ -1,21 +1,29 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-include("../Modelo/PaginadorPuestos.php");
-
-if(isset($_GET['IdPuesto'])){
-
-$id = $_GET['IdPuesto'];
-$sql = 'SELECT * FROM puestos WHERE IdPuesto=:IdPuesto';
-$statement = $pdo->prepare($sql);
-$statement-> execute([':IdPuesto'=> $id]);
-$Puesto = $statement->fetch(PDO::FETCH_OBJ);
-}
 
 
-$sql= $pdo->prepare("SELECT * FROM puestos");
+$sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+from personal p
+inner join puestos pu on p.IdPuesto= pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+
+if(isset($_GET['IdPersonal'])){
+
+    $IdPersonal = $_GET['IdPersonal'];
+    $sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+    from personal p
+    inner join puestos pu on p.IdPuesto= pu.IdPuesto
+    inner join sucursal s on p.IdSucursal = s.IdSucursal
+    inner join empresa e on s.IdEmpresa = e.IdEmpresa WHERE IdPersonal=:IdPersonal';
+    $statement = $pdo->prepare($sql);
+    $statement-> execute([':IdPersonal'=> $IdPersonal]);
+    $Personal = $statement->fetch(PDO::FETCH_OBJ);
+    }
 ?>
             
     <!-- normalize CSS
@@ -60,49 +68,72 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li class="active"><a href="#description">Agregar Incidencias</a></li>
                                 
                             </ul>
+                             <!--Alertas-->
+                             <div class="alert alert-success" id="exito"  style="display:none">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    Datos insertados con éxito
+                                </div>
+
+                                <div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+                                    El curso ya existe
+                            </div>
+                             
+                             <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" action="#" class="add-department">
+                                                <form method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
-                                                                    <label class="control-label" for="Personal">Personal</label>
-                                                                    <div class="input-group custom-go-button">
-                                                                      <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-                                                                        required="" value="<?php if(isset($_GET['IdPuesto'])):?><?=$Puesto->IdPuesto;?><?php endif;?>" maxlength="60" readonly="">
-                                                                      <span class="input-group-btn"><a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"
-                                                                          ><span class="glyphicon glyphicon-zoom-in"></span></button></span></a>
-                                                                    </div>
-                                                                    
-                                                                  </div>
-                                                        <div class="form-group">
-                                                             <label>Fecha de nacimiento</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="date" class="form-control" value="<?php echo date("d/m/Y"); ?>" >
-                                        </div>
-                                    </div>
-                                                                <div class="form-group">
-                                                                <div class="form-group res-mg-t-15">
-                                                                    <textarea name="Descripcion" placeholder="Descripcion" maxlength="300"></textarea>
-                                                                
-                                                                </div>
+                                                            <label class="control-label" for="Personal">Personal</label>
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal"
+                                                                value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>">
+                                                            <div class="input-group custom-go-button">
+                                                                <input type="text" name="Personal" id="Personal"
+                                                                    class="form-control" placeholder="Nombre Personal"
+                                                                    required=""
+                                                                    value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    maxlength="60" readonly=""><span
+                                                                    class="input-group-btn"><a class="Primary mg-b-10"
+                                                                        href="#" data-toggle="modal"
+                                                                        data-target="#ModalTablaPersonal"><button
+                                                                            class="btn btn-primary" type="button"><span
+                                                                                class="glyphicon glyphicon-zoom-in"></span></button></span></a>
                                                             </div>
-                                                            
-                                                           
-                                                                  
-                                                                  
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Fecha de nacimiento</label>
+                                                            <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="form-group res-mg-t-15">
+                                                                <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion" maxlength="300"></textarea>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        
-                                                        <div class="form-group">
-                                                            <label>Reporta</label>
-                                                                <input name="Reporta" type="text" class="form-control" placeholder="Reporta">
-                                                            </div>
+
                                                             <div class="form-group">
+                                                                <label>Reporta</label>
+                                                                <input name="Reporta" id="Reporta" type="text" value="<?php echo $_SESSION['Usuario']; ?>" class="form-control" placeholder="Reporta" readonly>
+                                                            </div>
+                                                            <!-- <div class="form-group">
                                                             <label>Autoriza</label>
                                                                     <select name="city" class="form-control">
 																			<option value="none" selected="" disabled="">Seleccionar</option>
@@ -112,13 +143,13 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 																			<option value="3">Baroda</option>
 																			<option value="4">Surat</option>
 																		</select>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="form-group">
                                                                 <label>Accidente(choferes)</label>
-                                                                    <select name="city" class="form-control">
+                                                                    <select name="Accidentes" id="Accidentes" class="form-control">
 																			<option value="none" selected="" disabled="">Seleccionar</option>
-																			<option value="0">Responsable</option>
-																			<option value="1">Afectado</option>
+																			<option value="Responsable">Responsable</option>
+																			<option value="Afectado">Afectado</option>
 																			
 																		</select>
                                                                 </div>
@@ -144,9 +175,17 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-        <!--Modal tabla-->
-        <div id="ModalTablaPersonal" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-                            <div class="modal-dialog">
+       
+        <style>
+    #mdialTamanio{
+      width: 60% !important;
+      
+      }
+  </style>
+
+ <!--Modal tabla-->
+ <div id="ModalTablaPersonal" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+                            <div class="modal-dialog" id="mdialTamanio">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
                                         <h4 class="modal-title">Lista del personal</h4>
@@ -162,11 +201,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
-                                </div>
-                            </div>
+                           
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
@@ -174,7 +209,13 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            
+                                            <th>Empresa</th>
+                                            <th>Sucursal</th>
                                             <th>Puesto</th>
+                                            <th>Departamento</th>
                                             <th>Seleccionar</th>
                                             </tr>
                                         </thead>
@@ -182,11 +223,17 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <tbody>
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
-                                                <td><?php echo $dato['IdPuesto']; ?></td>
+                                                <td><?php echo $dato['IdPersonal']; ?></td>
+                                                <td><?php echo $dato['Nombre']; ?></td>
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
+                                                
+                                                <td><?php echo $dato['NombreEmpresa']; ?></td>
+                                                <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>
+                                                <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="Alta_Incidencias.php?IdPuesto=<?php echo $dato['IdPuesto']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_Incidencias.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -199,7 +246,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-        </div> <br>
+        </div> 
         <!-- Static Table End -->
            
                                 
@@ -210,7 +257,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                             </div>
                         </div>
         <!--Fin modal tabla-->
-        
+
         
         <?php
         include ("../Master/Footer.php");
@@ -220,3 +267,54 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
   <!-- data table JS
 		============================================ -->
         <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+
+        <script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+   
+	
+
+   $(document).on('submit', '#formulario', function(event){
+       event.preventDefault();
+       var datos = $('#formulario').serialize();
+       
+       //alert(datos);
+       if(datos != '' )
+       {
+           
+           $.ajax({
+               url:"Alta/Alta_Incidencia.php",
+               method:'POST',
+               data:new FormData(this),
+               contentType:false,
+               processData:false,
+               success:function(data)
+               {
+                   //alert(data);
+                   
+                   if(data==1){
+                   
+                   $("#exito").fadeIn();
+                   setTimeout(function(){
+                   $("#exito").fadeOut();
+                   },3000);
+                   
+                   }
+                   else if(data==2)
+                   {
+                    $("#exito").fadeIn();
+                   setTimeout(function(){
+                   $("#exito").fadeOut();
+                   },3000);
+                   $('#formulario')[0].reset();
+
+                   }
+
+               }
+           });
+        
+       }
+       
+   });
+   
+});
+</script>

@@ -2,36 +2,12 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$message="";
 
 $IdCurso= $_GET['IdCurso'];
 $sql = 'SELECT * FROM cursos WHERE IdCurso=:IdCurso';
 $sentencia = $pdo->prepare($sql);
 $sentencia->execute([':IdCurso'=>$IdCurso]);
 $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
-
-// $IdCurso= $_GET['IdCurso'];
-// $sql = 'SELECT * FROM cursos WHERE IdCurso=:IdCurso';
-// $statement = $pdo->prepare($sql);
-// $statement->execute([':IdCurso'=> $IdCurso]);
-// $cursos = $statement->fetch(PDO::FETCH_OBJ);
-
-
-if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_POST['Tipo']) && isset($_POST['Fecha'])){
-
-
-    $Nombre = $_POST['NombreCurso'];
-    $Descripcion = $_POST['DescripcionCurso'];
-    $Tipo = $_POST['Tipo'];
-    $Fecha = $_POST['Fecha'];
-
-        $sql = 'UPDATE cursos SET Nombre=:Nombre, DescripcionCurso=:DescripcionCurso, Tipo=:Tipo, Fecha=:Fecha WHERE IdCurso=:IdCurso';
-        $sentencia=$pdo->prepare($sql);
-        if($sentencia->execute([':Nombre'=>$Nombre, ':DescripcionCurso'=>$Descripcion, ':Tipo'=>$Tipo, ':Fecha'=>$Fecha, ':IdCurso'=>$IdCurso])){
-            $message="Datos Actualizados con éxito";
-        }
-
-}
 
 ?>
 
@@ -46,12 +22,7 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
                 <div class="breadcome-list single-page-breadcome">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                           
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
@@ -78,25 +49,22 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
                         <li class="active"><a href="#description">Actualizar Curso</a></li>
 
                     </ul>
+                        <!--Alertas-->
+                            <div class="alert alert-success" id="exito" style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                Datos Actualizados con éxito
+                            </div>
 
-                    <?php if($message=="Datos Actualizados con éxito"):?>
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <?= $message;?>
-                    </div>
-                    <?php endif;?>
-
-                    <?php if ($message=="El curso ya existe"):?>
-                    <div class="alert alert-danger alert-mg-b">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <?= $message;?>
-                    </div>
-                    <?php endif;?>
-
+                            <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                La sucursal ya existe
+                            </div>
+                             
+                        <!--Fin alertas-->
 
 
                     <div id="myTabContent" class="tab-content custom-product-edit">
@@ -104,11 +72,12 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
-                                        <form method="POST" class="add-department">
+                                        <form method="POST" id="formulario" class="add-department">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Nombre del Curso</label>
+                                                        <input type="hidden" name="IdCurso" id="IdCurso" value="<?php echo $IdCurso?>">
                                                         <input name="NombreCurso" id="NombreCurso" type="text"
                                                             value="<?= $cursos->Nombre;?>" class="form-control"
                                                             placeholder="Nombre del curso" required="">
@@ -174,3 +143,48 @@ if(isset($_POST['NombreCurso']) && isset($_POST['DescripcionCurso']) && isset($_
 <?php
 include ("../Master/Footer.php");
 ?>
+
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+   
+	
+
+   $(document).on('submit', '#formulario', function(event){
+       event.preventDefault();
+       var datos = $('#formulario').serialize();
+       
+      // alert(datos);
+           $.ajax({
+               url:"Editar/Editar_Curso.php",
+               method:'POST',
+               data:new FormData(this),
+               contentType:false,
+               processData:false,
+               success:function(data)
+               {
+                   alert(data);
+                   //$('#formulario')[0].reset();
+                   if(data==1){
+                   //readCurso();
+                   $("#exito").fadeIn();
+                   setTimeout(function(){
+                   $("#exito").fadeOut();
+                   },2000);
+                   $('#formulario')[0].reset();
+                   }
+                   else if(data==2)
+                   {
+                    $("#error").fadeIn();
+                   setTimeout(function(){
+                   $("#error").fadeOut();
+                   },2000);
+                   //$('#formulario')[0].reset();
+ 
+                   }
+
+               }
+           });
+   });
+   
+});
+</script>

@@ -38,8 +38,9 @@ include("../../Modelo/Conexion.php");
 		
 	}
 
-  $SucursalNuevo = $output['NombreSucursal'];
-  $EmpresaNuevo =  $output['NombreEmpresa'];
+ $SucursalNuevo = $output['NombreSucursal'];
+$EmpresaNuevo =  $output['NombreEmpresa'];
+
 
 
   $PuestoNuevo = $_POST['PuestoNuevo'];
@@ -55,10 +56,5 @@ include("../../Modelo/Conexion.php");
        ':EmpresaNuevo'=>$EmpresaNuevo, ':SucursalNuevo'=>$SucursalNuevo, ':PuestoNuevo'=> $PuestoNuevo, ':IdPersonal'=>$IdPersonal ]))
           {
             echo 1;
-  
           }
-
-
-  
-
 ?>

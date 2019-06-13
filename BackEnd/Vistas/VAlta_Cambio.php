@@ -2,6 +2,7 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
+$message="";
 
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
@@ -24,6 +25,8 @@ if(isset($_GET['IdPersonal'])){
     $statement-> execute([':IdPersonal'=> $IdPersonal]);
     $Personal = $statement->fetch(PDO::FETCH_OBJ);
     }
+
+
 ?>
 
 <!-- normalize CSS
@@ -81,6 +84,15 @@ if(isset($_GET['IdPersonal'])){
                                 <li class="active"><a href="#description">Agregar Cambio</a></li>
                                 
                             </ul>
+                            <?php
+                             if(($message=="insertado")):?>
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <?= $message;?>
+                                </div>
+                                <?php endif;?>
                             <!--Alertas-->
                             <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -364,37 +376,4 @@ if(isset($_GET['IdPersonal'])){
 
     </script>
 
-    <!-- <script>
-    $(document).ready(function(){
-    $(document).on('submit', '$formulario', function(event){
-        event.preventDefault();
-
-        var = datos = $('#formulario').serialize();
-
-        $ajax({
-            url:"Alta/Alta_Cambio.php",
-            method:"POST",
-            data: new FormData(this),
-            contentType: false,
-            processData: false,
-            succes: function(data){
-
-                if(data==1){
-                    $("#exito").fadeIn();
-                    setTimeout(function(){
-                    $("#exito").fadeOut();
-                    }, 3000);
-
-                    $("#formulario")[0].reset();
-                }else if(data==2){
-                    $("#error").fadeIn();
-                    setTimeout(function(){
-                    $("#error").fadeOut();
-                    }, 3000);
-                }
-            }
-
-        });
-    });
-});
-    </script> -->
+   

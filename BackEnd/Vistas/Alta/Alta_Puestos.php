@@ -8,12 +8,17 @@ if(isset($_POST["operation"]))
 {
 	if($_POST["operation"] == "Add")
 	{
-    
-		$statement = $pdo->prepare("
-			INSERT INTO puestos (NombrePuesto) 
-			VALUES (:NombrePuesto)
-    ");
-   
+	
+		$sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
+    	$sentencia = $pdo->prepare($sql);
+    	$sentencia ->execute(array($_POST["NombrePuesto"]));
+    	$resultado = $sentencia->fetch();
+
+		if($resultado){
+			echo 3;
+		}else{
+			
+		$statement = $pdo->prepare("INSERT INTO puestos (NombrePuesto) VALUES (:NombrePuesto)");
 		$result = $statement->execute(
 			array(
 				':NombrePuesto'	=>	$_POST["NombrePuesto"]
@@ -23,13 +28,25 @@ if(isset($_POST["operation"]))
 		if(!empty($result))
 		{
 			echo 1;
-    }
+        }
+
+		}
+
+
     
 	}
 	if($_POST["operation"] == "Edit")
 	{
 	
-		$statement = $pdo->prepare(
+		$sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
+    	$sentencia = $pdo->prepare($sql);
+    	$sentencia ->execute(array($_POST["NombrePuesto"]));
+    	$resultado = $sentencia->fetch();
+
+		if($resultado){
+			echo 3;
+		}else{
+			$statement = $pdo->prepare(
 			"UPDATE puestos 
 			SET NombrePuesto = :NombrePuesto
 			WHERE IdPuesto = :id
@@ -45,6 +62,8 @@ if(isset($_POST["operation"]))
 		{
 			echo 2;
 		}
+		}
+		
 	}
 }
 

@@ -42,11 +42,10 @@ include("../Modelo/Conexion.php");
                                 </div>
 
 								<div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
-								<br/>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    El nombre ya existe
+                                    La empresa ya existe
                             </div>
                                 <!--Fin alertas-->
                             <div class="sparkline13-graph">
@@ -183,8 +182,17 @@ $(document).ready(function(){
 					 },2000);
 					$('#NombreEmpresa').val('');
 					$('#ClaveEmpresa').val('');
-					
-
+                    }
+					else if(data ==3)
+                    {
+					   //readEmpresa();
+					   $('#ModalAgregar').modal('hide');
+					$("#error").fadeIn();
+					setTimeout(function(){
+					$("#error").fadeOut();
+					 },2000);
+					$('#NombreEmpresa').val('');
+					$('#ClaveEmpresa').val('');
                     }
 
 				}

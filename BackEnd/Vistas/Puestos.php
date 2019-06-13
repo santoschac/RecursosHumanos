@@ -154,30 +154,32 @@ $(document).ready(function(){
 				{
 				    //alert(data);
 					//$('#formulario')[0].reset();
-					if(data==1){
-					readPuesto();
-					$('#ModalAgregar').modal('hide');
-					$("#exito").fadeIn();
-					setTimeout(function(){
-					$("#exito").fadeOut();
-					},2000);
-					$('#NombrePuesto').val('');
+					if(data==1)
+					{
+						readPuesto();
+						$('#ModalAgregar').modal('hide');
+						$("#exito").fadeIn();
+						setTimeout(function(){
+						$("#exito").fadeOut();
+						},2000);
+						$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
                     {
 						readPuesto();
 						$('#ModalAgregar').modal('hide');
-					$("#actu").fadeIn();
-					setTimeout(function(){
-					$("#actu").fadeOut();
-					},2000);
-					$('#NombrePuesto').val('');
-					// }else{
-
-                    //     $("#error").fadeIn();
-					// setTimeout(function(){
-					// $("#error").fadeOut();
-					// },2000);
+						$("#actu").fadeIn();
+						setTimeout(function(){
+						$("#actu").fadeOut();
+						},2000);
+						$('#NombrePuesto').val('');
+					}else if(data == 3){
+						$('#ModalAgregar').modal('hide');
+                        $("#error").fadeIn();
+						setTimeout(function(){
+						$("#error").fadeOut();
+						},2000);
+						$('#NombrePuesto').val('');
 
                     }
 
