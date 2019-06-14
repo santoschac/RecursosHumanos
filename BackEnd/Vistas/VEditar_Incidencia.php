@@ -27,7 +27,10 @@ if(isset($_GET['IdPersonal'])){
 
 
 $IdIncidencias = $_GET['IdIncidencias'];
-$sql1 = 'SELECT * FROM incidencias where IdIncidencias = :IdIncidencias';
+$sql1 = 'SELECT i.IdIncidencias, i.Descripcion, i.Fecha, i.Reporta, i.Autoriza, i.Accidentes, i.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno 
+FROM incidencias i
+inner join personal p on i.IdPersonal = p.IdPersonal
+where IdIncidencias = :IdIncidencias';
 $sentencia= $pdo->prepare($sql1);
 $sentencia ->execute([':IdIncidencias'=>$IdIncidencias]);
 $incidencia = $sentencia->fetch(PDO::FETCH_OBJ);
@@ -104,13 +107,15 @@ $incidencia = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <div class="form-group">
                                                         <input type="hidden" name="IdIncidencias" id="IdIncidencias" value="<?php echo $IdIncidencias?>">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="hidden" name="IdPersonal" id="IdPersonal"
-                                                                value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>">
+
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php else:?><?=$incidencia->IdPersonal;?><?php endif;?>">
+
+                                                            
                                                             <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal"
                                                                     class="form-control" placeholder="Nombre Personal"
                                                                     required=""
-                                                                    value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php else:?><?=$incidencia->Nombre ." ". $incidencia->ApellidoPaterno ." ". $incidencia->ApellidoMaterno;?><?php endif;?>"
                                                                     maxlength="60" readonly=""><span
                                                                     class="input-group-btn"><a class="Primary mg-b-10"
                                                                         href="#" data-toggle="modal"
@@ -127,6 +132,7 @@ $incidencia = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                        <label>Descripción</label>
                                                             <div class="form-group res-mg-t-15">
                                                                 <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion" maxlength="300"><?=$incidencia->Descripcion;?></textarea>
 

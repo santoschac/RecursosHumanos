@@ -28,6 +28,8 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                             <ul class="breadcome-menu">
                                 <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                 </li>
+                                <li><a href="Cursos.php">Cursos</a> <span class="bread-slash">/</span>
+                                </li>
                                 <li><span class="bread-blod">Actualizar Curso</span>
                                 </li>
                             </ul>
@@ -84,10 +86,10 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Tipo de capacitación</label>
-                                                        <select name="Tipo" id="Tipo" class="form-control">
-                                                            <option value="<?= $cursos->Tipo;?>" disabled="">Seleccionar</option>
-                                                            <option value="Interna">Interna</option>
-                                                            <option value="Externa">Externa</option>
+                                                        <select name="Tipo" id="Tipo" class="form-control" required>
+                                                            <option value="" disabled="">Seleccionar</option>
+                                                            <option value="Interna" <?php if("Interna"===$cursos->Tipo): echo "Selected"; endif;?>>Interna</option>
+                                                            <option value="Externa" <?php if("Externa"===$cursos->Tipo): echo "Selected"; endif;?>>Externa</option>
 
                                                         </select>
                                                     </div>
@@ -162,7 +164,7 @@ $(document).ready(function(){
                processData:false,
                success:function(data)
                {
-                   alert(data);
+                   //alert(data);
                    //$('#formulario')[0].reset();
                    if(data==1){
                    //readCurso();

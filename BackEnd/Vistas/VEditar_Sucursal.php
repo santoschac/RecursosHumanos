@@ -88,10 +88,9 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                   <!-- <option value="?=$sucursales->IdEmpresa;?>" selected="" disabled="">Seleccionar</option> -->
                                                                  <!-- <option value="?=$sucursales->IdEmpresa;?>">?=$sucursales->NombreEmpresa;?></option> -->
                                                                   <?php
-                                                                  foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row) {													
-                                                                    echo '<option value="'.$row['IdEmpresa'].'">'.$row['NombreEmpresa'].'</option>';
-                                                                    }
-                                                                    ?>
+                                                                  foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row):?>													
+                                                                    <option value="<?php echo $row['IdEmpresa'] ?>"  <?php if($row['IdEmpresa'] === $sucursales->IdEmpresa): echo "selected"; endif; ?> > <?php echo $row['NombreEmpresa'] ?> </option>
+                                                                    <?php endforeach; ?>
                                                                     </select>
                                                                     
                                                                 </div>
@@ -108,14 +107,14 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Estado</label>
                                                                 
                                                                     <select name="IdEstado" id="IdEstado" class="form-control">
-																    <option value="none" selected="" disabled="">Seleccionar</option>
-                                                                    <option value="<?=$sucursales->IdEstado?>" ><?=$sucursales->NombreEstado;?></option>
+																    <option value="none" selected disabled="">Seleccionar</option>
+                                                                    
                                                                  <?php  
-                                                                 foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row) {													
-                                                                    echo '<option value="'.$row['IdEstado'].'">'.$row['NombreEstado'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                    ?>
+                                                                 foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row):?>													
+                                                                    <option value="<?php echo $row['IdEstado']?>"><?php echo $row['NombreEstado'] ?></option>
+                                                                    <?php endforeach;?>
+                                                                    </select>
+                                                                
                                                                 </div>
                                                             
                                                             <div class="form-group">

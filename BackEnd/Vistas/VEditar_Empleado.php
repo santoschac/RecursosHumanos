@@ -41,7 +41,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Empleado</span>
+                                            <li><a href="Empleados.php">Empleados</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Actualizar Empleado</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -119,9 +121,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group">
                                                                 <label>Sexo</label>
                                                                     <select name="Sexo" id="Sexo" class="form-control">
-																		<option value="<?=$empleado->Sexo?>"  disabled="">Seleccionar</option>
-																		<option value="Masculino">Masculino</option>
-																		<option value="Femenino">Femenino</option>
+																		<option value=""  disabled="">Seleccionar</option>
+																		<option value="Masculino" <?php if("Masculino" === $empleado->Sexo): echo "Selected"; endif;?>>Masculino</option>
+																		<option value="Femenino" <?php if("Femenino" === $empleado->Sexo): echo "Selected"; endif;?>>Femenino</option>
 																	</select>
                                                                 </div>
                                                                 <div class="form-group">
@@ -163,13 +165,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
                                                                 <select name="EstadoCivil" id="EstadoCivil" class="form-control">
-                                                                    <option value="<?=$empleado->EstadoCivil ?>" disabled="">Seleccionar</option>
-                                                                    <option value="Soltero(a)">Soltero(a)</option>
-                                                                    <option value="Comprometido(a)">Comprometido(a)</option>
-                                                                    <option value="Casado(a)">Casado(a)</option>
-                                                                    <option value="Unión libre o unión de hecho">Unión libre o unión de hecho</option>
-                                                                    <option value="Divorciado(a)">Divorciado(a)</option>
-                                                                    <option value="Viudo(a)">Viudo(a)</option>
+                                                                    <option value="" disabled="">Seleccionar</option>
+                                                                    <option value="Soltero(a)" <?php if("Soltero(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Soltero(a)</option>
+                                                                    <option value="Comprometido(a)"  <?php if("Comprometido(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Comprometido(a)</option>
+                                                                    <option value="Casado(a)"  <?php if("Casado(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Casado(a)</option>
+                                                                    <option value="Unión libre o unión de hecho"  <?php if("Unión libre o unión de hecho" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Unión libre o unión de hecho</option>
+                                                                    <option value="Divorciado(a)"  <?php if("Divorciado(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Divorciado(a)</option>
+                                                                    <option value="Viudo(a)"  <?php if("Viudo(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Viudo(a)</option>
 
                                                                 </select>
                                                                 </div>
@@ -254,8 +256,8 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             <div class="form-group">
                                                                 <label>Tipo</label>
                                                                     <select name="Tipo" id="Tipo" class="form-control">
-																		<option value="<?= $empleado->Tipo?>"  disabled="">Seleccionar</option>
-																		<option value="Empleado">Empleado</option>
+																		<option value=""  disabled="">Seleccionar</option>
+																		<option value="Empleado" <?php if("Empleado"=== $empleado->Tipo): echo "Selected"; endif;?>>Empleado</option>
 																		
 																	</select>
                                                                 </div>
@@ -303,25 +305,25 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Sucursal</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdSucursal" id="IdSucursal" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
-                                                                    echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                ?>
+                                                                 
+                                                                    <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
+                                                                    <option value="">Seleccionar</option>
+                                                                   <?php foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row):?>												
+                                                                    <option value="<?php echo $row['IdSucursal']?>" <?php if($row['IdSucursal']===$empleado->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
+                                                                    <?php endforeach; ?>
+                                                                    </select>
+                                                                
                                                             </div>
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdPuesto" id="IdPuesto" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
-                                                                    echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                ?>
+                                                                
+                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <option value="">Seleccionar</option>';
+                                                                   <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
+                                                                    <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $empleado->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
+                                                                <?php endforeach;?>
+                                                                    </select>
+                                                                
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Jornada</label>
@@ -355,9 +357,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
                                                                         <select name="TipoContrato" id="TipoContrato" class="form-control">
-                                                                            <option value="<?=$empleado->TipoContrato?>" disabled="">Seleccionar</option>
-                                                                            <option value="Fijo">Fijo</option>
-                                                                            <option value="Temporal">Temporal</option>
+                                                                            <option value="" disabled="">Seleccionar</option>
+                                                                            <option value="Fijo" <?php if("Fijo"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Fijo</option>
+                                                                            <option value="Temporal" <?php if("Temporal"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Temporal</option>
 
                                                                         </select>
                                                                     </div>

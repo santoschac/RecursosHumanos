@@ -22,6 +22,8 @@ include("../Master/Header.php");
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
+                                            <li><a href="Sucursal.php">Sucursal</a> <span class="bread-slash">/</span>
+                                            </li>
                                             <li><span class="bread-blod">Agregar Sucursal</span>
                                             </li>
                                         </ul>
@@ -70,8 +72,8 @@ include("../Master/Header.php");
                                                         <div class="form-group">
                                                                 <label>Empresa</label>
                                                                 <?php 
-                                                                  echo   '<select name="IdEmpresa" id="Empresa" class="form-control">';
-																  echo 	 '<option value="none" selected="" disabled="">Seleccionar</option>';
+                                                                  echo   '<select name="IdEmpresa" id="Empresa" class="form-control" >';
+																  echo 	 '<option value="none" selected="" disabled="" required>Seleccionar</option>';
                                                                   foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row) {													
                                                                     echo '<option value="'.$row['IdEmpresa'].'">'.$row['NombreEmpresa'].'</option>';
                                                                     }
@@ -90,8 +92,8 @@ include("../Master/Header.php");
                                                         <div class="form-group">
                                                                 <label>Estado</label>
                                                                 <?php 
-                                                                  echo   '<select name="IdEstado" id="IdEstado" class="form-control">';
-																  echo 	 '<option value="none" selected="" disabled="">Seleccionar</option>';
+                                                                  echo   '<select name="IdEstado" id="IdEstado" class="form-control" >';
+																  echo 	 '<option value="none" selected="" disabled="" required>Seleccionar</option>';
                                                                   foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row) {													
                                                                     echo '<option value="'.$row['IdEstado'].'">'.$row['NombreEstado'].'</option>';
                                                                     }
@@ -102,12 +104,12 @@ include("../Master/Header.php");
                                                             <div class="form-group">
                                                                 <label>Población</label>
                                                                     <select name="IdPoblacion" id="IdPoblacion" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
+																			<option value="none" selected="" disabled="" required>Seleccionar</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Región</label>
-                                                                <input name="Region" id="Region" type="text" class="form-control" placeholder="Región" required="" maxlength="60">
+                                                                <input name="Region" id="Region" required type="text" class="form-control" placeholder="Región" maxlength="60">
                                                             </div>
                                                         </div>
                                                     </div>

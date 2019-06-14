@@ -27,6 +27,8 @@ include("../Modelo/Conexion.php");
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
+                                            <li><a href="Cursos.php">Cursos</a> <span class="bread-slash">/</span>
+                                            </li>
                                             <li><span class="bread-blod">Agregar Curso</span>
                                             </li>
                                         </ul>
@@ -81,8 +83,8 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Tipo de capacitación</label>
-                                                                    <select name="Tipo" id="Tipo" class="form-control">
-																			<option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <select name="Tipo" id="Tipo" class="form-control" required>
+																			<option value="" selected="" disabled="">Seleccionar</option>
 																			<option value="Interna">Interna</option>
 																			<option value="Externa">Externa</option>
 																			

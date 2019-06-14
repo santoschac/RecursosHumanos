@@ -111,12 +111,13 @@ if(isset($_GET['IdPersonal'])){
 
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Fecha de nacimiento</label>
+                                                            <label>Fecha</label>
                                                             <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                                 <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                        <label>Descripción</label>
                                                             <div class="form-group res-mg-t-15">
                                                                 <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion" maxlength="300"></textarea>
 

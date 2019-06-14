@@ -15,11 +15,11 @@ $Descripcion = $_POST['Descripcion'];
     
 
     
-    $sql = 'UPDATE incidencias SET Descripcion= :Descripcion, Fecha= :Fecha, Reporta=:Reporta, Autoriza=:Autoriza, Accidentes=:Accidentes WHERE IdIncidencias= :IdIncidencias';
+    $sql = 'UPDATE incidencias SET Descripcion= :Descripcion, Fecha= :Fecha, Reporta=:Reporta, Autoriza=:Autoriza, Accidentes=:Accidentes, IdPersonal=:IdPersonal WHERE IdIncidencias= :IdIncidencias';
     
     $statement =$pdo->prepare($sql);
     
-    if($statement->execute([':Descripcion'=>$Descripcion, ':Fecha'=>$Fecha, ':Reporta'=>$Reporta, ':Autoriza'=>$Autoriza, ':Accidentes'=>$Accidentes, ':IdIncidencias'=>$IdIncidencias])){
+    if($statement->execute([':Descripcion'=>$Descripcion, ':Fecha'=>$Fecha, ':Reporta'=>$Reporta, ':Autoriza'=>$Autoriza, ':Accidentes'=>$Accidentes, ':IdPersonal'=>$IdPersonal, ':IdIncidencias'=>$IdIncidencias])){
       echo 1;
     }
 

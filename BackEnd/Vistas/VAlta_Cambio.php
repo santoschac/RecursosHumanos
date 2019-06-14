@@ -63,6 +63,8 @@ if(isset($_GET['IdPersonal'])){
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
+                                            <li><a href="Cambios.php">Cambios</a> <span class="bread-slash">/</span>
+                                            </li>
                                             <li><span class="bread-blod">Agregar Cambio</span>
                                             </li>
                                         </ul>

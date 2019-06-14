@@ -35,6 +35,8 @@ include("../Modelo/Conexion.php");
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
+                                            <li><a href="Empleados.php">Empleados</a> <span class="bread-slash">/</span>
+                                            </li>
                                             <li><span class="bread-blod">Agregar Empleado</span>
                                             </li>
                                         </ul>
@@ -191,7 +193,7 @@ include("../Modelo/Conexion.php");
 
                                                                 <select name="IdPais" id="IdPais"
                                                                     class="form-control">
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <option value="none" selected="" disabled="" required>Seleccionar</option>
                                                                     <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
                                                                     echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
                                                                     }
@@ -202,12 +204,12 @@ include("../Modelo/Conexion.php");
                                                             <div class="form-group">
                                                                 <label>Estado</label>
                                                                 <select name="IdEstado" id="IdEstado" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <option value="none" selected="" disabled="" required>Seleccionar</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Población</label>
-                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control">
+                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
                                                                     <option value="none" selected="" disabled="">Seleccionar</option>
                                                                 </select>
                                                             </div>

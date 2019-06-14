@@ -3,7 +3,9 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql = $pdo->prepare('SELECT * FROM Incidencias') ;
+$sql = $pdo->prepare('SELECT i.IdIncidencias, i.Descripcion, i.Fecha, i.Reporta, i.Autoriza, i.Accidentes, i.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno 
+FROM incidencias i
+inner join personal p on i.IdPersonal = p.IdPersonal') ;
 $sql->execute();
 $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -23,12 +25,13 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
                                             <th>Descripción</th>
                                             <th>Fecha</th>
                                             <th>Reporta</th>
                                             <th>Autoriza</th>
-                                            <th>Accidentes</th>
-                                            <th>IdPersonal</th>
+                                            <th>Accidentes</th>                                            
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -37,12 +40,13 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                         <?php foreach ($result as $dato) {?>
                                             <tr>
                                                 <td><?php echo $dato['IdIncidencias']; ?></td>
+                                                <td><?php echo $dato['Nombre']; ?></td>
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ".$dato['ApellidoMaterno']; ?></td>                                                
                                                 <td><?php echo $dato['Descripcion']; ?></td>
                                                 <td><?php echo date("d-m-Y", strtotime($dato['Fecha'])) ; ?></td>
                                                 <td><?php echo $dato['Reporta']; ?></td>
                                                 <td><?php echo $dato['Autoriza']; ?></td>
                                                 <td><?php echo $dato['Accidentes']; ?></td>
-                                                <td><?php echo $dato['IdPersonal']; ?></td>
                                                 
                                                 <td>
                                                 <a href="VEditar_Incidencia.php?IdIncidencias=<?php echo $dato['IdIncidencias']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>

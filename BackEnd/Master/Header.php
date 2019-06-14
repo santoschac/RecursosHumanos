@@ -96,25 +96,25 @@ if(isset($_SESSION['Usuario'])){
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                 <?php if($_SESSION['IdTipoUsuario']==1):?>
                     <ul class="metismenu" id="menu1">
-                        <li class="active">
+                        <!-- <li class="active">
                             <a title="Empleados" href="../Vistas/Empleados.php" aria-expanded="false"><span
                                     class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
                                     class="mini-click-non">Empleados</span></a>
-                        </li>
-                        <li>
-                            <a title="Incidencias" href="Incidencias.php" aria-expanded="false"><span
+                        </li> -->
+                        <li >
+                            <a title="Incidencias" class="has-arrow" href="Incidencias.php" aria-expanded="false"><span
                                     class="educate-icon educate-form icon-wrap" aria-hidden="true"></span> <span
                                     class="mini-click-non">Incidencias</span></a>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Empleados" href="Empleados.php"><span class="mini-sub-pro">Empleados</span></a></li>
+                                <li><a title="Incapacidad" href="#"><span class="mini-sub-pro">Incapacidad</span></a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a title="Solicitudes" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
+                            <a title="Solicitudes"  href="Solicitudes.php" aria-expanded="false"><span
                                     class="educate-icon educate-data-table icon-wrap"></span> <span
                                     class="mini-click-non">Solicitudes</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Acta sat" href="Acta_Sat.php"><span class="mini-sub-pro">Acta
-                                            Sat</span></a></li>
-                                <li><a title="Imss" href="#"><span class="mini-sub-pro">Imss</span></a></li>
-                            </ul>
+                            
                         </li>
                         
                         <li>
