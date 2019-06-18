@@ -101,19 +101,15 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                                                     <div class="form-group">
                                                         <label>Fecha del Curso</label>
                                                         <div class="input-group date">
-                                                            <span class="input-group-addon"><i
-                                                                    class="fa fa-calendar"></i></span>
-                                                            <input type="date" name="Fecha" id="Fecha"
-                                                                class="form-control"
-                                                                value="<?=date("Y-m-d", strtotime( $cursos->Fecha)); ?>">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?=date("Y-m-d", strtotime( $cursos->Fecha)); ?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="DescripcionCurso" id="DescripcionCurso"
-                                                            placeholder="Describa el curso" required=""
-                                                            maxlength="200"><?=$cursos->DescripcionCurso;?></textarea>
+                                                            placeholder="Describa el curso" required="" maxlength="200"><?=$cursos->DescripcionCurso;?></textarea>
                                                     </div>
 
                                                 </div>

@@ -52,12 +52,7 @@ if(isset($_GET['IdPersonal'])){
                             <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                                       
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
@@ -152,10 +147,8 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group data-custon-pick">
                                                             <label><strong>Fecha Inicio</strong></label>
                                                             <div class="input-group date">
-                                                                <span class="input-group-addon"><i
-                                                                        class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control"
-                                                                    value="<?php echo date("Y-m-d"); ?>">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -166,8 +159,8 @@ if(isset($_GET['IdPersonal'])){
                                                             $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                             
                                                             ?>
-                                                            <select name="EmpresaNuevo" id="EmpresaNuevo" class="form-control">
-                                                            <option value="none" selected="" disabled="">Seleccionar</option>
+                                                            <select name="EmpresaNuevo" id="EmpresaNuevo" class="form-control" required>
+                                                            <option value="" selected="" disabled="">Seleccionar</option>
                                                                 <?php foreach ($result as $dato) {?>
                                                                     <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
                                                                 <?php } ?>
@@ -176,20 +169,21 @@ if(isset($_GET['IdPersonal'])){
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nueva Sucursal</label>
-                                                            <select name="SucursalNuevo" id="SucursalNuevo"class="form-control">
-                                                                <option value="none" selected="" disabled="">Seleccionar</option>
+                                                            <select name="SucursalNuevo" id="SucursalNuevo"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
                                                             </select>
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="PuestoNuevo" id="PuestoNuevo" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
+                                                               
+                                                                    <select name="PuestoNuevo" id="PuestoNuevo" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
+                                                                    <option value="">Seleccionar</option>
+                                                                   <?php   foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
                                                                     echo '<option value="'.$row['NombrePuesto'].'">'.$row['NombrePuesto'].'</option>';
                                                                     }
-                                                                    echo'</select>';
-                                                                ?>
+                                                                    ?>
+                                                                    </select>
+                                                                
                                                             </div>
                                                                 
                                                            

@@ -18,10 +18,10 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
+                                <h4>Lista de Estados</h4>
                                 
                                 <div class="add-product">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Puesto</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Estado</button>
                             </div>
                                 </div>
 							</div>
@@ -50,7 +50,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaPuestos"></div> <!-- products will be load here -->
+<div id="TablaEstado"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -73,23 +73,33 @@ include("../Modelo/Conexion.php");
                                 <form method="post" id="formulario" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
-                                        <h4 class="modal-title">Agregar puesto</h4>
+                                        <h4 class="modal-title">Agregar Estado</h4>
                                        
                                         <div class="modal-close-area modal-close-df">
                                             <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
                                         </div>
-                                    </div>
-                                    
+                                    </div>    
                                     <div class="modal-body">
                                      
-                                       <!--Agregar form dentro del moal-->
+                                       <!--Agregar form dentro del modal-->
                                       
-                                       <div class="row" >
-                                       
+                                       <div class="row" >                                       
                                        <div class="form-group-inner">
-                                                        <br/>
-                                                        <label>Nombre del Puesto</label>
-                                                        <input type="text" id="NombrePuesto" name="NombrePuesto" class="form-control" placeholder="Escriba el nombre del puesto" required maxlength="50"/>
+									   <div class="form-group">
+                                                                <label>País</label>
+                                                                 
+                                                                  <select name="IDPais" id="IDPais" class="form-control" required>
+																  <option value="" selected="" disabled="" required>Seleccionar</option>
+                                                                 <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
+                                                                    echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
+                                                                    }
+                                                                    echo'</select>';
+                                                                    ?>
+                                                                </div>
+
+
+                                                        <label>Nombre del estado</label>
+                                                        <input type="text" id="NombreEstado" name="NombreEstado" class="form-control" placeholder="Escriba el nombre del estado" required maxlength="50"/>
                                                         <br/>
                                                     </div>
                                                     <!-- <div class="login-btn-inner">
@@ -104,7 +114,7 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="puesto_id" id="puesto_id" />
+                                        <input type="hidden" name="estado_id" id="estado_id" />
 										<input type="hidden" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
                                         <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
@@ -133,7 +143,7 @@ include("../Modelo/Conexion.php");
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
 		$('#formulario')[0].reset();
-		$('.modal-title').text("Agregar Puesto");
+		$('.modal-title').text("Agregar Estado");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
         
@@ -143,14 +153,11 @@ $(document).ready(function(){
 
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
-		var Nombre = $('#NombrePuesto').val();
+		var datos = $('#formulario').serialize();
 		
-		
-		if(Nombre != '')
-		{
-			
+
 			$.ajax({
-				url:"Alta/Alta_Puestos.php",
+				url:"Alta/Alta_Estado.php",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -161,53 +168,52 @@ $(document).ready(function(){
 					//$('#formulario')[0].reset();
 					if(data==1)
 					{
-						readPuesto();
+						readEstado();
 						$('#ModalAgregar').modal('hide');
 						$("#exito").fadeIn();
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
-						$('#NombrePuesto').val('');
+						$('#NombreEstado').val('');
 					}
                     else if(data ==2)
                     {
-						readPuesto();
+						readEstado();
 						$('#ModalAgregar').modal('hide');
 						$("#actu").fadeIn();
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						$('#NombrePuesto').val('');
+						$('#NombreEstado').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-						$('#NombrePuesto').val('');
+						$('#NombreEstado').val('');
 
                     }
 
 				}
 			});
-		}
 		
 	});
 
     $(document).on('click', '.update', function(){
-		var puesto_id = $(this).attr("id");
+		var estado_id = $(this).attr("id");
 		$.ajax({
-			url:"Editar/Editar_Puesto.php",
+			url:"Editar/Editar_Estado.php",
 			method:"POST",
-			data:{puesto_id:puesto_id},
+			data:{estado_id:estado_id},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#ModalAgregar').modal('show');
-				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
-				$('.modal-title').text("Actualizar puesto");
-				$('#puesto_id').val(puesto_id);
+				$('#IDPais').val(data.IDPais);
+				$('#NombreEstado').val(data.NombreEstado);				
+				$('.modal-title').text("Actualizar Estado");
+				$('#estado_id').val(estado_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
                 
@@ -228,19 +234,19 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		
-		readPuesto(); /* it will load products when document loads */
+		readEstado(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdPuesto = $(this).data('id');
-			SwalDelete(IdPuesto);
+			var IdEstado = $(this).data('id');
+			SwalDelete(IdEstado);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdPuesto){
+	function SwalDelete(IdEstado){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -256,15 +262,15 @@ $(document).ready(function(){
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Puesto.php",
+			   		url: "Eliminar/Eliminar_Estado.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdPuesto,
+			       	data: 'delete='+IdEstado,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readPuesto();
+                     readEstado();
                     
 			     })
 			     .fail(function(){
@@ -277,8 +283,8 @@ $(document).ready(function(){
 		
 	}
 
-    function readPuesto(){
-		$('#TablaPuestos').load('Tablas/TablaPuesto.php');	
+    function readEstado(){
+		$('#TablaEstado').load('Tablas/TablaEstado.php');	
 	}
     
 </script> 

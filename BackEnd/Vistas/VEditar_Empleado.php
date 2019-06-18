@@ -55,8 +55,6 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
             </div>
         </div>
 
-       
-        
         <!-- Single pro tab review Start-->
         <div class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
@@ -110,17 +108,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label><strong>Fecha de nacimiento</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i
-                                                                                class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="FechaNacimiento"
-                                                                            id="FechaNacimiento" class="form-control"
-                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaNacimiento) ); ?>">
+                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaNacimiento) ); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sexo</label>
-                                                                    <select name="Sexo" id="Sexo" class="form-control">
+                                                                    <select name="Sexo" id="Sexo" class="form-control" required>
 																		<option value=""  disabled="">Seleccionar</option>
 																		<option value="Masculino" <?php if("Masculino" === $empleado->Sexo): echo "Selected"; endif;?>>Masculino</option>
 																		<option value="Femenino" <?php if("Femenino" === $empleado->Sexo): echo "Selected"; endif;?>>Femenino</option>
@@ -129,8 +123,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group">
                                                                     <label>Nivel Academico</label>
                                                                     <input name="NivelAcademico" id="NivelAcademico" value="<?= $empleado->NivelAcademico?>" type="text" class="form-control"
-                                                                        placeholder="Nivel Academico" maxlength="60"
-                                                                        required>
+                                                                        placeholder="Nivel Academico" maxlength="60" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Rfc</label>                                                                
@@ -145,13 +138,11 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                
                                                                 <div class="form-group">
                                                                     <label>Curp</label>
-                                                                    <input name="Curp" id="Curp" value="<?= $empleado->Curp?>" type="text" class="form-control" placeholder="Curp"
-                                                                        maxlength="18" required>
+                                                                    <input name="Curp" id="Curp" value="<?= $empleado->Curp?>" type="text" class="form-control" placeholder="Curp" maxlength="18" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>IMSS</label>
-                                                                    <input name="Imss" id="Imss" value="<?=$empleado->Imss?>" type="text" class="form-control" placeholder="IMSS"
-                                                                        maxlength="11" required>
+                                                                    <input name="Imss" id="Imss" value="<?=$empleado->Imss?>" type="text" class="form-control" placeholder="IMSS" maxlength="11" required>
                                                                 </div>
                                                                 
                                                                 <div class="form-group">
@@ -164,7 +155,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
-                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control">
+                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control" required>
                                                                     <option value="" disabled="">Seleccionar</option>
                                                                     <option value="Soltero(a)" <?php if("Soltero(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Soltero(a)</option>
                                                                     <option value="Comprometido(a)"  <?php if("Comprometido(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Comprometido(a)</option>
@@ -195,10 +186,8 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             
                                                             <div class="form-group">
                                                                 <label>Pais</label>
-
-                                                                <select name="IdPais" id="IdPais"
-                                                                    class="form-control">
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                <select name="IdPais" id="IdPais" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
                                                                     <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
                                                                     echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
                                                                     }
@@ -208,14 +197,14 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Estado</label>
-                                                                <select name="IdEstado" id="IdEstado" class="form-control">
+                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
                                                                     <option value="none" selected="" disabled="">Seleccionar</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Población</label>
-                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
                                                                 </select>
                                                             </div>
                                                                 
@@ -223,9 +212,6 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Delegación</label>
                                                                     <input name="Delegacion" id="Delegacion" value="<?= $empleado->Delegacion?>" type="text" class="form-control" placeholder="Delegacion" maxlength="49"  required>
                                                                 </div>
-                                                                
-                                                                
-                                                  
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
@@ -242,9 +228,6 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Dirección</label>
                                                                     <input name="Direccion" id="Direccion" value="<?= $empleado->Direccion?>" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
                                                                 </div>
-                                                            
-                                                               
-                                                                
                                                                 
                                                             </div>
                                                         </div>
@@ -255,10 +238,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             
                                                             <div class="form-group">
                                                                 <label>Tipo</label>
-                                                                    <select name="Tipo" id="Tipo" class="form-control">
+                                                                    <select name="Tipo" id="Tipo" class="form-control" required>
 																		<option value=""  disabled="">Seleccionar</option>
 																		<option value="Empleado" <?php if("Empleado"=== $empleado->Tipo): echo "Selected"; endif;?>>Empleado</option>
-																		
 																	</select>
                                                                 </div>
                                                            
@@ -273,31 +255,24 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
                                                                     <input name="SueldoAnterior" id="SueldoAnterior" value="<?=$empleado->SueldoAnterior?>" type="text" class="form-control"
-                                                                        placeholder="Sueldo Anterior" maxlenght="10"
-                                                                        required>
+                                                                        placeholder="Sueldo Anterior" maxlenght="10" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" value="<?= $empleado->SueldoActual?>" type="text" class="form-control"
-                                                                        placeholder="Sueldo Actual" maxlenght="10"
-                                                                        required>
+                                                                    <input name="SueldoActual" id="SueldoActual" value="<?= $empleado->SueldoActual?>" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label><strong>Fecha Alta</strong></label>
                                                                     <div class="input-group date">
-                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="FechaAlta" id="FechaAlta" class="form-control"
-                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAlta));?>">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" name="FechaAlta" id="FechaAlta" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaAlta));?>">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label><strong>Ultima Modificación</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control"
-                                                                            value="<?=date("Y-m-d", strtotime($empleado->UltimaModificacion)); ?>">
+                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?=date("Y-m-d", strtotime($empleado->UltimaModificacion)); ?>">
                                                                     </div>
                                                                 </div>
                                                   
@@ -305,8 +280,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Sucursal</strong></label>
-                                                                 
-                                                                    <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
+                                                                    <select name="IdSucursal" id="IdSucursal"  required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
                                                                     <option value="">Seleccionar</option>
                                                                    <?php foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row):?>												
                                                                     <option value="<?php echo $row['IdSucursal']?>" <?php if($row['IdSucursal']===$empleado->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
@@ -316,8 +290,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             </div>
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                                
-                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <select name="IdPuesto" id="IdPuesto" required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
                                                                     <option value="">Seleccionar</option>';
                                                                    <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
                                                                     <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $empleado->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
@@ -334,8 +307,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label><strong>Fecha Baja</strong></label>
                                                                 <div class="input-group date">
                                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                    <input name="FechaBaja" id="FechaBaja" type="date" class="form-control"
-                                                                        value="<?= date("Y-m-d", strtotime($empleado->FehaBaja));?>">
+                                                                    <input name="FechaBaja" id="FechaBaja" type="date" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FehaBaja));?>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group res-mg-t-15">
@@ -350,13 +322,12 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <label><strong>Fecha de Antigüedad</strong></label>
                                                                     <div class="input-group date">
                                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control"
-                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>">
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>">
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
-                                                                        <select name="TipoContrato" id="TipoContrato" class="form-control">
+                                                                        <select name="TipoContrato" id="TipoContrato" class="form-control" required>
                                                                             <option value="" disabled="">Seleccionar</option>
                                                                             <option value="Fijo" <?php if("Fijo"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Fijo</option>
                                                                             <option value="Temporal" <?php if("Temporal"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Temporal</option>

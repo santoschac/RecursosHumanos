@@ -48,9 +48,7 @@ include("../Modelo/Conexion.php");
                 </div>
             </div>
         </div>
-
-       
-        
+   
         <!-- Single pro tab review Start-->
         <div class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
@@ -102,27 +100,22 @@ include("../Modelo/Conexion.php");
                                                                 <div class="form-group">
                                                                     <label><strong>Fecha de nacimiento</strong></label>
                                                                     <div class="input-group date">
-                                                                        <span class="input-group-addon"><i
-                                                                                class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="FechaNacimiento"
-                                                                            id="FechaNacimiento" class="form-control"
-                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="FechaNacimiento" id="FechaNacimiento" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sexo</label>
-                                                                    <select name="Sexo" id="Sexo" class="form-control">
-																		<option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <select name="Sexo" id="Sexo" class="form-control" required>
+																		<option value="" selected="" disabled="">Seleccionar</option>
 																		<option value="Masculino">Masculino</option>
 																		<option value="Femenino">Femenino</option>
 																	</select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Nivel Academico</label>
-                                                                    <input name="NivelAcademico" id="NivelAcademico"
-                                                                        type="text" class="form-control"
-                                                                        placeholder="Nivel Academico" maxlength="60"
-                                                                        required>
+                                                                    <input name="NivelAcademico" id="NivelAcademico" type="text" class="form-control"
+                                                                        placeholder="Nivel Academico" maxlength="60" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Rfc</label>                                                                
@@ -137,15 +130,11 @@ include("../Modelo/Conexion.php");
                                                                
                                                                 <div class="form-group">
                                                                     <label>Curp</label>
-                                                                    <input name="Curp" id="Curp" type="text"
-                                                                        class="form-control" placeholder="Curp"
-                                                                        maxlength="18" required>
+                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>IMSS</label>
-                                                                    <input name="Imss" id="Imss" type="text"
-                                                                        class="form-control" placeholder="IMSS"
-                                                                        maxlength="11" required>
+                                                                    <input name="Imss" id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11" required>
                                                                 </div>
                                                                 
                                                                 <div class="form-group">
@@ -158,8 +147,8 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
-                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control">
-                                                                    <option value="none" selected="" disabled="">
+                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">
                                                                         Seleccionar</option>
                                                                     <option value="Soltero(a)">Soltero(a)</option>
                                                                     <option value="Comprometido(a)">Comprometido(a)</option>
@@ -191,9 +180,8 @@ include("../Modelo/Conexion.php");
                                                             <div class="form-group">
                                                                 <label>Pais</label>
 
-                                                                <select name="IdPais" id="IdPais"
-                                                                    class="form-control">
-                                                                    <option value="none" selected="" disabled="" required>Seleccionar</option>
+                                                                <select name="IdPais" id="IdPais" class="form-control" required>
+                                                                    <option value=" " selected="" disabled="" >Seleccionar</option>
                                                                     <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
                                                                     echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
                                                                     }
@@ -203,14 +191,14 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Estado</label>
-                                                                <select name="IdEstado" id="IdEstado" class="form-control">
-                                                                    <option value="none" selected="" disabled="" required>Seleccionar</option>
+                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
+                                                                    <option value="" selected="" disabled="" >Seleccionar</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Población</label>
                                                                 <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
                                                                 </select>
                                                             </div>
                                                                 
@@ -250,10 +238,9 @@ include("../Modelo/Conexion.php");
                                                             
                                                             <div class="form-group">
                                                                 <label>Tipo</label>
-                                                                    <select name="Tipo" id="Tipo" class="form-control">
-																		<option value="none" selected="" disabled="">Seleccionar</option>
+                                                                    <select name="Tipo" id="Tipo" class="form-control" required>
+																		<option value="" selected="" disabled="">Seleccionar</option>
 																		<option value="Empleado">Empleado</option>
-																		
 																	</select>
                                                                 </div>
                                                            
@@ -267,38 +254,25 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
-                                                                    <input name="SueldoAnterior" id="SueldoAnterior"
-                                                                        type="text" class="form-control"
-                                                                        placeholder="Sueldo Anterior" maxlenght="10"
-                                                                        required>
+                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual"
-                                                                        type="text" class="form-control"
-                                                                        placeholder="Sueldo Actual" maxlenght="10"
-                                                                        required>
+                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control"
+                                                                        placeholder="Sueldo Actual" maxlenght="10" required>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label><strong>Fecha Alta</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i
-                                                                                class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="FechaAlta"
-                                                                            id="FechaAlta" class="form-control"
-                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="FechaAlta" id="FechaAlta" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label><strong>Ultima Modificación</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i
-                                                                                class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="UltimaModificacion"
-                                                                            id="UltimaModificacion" class="form-control"
-                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
                                                   
@@ -306,10 +280,10 @@ include("../Modelo/Conexion.php");
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Sucursal</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdSucursal" id="IdSucursal" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
+                                                                
+                                                                    <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
+                                                                    <option value="">Seleccionar</option>
+                                                                  <?php   foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
                                                                     echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
                                                                     }
                                                                     echo'</select>';
@@ -317,10 +291,10 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdPuesto" id="IdPuesto" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
+                                                                 
+                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <option value="">Seleccionar</option>
+                                                                  <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
                                                                     echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
                                                                     }
                                                                     echo'</select>';
@@ -328,45 +302,31 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Jornada</label>
-                                                                <input name="Jornada" id="Jornada" type="text"
-                                                                    class="form-control" placeholder="Jornada" required>
+                                                                <input name="Jornada" id="Jornada" type="text" class="form-control" placeholder="Jornada" required>
                                                             </div>
 
                                                             <div class="form-group ">
                                                                 <label><strong>Fecha Baja</strong></label>
-                                                                <div class="input-group date">
-                                                                    <span class="input-group-addon"><i
-                                                                            class="fa fa-calendar"></i></span>
-                                                                    <input name="FechaBaja" id="FechaBaja" type="date"
-                                                                        class="form-control"
-                                                                        value="">
+                                                                <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                    <input name="FechaBaja" id="FechaBaja" type="date" class="form-control" value="">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group res-mg-t-15">
                                                                 <label>Concepto Baja</label>
-                                                                <textarea name="ConceptoBaja" id="ConceptoBaja"
-                                                                    placeholder="Concepto Baja" ></textarea>
+                                                                <textarea name="ConceptoBaja" id="ConceptoBaja" placeholder="Concepto Baja" ></textarea>
                                                             </div>
 
                                                             <div class="form-group">
-
                                                                 <div class="form-group">
                                                                     <label><strong>Fecha de Antigüedad</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i
-                                                                                class="fa fa-calendar"></i></span>
-                                                                        <input name="FechaAntiguedad"
-                                                                            id="FechaAntiguedad" type="date"
-                                                                            class="form-control"
-                                                                            value="<?php echo date("Y-m-d"); ?>">
+                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
-                                                                        <select name="TipoContrato" id="TipoContrato"
-                                                                            class="form-control">
-                                                                            <option value="none" selected=""
-                                                                                disabled="">Seleccionar</option>
+                                                                        <select name="TipoContrato" id="TipoContrato" class="form-control" required>
+                                                                            <option value="" selected="" disabled="">Seleccionar</option>
                                                                             <option value="Fijo">Fijo</option>
                                                                             <option value="Temporal">Temporal</option>
 
@@ -517,9 +477,4 @@ $(document).ready(function () {
        });
   
     });
-    </script>
-    
-    
-  
-    
-    
+    </script>   

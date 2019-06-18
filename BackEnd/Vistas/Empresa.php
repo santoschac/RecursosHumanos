@@ -61,11 +61,16 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-
+		<style>
+    #mdialTamanio{
+      width: 35% !important;
+      
+      }
+  </style>
         
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" id="mdialTamanio">
                                 <form  id="formulario" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">

@@ -6,9 +6,11 @@ include("../Modelo/Conexion.php");
 
 $IdSucursal= $_GET['IdSucursal'];
 
-$sql = 'SELECT s.IdSucursal, s.NombreSucursal, s.Region, em.IdEmpresa, em.NombreEmpresa, s.IdPoblacion, p.NombrePoblacion, e.NombreEstado
-from Sucursal s, empresa em, Poblacion p, estado e
-where s.IdEmpresa=em.IdEmpresa and s.IdPoblacion = p.IdPoblacion and p.IdEstado = e.IdEstado and IdSucursal=:IdSucursal';
+$sql = 'SELECT s.IdSucursal, s.NombreSucursal, s.Region, em.IdEmpresa, em.NombreEmpresa, s.IdPoblacion, p.NombrePoblacion, e.IdEstado, e.NombreEstado
+from Sucursal s
+inner join empresa em on s.IdEmpresa=em.IdEmpresa 
+inner join Poblacion p on  s.IdPoblacion = p.IdPoblacion
+inner join estado e on p.IdEstado = e.IdEstado where IdSucursal=:IdSucursal';
 $sentencia = $pdo->prepare($sql);
 $sentencia ->execute(array(':IdSucursal'=> $IdSucursal));
 $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
@@ -83,9 +85,8 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <div class="form-group">
                                                                 <label>Empresa</label>
                                                          
-                                                                  <select name="IdEmpresa" id="IdEmpresa" class="form-control">
-                                                                  <!-- <option value="?=$sucursales->IdEmpresa;?>" selected="" disabled="">Seleccionar</option> -->
-                                                                 <!-- <option value="?=$sucursales->IdEmpresa;?>">?=$sucursales->NombreEmpresa;?></option> -->
+                                                                  <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>  
+                                                                  <option value="" disabled=""> Seleccionar</option>                                                               
                                                                   <?php
                                                                   foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row):?>													
                                                                     <option value="<?php echo $row['IdEmpresa'] ?>"  <?php if($row['IdEmpresa'] === $sucursales->IdEmpresa): echo "selected"; endif; ?> > <?php echo $row['NombreEmpresa'] ?> </option>
@@ -104,13 +105,12 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
                                                                 <label>Estado</label>
-                                                                
-                                                                    <select name="IdEstado" id="IdEstado" class="form-control">
-																    <option value="none" disabled="">Seleccionar</option>
-                                                                    
+                                                                    <select name="IdEstado" id="IdEstado" class="form-control" required>
+																    <option value="" disabled="">Seleccionar</option>
+                               
                                                                  <?php  
                                                                  foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row):?>													
-                                                                    <option value="<?php echo $row['IdEstado']?>"><?php echo $row['NombreEstado'] ?></option>
+                                                                    <option value="<?php echo $row['IdEstado']?>" <?php if( $row['IdEstado']=== $sucursales->IdEstado): echo "Selected"; endif;?>><?php echo $row['NombreEstado'] ?></option>
                                                                     <?php endforeach;?>
                                                                     </select>
                                                                 
@@ -118,14 +118,13 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             
                                                             <div class="form-group">
                                                                 <label>Población</label>
-                                                                    <select name="IdPoblacion" id="IdPoblacion" class="form-control">
-																			<option value="none"  disabled="">Seleccionar</option>
-                                                                           <option value="<?=$sucursales->IdPoblacion;?>" ><?=$sucursales->NombrePoblacion;?></option>
+                                                                    <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
+																			<option value="" selected  disabled="">Seleccionar</option>      
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Región</label>
-                                                                <input name="Region" id="Region" value="<?= $sucursales->Region;?>" type="text" class="form-control" placeholder="Región" required="" maxlength="60">
+                                                                <input name="Region" id="Region" value="<?=$sucursales->Region;?>" type="text" class="form-control" placeholder="Región" required="" maxlength="60">
                                                             </div>
                                                         </div>
                                                     </div>

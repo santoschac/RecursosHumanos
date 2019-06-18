@@ -138,6 +138,17 @@ if(isset($_SESSION['Usuario'])){
                                 <li><a title="Sucursal" href="../Vistas/Sucursal.php"><span class="mini-sub-pro">Sucursal</span></a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a title="Extra" class="has-arrow" href="#" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Extra</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="País" href="../Vistas/Pais.php"><span class="mini-sub-pro">País</span></a></li>
+                                <li><a title="Estado" href="../Vistas/Estado.php"><span class="mini-sub-pro">Estado</span></a></li>
+                                <li><a title="Población" href="../Vistas/Poblacion.php"><span class="mini-sub-pro">Población</span></a></li>
+                                
+                            </ul>
+                        </li>
                     </ul>
 <?php endif; ?>
 

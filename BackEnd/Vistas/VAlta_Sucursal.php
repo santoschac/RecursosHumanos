@@ -71,16 +71,16 @@ include("../Master/Header.php");
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
                                                                 <label>Empresa</label>
-                                                                <?php 
-                                                                  echo   '<select name="IdEmpresa" id="Empresa" class="form-control" >';
-																  echo 	 '<option value="none" selected="" disabled="" required>Seleccionar</option>';
-                                                                  foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row) {													
+                                                                 
+                                                                  <select name="IdEmpresa" id="Empresa" class="form-control" required>
+																  <option value="" selected="" disabled="" required>Seleccionar</option>
+                                                                  <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row) {													
                                                                     echo '<option value="'.$row['IdEmpresa'].'">'.$row['NombreEmpresa'].'</option>';
                                                                     }
-                                                                    echo'</select>';
-                                                                    ?>
+                                                                    ?> 
+                                                                    </select>
+                                                                   
                                                                 </div>
-                                                            
                                                             
                                                                 <div class="form-group">
                                                                 <label>Nombre Sucursal</label>
@@ -91,20 +91,21 @@ include("../Master/Header.php");
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
                                                                 <label>Estado</label>
-                                                                <?php 
-                                                                  echo   '<select name="IdEstado" id="IdEstado" class="form-control" >';
-																  echo 	 '<option value="none" selected="" disabled="" required>Seleccionar</option>';
-                                                                  foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row) {													
+                                                               
+                                                                  <select name="IdEstado" id="IdEstado" class="form-control" required>
+																  <option value="" selected="" disabled="" required>Seleccionar</option>
+                                                                  <?php  foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row) {													
                                                                     echo '<option value="'.$row['IdEstado'].'">'.$row['NombreEstado'].'</option>';
                                                                     }
-                                                                    echo'</select>';
                                                                     ?>
+                                                                    </select>
+                                                                   
                                                                 </div>
                                                             
                                                             <div class="form-group">
                                                                 <label>Población</label>
-                                                                    <select name="IdPoblacion" id="IdPoblacion" class="form-control">
-																			<option value="none" selected="" disabled="" required>Seleccionar</option>
+                                                                    <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
+																			<option value="" selected="" disabled="" required>Seleccionar</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
