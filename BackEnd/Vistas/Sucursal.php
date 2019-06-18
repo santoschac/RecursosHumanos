@@ -45,105 +45,6 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 </div> <br>
 <!-- Static Table End -->
 
-<!--modal Agregar-->
-<div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
-    <div class="modal-dialog">
-        <form method="post" id="formulario" class="dropzone dropzone-custom needsclick add-professors">
-            <div class="modal-content">
-                <div class="modal-header header-color-modal bg-color-1">
-                    <h4 class="modal-title">Agregar puesto</h4>
-
-                    <div class="modal-close-area modal-close-df">
-                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
-
-                    </div>
-                </div>
-
-                <div class="modal-body">
-
-                    <!--Agregar form dentro del moal-->
-
-
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            
-                        <div class="form-group">
-                                <label>Empresa</label>
-
-                                <select name="Empresa" id="Empresa" class="form-control">
-                                    <!-- <option value="none"  disabled="">Seleccionar</option> -->
-                                    <?php foreach ($result as $dato) {?>
-
-                                    <option value="<?php $dato['IdEmpresa'];?>"><?php echo $dato['NombreEmpresa']; ?>
-                                    </option>
-                                    <?php } ?>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label>Nombre Sucursal</label>
-                                <input name="NombreSucursal" id="NombreSucursal" type="text" class="form-control"
-                                    placeholder="Nombre de la sucursal" required="" maxlength="60">
-                            </div>
-                            <div>
-                                <label>Prueba</label>
-                                <select name="prueba" id="prueba" class="form-control">
-                                    <!-- <option value=""  disabled="">Seleccionar</option> 
-																			<option value="0">Surat</option>
-																			<option value="1">Baroda</option>
-																			<option value="2">Navsari</option>
-																			<option value="3">Baroda</option>
-																			<option value="4">Surat</option> -->
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Estado</label>
-
-                                <select name="IdEstado" id="IdEstado" class="form-control">
-                                    <option value="none" disabled="">Seleccionar</option>
-                                    <?php foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row) {													
-                                                                    echo '<option value="'.$row['IdEstado'].'">'.$row['NombreEstado'].'</option>';
-                                                                    }
-                                                                  ?>
-                                </select>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>Población</label>
-                                <select name="IdPoblacion" id="IdPoblacion" class="form-control">
-                                    <option value="none" selected="" disabled="">Seleccionar</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Región</label>
-                                <input name="Region" id="Region" type="text" class="form-control" placeholder="Región"
-                                    required="" maxlength="60">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--Fin Agregar form dentro del moal-->
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="sucursal_id" id="sucursal_id" />
-                    <input type="hidden" name="operation" id="operation" />
-                    <input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
-                    <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>
-                </div>
-            </div>
-            <form>
-    </div>
-</div>
-<!--fin modal agregar-->
 
 
 
@@ -184,15 +85,11 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
         $(document).on('submit', '#formulario', function (event) {
             event.preventDefault();
             var datos = $('#formulario').serialize();
-            // var Nombre = $('#NombreCurso').val();
-            // var Descripcion = $('#DescripcionCurso').val();
-            // var Tipo = $('Tipo').val();
-            // var Fecha = $('Fecha').val();
-            //alert(datos);
+            
             if (Nombre != '' && Descripcion != '') {
 
                 $.ajax({
-                    url: "Alta/A.php",
+                    url: "Alta/Alta_Sucursal.php",
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
@@ -214,12 +111,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                 $("#actu").fadeOut();
                             }, 2000);
                             $('#NombreCurso').val('');
-                            // }else{
-
-                            //     $("#error").fadeIn();
-                            // setTimeout(function(){
-                            // $("#error").fadeOut();
-                            // },2000);
+                           
 
                         }
 
@@ -229,32 +121,6 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
         });
 
-        $(document).on('click', '.update', function () {
-            var sucursal_id = $(this).attr("id");
-            $.ajax({
-                url: "Editar/Editar_Sucursal.php",
-                method: "POST",
-                data: {
-                    sucursal_id: sucursal_id
-                },
-                dataType: "json",
-                success: function (data) {
-                    $('#ModalAgregar').modal('show');
-                    $('#Empresa').val(data.NombreEmpresa);
-                    $('#NombreSucursal').val(data.NombreSucursal);
-                    $('#IdEstado').val(data.NombreEstado);
-                    //$('#prueba').val(data.NombreEmpresa);
-                    $('#Region').val(data.NombreEmpresa);
-                    //$('#last_name').val(data.last_name);
-                    $('.modal-title').text("Actualizar puesto");
-                    $('#sucursal_id').val(sucursal_id);
-                    $('#action').val("Actualizar");
-                    $('#operation').val("Edit");
-
-
-                }
-            })
-        });
 
 
 
@@ -283,12 +149,12 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
         swal({
             title: '¿Estás seguro?',
-            text: "Será eliminado permanentemente!",
+            text: "Será eliminado permanentemente",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, borralo!',
+            confirmButtonText: 'Aceptar',
             showLoaderOnConfirm: true,
 
             preConfirm: function () {

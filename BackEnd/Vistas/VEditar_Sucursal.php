@@ -25,18 +25,15 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                             <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                                       
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Sucursal</span>
+                                            <li><a href="Sucursal.php">Sucursal</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Actualizar Sucursal</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -69,7 +66,7 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    La sucursal ya existe
+                                    Error al insertar los datos;
                             </div>
                              
                              <!--Fin alertas-->
@@ -80,10 +77,12 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                             <div class="review-content-section">
                                                 <form id="formulario" method="POST" class="add-department">
                                                     <div class="row">
+                                                   
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="hidden" name="IdSucursal" id="IdSucursal" class="form-control" value="<?php echo $IdSucursal?>">
                                                         <div class="form-group">
                                                                 <label>Empresa</label>
-                                                                
+                                                         
                                                                   <select name="IdEmpresa" id="IdEmpresa" class="form-control">
                                                                   <!-- <option value="?=$sucursales->IdEmpresa;?>" selected="" disabled="">Seleccionar</option> -->
                                                                  <!-- <option value="?=$sucursales->IdEmpresa;?>">?=$sucursales->NombreEmpresa;?></option> -->
@@ -107,7 +106,7 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Estado</label>
                                                                 
                                                                     <select name="IdEstado" id="IdEstado" class="form-control">
-																    <option value="none" selected disabled="">Seleccionar</option>
+																    <option value="none" disabled="">Seleccionar</option>
                                                                     
                                                                  <?php  
                                                                  foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row):?>													
@@ -189,7 +188,7 @@ $(document).ready(function(){
        
       // alert(datos);
            $.ajax({
-               url:"Alta/Alta_Sucursal.php",
+               url:"Editar/Editar_Sucursal.php",
                method:'POST',
                data:new FormData(this),
                contentType:false,
@@ -199,18 +198,18 @@ $(document).ready(function(){
                    //alert(data);
                    //$('#formulario')[0].reset();
                    if(data==1){
-                   //readCurso();
-                   $("#error").fadeIn();
+                   
+                   $("#exito").fadeIn();
                    setTimeout(function(){
-                   $("#error").fadeOut();
+                   $("#exito").fadeOut();
                    },2000);
                    
                    }
                    else if(data==2)
                    {
-                    $("#exito").fadeIn();
+                    $("#error").fadeIn();
                    setTimeout(function(){
-                   $("#exito").fadeOut();
+                   $("#error").fadeOut();
                    },2000);
                    $('#formulario')[0].reset();
  

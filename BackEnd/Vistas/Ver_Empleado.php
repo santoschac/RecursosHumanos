@@ -2,7 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$message="";
 
 $IdPersonal= $_GET['IdPersonal'];
 
@@ -10,61 +9,6 @@ $sql1 = 'SELECT * FROM personal WHERE IdPersonal = :IdPersonal';
 $sentencia = $pdo->prepare($sql1);
 $sentencia ->execute([':IdPersonal'=>$IdPersonal]);
 $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
-
-if(isset($_POST['Nombre'])){
-
-$Nombre= $_POST['Nombre'];
-$ApellidoPaterno = $_POST['ApellidoPaterno'];
-$ApellidoMaterno = $_POST['ApellidoMaterno'];
-$Curp = $_POST['Curp'];
-$Tipo = $_POST['Tipo'];
-$Direccion = $_POST['Direccion'];
-$Colonia = $_POST['Colonia'];
-$Delegacion = $_POST['Delegacion'];
-$CodigoPostal = $_POST['CodigoPostal'];
-$Rfc = $_POST['Rfc'];
-$Imss = $_POST['Imss'];
-$FechaNacimiento =  date("Y-m-d", strtotime($_POST['FechaNacimiento'])); 
-$NivelAcademico = $_POST['NivelAcademico'];
-$Sexo = $_POST['Sexo'];
-$EstadoCivil = $_POST['EstadoCivil'];
-$Hijos = $_POST['Hijos'];
-$Padre = $_POST['Padre'];
-$Madre = $_POST['Madre'];
-$Departamento = $_POST['Departamento'];
-$Jornada = $_POST['Jornada'];
-$SueldoDiario = $_POST['SueldoDiario'];
-$SueldoAnterior = $_POST['SueldoAnterior'];
-$SueldoActual = $_POST['SueldoActual'];
-$FechaBaja = date("Y-m-d", strtotime($_POST['FechaBaja']));
-$ConceptoBaja = $_POST['ConceptoBaja'];
-$FechaAlta = date("Y-m-d", strtotime($_POST['FechaAlta']));
-$FechaAntiguedad = date("Y-m-d", strtotime($_POST['FechaAntiguedad']));
-$UltimaModificacion = date("Y-m-d", strtotime( $_POST['UltimaModificacion']));
-$TipoContrato = $_POST['TipoContrato'];
-$IdPuesto= $_POST['IdPuesto'];
-$IdSucursal = $_POST['IdSucursal'];
-$IdPoblacion = $_POST['IdPoblacion'];
-
-
-$IdTipoUsuario=2;
-
-$sql = 'UPDATE personal SET Nombre= :Nombre, ApellidoPaterno= :ApellidoPaterno, ApellidoMaterno= :ApellidoMaterno, Curp= :Curp, Tipo= :Tipo, Direccion= :Direccion, Colonia= :Colonia, Delegacion = :Delegacion, 
-CodigoPostal = :CodigoPostal, Rfc= :Rfc, Imss= :Imss, FechaNacimiento= :FechaNacimiento, NivelAcademico= :NivelAcademico, Sexo= :Sexo, EstadoCivil= :EstadoCivil, Hijos= :Hijos, Padre= :Padre, Madre= :Madre,
-Departamento= :Departamento, Jornada= :Jornada, SueldoDiario= :SueldoDiario, SueldoAnterior= :SueldoAnterior, SueldoActual= :SueldoActual, FechaBaja= :FechaBaja, ConceptoBaja= :ConceptoBaja, FechaAlta= :FechaAlta, 
-FechaAntiguedad= :FechaAntiguedad, UltimaModificacion= :UltimaModificacion, TipoContrato= :TipoContrato, IdPuesto= :IdPuesto, IdSucursal= :IdSucursal, IdPoblacion= :IdPoblacion WHERE IdPersonal= :IdPersonal';
-
-$statement =$pdo->prepare($sql);
-
-if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno'=>$ApellidoMaterno,':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=> $Delegacion, 
-':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, ':Madre'=>$Madre, 
-':Departamento'=>$Departamento, ':Jornada'=>$Jornada, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, 
-':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':IdPuesto'=>$IdPuesto, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion, ':IdPersonal'=>$IdPersonal])){
-    $message="Datos Actualizados con éxito";
-}
-
-}
-
 
 
 ?>
@@ -97,7 +41,9 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Empleado</span>
+                                            <li><a href="Empleados.php">Empleados</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Actualizar Empleado</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -124,20 +70,13 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                 
                                
                             </ul>
-                            <?php if($message=="Datos Actualizados con éxito"):?>
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <?= $message;?>
-                    </div>
-                    <?php endif;?>
+                           
                               <!--Alertas-->
                               <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos insertados con éxito
+                                  Datos Actualizados con éxito
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -157,7 +96,8 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
-                                                                <label>Nombres</label>                                                                
+                                                                <label>Nombres</label>
+                                                                <input name="IdPersonal" id="IdPersonal" value="<?php echo $IdPersonal?>" type="hidden" class="form-control" required="" >                                                                
                                                                    <input name="Nombre" id="Nombre" value="<?=$empleado->Nombre;?>" type="text" class="form-control" placeholder="Nombre" required="" maxlength="60">
                                                                 </div>
                                                                 <div class="form-group">
@@ -181,9 +121,9 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                                 <div class="form-group">
                                                                 <label>Sexo</label>
                                                                     <select name="Sexo" id="Sexo" class="form-control">
-																		<option value="<?=$empleado->Sexo?>"  disabled="">Seleccionar</option>
-																		<option value="Masculino">Masculino</option>
-																		<option value="Femenino">Femenino</option>
+																		<option value=""  disabled="">Seleccionar</option>
+																		<option value="Masculino" <?php if("Masculino" === $empleado->Sexo): echo "Selected"; endif;?>>Masculino</option>
+																		<option value="Femenino" <?php if("Femenino" === $empleado->Sexo): echo "Selected"; endif;?>>Femenino</option>
 																	</select>
                                                                 </div>
                                                                 <div class="form-group">
@@ -225,13 +165,13 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
                                                                 <select name="EstadoCivil" id="EstadoCivil" class="form-control">
-                                                                    <option value="<?=$empleado->EstadoCivil ?>" disabled="">Seleccionar</option>
-                                                                    <option value="Soltero(a)">Soltero(a)</option>
-                                                                    <option value="Comprometido(a)">Comprometido(a)</option>
-                                                                    <option value="Casado(a)">Casado(a)</option>
-                                                                    <option value="Unión libre o unión de hecho">Unión libre o unión de hecho</option>
-                                                                    <option value="Divorciado(a)">Divorciado(a)</option>
-                                                                    <option value="Viudo(a)">Viudo(a)</option>
+                                                                    <option value="" disabled="">Seleccionar</option>
+                                                                    <option value="Soltero(a)" <?php if("Soltero(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Soltero(a)</option>
+                                                                    <option value="Comprometido(a)"  <?php if("Comprometido(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Comprometido(a)</option>
+                                                                    <option value="Casado(a)"  <?php if("Casado(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Casado(a)</option>
+                                                                    <option value="Unión libre o unión de hecho"  <?php if("Unión libre o unión de hecho" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Unión libre o unión de hecho</option>
+                                                                    <option value="Divorciado(a)"  <?php if("Divorciado(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Divorciado(a)</option>
+                                                                    <option value="Viudo(a)"  <?php if("Viudo(a)" === $empleado->EstadoCivil): echo "Selected"; endif;?>>Viudo(a)</option>
 
                                                                 </select>
                                                                 </div>
@@ -316,8 +256,8 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                             <div class="form-group">
                                                                 <label>Tipo</label>
                                                                     <select name="Tipo" id="Tipo" class="form-control">
-																		<option value="<?= $empleado->Tipo?>"  disabled="">Seleccionar</option>
-																		<option value="Empleado">Empleado</option>
+																		<option value=""  disabled="">Seleccionar</option>
+																		<option value="Empleado" <?php if("Empleado"=== $empleado->Tipo): echo "Selected"; endif;?>>Empleado</option>
 																		
 																	</select>
                                                                 </div>
@@ -365,25 +305,25 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Sucursal</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdSucursal" id="IdSucursal" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
-                                                                    echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                ?>
+                                                                 
+                                                                    <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
+                                                                    <option value="">Seleccionar</option>
+                                                                   <?php foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row):?>												
+                                                                    <option value="<?php echo $row['IdSucursal']?>" <?php if($row['IdSucursal']===$empleado->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
+                                                                    <?php endforeach; ?>
+                                                                    </select>
+                                                                
                                                             </div>
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                                <?php 
-                                                                    echo '<select name="IdPuesto" id="IdPuesto" data-placeholder="Choose a Country..." class="chosen-select" tabindex="-1">';
-                                                                    echo '<option value="">Seleccionar</option>';
-                                                                    foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
-                                                                    echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                ?>
+                                                                
+                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <option value="">Seleccionar</option>';
+                                                                   <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
+                                                                    <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $empleado->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
+                                                                <?php endforeach;?>
+                                                                    </select>
+                                                                
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Jornada</label>
@@ -417,9 +357,9 @@ if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
                                                                         <select name="TipoContrato" id="TipoContrato" class="form-control">
-                                                                            <option value="<?=$empleado->TipoContrato?>" disabled="">Seleccionar</option>
-                                                                            <option value="Fijo">Fijo</option>
-                                                                            <option value="Temporal">Temporal</option>
+                                                                            <option value="" disabled="">Seleccionar</option>
+                                                                            <option value="Fijo" <?php if("Fijo"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Fijo</option>
+                                                                            <option value="Temporal" <?php if("Temporal"=== $empleado->TipoContrato): echo "Selected"; endif;?>>Temporal</option>
 
                                                                         </select>
                                                                     </div>
@@ -529,44 +469,44 @@ $(document).ready(function () {
     });
 
 
-    // $(document).ready(function(){
+    $(document).ready(function(){
        
 
-    //    $(document).on('submit', '#formulario', function(event){
-    //        event.preventDefault();
-    //        var datos = $('#formulario').serialize();
+       $(document).on('submit', '#formulario', function(event){
+           event.preventDefault();
+           var datos = $('#formulario').serialize();
 
 
-    //            $.ajax({
-    //                url:"Alta/Alta_Empleado.php",
-    //                method:'POST',
-    //                data:new FormData(this),
-    //                contentType:false,
-    //                processData:false,
-    //                success:function(data)
-    //                {
-                     
-    //                    if(data==1){
-    //                    $("#exito").fadeIn();
-    //                    setTimeout(function(){
-    //                    $("#exito").fadeOut();
-    //                    },3000);
-    //                    $('#formulario')[0].reset();
+               $.ajax({
+                   url:"Editar/Editar_Empleado.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                    
+                       if(data==1){
+                       $("#exito").fadeIn();
+                       setTimeout(function(){
+                       $("#exito").fadeOut();
+                       },3000);
+                       $('#formulario')[0].reset();
 
-    //                    }
-    //                    else if(data==2)
-    //                    {
-    //                     $("#error").fadeIn();
-    //                    setTimeout(function(){
-    //                    $("#error").fadeOut();
-    //                    },3000);
-    //                    }
+                       }
+                       else if(data==2)
+                       {
+                        $("#error").fadeIn();
+                       setTimeout(function(){
+                       $("#error").fadeOut();
+                       },3000);
+                       }
     
-    //                }
-    //            });
-    //    });
+                   }
+               });
+       });
   
-    // });
+    });
     </script>
     
     

@@ -79,12 +79,12 @@ include("../Modelo/Conexion.php");
 		
 		swal({
 			title: '¿Estás seguro?',
-			text: "Será eliminado permanentemente!",
+			text: "Será eliminado permanentemente",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, borralo!',
+			confirmButtonText: 'Aceptar',
 			showLoaderOnConfirm: true,
 			 
 			preConfirm: function() {
