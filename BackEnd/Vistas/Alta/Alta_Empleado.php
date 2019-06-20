@@ -21,7 +21,7 @@ include("../../Modelo/Conexion.php");
     $Padre = $_POST['Padre'];
     $Madre = $_POST['Madre'];
     $Departamento = $_POST['Departamento'];
-    $Jornada = $_POST['Jornada'];
+   
     $SueldoDiario = $_POST['SueldoDiario'];
     $SueldoAnterior = $_POST['SueldoAnterior'];
     $SueldoActual = $_POST['SueldoActual'];
@@ -36,25 +36,40 @@ include("../../Modelo/Conexion.php");
     $IdSucursal = $_POST['IdSucursal'];
     $IdPoblacion = $_POST['IdPoblacion'];
   
-    $Usuario = strtoupper ($Nombre[0] . $ApellidoPaterno);
-    //$Usuario = "pruebausuario";
+    $Usuario = $_POST['Usuario'];
+    $Contrasena = $_POST['Contrasena'];
+    $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
 
     $IdTipoUsuario=2;
+    
+    $sql = 'SELECT * FROM usuario WHERE Usuario = ?';
+    $sentencia = $pdo->prepare($sql);
+    $sentencia ->execute(array($_POST["Usuario"]));
+    $resultado = $sentencia->fetch();
+
+  if($resultado){
+    echo 2;
+  }else{
+
     $sql1 = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES(:Usuario, :Contrasena, :IdTipoUsuario)';
     $sentencia = $pdo->prepare($sql1);
-    $sentencia->execute([':Usuario'=>$Usuario, ':Contrasena'=>$Rfc, ':IdTipoUsuario'=>$IdTipoUsuario]);
+    $sentencia->execute([':Usuario'=>$Usuario, ':Contrasena'=>$Contrasena, ':IdTipoUsuario'=>$IdTipoUsuario]);
 
     $IdUsuario = $pdo->lastInsertId();
 
-    $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, Jornada, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
-           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :Jornada, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
+    $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
+           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
    
     $statement = $pdo->prepare($sql);
     if($statement->execute([':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion,':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
-        ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':Jornada'=>$Jornada, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
+        ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>NULL, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
         {
           echo 1;
 
         }  
+  }
+
+
+   
 
 ?>

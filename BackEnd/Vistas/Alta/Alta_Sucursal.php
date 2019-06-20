@@ -9,9 +9,9 @@ include("../../Modelo/Conexion.php");
     $IdPoblacion = $_POST['IdPoblacion'];
 
 
-    $sql = 'SELECT * FROM sucursal WHERE NombreSucursal = ?';
+    $sql = 'SELECT * FROM sucursal WHERE NombreSucursal = ? and IdEmpresa= ? ';
     $sentencia = $pdo->prepare($sql);
-    $sentencia ->execute(array($NombreSucursal));
+    $sentencia ->execute(array($NombreSucursal, $IdEmpresa));
     $result = $sentencia->fetch();
 
     if($result){

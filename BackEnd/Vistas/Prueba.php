@@ -42,65 +42,47 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </ul>
                                     </div>
                                 </div>
+
+
+                                <b>Se dio de baja</b>
+<input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
+                          
+
+                          <div id="content" style="display: none;">
+   contenido del div escondido<br/>
+   contenido del div escondido<br/>
+   contenido del div escondido<br/>
+ </div>
+                          
+                          
+                          
                             </div>
                         </div>
                     </div>
 
                       
-                
+                    
        
-          <!-- Static Table Start -->
-        <div class="data-table-area mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                    <h1>Lista <span class="table-project-n">de</span> Auditores</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">                                                
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Puesto</th>
-                                            <th>Configuración</th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>
-                                        <?php foreach ($resultado as $dato) {?>
-                                            <tr>
-                                                <td><?php echo $dato['IdPuesto']; ?></td>
-                                                <td><?php echo $dato['NombrePuesto']; ?></td>
-                                                
-                                                <td>
-                                                    <button id="Editar" data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        </tbody>
-                                    </table> <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <br>
-        <!-- Static Table End -->
+        
         
         
         <?php
         include ("../Master/Footer.php");
         ?>
 
-     
+
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
   
    
     <!-- data table JS

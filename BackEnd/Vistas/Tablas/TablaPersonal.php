@@ -39,7 +39,7 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td>
                                                 <a href="Ver_Empleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Ver información" class="pd-setting-ed"><span class="glyphicon">&#xe105;</span></button><a>
                                                 <a href="VEditar_Empleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
-                                                <a id="Eliminar" data-id="<?php echo $dato['IdPersonal']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                <a id="Eliminar" data-id="<?php echo $dato['IdPersonal']; ?>" data-idd="<?php echo $dato['IdUsuario']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

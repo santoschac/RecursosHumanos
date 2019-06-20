@@ -27,7 +27,7 @@ include("../../Modelo/Conexion.php");
     $Padre = $_POST['Padre'];
     $Madre = $_POST['Madre'];
     $Departamento = $_POST['Departamento'];
-    $Jornada = $_POST['Jornada'];
+   
     $SueldoDiario = $_POST['SueldoDiario'];
     $SueldoAnterior = $_POST['SueldoAnterior'];
     $SueldoActual = $_POST['SueldoActual'];
@@ -41,22 +41,34 @@ include("../../Modelo/Conexion.php");
     $IdSucursal = $_POST['IdSucursal'];
     $IdPoblacion = $_POST['IdPoblacion'];
     
-    
     $IdTipoUsuario=2;
+
+    $IdUsuario= $_POST['IdUsuario'];
+    $Usuario = $_POST['Usuario'];
+    $Contrasena = $_POST['Contrasena'];
+    $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
     
+   $sql1 = 'UPDATE usuario SET Usuario=:Usuario, Contrasena=:Contrasena where IdUsuario = :IdUsuario';
+   $sentencia = $pdo->prepare($sql1);
+   if($sentencia->execute([':Usuario'=> $Usuario, ':Contrasena'=>$Contrasena, ':IdUsuario'=> $IdUsuario])){
+
     $sql = 'UPDATE personal SET Nombre= :Nombre, ApellidoPaterno= :ApellidoPaterno, ApellidoMaterno= :ApellidoMaterno, Curp= :Curp, Tipo= :Tipo, Direccion= :Direccion, Colonia= :Colonia, Delegacion = :Delegacion, 
     CodigoPostal = :CodigoPostal, Rfc= :Rfc, Imss= :Imss, FechaNacimiento= :FechaNacimiento, NivelAcademico= :NivelAcademico, Sexo= :Sexo, EstadoCivil= :EstadoCivil, Hijos= :Hijos, Padre= :Padre, Madre= :Madre,
-    Departamento= :Departamento, Jornada= :Jornada, SueldoDiario= :SueldoDiario, SueldoAnterior= :SueldoAnterior, SueldoActual= :SueldoActual, FechaBaja= :FechaBaja, ConceptoBaja= :ConceptoBaja, FechaAlta= :FechaAlta, 
+    Departamento= :Departamento, SueldoDiario= :SueldoDiario, SueldoAnterior= :SueldoAnterior, SueldoActual= :SueldoActual, FechaBaja= :FechaBaja, ConceptoBaja= :ConceptoBaja, FechaAlta= :FechaAlta, 
     FechaAntiguedad= :FechaAntiguedad, UltimaModificacion= :UltimaModificacion, TipoContrato= :TipoContrato, IdPuesto= :IdPuesto, IdSucursal= :IdSucursal, IdPoblacion= :IdPoblacion WHERE IdPersonal= :IdPersonal';
     
     $statement =$pdo->prepare($sql);
     
     if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno'=>$ApellidoMaterno,':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=> $Delegacion, 
     ':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, ':Madre'=>$Madre, 
-    ':Departamento'=>$Departamento, ':Jornada'=>$Jornada, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, 
+    ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, 
     ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':IdPuesto'=>$IdPuesto, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion, ':IdPersonal'=>$IdPersonal])){
       echo 1;
     }
+
+   }
+
+    
 
     
 

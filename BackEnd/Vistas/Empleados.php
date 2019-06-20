@@ -90,14 +90,16 @@ include ("../Modelo/Conexion.php");
 		$(document).on('click', '#Eliminar', function(e){
 			
 			var IdPersonal = $(this).data('id');
-			SwalDelete(IdPersonal);
+            var IdUsuario = $(this).data('idd');
+            //alert(IdUsuario);
+			SwalDelete(IdPersonal, IdUsuario);
             e.preventDefault();
            // alert(IdPersonal);
 		});
 		
 	});
 	
-	function SwalDelete(IdPersonal){
+	function SwalDelete(IdPersonal, IdUsuario){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -112,10 +114,14 @@ include ("../Modelo/Conexion.php");
 			preConfirm: function() {
 			  return new Promise(function(resolve) {
 			        
+                var params = {
+    "delete" : IdPersonal,
+    "IdUsuario" : IdUsuario
+};
 			     $.ajax({
 			   		url: 'Eliminar/Eliminar_Personal.php',
 			    	type: 'POST',
-			       	data: 'delete='+IdPersonal,
+			       	data: params, 
                     dataType: 'json'
                       
 			     })

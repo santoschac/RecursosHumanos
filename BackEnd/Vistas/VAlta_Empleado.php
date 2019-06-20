@@ -57,8 +57,9 @@ include("../Modelo/Conexion.php");
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#personales">Datos Personales</a></li>
-                                <li><a href="#DireccionId">Dirección</a></li>
-                                <li><a href="#LaboralID">Laboral</a></li>
+                                <li><a href="#DireccionId">Dirección</a></li>                                
+                                <li><a href="#LaboralId">Laboral</a></li>
+                                <li><a href="#UsuarioId">Usuario</a></li>
                               
                             </ul>
                               <!--Alertas-->
@@ -72,7 +73,7 @@ include("../Modelo/Conexion.php");
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El Empleado ya existe
+                                  El Usuario ya existe
                               </div>
                              <!--Fin alertas-->
 
@@ -174,7 +175,7 @@ include("../Modelo/Conexion.php");
                                     </div>
                                 </div>
                                 <div class="product-tab-list tab-pane fade" id="DireccionId">
-                                <div class="row">
+                                     <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
                                                             <div class="form-group">
@@ -232,8 +233,49 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                         </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="LaboralID">
-                                <div class="row">
+                                <div class="product-tab-list tab-pane fade" id="UsuarioId">
+                                     <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                                                       
+                                                                
+                                                                <div class="form-group">
+                                                                <label>Usuario</label>
+                                                                    <input name="Usuario" id="Usuario" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
+                                                                </div>                                                                                                                               
+                                                  
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            
+                                                            <div class="form-group">
+                                                                <label class="control-label"
+                                                                    for="password">Contraseña</label>
+                                                                <div class="input-group custom-go-button">
+                                                                    <input type="password" name="Contrasena"
+                                                                        id="Contrasena" class="form-control"
+                                                                        placeholder="******" required="" value=""
+                                                                        maxlength="40">
+                                                                    <span class="input-group-btn"><button
+                                                                            class="btn btn-primary" type="button"
+                                                                            onclick="mostrarContrasena()"><span
+                                                                                class="glyphicon glyphicon-eye-open"></span></button></span>
+                                                                </div>
+                                                                <br />
+                                                            </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="LaboralId">
+                                    <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
                                                             <div class="form-group">
@@ -263,16 +305,16 @@ include("../Modelo/Conexion.php");
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label><strong>Fecha Alta</strong></label>
-                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="FechaAlta" id="FechaAlta" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                                    <!--<label><strong>Fecha Alta</strong></label>-->
+                                                                    <div class="input-group date">
+                                                                        <input type="hidden" name="FechaAlta" id="FechaAlta" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label><strong>Ultima Modificación</strong></label>
-                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                                    <!--<label><strong>Ultima Modificación</strong></label>-->
+                                                                     <div class="input-group date"><!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span> -->
+                                                                        <input type="hidden" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
                                                   
@@ -300,11 +342,12 @@ include("../Modelo/Conexion.php");
                                                                     echo'</select>';
                                                                 ?>
                                                             </div>
+                                                           
                                                             <div class="form-group">
-                                                                <label>Jornada</label>
-                                                                <input name="Jornada" id="Jornada" type="text" class="form-control" placeholder="Jornada" required>
+                                                            <label>¿Se tiene dado de baja?</label>
+                                                            <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
                                                             </div>
-
+                                                            <div id="content" style="display: none;">
                                                             <div class="form-group ">
                                                                 <label><strong>Fecha Baja</strong></label>
                                                                 <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -315,12 +358,17 @@ include("../Modelo/Conexion.php");
                                                                 <label>Concepto Baja</label>
                                                                 <textarea name="ConceptoBaja" id="ConceptoBaja" placeholder="Concepto Baja" ></textarea>
                                                             </div>
+                                                        </div>
+                                                            
+
+
+                                                            
 
                                                             <div class="form-group">
                                                                 <div class="form-group">
-                                                                    <label><strong>Fecha de Antigüedad</strong></label>
-                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                                    <!-- <label><strong>Fecha de Antigüedad</strong></label> -->
+                                                                    <div class="input-group date">
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="hidden" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
 
                                                                     <div class="form-group">
@@ -337,17 +385,7 @@ include("../Modelo/Conexion.php");
                                                         </div>
                                 </div>
                                 
-                                <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        
-
+    
                             </div>
                             
                             </form>
@@ -400,8 +438,14 @@ include("../Modelo/Conexion.php");
 }
 
 </script>
-    
 
+<!--script para quitar los espacios-->
+    <script type="text/javascript">
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  return tecla!=32;
+}
+</script>
     
 <script type="text/javascript" language="javascript" >
 
@@ -478,3 +522,27 @@ $(document).ready(function () {
   
     });
     </script>   
+     <script>
+    function mostrarContrasena() {
+      var tipo = document.getElementById("Contrasena");
+      if (tipo.type == "password") {
+        tipo.type = "text";
+      } else {
+        tipo.type = "password";
+      }
+    }
+  </script>
+
+<!--ocultar y mostrar un div con un checkbox-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>

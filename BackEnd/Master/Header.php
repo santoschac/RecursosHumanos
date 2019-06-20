@@ -128,6 +128,11 @@ if(isset($_SESSION['Usuario'])){
                                 class="mini-click-non">Capacitación</span></a>
                         </li>
                         <li>
+                        <a title="Jornada" href="../Vistas/Jornada.php" aria-expanded="false"><span
+                                class="educate-icon educate-event icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Jornada</span></a>
+                        </li>
+                        <li>
                             <a title="Configuración" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
                                     class="educate-icon educate-data-table icon-wrap"></span> <span
                                     class="mini-click-non">Configuración</span></a>

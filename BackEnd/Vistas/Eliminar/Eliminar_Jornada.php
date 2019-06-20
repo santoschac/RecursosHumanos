@@ -8,18 +8,12 @@
 		
 		require_once '../../Modelo/Conexion.php';
 		
-		$IdPersonal = $_POST['delete'];
-		$sql = "DELETE FROM personal WHERE IdPersonal=:IdPersonal";
+		$IdJornada = $_POST['delete'];
+		$sql = "DELETE FROM jornada WHERE IdJornada=:IdJornada";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array(':IdPersonal'=>$IdPersonal));
-
-
-		$IdUsuario = $_POST['IdUsuario'];
-		$sql1 = "DELETE FROM usuario WHERE IdUsuario=:IdUsuario";
-		$stmt1 = $pdo->prepare($sql1);
-		$stmt1->execute(array(':IdUsuario'=>$IdUsuario));
+		$stmt->execute(array(':IdJornada'=>$IdJornada));
 		
-		if ($stmt1) {
+		if ($stmt) {
 			$response['status']  = 'success';
             $response['message'] = 'Eliminado con éxito ...';            
 		} else {

@@ -5,7 +5,11 @@ include("../Modelo/Conexion.php");
 
 $IdPersonal= $_GET['IdPersonal'];
 
-$sql1 = 'SELECT * FROM personal WHERE IdPersonal = :IdPersonal';
+$sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, p.EstadoCivil, p.Hijos, p.Padre, p.Madre, 
+p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion,
+u.Usuario, u.Contrasena, u.IdTipoUsuario
+FROM personal p
+inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal= :IdPersonal';
 $sentencia = $pdo->prepare($sql1);
 $sentencia ->execute([':IdPersonal'=>$IdPersonal]);
 $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
@@ -65,6 +69,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <li class="active"><a href="#personales">Datos Personales</a></li>
                                 <li><a href="#DireccionId">Dirección</a></li>
                                 <li><a href="#LaboralID">Laboral</a></li>
+                                <li><a href="#UsuarioId">Usuario</a></li>
                                 
                                
                             </ul>
@@ -232,6 +237,48 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             </div>
                                                         </div>
                                 </div>
+                                <div class="product-tab-list tab-pane fade" id="UsuarioId">
+                                     <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                                                       
+                                                                
+                                                                <div class="form-group">
+                                                                <label>Usuario</label>
+                                                                <input type="hidden" name="IdUsuario" id="IdUsuario" value="<?=$empleado->IdUsuario?>" required>
+                                                                    <input name="Usuario" id="Usuario" value="<?= $empleado->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
+                                                                </div>                                                                                                                               
+                                                  
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            
+                                                            <div class="form-group">
+                                                                <label class="control-label"
+                                                                    for="password">Contraseña</label>
+                                                                <div class="input-group custom-go-button">
+                                                                    <input type="password" name="Contrasena"
+                                                                        id="Contrasena" class="form-control"
+                                                                        placeholder="******" required="" value="<?=$empleado->Contrasena?>"
+                                                                        maxlength="40">
+                                                                    <span class="input-group-btn"><button
+                                                                            class="btn btn-primary" type="button"
+                                                                            onclick="mostrarContrasena()"><span
+                                                                                class="glyphicon glyphicon-eye-open"></span></button></span>
+                                                                </div>
+                                                                <br />
+                                                            </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="payment-adress">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                </div>
                                 <div class="product-tab-list tab-pane fade" id="LaboralID">
                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -270,9 +317,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label><strong>Ultima Modificación</strong></label>
-                                                                    <div class="input-group date"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input type="date" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?=date("Y-m-d", strtotime($empleado->UltimaModificacion)); ?>">
+                                                                    <!--<label><strong>Ultima Modificación</strong></label>-->
+                                                                    <div class="input-group date">
+                                                                        <input type="hidden" name="UltimaModificacion" id="UltimaModificacion" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                                     </div>
                                                                 </div>
                                                   
@@ -298,11 +345,12 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     </select>
                                                                 
                                                             </div>
+                                                           
                                                             <div class="form-group">
-                                                                <label>Jornada</label>
-                                                                <input name="Jornada" id="Jornada" value="<?= $empleado->Jornada?>" type="text" class="form-control" placeholder="Jornada" required>
+                                                            <label>¿Se tiene dado de baja?</label>
+                                                            <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" />
                                                             </div>
-
+                                                            <div id="content" style="display: none;">
                                                             <div class="form-group ">
                                                                 <label><strong>Fecha Baja</strong></label>
                                                                 <div class="input-group date">
@@ -315,6 +363,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <textarea name="ConceptoBaja" id="ConceptoBaja"
                                                                     placeholder="Concepto Baja" ><?=$empleado->ConceptoBaja?></textarea>
                                                             </div>
+                                                        </div>
+
+                                                            
 
                                                             <div class="form-group">
 
@@ -447,7 +498,6 @@ $(document).ready(function () {
            event.preventDefault();
            var datos = $('#formulario').serialize();
 
-
                $.ajax({
                    url:"Editar/Editar_Empleado.php",
                    method:'POST',
@@ -456,7 +506,7 @@ $(document).ready(function () {
                    processData:false,
                    success:function(data)
                    {
-                    
+                    alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){
@@ -479,8 +529,30 @@ $(document).ready(function () {
   
     });
     </script>
+      <script>
+    function mostrarContrasena() {
+      var tipo = document.getElementById("Contrasena");
+      if (tipo.type == "password") {
+        tipo.type = "text";
+      } else {
+        tipo.type = "password";
+      }
+    }
+  </script>
     
     
-  
+  <!--ocultar y mostrar un div con un checkbox-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
     
     

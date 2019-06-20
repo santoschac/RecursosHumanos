@@ -5,6 +5,14 @@ include ("../Modelo/Conexion.php");
 $message="";
 $IdUsuario = $_SESSION['IdUsuario'];
 
+
+$sql = 'SELECT * FROM personal WHERE IdUsuario = ?';
+$sentencia = $pdo->prepare($sql);
+$sentencia->execute(array($IdUsuario));
+$resultado = $sentencia->fetch();
+
+
+
     if (isset($_POST['Contrasena']) ) {
 
          $Contrasena = $_POST['Contrasena'];
@@ -38,9 +46,9 @@ $IdUsuario = $_SESSION['IdUsuario'];
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                 </li>
-                                <li><span class="bread-blod">Add Department</span>
+                                <li><span class="bread-blod">Mi perfil</span>
                                 </li>
                             </ul>
                         </div>
@@ -82,20 +90,20 @@ $IdUsuario = $_SESSION['IdUsuario'];
                                                 <div class="form-group">
                                                     <label>Nombre</label>
                                                     <input name="Nombre" type="text" class="form-control"
-                                                        placeholder="Nombre" value="<?php echo $_SESSION['Nombre'] ?>"
+                                                        placeholder="Nombre" value="<?php echo $resultado['Nombre'] ?>"
                                                         readonly="">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Apellido Paterno</label>
                                                     <input name="ApellidoPaterno" type="text" class="form-control"
                                                         placeholder="Apellido Paterno"
-                                                        value="<?php echo $_SESSION['ApellidoPaterno'] ?>" readonly="">
+                                                        value="<?php echo $resultado['ApellidoPaterno'] ?>" readonly="">
                                                 </div>
                                                 <label>Apellido Materno</label>
                                                 <div class="form-group">
                                                     <input name="ApellidoMaterno" type="text" class="form-control"
                                                         placeholder="Apellido Materno"
-                                                        value="<?php echo $_SESSION['ApellidoMaterno'] ?>" readonly="">
+                                                        value="<?php echo $resultado['ApellidoMaterno'] ?>" readonly="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -105,10 +113,10 @@ $IdUsuario = $_SESSION['IdUsuario'];
                                                         placeholder="Usuario" value="<?php echo $_SESSION['Usuario'] ?>"
                                                         readonly="">
                                                 </div>
-                                                <!-- <div class="form-group">
+                                                <div class="form-group">
                                                                 <label>Contraseña</label>
-                                                                <input name="Contraseña" type="text" class="form-control" placeholder="Contraseña" readonly="">
-                                                            </div> -->
+                                                                <input  value="<?php echo $_SESSION['Contrasena']?>" type="text" class="form-control" placeholder="Contraseña" readonly="">
+                                                            </div>
 
                                             </div>
                                         </div>
