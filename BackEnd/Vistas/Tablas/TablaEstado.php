@@ -40,7 +40,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td>
                                                 
 						
-                        </button>
+                        
                                                 <button  title="Editar" class="pd-setting-ed update" name="update" id="<?php echo $dato['IdEstado']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                             <a id="Eliminar" data-id="<?php echo $dato['IdEstado']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>

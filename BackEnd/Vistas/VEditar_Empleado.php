@@ -6,7 +6,7 @@ include("../Modelo/Conexion.php");
 $IdPersonal= $_GET['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, p.EstadoCivil, p.Hijos, p.Padre, p.Madre, 
-p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion,
+p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion,
 u.Usuario, u.Contrasena, u.IdTipoUsuario
 FROM personal p
 inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal= :IdPersonal';
@@ -175,7 +175,10 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Hijos</label>
                                                                     <input name="Hijos" id="Hijos" value="<?=$empleado->Hijos?>" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
                                                                 </div>
-                                                               
+                                                                <div class="form-group">
+                                                                <label>Teléfono</label>
+                                                                    <input name="Telefono" id="Telefono" value="<?= $empleado->Telefono?>" type="text" class="form-control" placeholder="Teléfono" maxlength="10" onkeypress="return numeros(event)">
+                                                                </div>
                                                                 
                                                                 
                                                             </div>
@@ -506,7 +509,7 @@ $(document).ready(function () {
                    processData:false,
                    success:function(data)
                    {
-                    alert(data);
+                    //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

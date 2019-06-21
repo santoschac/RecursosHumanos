@@ -19,13 +19,19 @@ if(isset($_POST["operation"]))
 		// }else{
 			
 
+			if(isset($_POST["FechaFin"])){
+
+				$FechaFin = $_POST["FechaFin"];
+			}else{
+				$FechaFin= NULL;
+			}
+			
 			
 		$statement = $pdo->prepare("INSERT INTO jornada (FechaInicio, FechaFin, HoraInicio, HoraFin) VALUES (:FechaInicio, :FechaFin, :HoraInicio, :HoraFin)");
-		$result = $statement->execute([':FechaInicio' => $_POST["FechaInicio"], ':FechaFin' =>	$_POST["FechaFin"], ':HoraInicio' => $_POST["HoraInicio"], ':HoraFin' => $_POST["HoraFin"]]);
-		if(!empty($result))
-		{
+		if ($statement->execute([':FechaInicio' => $_POST["FechaInicio"], ':FechaFin' =>	$FechaFin, ':HoraInicio' => $_POST["HoraInicio"], ':HoraFin' => $_POST['HoraFin']])){
 			echo 1;
-    }
+		}
+		
 
 
 		//}

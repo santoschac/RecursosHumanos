@@ -18,11 +18,11 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Jornadas</h4>
+                                <h4>Asignar Jornadas</h4>
                                 
-                                <div class="add-product">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Jornada</button>
-                            </div>
+                                
+                               <a href="VAlta_AsignarJornada.php"> <button type="button" class="btn btn-primary" >Asignar jornada a empleado</button></a>
+                           
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -50,7 +50,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaJornada"></div> <!-- products will be load here -->
+<div id="TablaAsignarJornada"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -62,7 +62,7 @@ include("../Modelo/Conexion.php");
         <!-- Static Table End -->
 		<style>
     #mdialTamanio{
-      width: 45% !important;
+      width: 35% !important;
       
       }
   </style>
@@ -73,7 +73,7 @@ include("../Modelo/Conexion.php");
                                 <form method="post" id="formulario" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
-                                        <h4 class="modal-title">Agregar Jornada</h4>
+                                        <h4 class="modal-title">Asignar nueva jornada</h4>
                                        
                                         <div class="modal-close-area modal-close-df">
                                             <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
@@ -83,62 +83,28 @@ include("../Modelo/Conexion.php");
                                     <div class="modal-body">
                                      
                                        <!--Agregar form dentro del moal-->
-									 
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label>Día inicio</label><br/>
-                                                                <select name="FechaInicio" id="FechaInicio" class="form-control" required>
-																			<option value="" selected="" disabled="">Seleccionar</option>
-																			<option value="Lunes">Lunes</option>
-																			<option value="Martes">Martes</option>
-																			<option value="Miercoles" >Miercoles</option>
-																			<option value="Jueves" >Jueves</option>
-																			<option value="Viernes" >Viernes</option>
-																			<option value="Sábado" >Sábado</option>
-																			<option value="Domingo" >Domingo</option>
-																			
-																		</select>
-															</div>
-															<div class="form-group">
-															 <label>Hora inicio</label>
-															 <input type="time" name="HoraInicio" id="HoraInicio" class="form-control" value="" required>
-														</div>
-                                                            
-                                                                
-														</div>
-														
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        
-
-														<div class="form-group">
-                                                                <label>Día Fin</label>
-																<select name="FechaFin" id="FechaFin" class="form-control">
-																			<option value="" selected="" disabled="">Seleccionar</option>
-																			<option value="Lunes">Lunes</option>
-																			<option value="Martes">Martes</option>
-																			<option value="Miercoles" >Miercoles</option>
-																			<option value="Jueves" >Jueves</option>
-																			<option value="Viernes" >Viernes</option>
-																			<option value="Sabado" >Sábado</option>
-																			<option value="Domingo" >Domingo</option>
-																			
-																		</select>
-                                                                </div>
-                                                        
-
-														<div class="form-group">
-															 <label>Hora Fin</label>
-															 <input type="time" name="HoraFin" id="HoraFin" class="form-control" value="" required>
-														</div>
-                                                                
+                                      
+                                       <div class="row" >
+                                       
+                                       <div class="form-group-inner">
+                                                        <br/>
+                                                        <label>Nombre del Puesto</label>
+                                                        <input type="text" id="NombrePuesto" name="NombrePuesto" class="form-control" placeholder="Escriba el nombre del puesto" required maxlength="50"/>
+                                                        <br/>
+                                                    </div>
+                                                    <!-- <div class="login-btn-inner">
+                                                        <div class="inline-remember-me">
+                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
+                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                         </div>
-                                                    
-                                                   
+                                                    </div> -->
+                                       
+                                        </div>
                                         
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="jornada_id" id="jornada_id" />
+                                        <input type="hidden" name="puesto_id" id="puesto_id" />
 										<input type="hidden" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
                                         <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
@@ -167,7 +133,7 @@ include("../Modelo/Conexion.php");
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
 		$('#formulario')[0].reset();
-		$('.modal-title').text("Agregar Jornada");
+		$('.modal-title').text("Agregar Puesto");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
         
@@ -177,11 +143,14 @@ $(document).ready(function(){
 
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
-		var datos = $('#formulario').serialize();
+		var Nombre = $('#NombrePuesto').val();
 		
 		
+		if(Nombre != '')
+		{
+			
 			$.ajax({
-				url:"Alta/Alta_Jornada.php",
+				url:"Alta/Alta_Puestos.php",
 				method:'POST',
 				data:new FormData(this),
 				contentType:false,
@@ -192,55 +161,53 @@ $(document).ready(function(){
 					//$('#formulario')[0].reset();
 					if(data==1)
 					{
-						readJornada();
+						readAsignarJornada();
 						$('#ModalAgregar').modal('hide');
 						$("#exito").fadeIn();
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
-						//$('#NombrePuesto').val('');
+						$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
                     {
-						readJornada();
+						readAsignarJornada();
 						$('#ModalAgregar').modal('hide');
 						$("#actu").fadeIn();
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						//$('#NombrePuesto').val('');
+						$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-					//	$('#NombrePuesto').val('');
+						$('#NombrePuesto').val('');
 
                     }
 
 				}
 			});
-		
+		}
 		
 	});
 
     $(document).on('click', '.update', function(){
-		var jornada_id = $(this).attr("id");
+		var puesto_id = $(this).attr("id");
 		$.ajax({
-			url:"Editar/Editar_Jornada.php",
+			url:"Editar/Editar_Puesto.php",
 			method:"POST",
-			data:{jornada_id:jornada_id},
+			data:{puesto_id:puesto_id},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#ModalAgregar').modal('show');
-				$('#FechaInicio').val(data.FechaInicio);
-				$('#FechaFin').val(data.FechaFin);
-				$('#HoraInicio').val(data.HoraInicio);
-				$('#HoraFin').val(data.HoraFin);
+				$('#NombrePuesto').val(data.NombrePuesto);
+				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
-				$('#jornada_id').val(jornada_id);
+				$('#puesto_id').val(puesto_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
                 
@@ -261,20 +228,20 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		
-		readJornada(); /* it will load products when document loads */
+		readAsignarJornada(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdJornada = $(this).data('id');
-			SwalDelete(IdJornada);
+			var IdAsignarJornada = $(this).data('id');
+			SwalDelete(IdAsignarJornada);
             e.preventDefault();
-            //alert(IdPuesto);
+            //alert(IdAsingnarJornada);
 		});
 		
 	});
 	
-	function SwalDelete(IdJornada){
-		
+	function SwalDelete(IdAsignarJornada){
+	
 		swal({
 			title: '¿Estás seguro?',
 			text: "Será eliminado permanentemente",
@@ -289,15 +256,15 @@ $(document).ready(function(){
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Jornada.php",
+			   		url: "Eliminar/Eliminar_AsignarJornada.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdJornada,
+			       	data: 'delete='+IdAsignarJornada,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readJornada();
+                     readAsignarJornada();
                     
 			     })
 			     .fail(function(){
@@ -310,8 +277,8 @@ $(document).ready(function(){
 		
 	}
 
-    function readJornada(){
-		$('#TablaJornada').load('Tablas/TablaJornada.php');	
+    function readAsignarJornada(){
+		$('#TablaAsignarJornada').load('Tablas/TablaAsignarJornada.php');	
 	}
     
 </script> 

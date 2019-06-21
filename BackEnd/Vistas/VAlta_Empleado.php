@@ -164,6 +164,10 @@ include("../Modelo/Conexion.php");
                                                                 <label>Hijos</label>
                                                                     <input name="Hijos" id="Hijos" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
                                                                 </div>
+                                                                <div class="form-group res-mg-t-15">
+                                                                <label>Teléfono</label>
+                                                                    <input name="Telefono" id="Telefono" value="\0" type="text" class="form-control" placeholder="Teléfono" onkeypress="return numeros(event)" maxlength="10" />
+                                                                </div>
                                                                
                                                                 
                                                                 
