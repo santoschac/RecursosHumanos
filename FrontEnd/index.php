@@ -1,5 +1,6 @@
 <?php
-include("../Master/Header.php");
+session_start();
+include("../../BackEnd/Master/Header.php");
 ?>
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
@@ -54,5 +55,5 @@ include("../Master/Header.php");
         
         
         <?php
-        include ("../Master/Footer.php");
+        include ("../../BackEnd/Master/Footer.php");
         ?>

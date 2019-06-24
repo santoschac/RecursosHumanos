@@ -1,5 +1,5 @@
 <?php
-include(" Master/Header.php");
+include("../Master/Header.php");
 ?>
             
 
@@ -31,5 +31,5 @@ include(" Master/Header.php");
         
         
         <?php
-        include ("Master/Footer.php");
+        include ("../Master/Footer.php");
         ?>

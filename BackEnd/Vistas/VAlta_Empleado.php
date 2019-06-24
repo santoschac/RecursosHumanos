@@ -162,11 +162,11 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Hijos</label>
-                                                                    <input name="Hijos" id="Hijos" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
+                                                                    <input name="Hijos" id="Hijos" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" >
                                                                 </div>
-                                                                <div class="form-group res-mg-t-15">
+                                                                <div class="form-group">
                                                                 <label>Teléfono</label>
-                                                                    <input name="Telefono" id="Telefono" value="\0" type="text" class="form-control" placeholder="Teléfono" onkeypress="return numeros(event)" maxlength="10" />
+                                                                    <input name="Telefono" id="Telefono"  type="text" value="" class="form-control" placeholder="Teléfono"  maxlength="10" />
                                                                 </div>
                                                                
                                                                 
@@ -324,17 +324,41 @@ include("../Modelo/Conexion.php");
                                                   
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="chosen-select-single mg-b-20">
+                                                            <!---->
+                                                            <div class="form-group">
+                                                            <label>Empresa</label>
+                                                            <?php
+                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
+                                                            $sql->execute();
+                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+                                                            
+                                                            ?>
+                                                            <select name="Empresa" id="Empresa" class="form-control" required>
+                                                            <option value="" selected="" disabled="">Seleccionar</option>
+                                                                <?php foreach ($result as $dato) {?>
+                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                                                <?php } ?>
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>
+                                                        </div>
+                                                            <!---->
+                                                            <!-- <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Sucursal</strong></label>
                                                                 
                                                                     <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
                                                                     <option value="">Seleccionar</option>
-                                                                  <?php   foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
+                                                                  ?php   foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
                                                                     echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
                                                                     }
                                                                     echo'</select>';
                                                                 ?>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                  
@@ -453,6 +477,24 @@ function validar(e) {
     
 <script type="text/javascript" language="javascript" >
 
+ $(document).ready(function () {
+        $("#Empresa").change(function () {
+            // e.preventDefault();
+
+            $("#Empresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
+
 $(document).ready(function () {
         $("#IdPais").change(function () {
             // e.preventDefault();
@@ -503,7 +545,7 @@ $(document).ready(function () {
                    processData:false,
                    success:function(data)
                    {
-                     
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

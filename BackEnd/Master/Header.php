@@ -160,12 +160,20 @@ if(isset($_SESSION['Usuario'])){
                             </ul>
                         </li>
                     </ul>
-<?php endif; ?>
+                <?php endif; ?>
 
-<?php if($_SESSION['IdTipoUsuario']==2):?>
-<h1 style="color:red">si jala esta onda</h1>
+            <?php if($_SESSION['IdTipoUsuario']==2):?>
+            
+            <ul class="metismenu" id="menu1">
+            <li>
+                            <a title="Solicitud"  href="../VistasU/VAlta_Solicitud.php" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Solicitud</span></a>
+                            
+                        </li>
+            </ul>
 
-<?php endif;?>
+            <?php endif;?>
 
 
 

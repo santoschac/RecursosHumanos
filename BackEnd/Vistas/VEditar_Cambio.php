@@ -4,14 +4,24 @@ include("../Modelo/Conexion.php");
 
 $message="";
 
-$sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+$IdCambio = $_GET['IdCambio'];
+$sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+from cambios c
+inner join puestos pu on c.IdPuesto = pu.IdPuesto
+inner join sucursal s on c.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa
+inner join personal p on c.IdPersonal = p.IdPersonal where IdCambio = :IdCambio';
+$sentencia=$pdo->prepare($sql1);
+$sentencia->execute(['IdCambio'=>$IdCambio]);
+$cambios = $sentencia->fetch(PDO::FETCH_OBJ);
+
+$sql2= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
 inner join sucursal s on p.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa");
-$sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
-
+$sql2->execute();
+$resultado=$sql2->fetchALL(PDO::FETCH_ASSOC);
 
 if(isset($_GET['IdPersonal'])){
 
@@ -115,11 +125,12 @@ if(isset($_GET['IdPersonal'])){
 
 
                                                         <div class="form-group">
+                                                        <input type="hidden" name="IdCambio" id="IdCambio" value="<?php echo $IdCambio?>">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-                                                                    required="" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    required="" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->Nombre ." ". $cambios->ApellidoPaterno ." ". $cambios->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
                                                                     maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                     class="glyphicon glyphicon-zoom-in"></span></button></span></a>
@@ -129,15 +140,15 @@ if(isset($_GET['IdPersonal'])){
 
                                                         <div class="form-group">
                                                             <label>Empresa</label>
-                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
-                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombreSucursal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto</label>
-                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombrePuesto?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
                                                         
                                                                
@@ -162,7 +173,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
                                                             <option value="" selected="" disabled="">Seleccionar</option>
                                                                 <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                                                    <option value="<?php echo $dato['IdEmpresa'];?>" <?php if($dato['IdEmpresa']=== $cambios->IdEmpresa): echo'selected'; endif;?>> <?php echo $dato['NombreEmpresa']; ?> </option>
                                                                 <?php } ?>
                                                             </select>
 
@@ -173,15 +184,14 @@ if(isset($_GET['IdPersonal'])){
                                                                 <option value="" selected="" disabled="">Seleccionar</option>
                                                             </select>
                                                         </div>
-                                                        <div class="chosen-select-single mg-b-20">
+                                                      
+                                                            <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
-                                                               
-                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
-                                                                    <option value="">Seleccionar</option>
-                                                                   <?php   foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
-                                                                    echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
-                                                                    }
-                                                                    ?>
+                                                                    <select name="IdPuesto" id="IdPuesto" required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <option value="">Seleccionar</option>';
+                                                                   <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
+                                                                    <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $cambios->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
+                                                                <?php endforeach;?>
                                                                     </select>
                                                                 
                                                             </div>
@@ -340,14 +350,14 @@ if(isset($_GET['IdPersonal'])){
 //alert(datos);
 
                $.ajax({
-                   url:"Alta/Alta_Cambio.php",
+                   url:"Editar/Editar_Cambio.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
                    processData:false,
                    success:function(data)
                    {
-                    // alert(data);
+                     alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){
