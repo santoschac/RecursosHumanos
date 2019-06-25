@@ -166,9 +166,9 @@ if(isset($_SESSION['Usuario'])){
             
             <ul class="metismenu" id="menu1">
             <li>
-                            <a title="Solicitud"  href="../VistasU/VAlta_Solicitud.php" aria-expanded="false"><span
+                            <a title="Solicitud"  href="../VistasU/Solicitudes.php" aria-expanded="false"><span
                                     class="educate-icon educate-data-table icon-wrap"></span> <span
-                                    class="mini-click-non">Solicitud</span></a>
+                                    class="mini-click-non">Solicitudes</span></a>
                             
                         </li>
             </ul>

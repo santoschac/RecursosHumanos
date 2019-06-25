@@ -1,6 +1,6 @@
 <?php
-include '../Master/Header.php'
-include('../BackEnd/Modelo/Conexion.php');
+include '../Master/Header.php';
+include('../Modelo/Conexion.php');
 
 ?>
 
@@ -25,9 +25,8 @@ include('../BackEnd/Modelo/Conexion.php');
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><a href="Cursos.php">Cursos</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Agregar Curso</span>
+                                            
+                                            <li><span class="bread-blod">Realizar Solicitud</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -45,7 +44,7 @@ include('../BackEnd/Modelo/Conexion.php');
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Curso</a></li>
+                                <li class="active"><a href="#description">Realizar Solicitud</a></li>
                                 
                             </ul>
                               <!--Alertas-->
@@ -75,37 +74,41 @@ include('../BackEnd/Modelo/Conexion.php');
                                                 <form id="formulario" method="POST" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label>Nombre del Curso</label>
-                                                                <input name="NombreCurso" id="NombreCurso" type="text" class="form-control" placeholder="Nombre del curso" required="">
-                                                            </div>
-                                                            <div class="form-group">
+                                                        <div class="form-group">
                                                                 <label>Tipo de capacitación</label>
-                                                                    <select name="Tipo" id="Tipo" class="form-control" required>
+                                                                    <select name="Solicitud" id="Solicitud" class="form-control" required>
 																			<option value="" selected="" disabled="">Seleccionar</option>
-																			<option value="Interna">Interna</option>
-																			<option value="Externa">Externa</option>
-																			
+																			<option value="Vacaciones">Vacaciones</option>
+																			<option value="Carta de guardería">Carta de guardería</option>
+																			<option value="Vigencia de imss">Vigencia de imss</option>
+                                                                            <option value="Carta de recomendación">Carta de recomendación</option>
 																		</select>
                                                                 </div>
+                                                                <div class="form-group res-mg-t-15">
+                                                                    <label>Descripción</label>
+                                                                    <textarea name="DescripcionCurso" id="DescripcionCurso" placeholder="Realice una breve descripción" required="" maxlength="200"></textarea>
+                                                                </div>
+                                                                
+                                                            
+                                                            
                                                                 
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         
 
                                                                 <div class="form-group">
-                                                             <label>Fecha del Curso</label>
+                                                             <label>Fecha de la solicitud</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("Y-m-d"); ?>" >
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                                                <label>Nombre del Curso</label>
+                                                                <input name="NombreCurso" id="NombreCurso" type="text" class="form-control" placeholder="Nombre del curso" required="">
+                                                            </div>
 
-                                    <div class="form-group res-mg-t-15">
-                                                                    <label>Descripción</label>
-                                                                    <textarea name="DescripcionCurso" id="DescripcionCurso" placeholder="Describa el curso" required="" maxlength="200"></textarea>
-                                                                </div>
-                                                                
+                                    
                                                         </div>
                                                     </div>
                                                     <div class="row">
