@@ -5,8 +5,17 @@ include('../../Modelo/Conexion.php');
 	$FechaAtencion = $_POST['FechaAtencion'];
 	$Atendido= $_POST['Atendido'];
 	$Estatus = "Atendido";
-	//$Documento = $_FILES['archivo'];
-	//echo $nombre = $Documento["name"];
+	
+	$IdPersonal = $_POST['IdPersonal'];
+
+	$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+	from personal p
+	inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal = ?';
+	$sentencia = $pdo->prepare($sql);
+	$sentencia->execute(array($IdPersonal));
+	$resultado = $sentencia->fetch();
+
+	$NombreCarpeta = $resultado['Usuario'];
 	
 	//Como el elemento es un arreglos utilizamos foreach para extraer todos los valores
 	foreach($_FILES["archivo"]['tmp_name'] as $key => $tmp_name)
@@ -16,8 +25,8 @@ include('../../Modelo/Conexion.php');
 			$filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
 			$source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 			
-			$directorio = '../Documentos/docs/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-			
+			$directorio = '../../VistasU/Documentos/docs/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
+			$directorio = $directorio.'/'.$NombreCarpeta;
 			//Validamos si la ruta de destino existe, en caso de no existir la creamos
 			if(!file_exists($directorio)){
 				mkdir($directorio, 0777) or die("No se puede crear el directorio de extracci&oacute;n");	
@@ -46,6 +55,7 @@ include('../../Modelo/Conexion.php');
 		}
 	}
 
+	
 
 	
 ?>

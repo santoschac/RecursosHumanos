@@ -6,7 +6,7 @@ include("../../Modelo/Conexion.php");
 $sql = $pdo->prepare('SELECT s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
 s.Estatus, s.IdPersonal, s.Solicitud, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno
 from solicitudes s
-inner join personal p on s.IdPersonal = p.IdPersonal') ;
+inner join personal p on s.IdPersonal = p.IdPersonal  where Estatus = "Espera" order by IdSolicitudes desc') ;
 $sql->execute();
 $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -21,8 +21,8 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
     
 
 
- <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
+ <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
                                             <th>No</th>

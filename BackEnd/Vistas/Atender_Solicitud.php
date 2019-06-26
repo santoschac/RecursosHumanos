@@ -77,7 +77,7 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                                         <form method="POST" id="formulario" class="add-department">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" name="IdSolicitudes" id="IdSolicitudes" value="<?php echo $IdSolicitudes?>">
+                                                <input type="hidden" name="IdSolicitudes" id="IdSolicitudes" value="<?php echo $IdSolicitudes?>">
                                                 <div class="form-group">
                                                         <label>Fecha Solicitud</label>
                                                         <div class="input-group date">
@@ -86,7 +86,8 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Personal</label>                                                        
+                                                        <label>Personal</label>    
+                                                        <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?= $solicitudes->IdPersonal?>" >                                                    
                                                         <input name="Personal" id="Personal" type="text" value="<?= $solicitudes->Nombre ." ". $solicitudes->ApellidoPaterno ." ". $solicitudes->ApellidoMaterno?>" class="form-control" readonly>
                                                     </div>
                                                     <div class="form-group">
@@ -149,8 +150,7 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                                                     <div class="payment-adress">
                                                         <button type="submit"
                                                             class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                                        <a href="Cursos.php"
-                                                            class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                        <a href="Solicitudes.php" class="btn btn-success waves-effect waves-light">Regresar</a>
                                                     </div>
                                                 </div>
                                             </div>

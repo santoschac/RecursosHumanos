@@ -1,12 +1,23 @@
 
 <?php
-
+session_start();
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT * FROM solicitudes");
+$IdPersonal = $_SESSION['IdPersonal'];
+
+$sql= $pdo->prepare("SELECT * FROM solicitudes where IdPersonal = $IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
+
+    $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+	from personal p
+	inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal = ?';
+	$sentencia = $pdo->prepare($sql1);
+	$sentencia->execute(array($IdPersonal));
+    $result = $sentencia->fetch();
+    
+    $NombreCarpeta = $result['Usuario'];
 
 ?>
 
@@ -16,9 +27,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
  
-                                                         
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
+                                         
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
                                             <th>No</th>
@@ -29,7 +40,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Atendido</th>
                                             <th>Fecha atención</th>
                                             <th>Documento</th> 
-                                            <th>descargar</th>                                           
+                                            <th>Descargar</th>                                           
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -40,12 +51,12 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['IdSolicitudes']; ?></td>
                                                 <td><?php echo $dato['Solicitud'];?></td>
                                                 <td><?php echo $dato['Descripcion']; ?></td>
-                                                <td><?php echo $dato['FechaSolicitud'];?></td>
+                                                <td><?php echo date("d-m-Y", strtotime($dato['FechaSolicitud'])) ;?></td>
                                                 <td><?php echo $dato['Estatus'];?></td>
                                                 <td><?php echo $dato['Atendido'];?></td>
-                                                <td><?php echo $dato['FechaAtencion'];?></td>
+                                                <td><?php if(isset($dato['FechaAtencion'])):?><?= date("d-m-Y", strtotime($dato['FechaAtencion']));?><?php endif;?></td>
                                                 <td><?php echo $dato['Documento'];?></td>
-                                                <td><a href="../rosa.jpg" download="Reporte2Mayo2010"> Descargar Archivo</a></td>
+                                                <td><a href="../VistasU/Documentos/docs/<?php echo $NombreCarpeta?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/iconodescargar.png" width="150" height="250" alt=""><?php endif;?></a></td>
                                                 <td>
                                                 
 						
@@ -59,16 +70,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                     </table> <br>
                                 
                                   
-                                    <script>
-                                    var a = document.createElement('a');
- 
- if(typeof a.download != "undefined"){
-    //El atributo es soportado
- }
- else {
-    //El atributo no es soportado
- }
- </script>
+                                    
 
         
         

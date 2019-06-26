@@ -141,12 +141,12 @@ include("../Modelo/Conexion.php");
 
 
 
-
-      
-
+		
 <?php
  include ("../Master/Footer.php");
 ?>
+
+
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
