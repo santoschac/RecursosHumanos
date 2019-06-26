@@ -138,7 +138,7 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                                                     <div class="form-group">
                                                         <label>Documentos</label>
                                                        
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" multiple="">
+                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" >
                                                      </div>
 
                                                    

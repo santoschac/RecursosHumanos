@@ -1,7 +1,9 @@
 <?php
 include ("../../Modelo/Conexion.php");
 
-$sql = $pdo->prepare("SELECT * FROM personal");
+$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, u.Usuario
+from personal p
+inner join usuario u on p.IdUsuario = u.IdUsuario");
 $sql ->execute();
 $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
 
@@ -21,7 +23,7 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <th>Nombre</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
-                                        <th>Curp</th>
+                                        <th>Usuario</th>
                                         <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -34,10 +36,10 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <td><?php echo $dato['Nombre']; ?></td>
                                         <td><?php echo $dato['ApellidoPaterno']; ?></td>
                                         <td><?php echo $dato['ApellidoMaterno']; ?></td>
-                                        <td><?php echo $dato['Curp']; ?></td>
+                                        <td><?php echo $dato['Usuario']; ?></td>
                                        
                                                 <td>
-                                                <a href="Ver_Empleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Ver información" class="pd-setting-ed"><span class="glyphicon">&#xe105;</span></button><a>
+                                                <a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Ver información" class="pd-setting-ed"><span class="glyphicon">&#xe105;</span></button><a>
                                                 <a href="VEditar_Empleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Editar" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                 <a id="Eliminar" data-id="<?php echo $dato['IdPersonal']; ?>" data-idd="<?php echo $dato['IdUsuario']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>

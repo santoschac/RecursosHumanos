@@ -4,7 +4,7 @@
 include("../../Modelo/Conexion.php");
 
 $sql = $pdo->prepare('SELECT s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
-s.Estatus, s.IdPersonal, s.Solicitud, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno
+s.Estatus, s.IdPersonal, s.Solicitud, s.Documento, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno
 from solicitudes s
 inner join personal p on s.IdPersonal = p.IdPersonal  where Estatus = "Atendido" order by IdSolicitudes desc') ;
 $sql->execute();
@@ -33,7 +33,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                             <th>Fecha Antención</th>
                                             <th>Atendido</th>
                                             <th>Estatus</th>
-                                            <!-- <th>Documento</th> -->
+                                            <th>Documento</th>
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -49,7 +49,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <td> <?php if(isset($dato['FechaAtencion'])):?><?= date("d-m-Y", strtotime($dato['FechaAtencion'])) ; ?><?php endif;?> </td>
                                                 <td><?php echo $dato['Atendido']; ?></td>
                                                 <td><?php echo $dato['Estatus']; ?></td>
-                                                <!-- <td>?php echo $dato['Documento']; ?></td> -->
+                                                <td><?php echo $dato['Documento']; ?></td>
                                                 <td>
                                                 <a href="Atender_Solicitud.php?IdSolicitudes=<?php echo $dato['IdSolicitudes']; ?>"><button data-toggle="tooltip" title="Atender" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>

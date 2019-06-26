@@ -3,7 +3,7 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio, jo.FechaFin, jo.HoraInicio, jo.HoraFin
+$sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio, jo.FechaFin, TIME_FORMAT(jo.HoraInicio,'%r') as HoraInicio, TIME_FORMAT(HoraFin,'%r') as HoraFin
 from asignarjornada a 
 inner join personal p on a.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
