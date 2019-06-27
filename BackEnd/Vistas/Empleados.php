@@ -10,50 +10,104 @@ include ("../Modelo/Conexion.php");
 
 
                    <!-- Mobile Menu end -->
-            <!-- <div class="breadcome-area">
+            <div class="breadcome-area">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="breadcome-list single-page-breadcome">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Buscar..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <ul class="breadcome-menu">
-                                            <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Lista de empleados</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                 <!---->
+                             
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Lista de Empleados</h4>
+                                    <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
                                 </div>
+                                <form method="post" action="Tablas/TablaPersonal.php">
+                                <div class="col-md-3">
+                                                            <label>Empresa</label>
+                                                            <?php
+                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
+                                                            $sql->execute();
+                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+                                                            
+                                                            ?>
+                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                                            <option value="" selected="" disabled="">Seleccionar</option>
+                                                                <?php foreach ($result as $dato) {?>
+                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                                                <?php } ?>
+                                                            </select>
+
+                                </div>
+                                <div class="col-md-3">
+                                <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>           
+                                </div>
+                                <div class="col-md-3"><br/>
+                                <button class="btn btn-primary" type="submit">Aceptar</button>
+                                <br/><br/>
+                                </div>
+                                </form>
+                            <!---->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         
          <!-- Static Table Start -->
          <div class="data-table-area mg-b-15">
-         <br/>
+         
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Empleados</h4>
+                                <!-- <h4>Lista de Empleados</h4>
                                 </div>
                                 <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
+                             -->
                             
                             </div>
+                             <!---->
+                             <!-- <br/>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Lista de Empleados</h4>
+                                    <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
+                                </div>
+                                <div class="col-md-3">
+                                                            <label>Empresa</label>
+                                                            <?php
+                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
+                                                            $sql->execute();
+                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+                                                            
+                                                            ?>
+                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                                            <option value="" selected="" disabled="">Seleccionar</option>
+                                                                <?php foreach ($result as $dato) {?>
+                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                                                <?php } ?>
+                                                            </select>
+
+                                </div>
+                                <div class="col-md-3">
+                                <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>           
+                                </div>
+                                <div class="col-md-3"><br/>
+                                <button class="btn btn-primary">Aceptar</button>
+                                <br/><br/>
+                                </div>
+                                <br/> -->
+                            <!---->
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
                                     
@@ -82,6 +136,23 @@ include ("../Modelo/Conexion.php");
 
 
 <script >
+ $(document).ready(function () {
+        $("#IdEmpresa").change(function () {
+            // e.preventDefault();
+
+            $("#IdEmpresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
 
 	$(document).ready(function(){
 		

@@ -3,7 +3,7 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("select IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,'%r') as HoraInicio, TIME_FORMAT(HoraFin,'%r') as HoraFin from jornada");
+$sql= $pdo->prepare("select IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(HoraFin, '%H:%i %p') as HoraFin from jornada");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 

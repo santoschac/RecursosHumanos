@@ -9,6 +9,7 @@ $sentencia = $pdo->prepare($sql);
 $sentencia->execute([':IdPersonal'=>$IdPersonal]);
 $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
 
+$_SESSION['IdPersonal'] = $empleados->IdPersonal;
 
 ?>
 
@@ -62,12 +63,13 @@ $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
                                 </div>
                                 <div class="m-t-xl widget-cl-1">
                                    
-                                    <p style="color:white">ver la información completa del empleado.</p>
+                                    <p style="color:white">Ver la información completa del empleado.</p>
                                             
                                 </div>
-                                <a href="Ver_Empleado.php?IdPersonal=<?php echo $IdPersonal?>"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                                <a href="Ver_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
                                 
                             </div>
+                           
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -82,10 +84,10 @@ $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <div class="m-t-xl widget-cl-2">
                                     
                                     <p style="color:white">
-												Lorem Ipsum is simply dummy text of the printing and Lorem <strong>typesetting industry</strong> spa.
+												Ver todos los cambios del empleado.
 </p>
                                 </div>
-                               <a href="Cambios_Empleado.php?IdPersonal=<?php echo $IdPersonal?>"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                               <a href="Cambios_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
                     </div>
@@ -101,10 +103,10 @@ $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <div class="m-t-xl widget-cl-3">
                                     
                                     <p style="color:white">
-												Lorem Ipsum is simply dummy text of the printing and Lorem <strong>typesetting industry</strong> spa.
+												Ver la jornada laboral del empleado.
 </p>
                                 </div>
-                                <button  class="btn btn-secondary" style="color:black">Más info</button>
+                                <a href="AsignarJornada_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
                     </div>
@@ -120,10 +122,10 @@ $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <div class="m-t-xl widget-cl-4">
                                     
                                     <p style="color:white">
-												Lorem Ipsum is simply dummy text of the printing and Lorem <strong>typesetting industry</strong> spa.
+												Ver los cursos tomados por el empleado.
 </p>
                                 </div>
-                                <button  class="btn btn-secondary" style="color:black">Más info</button>
+                               <a href="Capacitacion_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
                     </div>

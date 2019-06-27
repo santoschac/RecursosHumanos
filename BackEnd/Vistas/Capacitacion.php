@@ -2,8 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-
-
 ?>
         
    <!-- Sweet Alert
@@ -20,13 +18,11 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Cambios</h4>
+                                <h4>Lista de las Capacitación</h4>
                                 
                                 
-                                <!-- <a href="VAlta_Cambio.php"><button type="button" class="btn btn-primary" >Agregar Cambio</button></a> -->
-                                        <div class="add-product">
-                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
-                                        </div>
+                                <a href="VAlta_Capacitacion.php"><button type="button" class="btn btn-primary" >Agregar Capacitación</button></a>
+                            
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -54,7 +50,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaCambioEmpleado"></div> <!-- products will be load here -->
+<div id="TablaCapacitacion"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -86,19 +82,19 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readCambioEmpleado(); /* it will load products when document loads */
+		readCapacitacion(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdCambio = $(this).data('id');
-			SwalDelete(IdCambio);
+			var IdCapacitacion = $(this).data('id');
+			SwalDelete(IdCapacitacion);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdCambio){
+	function SwalDelete(IdCapacitacion){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -114,15 +110,15 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Cambio.php",
+			   		url: "Eliminar/Eliminar_Capacitacion.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdCambio,
+			       	data: 'delete='+IdCapacitacion,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readCambioEmpleado();
+                     readCapacitacion();
                     
 			     })
 			     .fail(function(){
@@ -135,8 +131,8 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readCambioEmpleado(){
-		$('#TablaCambioEmpleado').load('Tablas/TablaCambioEmpleado.php');	
+    function readCapacitacion(){
+		$('#TablaCapacitacion').load('Tablas/TablaCapacitacion.php');	
 	}
     
 </script> 

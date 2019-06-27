@@ -19,8 +19,8 @@ include("../Modelo/Conexion.php");
                                 <div >
                                     <h4>Lista de Solicitudes</h4>
                                     <div class="add-product">
-                                <a href="Solicitudes_Historial.php">Historial</a>
-                            </div>
+                                    <a href="Solicitudes_Historial.php">Historial</a>
+                                   </div>
                                 
                                 <!-- <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Curso</button></a>-->
                                 </div>

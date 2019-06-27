@@ -3,7 +3,7 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-$IdPersonal= $_GET['IdPersonal'];
+$IdPersonal= $_SESSION['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, 
 p.EstadoCivil, p.Hijos, p.Padre, p.Madre, p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, 

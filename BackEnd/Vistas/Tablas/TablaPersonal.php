@@ -1,11 +1,32 @@
 <?php
 include ("../../Modelo/Conexion.php");
 
-$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, u.Usuario
+if(isset($_POST['IdSucursal'])){
+    
+        $IdSucursal= $_POST['IdSucursal'];
+
+        $sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa
+        from personal p
+        inner join usuario u on p.IdUsuario = u.IdUsuario
+        inner join puestos pu on p.IdPuesto = pu.IdPuesto
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+        inner join empresa e on s.IdEmpresa = e.IdEmpresa where s.IdSucursal = $IdSucursal");
+        $sql ->execute();
+        $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
+}
+else
+{
+
+$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
-inner join usuario u on p.IdUsuario = u.IdUsuario");
+inner join usuario u on p.IdUsuario = u.IdUsuario
+inner join puestos pu on p.IdPuesto = pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa");
 $sql ->execute();
 $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
+
+}
 
 ?>
 
@@ -15,14 +36,17 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
 
-<table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+<table  id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                            <th>No</th>                                       
+                                        <th>No</th>                                       
                                         <th>Nombre</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
+                                        <th>Puesto</th>
+                                        <th>Sucursal</th>
+                                        <th>Empresa</th>
                                         <th>Usuario</th>
                                         <th>Configuración</th>
                                             </tr>
@@ -36,6 +60,9 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <td><?php echo $dato['Nombre']; ?></td>
                                         <td><?php echo $dato['ApellidoPaterno']; ?></td>
                                         <td><?php echo $dato['ApellidoMaterno']; ?></td>
+                                        <td><?php echo $dato['NombrePuesto']; ?> </td>
+                                        <td><?php echo $dato['NombreSucursal']; ?></td>
+                                        <td><?php echo $dato['NombreEmpresa'];?></td>
                                         <td><?php echo $dato['Usuario']; ?></td>
                                        
                                                 <td>

@@ -5,14 +5,13 @@ include("../../Modelo/Conexion.php");
 session_start();
 $IdPersonal = $_SESSION['IdPersonal'];
 
-$sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
-from cambios c
-inner join puestos pu on c.IdPuesto = pu.IdPuesto
-inner join sucursal s on c.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join personal p on c.IdPersonal = p.IdPersonal where c.IdPersonal = $IdPersonal");
+$sql= $pdo->prepare("SELECT c.IdCapacitacion, c.Evaluacion, c.IdPersonal, c.IdCurso, c.FechaCapacitacion, p.Nombre as NombreEmpleado, p.ApellidoPaterno, p.ApellidoMaterno, cu.Nombre
+from capacitacion c 
+inner join personal p on c.IdPersonal = p.IdPersonal
+inner join cursos cu on c.IdCurso = cu.IdCurso where c.IdPersonal = $IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -29,10 +28,10 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                             <th>No</th>
                                             <th>Personal</th>
-                                            <th>Fecha inicio</th>
-                                            <th>Empresa</th>
-                                            <th>Sucursal</th>                                                              
-                                            <th>Puesto</th>                         
+                                            <th>Curso</th>
+                                            <th>Evaluación</th>
+                                            <th>Fecha capacitación</th>                                                              
+                                                                 
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -40,16 +39,16 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <tbody>
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
-                                                <td><?php echo $dato['IdCambio']; ?></td>
-                                                <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno'] ?></td>
-                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaInicio'])); ?></td>
-                                                <td><?php echo $dato['NombreEmpresa']; ?></td>
-                                                <td><?php echo $dato['NombreSucursal']; ?></td>
-                                                <td><?php echo $dato['NombrePuesto']; ?></td>
+                                                <td><?php echo $dato['IdCapacitacion']; ?></td>
+                                                <td><?php echo $dato['NombreEmpleado'] ." ".$dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
+                                                <td><?php echo $dato['Nombre'];?></td>
+                                                <td><?php echo $dato['Evaluacion'];?></td>
+                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaCapacitacion'])); ?></td>
+                                                
                                                
                                                 <td>
-                                                    <a href="VEditar_Cambio.php?IdCambio=<?php echo $dato['IdCambio']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                                    <a id="Eliminar" data-id="<?php echo $dato['IdCambio']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                    <a href="VEditar_Capacitacion.php?IdCapacitacion=<?php echo $dato['IdCapacitacion']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                    <a id="Eliminar" data-id="<?php echo $dato['IdCapacitacion']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
