@@ -115,13 +115,25 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     </select>
                                                                 
                                                                 </div>
+                                                                <div class="form-group">
+                                                                <label>Población</label>
+                                                               
+                                                                  <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
+																  <option value="" selected="" disabled="" required>Seleccionar</option>
+                                                                  <?php  foreach ($pdo->query('SELECT IdPoblacion, NombrePoblacion FROM poblacion') as $row):?>													
+                                                                    <option value="<?php echo $row['IdPoblacion']?>"<?php if($row['IdPoblacion']===$sucursales->IdPoblacion): echo "Selected"; endif;?>><?php echo $row['NombrePoblacion'];?></option>
+                                                                    
+                                                                    <?php endforeach;?>
+                                                                    </select>
+                                                                   
+                                                                </div>
                                                             
-                                                            <div class="form-group">
+                                                                <!-- <div class="form-group">
                                                                 <label>Población</label>
                                                                     <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
 																			<option value="" selected  disabled="">Seleccionar</option>      
                                                                     </select>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="form-group">
                                                                 <label>Región</label>
                                                                 <input name="Region" id="Region" value="<?=$sucursales->Region;?>" type="text" class="form-control" placeholder="Región" required="" maxlength="60">

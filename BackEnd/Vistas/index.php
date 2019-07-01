@@ -15,7 +15,15 @@ include("../Master/Header.php");
                         <div class="sparkline13-list">
                            
                         <br/><br/><br/><br/><br/>
-                         <h1>Bienvenid@ <?php echo $_SESSION['Usuario']; ?></h1>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                            <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bienvenid@ <?php echo $_SESSION['Usuario']; ?></h1>
+                            <img src="../Recursos/img/product/fondito.jpg" width="600" height="500" alt="">
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                         
                          
                         <br/><br/><br/><br/><br/>
 

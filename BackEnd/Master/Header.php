@@ -189,7 +189,7 @@ if(isset($_SESSION['Usuario'])){
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="../Recursos/img/logo/logo.png" alt="" /></a>
+                        <a href="../Vistas/index.php"><img class="main-logo" src="../Recursos/img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -429,6 +429,7 @@ if(isset($_SESSION['Usuario'])){
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="mobile-menu">
                                 <nav id="dropdown">
+                                <?php if($_SESSION['IdTipoUsuario']==1):?>
                                     <ul class="mobile-menu-nav">
                                         <!-- <li><a data-toggle="collapse" data-target="#Charts" href="#">Inicio <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
@@ -437,62 +438,79 @@ if(isset($_SESSION['Usuario'])){
                                                 
                                             </ul>
                                         </li> -->
-                                        <li><a href="index.php">Inicio</a></li>
-                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Empleados <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="Empleados.php">Empleados</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="Incidenias.php">Incidencias</a></li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Solicitudes<span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="Acta_Sat.php">Acta sat</a>
-                                                </li>
-                                                <li><a href="#">Imss</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Cambios
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                                <li><a href="Cambios.php">Cambios</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Capacitación
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Chartsmob" class="collapse dropdown-header-top">
-                                                <li><a href="Capacitacion.php">Todos los cursos</a>
-                                                </li>
-                                                <li><a href="Alta_Capacitacion.php">Agregar curso</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Tablesmob"
-                                                href="#">Empresa/Sucursal<span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Tablesmob" class="collapse dropdown-header-top">
-                                                <li><a href="EmpresaSucursal.php">Empresa/Sucursal</a>
-                                                </li>
-
-                                            </ul>
-                                        </li>
-                                        <li><a href="Vacaciones.php">Vacaciones</a></li>
-                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Ubicaciones <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Pagemob" class="collapse dropdown-header-top">
-                                                <li><a href="Estado.php">Estado</a>
-                                                </li>
-                                                <li><a href="Poblacion.php">Población</a>
-                                                </li>
-                                                <li><a href="Region.php">Región</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        <li >
+                            <a title="Incidencias" class="has-arrow" href="Incidencias.php" aria-expanded="false"><span
+                                    class="educate-icon educate-form icon-wrap" aria-hidden="true"></span> <span
+                                    class="mini-click-non">Incidencias</span></a>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Empleados" href="Empleados.php"><span class="mini-sub-pro">Empleados</span></a></li>
+                                <li><a title="Incapacidad" href="#"><span class="mini-sub-pro">Incapacidad</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a title="Solicitudes"  href="Solicitudes.php" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Solicitudes</span></a>
+                            
+                        </li>
+                        
+                        <li>
+                        <a title="Capacitación" href="../Vistas/Cambios.php" aria-expanded="false"><span
+                                class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Cambios</span></a>
+                        </li>
+                        <li>
+                        <a title="Capacitación" href="../Vistas/Capacitacion.php" aria-expanded="false"><span
+                                class="educate-icon educate-course icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Capacitación</span></a>
+                        </li>
+                        <li>
+                        <a title="Jornada" class="has-arrow" href="#" aria-expanded="false"><span
+                                class="educate-icon educate-event icon-wrap" aria-hidden="true"></span> <span
+                                class="mini-click-non">Jornada</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Jornada" href="../Vistas/Jornada.php"><span class="mini-sub-pro">Agregar Jornada</span></a></li>
+                                <li><a title="Asignar jornada" href="../Vistas/AsignarJornada.php"><span class="mini-sub-pro">Asignar Jornada</span></a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a title="Configuración" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Configuración</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Puestos" href="../Vistas/Puestos.php"><span class="mini-sub-pro">Puestos</span></a></li>
+                                <li><a title="Cursos" href="../Vistas/Cursos.php"><span class="mini-sub-pro">Cursos</span></a></li>
+                                <li><a title="Empresa" href="../Vistas/Empresa.php"><span class="mini-sub-pro">Empresa</span></a></li>
+                                <li><a title="Sucursal" href="../Vistas/Sucursal.php"><span class="mini-sub-pro">Sucursal</span></a></li>
+                            </ul>
+                        </li>
+                        <li >
+                            <a title="Extra" class="has-arrow" href="#" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Extra</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="País" href="../Vistas/Pais.php"><span class="mini-sub-pro">País</span></a></li>
+                                <li><a title="Estado" href="../Vistas/Estado.php"><span class="mini-sub-pro">Estado</span></a></li>
+                                <li><a title="Población" href="../Vistas/Poblacion.php"><span class="mini-sub-pro">Población</span></a></li>
+                                
+                            </ul>
+                        </li>
                                     </ul>
+                                    <?php endif; ?>
+
+            <?php if($_SESSION['IdTipoUsuario']==2):?>
+            
+            <ul class="metismenu" id="menu1">
+            <li>
+                            <a title="Solicitud"  href="../VistasU/Solicitudes.php" aria-expanded="false"><span
+                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                                    class="mini-click-non">Solicitudes</span></a>
+                            
+                        </li>
+            </ul>
+
+            <?php endif;?>
                                 </nav>
                             </div>
                         </div>

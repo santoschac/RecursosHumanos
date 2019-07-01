@@ -4,7 +4,7 @@ include("../Modelo/Conexion.php");
 
 
 $IdAsignarJonada = $_GET['IdAsignarJornada'];
-$sql1 = 'SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+$sql1 = 'SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada, a.FechaInicio, a.FechaFinal , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from asignarjornada a 
 inner join personal p on a.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
@@ -114,7 +114,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        
+                                                        <input type="hidden" name="IdAsignarJornada" id="IdAsignarJornada" value="<?php  echo $IdAsignarJonada?>">
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
 <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(!isset($_GET['IdPersonal'])):?><?=$asignarjornada->IdPersonal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
@@ -155,6 +155,20 @@ if(isset($_GET['IdPersonal'])){
                                                                     <?php  endforeach;?>
                                                                     </select>
                                                                 
+                                                            </div>
+                                                            <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Inicio</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d", strtotime($asignarjornada->FechaInicio)); ?>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Final</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaFinal" id="FechaFinal" class="form-control" value="<?php echo date("Y-m-d", strtotime($asignarjornada->FechaFinal)); ?>">
                                                             </div>
                                                         <!-- <div class="form-group data-custon-pick">
                                                             <label><strong>Fecha Inicio</strong></label>
@@ -302,14 +316,14 @@ $(document).ready(function(){
 //alert(datos);
 
                $.ajax({
-                   url:"Alta/Alta_AsignarJornada.php",
+                   url:"Editar/Editar_AsignarJornada.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

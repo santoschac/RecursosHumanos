@@ -5,7 +5,7 @@ include("../Modelo/Conexion.php");
 $message="";
 
 $IdCambio = $_GET['IdCambio'];
-$sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+$sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
 from cambios c
 inner join puestos pu on c.IdPuesto = pu.IdPuesto
 inner join sucursal s on c.IdSucursal = s.IdSucursal
@@ -150,18 +150,18 @@ if(isset($_GET['IdPersonal'])){
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombrePuesto?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
-                                                        
-                                                               
-                                                            
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group data-custon-pick">
                                                             <label><strong>Fecha Inicio</strong></label>
                                                             <div class="input-group date">
                                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d", strtotime($cambios->FechaInicio)); ?>">
                                                             </div>
                                                         </div>
+                                                               
+                                                            
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        
                                                         <div class="form-group">
                                                             <label>Nueva Empresa</label>
                                                             <?php
@@ -195,6 +195,12 @@ if(isset($_GET['IdPersonal'])){
                                                                     </select>
                                                                 
                                                             </div>
+
+                                                            <div class="form-group res-mg-t-15">
+                                                        <label>Descripción</label>
+                                                        <textarea name="Descripcion" id="Descripcion"
+                                                            placeholder="Descripcion" required="" maxlength="200" ><?= $cambios->Descripcion;?></textarea>
+                                                    </div>
                                                                 
                                                            
                                                         </div>
@@ -357,7 +363,7 @@ if(isset($_GET['IdPersonal'])){
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

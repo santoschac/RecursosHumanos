@@ -1,11 +1,11 @@
 <?php
 include ("../../Modelo/Conexion.php");
-
-if(isset($_POST['IdSucursal'])){
+session_start();
+if(isset($_SESSION['IdSucursal'])){
     
-        $IdSucursal= $_POST['IdSucursal'];
+        $IdSucursal= $_SESSION['IdSucursal'];
 
-        $sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa
+        $sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa
         from personal p
         inner join usuario u on p.IdUsuario = u.IdUsuario
         inner join puestos pu on p.IdPuesto = pu.IdPuesto
@@ -17,7 +17,7 @@ if(isset($_POST['IdSucursal'])){
 else
 {
 
-$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join usuario u on p.IdUsuario = u.IdUsuario
 inner join puestos pu on p.IdPuesto = pu.IdPuesto

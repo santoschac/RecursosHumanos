@@ -3,7 +3,7 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio, jo.FechaFin, TIME_FORMAT(jo.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(HoraFin, '%H:%i %p') as HoraFin
+$sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada, a.FechaInicio, a.FechaFinal , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio as FechaInicioJornada , jo.FechaFin as FechaFinJornada, TIME_FORMAT(jo.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(HoraFin, '%H:%i %p') as HoraFin
 from asignarjornada a 
 inner join personal p on a.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
@@ -30,6 +30,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>No</th>
                                             <th>Personal</th>
                                             <th>Jornada</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Final</th>
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -42,7 +44,10 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                                 <td><?php echo $dato['IdAsignarJornada']; ?></td>
                                                 <td><?php echo $dato['Nombre'] .' '. $dato['ApellidoPaterno'].' '. $dato['ApellidoMaterno']; ?></td>
-                                                <td><?php echo $dato['FechaInicio']  ." a ". $dato['FechaFin']." de ". $dato['HoraInicio'] ." a ". $dato['HoraFin']; ?></td>
+                                                <td><?php echo $dato['FechaInicioJornada']  ." a ". $dato['FechaFinJornada']." de ". $dato['HoraInicio'] ." a ". $dato['HoraFin']; ?></td>
+                                                <td><?php echo date("Y-m-d", strtotime($dato['FechaInicio']));?></td>
+                                                
+                                                <td><?php echo date("d-m-Y", strtotime($dato['FechaFinal'])) ;?></td>
                                                 <td><?php echo $dato['NombreEmpresa'];?></td>
                                                 <td><?php echo $dato['NombreSucursal'];?></td>
                                                 <td><?php echo $dato['NombrePuesto'];?></td>

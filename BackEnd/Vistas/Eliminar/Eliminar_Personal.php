@@ -11,13 +11,17 @@
 		$IdPersonal = $_POST['delete'];
 		$sql = "DELETE FROM personal WHERE IdPersonal=:IdPersonal";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array(':IdPersonal'=>$IdPersonal));
+		if($stmt->execute(array(':IdPersonal'=>$IdPersonal))){
 
 
-		$IdUsuario = $_POST['IdUsuario'];
+			$IdUsuario = $_POST['IdUsuario'];
 		$sql1 = "DELETE FROM usuario WHERE IdUsuario=:IdUsuario";
 		$stmt1 = $pdo->prepare($sql1);
 		$stmt1->execute(array(':IdUsuario'=>$IdUsuario));
+		}
+
+
+		
 		
 		if ($stmt1) {
 			$response['status']  = 'success';

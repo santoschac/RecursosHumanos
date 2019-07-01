@@ -139,11 +139,6 @@ if(isset($_GET['IdPersonal'])){
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
-                                                        
-                                                               
-                                                            
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group data-custon-pick">
                                                             <label><strong>Fecha Inicio</strong></label>
                                                             <div class="input-group date">
@@ -151,6 +146,11 @@ if(isset($_GET['IdPersonal'])){
                                                                 <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                             </div>
                                                         </div>
+                                                               
+                                                            
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                       
                                                         <div class="form-group">
                                                             <label>Nueva Empresa</label>
                                                             <?php
@@ -185,9 +185,14 @@ if(isset($_GET['IdPersonal'])){
                                                                     </select>
                                                                 
                                                             </div>
-                                                                
+                                                            <div class="form-group res-mg-t-15">
+                                                        <label>Descripción</label>
+                                                        <textarea name="Descripcion" id="Descripcion"
+                                                            placeholder="Descripcion" required="" maxlength="200" ></textarea>
+                                                    </div>
                                                            
                                                         </div>
+                                                        
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">

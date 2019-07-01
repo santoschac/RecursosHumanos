@@ -3,7 +3,7 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+$sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
 from cambios c
 inner join puestos pu on c.IdPuesto = pu.IdPuesto
 inner join sucursal s on c.IdSucursal = s.IdSucursal
@@ -29,6 +29,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>No</th>
                                             <th>Personal</th>
                                             <th>Fecha inicio</th>
+                                            <th>Motivo de cambio</th>
                                             <th>Empresa</th>
                                             <th>Sucursal</th>                                                              
                                             <th>Puesto</th>                         
@@ -40,8 +41,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
                                                 <td><?php echo $dato['IdCambio']; ?></td>
-                                                <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno'] ?></td>
+                                                <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno'] ?></td>                                                
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['FechaInicio'])); ?></td>
+                                                <td><?php echo $dato['Descripcion'];?></td>
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>

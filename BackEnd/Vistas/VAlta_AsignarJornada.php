@@ -149,10 +149,10 @@ if(isset($_GET['IdPersonal'])){
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">                                                       
-                                                        <div class="chosen-select-single mg-b-20">
+                                                        <div class="form-group">
                                                                 <label><strong>Jornadas</strong></label>
                                                                  
-                                                                    <select name="IdJornada" id="IdJornada" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <select name="IdJornada" id="IdJornada"  class="form-control" required>
                                                                     <option value="">Seleccionar</option>
                                                                   <?php  foreach ($pdo->query('select IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,"%r") as HoraInicio, TIME_FORMAT(HoraFin,"%r") as HoraFin from jornada') as $row) {													
                                                                     echo '<option value="'.$row['IdJornada'].'">'.$row['FechaInicio'].' a '.$row['FechaFin'].' de '.$row['HoraInicio'].' a '.$row['HoraFin'].'</option>';
@@ -160,6 +160,21 @@ if(isset($_GET['IdPersonal'])){
                                                                     echo'</select>';
                                                                 ?>
                                                             </div>
+                                                            <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Inicio</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Final</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaFinal" id="FechaFinal" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
+                                                        </div>
                                                         <!-- <div class="form-group data-custon-pick">
                                                             <label><strong>Fecha Inicio</strong></label>
                                                             <div class="input-group date">
@@ -313,7 +328,7 @@ $(document).ready(function(){
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

@@ -2,13 +2,27 @@
 include ("../Master/Header.php");
 include ("../Modelo/Conexion.php");
 
+
+if($_SESSION['IdTipoUsuario']==2){
+    echo "<br/><h1>no se puede acceder a este sitio</h1>";
+}
+
+if(isset($_POST['IdSucursal'])){
+     $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_POST['todos'])){   
+    unset($_SESSION['IdSucursal']);
+   
+}
+
 ?>
          
           <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
-
+<?php if($_SESSION['IdTipoUsuario']==1): ?>
                    <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
@@ -22,7 +36,7 @@ include ("../Modelo/Conexion.php");
                                     <h4>Lista de Empleados</h4>
                                     <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
                                 </div>
-                                <form method="post" action="Tablas/TablaPersonal.php">
+                                <form method="post" action="#">
                                 <div class="col-md-3">
                                                             <label>Empresa</label>
                                                             <?php
@@ -45,11 +59,19 @@ include ("../Modelo/Conexion.php");
                                                                 <option value="" selected="" disabled="">Seleccionar</option>
                                                             </select>           
                                 </div>
-                                <div class="col-md-3"><br/>
+                                <div class="col-md-1"><br/>
                                 <button class="btn btn-primary" type="submit">Aceptar</button>
-                                <br/><br/>
+                                </div> 
+                                </form>
+                                <form method="post">
+                                <div class="col-md-1"><br/>
+                                <input type="hidden" name="todos" id="todos" value="todos">
+                                <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
+                                
+                               
+                                
                             <!---->
                             </div>
                         </div>
@@ -125,12 +147,12 @@ include ("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-         
+                                                               
         
         <?php
         include ("../Master/Footer.php");
         ?>
-
+ <?php endif;?>
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
 
@@ -162,7 +184,7 @@ include ("../Modelo/Conexion.php");
 			
 			var IdPersonal = $(this).data('id');
             var IdUsuario = $(this).data('idd');
-            //alert(IdUsuario);
+            alert(IdUsuario);
 			SwalDelete(IdPersonal, IdUsuario);
             e.preventDefault();
            // alert(IdPersonal);
