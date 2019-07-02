@@ -2,7 +2,7 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$message="";
+
 
 $IdCambio = $_GET['IdCambio'];
 $sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
@@ -91,21 +91,13 @@ if(isset($_GET['IdPersonal'])){
                                 <li class="active"><a href="#description">Agregar Cambio</a></li>
                                 
                             </ul>
-                            <?php
-                             if(($message=="insertado")):?>
-                                <div class="alert alert-success">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <?= $message;?>
-                                </div>
-                                <?php endif;?>
+                           
                             <!--Alertas-->
                             <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos insertados con éxito
+                                  Datos Actualizados con éxito
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">

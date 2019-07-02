@@ -140,11 +140,11 @@ include("../Modelo/Conexion.php");
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Padre</label>
-                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" required>
+                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" >
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Madre</label>
-                                                                    <input name="Madre" name="Madre" id="Madre" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60" required>
+                                                                    <input name="Madre" name="Madre" id="Madre" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60" >
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
@@ -172,6 +172,13 @@ include("../Modelo/Conexion.php");
                                                                 
                                                                 
                                                             </div>
+                                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                         </div>
                                                 </div>
                                             </div>
@@ -235,6 +242,13 @@ include("../Modelo/Conexion.php");
                                                                 
                                                                 
                                                             </div>
+                                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                         </div>
                                 </div>
                                 <div class="product-tab-list tab-pane fade" id="UsuarioId">
@@ -413,7 +427,13 @@ include("../Modelo/Conexion.php");
                                                         </div>
                                 </div>
                                 
-    
+                                <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                             </div>
                             
                             </form>

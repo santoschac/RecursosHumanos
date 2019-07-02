@@ -44,7 +44,7 @@ include("../Modelo/Conexion.php");
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    El nombre ya existe
+                                    El puesto ya existe
                             </div>
                                 <!--Fin alertas-->
                             <div class="sparkline13-graph">

@@ -93,10 +93,10 @@ include("../Modelo/Conexion.php");
 
                                                                 <select name="IdPais" id="IdPais" class="form-control" required>
                                                                     <option value="" selected="" disabled="" >Seleccionar</option>
-                                                                    <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
-                                                                    echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
-                                                                    }
-                                                                  ?>
+                                                                    <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row):?>													
+                                                                     <option value="<?php echo $row['IDPais']?>"><?php echo $row['NombrePais']?></option>
+
+                                                                <?php endforeach; ?>
                                                                 </select>
 
                                                             </div>
@@ -247,6 +247,7 @@ $(document).ready(function(){
 				$('#poblacion_id').val(poblacion_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
+                $('#formulario')[0].reset();
                 
             
 			}

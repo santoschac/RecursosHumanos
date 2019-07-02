@@ -6,8 +6,6 @@ include("../../Modelo/Conexion.php");
 
     $IdPersonal= $_POST['IdPersonal'];
 
-
-
     $Nombre= $_POST['Nombre'];
     $ApellidoPaterno = $_POST['ApellidoPaterno'];
     $ApellidoMaterno = $_POST['ApellidoMaterno'];

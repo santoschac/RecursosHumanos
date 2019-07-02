@@ -44,9 +44,9 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <th>Nombre</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
-                                        <th>Puesto</th>
-                                        <th>Sucursal</th>
                                         <th>Empresa</th>
+                                        <th>Sucursal</th>
+                                        <th>Puesto</th>
                                         <th>Usuario</th>
                                         <th>Configuración</th>
                                             </tr>
@@ -60,9 +60,9 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <td><?php echo $dato['Nombre']; ?></td>
                                         <td><?php echo $dato['ApellidoPaterno']; ?></td>
                                         <td><?php echo $dato['ApellidoMaterno']; ?></td>
-                                        <td><?php echo $dato['NombrePuesto']; ?> </td>
-                                        <td><?php echo $dato['NombreSucursal']; ?></td>
                                         <td><?php echo $dato['NombreEmpresa'];?></td>
+                                        <td><?php echo $dato['NombreSucursal']; ?></td>
+                                        <td><?php echo $dato['NombrePuesto']; ?> </td>                                       
                                         <td><?php echo $dato['Usuario']; ?></td>
                                        
                                                 <td>

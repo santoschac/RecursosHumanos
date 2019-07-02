@@ -6,10 +6,15 @@ include("../Modelo/Conexion.php");
 $IdPersonal= $_GET['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, p.EstadoCivil, p.Hijos, p.Padre, p.Madre, 
-p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion,
+p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, po.NombrePoblacion, e.IdEstado, e.NombreEstado, pa.IDPais, pa.NombrePais, s.NombreSucursal, em.IdEmpresa, Em.NombreEmpresa,
 u.Usuario, u.Contrasena, u.IdTipoUsuario
 FROM personal p
-inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal= :IdPersonal';
+inner join usuario u on p.IdUsuario=u.IdUsuario
+inner join poblacion po on p.IdPoblacion = po.IdPoblacion
+inner join estado e on po.IdEstado = e.IdEstado
+inner join pais pa on e.IDPais = pa.IDPais
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa em on s.IdEmpresa = em.IdEmpresa where IdPersonal= :IdPersonal';
 $sentencia = $pdo->prepare($sql1);
 $sentencia ->execute([':IdPersonal'=>$IdPersonal]);
 $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
@@ -135,6 +140,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <input name="Rfc" id="Rfc" value="<?= $empleado->Rfc?>"  type="text" class="form-control" placeholder="Rfc" maxlength="13" required>
                                                                 </div>
                                                                 
+                                                                
                                                             </div>
                                                             
 
@@ -152,11 +158,11 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Padre</label>
-                                                                    <input name="Padre" name="Padre" id="Padre" value="<?= $empleado->Padre?>" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" required>
+                                                                    <input name="Padre" name="Padre" id="Padre" value="<?= $empleado->Padre?>" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Madre</label>
-                                                                    <input name="Madre" name="Madre" id="Madre" value="<?= $empleado->Madre?>" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60" required>
+                                                                    <input name="Madre" name="Madre" id="Madre" value="<?= $empleado->Madre?>" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
@@ -173,7 +179,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Hijos</label>
-                                                                    <input name="Hijos" id="Hijos" value="<?=$empleado->Hijos?>" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)" required>
+                                                                    <input name="Hijos" id="Hijos" value="<?=$empleado->Hijos;?>" type="text" class="form-control" placeholder="Número de Hijos" maxlength="2" onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Teléfono</label>
@@ -182,6 +188,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 
                                                                 
                                                             </div>
+                                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                         </div>
                                                 </div>
                                             </div>
@@ -196,25 +209,47 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label>Pais</label>
                                                                 <select name="IdPais" id="IdPais" class="form-control" required>
                                                                     <option value="" selected="" disabled="">Seleccionar</option>
-                                                                    <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row) {													
-                                                                    echo '<option value="'.$row['IDPais'].'">'.$row['NombrePais'].'</option>';
-                                                                    }
-                                                                  ?>
+                                                                    <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row):?>												
+                                                                     <option value="<?php echo $row['IDPais']?>" <?php if($row['IDPais']===$empleado->IDPais): echo "Selected"; endif;?>><?php echo $row['NombrePais']?></option>
+                                                                    
+                                                                <?php endforeach; ?>
                                                                 </select>
 
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Estado</label>
                                                                 <select name="IdEstado" id="IdEstado" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row): ?>													
+                                                                      <option value="<?php echo $row['IdEstado']?>" <?php if($row['IdEstado']===$empleado->IdEstado): echo "Selected"; endif;?>><?php echo $row['NombreEstado']?></option>
+                                                                    
+                                                                <?php endforeach; ?>
+                                                                </select>
+
+                                                            </div>
+                                                            <!-- <div class="form-group">
+                                                                <label>Estado</label>
+                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
                                                                     <option value="none" selected="" disabled="">Seleccionar</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label>Población</label>
                                                                 <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
                                                                     <option value="" selected="" disabled="">Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IdPoblacion, NombrePoblacion FROM poblacion') as $row): ?>													
+                                                                      <option value="<?php echo $row['IdPoblacion']?>" <?php if($row['IdPoblacion']===$empleado->IdPoblacion): echo "Selected"; endif;?>><?php echo $row['NombrePoblacion']?></option>
+                                                                    
+                                                                <?php endforeach; ?>
                                                                 </select>
+
                                                             </div>
+                                                            <!-- <div class="form-group">
+                                                                <label>Población</label>
+                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
+                                                                </select>
+                                                            </div> -->
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Delegación</label>
@@ -239,6 +274,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                 </div>
                                 <div class="product-tab-list tab-pane fade" id="UsuarioId">
                                      <div class="row">
@@ -275,7 +317,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
                                                                     <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                                 </div>
                                                             </div>
@@ -313,9 +355,9 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label><strong>Fecha Alta</strong></label>
+                                                                    <!-- <label><strong>Fecha Alta</strong></label> -->
                                                                     <div class="input-group date">
-                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" name="FechaAlta" id="FechaAlta" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaAlta));?>">
+                                                                        <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span>--><input type="hidden" name="FechaAlta" id="FechaAlta" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaAlta));?>">
                                                                     </div>
                                                                 </div>
 
@@ -328,16 +370,36 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                   
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="chosen-select-single mg-b-20">
-                                                                <label><strong>Sucursal</strong></label>
-                                                                    <select name="IdSucursal" id="IdSucursal"  required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">';
-                                                                    <option value="">Seleccionar</option>
-                                                                   <?php foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row):?>												
-                                                                    <option value="<?php echo $row['IdSucursal']?>" <?php if($row['IdSucursal']===$empleado->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
-                                                                    <?php endforeach; ?>
-                                                                    </select>
-                                                                
+                                                            <div class="form-group">
+                                                                <label>Empresa</label>
+                                                                <select name="Empresa" id="Empresa" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa FROM empresa') as $row): ?>													
+                                                                      <option value="<?php echo $row['IdEmpresa']?>" <?php if($row['IdEmpresa']===$empleado->IdEmpresa): echo "Selected"; endif;?>><?php echo $row['NombreEmpresa']?></option>
+                                                                    
+                                                                <?php endforeach; ?>
+                                                                </select>
+
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label>Sucursal</label>
+                                                                <select name="IdSucursal" id="IdSucursal" class="form-control" required>
+                                                                    <option value="" selected="" disabled="">Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row): ?>													
+                                                                      <option value="<?php echo $row['IdSucursal']?>" <?php if($row['IdSucursal']===$empleado->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
+                                                                    
+                                                                <?php endforeach; ?>
+                                                                </select>
+
+                                                            </div>
+                                                           
+                                                        <!-- <div class="form-group">
+                                                            <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>
+                                                        </div> -->
+                                                          
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                     <select name="IdPuesto" id="IdPuesto" required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
@@ -392,15 +454,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
                                                         </div>
                                 </div>
-                                <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                        </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress">
+                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                         
 
                             </div>
@@ -459,6 +519,23 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 
     
 <script type="text/javascript" language="javascript" >
+ $(document).ready(function () {
+        $("#Empresa").change(function () {
+            // e.preventDefault();
+
+            $("#Empresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
 
 $(document).ready(function () {
         $("#IdPais").change(function () {

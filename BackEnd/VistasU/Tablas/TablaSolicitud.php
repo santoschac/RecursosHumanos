@@ -42,7 +42,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Documento</th> 
                                             <th>Descargar</th>                                           
                                             <th>Configuración</th>
-                                            </tr>
+                                    </tr>
                                         </thead>
                                        
                                         <tbody>

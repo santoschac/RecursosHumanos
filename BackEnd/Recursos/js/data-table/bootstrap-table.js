@@ -491,7 +491,7 @@
             return 'Toggle';
         },
         formatColumns: function () {
-            return 'Columns';
+            return 'Columnas';
         },
         formatAllRows: function () {
             return 'All';

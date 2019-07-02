@@ -7,7 +7,7 @@ $IdPersonal= $_SESSION['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, 
 p.EstadoCivil, p.Hijos, p.Padre, p.Madre, p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, 
-p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, u.Usuario, po.NombrePoblacion, e.NombreEstado, pa.NombrePais
+p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, u.Usuario, u.Contrasena, po.NombrePoblacion, e.NombreEstado, pa.NombrePais
 from personal p
 inner join usuario u on p.IdUsuario = u.IdUsuario
 inner join poblacion po on p.IdPoblacion = po.IdPoblacion
@@ -472,6 +472,17 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 }
 
 </script>
+
+<script>
+    function mostrarContrasena() {
+      var tipo = document.getElementById("Contrasena");
+      if (tipo.type == "password") {
+        tipo.type = "text";
+      } else {
+        tipo.type = "password";
+      }
+    }
+  </script>
     
 
     
@@ -511,44 +522,7 @@ $(document).ready(function () {
     });
 
 
-    $(document).ready(function(){
-       
-
-       $(document).on('submit', '#formulario', function(event){
-           event.preventDefault();
-           var datos = $('#formulario').serialize();
-
-
-               $.ajax({
-                   url:"Editar/Editar_Empleado.php",
-                   method:'POST',
-                   data:new FormData(this),
-                   contentType:false,
-                   processData:false,
-                   success:function(data)
-                   {
-                    
-                       if(data==1){
-                       $("#exito").fadeIn();
-                       setTimeout(function(){
-                       $("#exito").fadeOut();
-                       },3000);
-                       $('#formulario')[0].reset();
-
-                       }
-                       else if(data==2)
-                       {
-                        $("#error").fadeIn();
-                       setTimeout(function(){
-                       $("#error").fadeOut();
-                       },3000);
-                       }
-    
-                   }
-               });
-       });
-  
-    });
+   
     </script>
     
     
