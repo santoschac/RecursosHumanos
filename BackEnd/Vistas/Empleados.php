@@ -34,7 +34,7 @@ if(isset($_POST['todos'])){
                             <div class="row">
                                 <div class="col-md-3">
                                     <h4>Lista de Empleados</h4>
-                                    <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
+                                    <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                                 </div>
                                 <form method="post" action="#">
                                 <div class="col-md-3">

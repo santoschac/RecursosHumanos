@@ -21,7 +21,7 @@ include("../Modelo/Conexion.php");
                                 <h4>Lista de Jornadas</h4>
                                 
                                 <div class="add-product">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Jornada</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button>
                             </div>
                                 </div>
 							</div>
@@ -73,7 +73,7 @@ include("../Modelo/Conexion.php");
                                 <form method="post" id="formulario" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header header-color-modal bg-color-1">
-                                        <h4 class="modal-title">Agregar Jornada</h4>
+                                        <h4 class="modal-title">Agregar jornada</h4>
                                        
                                         <div class="modal-close-area modal-close-df">
                                             <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>

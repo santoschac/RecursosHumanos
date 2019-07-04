@@ -18,11 +18,12 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de las Capacitación</h4>
+                                <h4>Bonos</h4>
                                 
-                                
-                                <a href="VAlta_Capacitacion.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
-                            
+                                <div class="add-product">
+                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
+                                <!-- <a href="VAlta_Bonos.php"><button type="button" class="btn btn-primary" >Agregar Bono</button></a>-->
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -50,7 +51,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaCapacitacion"></div> <!-- products will be load here -->
+<div id="TablaBonoEmpleado"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -82,19 +83,19 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readCapacitacion(); /* it will load products when document loads */
+		readBono(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdCapacitacion = $(this).data('id');
-			SwalDelete(IdCapacitacion);
+			var IdBono = $(this).data('id');
+			SwalDelete(IdBono);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdCapacitacion){
+	function SwalDelete(IdBono){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -110,15 +111,15 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Capacitacion.php",
+			   		url: "Eliminar/Eliminar_Bono.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdCapacitacion,
+			       	data: 'delete='+IdBono,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readCapacitacion();
+                     readBono();
                     
 			     })
 			     .fail(function(){
@@ -131,8 +132,8 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readCapacitacion(){
-		$('#TablaCapacitacion').load('Tablas/TablaCapacitacion.php');	
+    function readBono(){
+		$('#TablaBonoEmpleado').load('Tablas/TablaBonoEmpleado.php');	
 	}
     
 </script> 

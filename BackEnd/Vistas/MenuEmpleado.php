@@ -166,24 +166,25 @@ $_SESSION['IdPersonal'] = $empleados->IdPersonal;
                         </div>
                     </div>
                 
-                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgblue bg-2 responsive-mg-b-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
-                                    <h4 style="color:white">Cambios</h4>
+                                    <h4 style="color:white">Bonos</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-professor"></i>
+                                    <i class="fa fa-line-chart edu-bar-chart"></i>
                                 </div>
                                 <div class="m-t-xl widget-cl-2">
                                     
-                                    <p style="color:white">Ver todos los cambios del empleado.</p>
+                                    <p style="color:white">Ver los Bonos recibidos por el empleado.</p>
                                 </div>
-                               <a href="Cambios_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                               <a href="Bonos_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                               
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                   <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgyellow bg-3 responsive-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
@@ -223,7 +224,7 @@ $_SESSION['IdPersonal'] = $empleados->IdPersonal;
             </div>
             <br/>
         </div>
-        <br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/>
 
 <?php
 include '../Master/Footer.php';

@@ -21,7 +21,7 @@ include("../Modelo/Conexion.php");
                                 <h4>Lista de Poblaciones</h4>
                                 
                                 <div class="add-product">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar Población</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button>
                             </div>
                                 </div>
 							</div>

@@ -2,17 +2,17 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$IdIncapacidad = $_GET['IdIncapacidad'];
-$sql1 = 'SELECT i.IdIncapacidad, i.DiaInicio, i.DiaFinal, i.Descripcion, i.Documento, i.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
-from incapacidad i
-inner join personal p on i.IdPersonal = p.IdPersonal
-inner join sucursal s on p.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join puestos pu on p.IdPuesto = pu.IdPuesto where IdIncapacidad = :IdIncapacidad';
-$sentencia=$pdo->prepare($sql1);
-$sentencia->execute(['IdIncapacidad'=>$IdIncapacidad]);
-$Incapacidades = $sentencia->fetch(PDO::FETCH_OBJ);
 
+$IdBono = $_GET['IdBono'];
+$sql1 = 'SELECT b.IdBono, b.Descripcion, b.Fecha, b.Monto, b.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+from bonos b
+inner join personal p on b.IdPersonal = p.IdPersonal
+inner join puestos pu on p.IdPuesto = pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa where IdBono = :IdBono';
+$sentencia=$pdo->prepare($sql1);
+$sentencia->execute(['IdBono'=>$IdBono]);
+$Bonos = $sentencia->fetch(PDO::FETCH_OBJ);
 
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
@@ -68,9 +68,9 @@ if(isset($_GET['IdPersonal'])){
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><a href="Incapacidad.php">Incapacidad</a> <span class="bread-slash">/</span>
+                                            <li><a href="Bonos.php">Bonos</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Incapacidad</span>
+                                            <li><span class="bread-blod">Actualizar Bono</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,16 +88,16 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Incapacidad</a></li>
+                                <li class="active"><a href="#description">Agregar Bono</a></li>
                                 
                             </ul>
-                            
+                           
                             <!--Alertas-->
                             <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos insertados con éxito
+                                  Datos Actualizados con éxito
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -113,15 +113,16 @@ if(isset($_GET['IdPersonal'])){
                                             <div class="review-content-section">
                                                 <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
+                                                    <input type="hidden"  name="IdBono" id="IdBono" value="<?php echo $IdBono?>">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-<input type="text" name="IdIncapacidad" id="IdIncapacidad" value="<?php echo $IdIncapacidad?>">
+
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?>" >
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->Nombre ." ". $Incapacidades->ApellidoPaterno ." ". $Incapacidades->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    required="" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->Nombre ." ". $Bonos->ApellidoPaterno ." ". $Bonos->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
                                                                     maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                     class="glyphicon glyphicon-zoom-in"></span></button></span></a>
@@ -131,45 +132,38 @@ required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->
 
                                                         <div class="form-group">
                                                             <label>Empresa</label>
-                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
-                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->NombreSucursal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto</label>
-                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdIncapacidad'])):?><?= $Incapacidades->NombrePuesto?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
-                                                        
+                                                       
                                                                
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?= date("Y-m-d", strtotime($Bonos->Fecha)); ?>">
+                                                            </div>
+                                                        </div>
                                                        
-                                                        <div class="form-group data-custon-pick">
-                                                            <label><strong>Día Inicio</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="DiaInicio" id="DiaInicio" class="form-control" value="<?= date("Y-m-d", strtotime($Incapacidades->DiaInicio)) ?>">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group data-custon-pick">
-                                                            <label><strong>Día Final</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="DiaFinal" id="DiaFinal" class="form-control" value="<?= date("Y-m-d", strtotime($Incapacidades->DiaFinal)); ?>">
-                                                            </div>
-                                                        </div>
                                                             <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" ><?= $Incapacidades->Descripcion?></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="200" require ><?=$Bonos->Descripcion?></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Documentos</label>                                                       
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" >
-                                                     </div>
+                                                            <label>Monto $</label>
+                                                            <input name="Monto" id="Monto" value="<?=$Bonos->Monto?>" type="text" class="form-control" placeholder="Monto" onkeypress="return numeros(event)" required>
+                                                        </div>
                                                            
                                                         </div>
                                                         
@@ -179,7 +173,7 @@ required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->
                                                             <div class="payment-adress">
                                                                 <br/>
                                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                                                    <a href="Incapacidad.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                                    <a href="Bonos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -252,7 +246,7 @@ required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VEditar_Incapacidad.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>&IdIncapacidad=<?php echo $IdIncapacidad ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VEditar_Bonos.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -306,14 +300,14 @@ $(document).ready(function(){
 //alert(datos);
 
                $.ajax({
-                   url:"Editar/Editar_Incapacidad.php",
+                   url:"Editar/Editar_Bonos.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
                    processData:false,
                    success:function(data)
                    {
-                    // alert(data);
+                    //falert(data)
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){
@@ -338,4 +332,25 @@ $(document).ready(function(){
 
     </script>
 
-   
+       <!-- validar solo numeros
+		============================================ -->
+        <script>
+        function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}
+
+</script>

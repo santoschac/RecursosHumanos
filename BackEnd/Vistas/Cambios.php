@@ -21,7 +21,7 @@ include("../Modelo/Conexion.php");
                                 <h4>Lista de Cambios</h4>
                                 
                                 
-                                <a href="VAlta_Cambio.php"><button type="button" class="btn btn-primary" >Agregar Cambio</button></a>
+                                <a href="VAlta_Cambio.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
 							</div>

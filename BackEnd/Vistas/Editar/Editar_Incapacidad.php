@@ -1,17 +1,7 @@
 <?php
-include("../../Modelo/Conexion.php");
-
-
-
-
-
-
-
-?>
-
-<?php
 include('../../Modelo/Conexion.php');
 
+$IdIncapacidad = $_POST['IdIncapacidad'];
 $DiaInicio = date("Y-m-d", strtotime($_POST['DiaInicio']));
 $DiaFinal = date("Y-m-d", strtotime($_POST['DiaFinal']));
 $Descripcion = $_POST['Descripcion'];
@@ -53,17 +43,18 @@ $IdPersonal = $_POST['IdPersonal'];
 			if(move_uploaded_file($source, $target_path)) {	
 				//echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
       
-                $sql = 'UPDATE incapacidad SET DiaInicio=:DiaInicio, DiaFinal=:DiaFinal, Descripcion=:Descripcion, Documento=:Documento, IdPersonal=:IdPersonal)';'
+                $sql = 'UPDATE incapacidad SET DiaInicio=:DiaInicio, DiaFinal=:DiaFinal, Descripcion=:Descripcion, Documento=:Documento, IdPersonal=:IdPersonal where IdIncapacidad=:IdIncapacidad';
+				$statement = $pdo->prepare($sql);
+						if($statement->execute([':DiaInicio'=> $DiaInicio, ':DiaFinal'=>$DiaFinal, ':Descripcion' => $Descripcion, ':Documento'=>$filename, ':IdPersonal'=>$IdPersonal, ':IdIncapacidad'=>$IdIncapacidad]))
+						{
+						echo 1;            
+						}else{
+						echo 2;
+						}
         
-            $statement = $pdo->prepare($sql);
-            if($statement->execute([':DiaInicio'=> $DiaInicio, ':DiaFinal'=>$DiaFinal, ':Descripcion' => $Descripcion, ':Documento'=>$filename, ':IdPersonal'=>$IdPersonal]))
-            {
-              echo 1;            
-            }else{
-              echo 2;
-            }
+						
 
-				} else {	
+			}else {	
 				echo "Ha ocurrido un error, por favor int�ntelo de nuevo.<br>";
 			}
 			closedir($dir); //Cerramos el directorio de destino

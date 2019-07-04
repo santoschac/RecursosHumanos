@@ -108,7 +108,7 @@ if(isset($_SESSION['Usuario'])){
                                     <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Empleados" href="Empleados.php"><span class="mini-sub-pro">Empleados</span></a></li>
                                 <li><a title="Incapacidad" href="Incapacidad.php"><span class="mini-sub-pro">Incapacidad</span></a></li>
-                                <li><a title="Bonos" href="#"><span class="mini-sub-pro">Bonos</span></a></li>
+                                <li><a title="Bonos" href="Bonos.php"><span class="mini-sub-pro">Bonos</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -139,8 +139,7 @@ if(isset($_SESSION['Usuario'])){
                             </ul>
                         </li>
                         <li>
-                            <a title="Configuración" class="has-arrow" href="mailbox.html" aria-expanded="false"><span
-                                    class="educate-icon educate-data-table icon-wrap"></span> <span
+                            <a title="Configuración" class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="glyphicon">&#xe019;</span> <span
                                     class="mini-click-non">Configuración</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Puestos" href="../Vistas/Puestos.php"><span class="mini-sub-pro">Puestos</span></a></li>

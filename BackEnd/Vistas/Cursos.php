@@ -19,7 +19,7 @@ include("../Modelo/Conexion.php");
                                 <div >
                                     <h4>Lista de cursos</h4>
 									
-									<a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Curso</button></a>
+									<a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
                             </div>

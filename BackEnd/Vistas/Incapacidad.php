@@ -21,7 +21,7 @@ include("../Modelo/Conexion.php");
                                 <h4>Incapacidad</h4>
                                 
                                 
-                                <a href="VAlta_Incapacidad.php"><button type="button" class="btn btn-primary" >Agregar Incapacidad</button></a>
+                                <a href="VAlta_Incapacidad.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
 							</div>

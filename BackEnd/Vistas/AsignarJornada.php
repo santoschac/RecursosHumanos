@@ -21,7 +21,7 @@ include("../Modelo/Conexion.php");
                                 <h4>Asignar Jornadas</h4>
                                 
                                 
-                               <a href="VAlta_AsignarJornada.php"> <button type="button" class="btn btn-primary" >Asignar jornada a empleado</button></a>
+                               <a href="VAlta_AsignarJornada.php"> <button type="button" class="btn btn-primary" >Asignar</button></a>
                            
                                 </div>
 							</div>

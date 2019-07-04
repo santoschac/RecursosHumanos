@@ -23,7 +23,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                         <div class="main-sparkline13-hd">
                             <h4>Lista de Sucursales</h4>
 
-                            <a href="VAlta_Sucursal.php"><button type="button" class="btn btn-primary" >Agregar Sucursal</button></a>
+                            <a href="VAlta_Sucursal.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                         </div>
                     </div>
