@@ -1,6 +1,7 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
+
 ?>
          
          <!-- Sweet Alert
@@ -17,9 +18,9 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div >
-                                    <h4>Historial de Solicitudes</h4>
+                                    <h4>Solicitudes realizadas</h4>
                                     <div class="add-product">
-                                <a href="Solicitudes.php">Solicitudes</a>
+                                <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal']?>">Regresar</a>
                             </div>
                                 
                                 <!-- <a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar Curso</button></a>-->
@@ -30,7 +31,7 @@ include("../Modelo/Conexion.php");
                                    
                                    
                                    <!--tabla-->
-                                   <div id="TablaSolicitudesHistorial"></div>
+                                   <div id="TablaSolicitudesEmpleado"></div>
                                    <!--fin tabla-->
                                    
                                     <br>
@@ -64,7 +65,7 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readSolicitudes(); /* it will load products when document loads */
+		readSolicitudesEmpleado(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
@@ -100,7 +101,7 @@ include("../Modelo/Conexion.php");
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readSolicitudes();
+                     readSolicitudesEmpleado();
                     
 			     })
 			     .fail(function(){
@@ -113,8 +114,8 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readSolicitudes(){
-		$('#TablaSolicitudesHistorial').load('Tablas/TablaSolicitudesHistorial.php');	
+    function readSolicitudesEmpleado(){
+		$('#TablaSolicitudesEmpleado').load('Tablas/TablaSolicitudesEmpleado.php');	
 	}
     
 </script>

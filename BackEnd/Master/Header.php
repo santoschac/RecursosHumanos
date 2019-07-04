@@ -107,7 +107,8 @@ if(isset($_SESSION['Usuario'])){
                                     class="mini-click-non">Incidencias</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Empleados" href="Empleados.php"><span class="mini-sub-pro">Empleados</span></a></li>
-                                <li><a title="Incapacidad" href="#"><span class="mini-sub-pro">Incapacidad</span></a></li>
+                                <li><a title="Incapacidad" href="Incapacidad.php"><span class="mini-sub-pro">Incapacidad</span></a></li>
+                                <li><a title="Bonos" href="#"><span class="mini-sub-pro">Bonos</span></a></li>
                             </ul>
                         </li>
                         <li>

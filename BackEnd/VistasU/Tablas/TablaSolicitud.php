@@ -56,13 +56,11 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Atendido'];?></td>
                                                 <td><?php if(isset($dato['FechaAtencion'])):?><?= date("d-m-Y", strtotime($dato['FechaAtencion']));?><?php endif;?></td>
                                                 <td><?php echo $dato['Documento'];?></td>
-                                                <td><a href="../VistasU/Documentos/docs/<?php echo $NombreCarpeta?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/iconodescargar.png" width="150" height="250" alt=""><?php endif;?></a></td>
-                                                <td>
+                                                <td><a href="../VistasU/Documentos/<?php echo $NombreCarpeta?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/iconodescargar.png" width="150" height="250" alt=""><?php endif;?></a></td>
                                                 
-						
-                        </button>
-                                                <!--<button  title="Editar" class="pd-setting-ed update" name="update" id="?php echo $dato['IdSolicitudes']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
-                                            <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                <td>
+                                                    <!--<button  title="Editar" class="pd-setting-ed update" name="update" id="?php echo $dato['IdSolicitudes']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
+                                                    <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

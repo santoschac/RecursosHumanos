@@ -8,11 +8,10 @@
 		
 		require_once '../../Modelo/Conexion.php';
 		
-		$IdSolicitudes = $_POST['delete'];
-
-		$sql = "DELETE FROM solicitudes WHERE IdSolicitudes=:IdSolicitudes";
+		$IdIncapacidad = $_POST['delete'];
+		$sql = "DELETE FROM incapacidad WHERE IdIncapacidad=:IdIncapacidad";
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array(':IdSolicitudes'=>$IdSolicitudes));
+		$stmt->execute(array(':IdIncapacidad'=>$IdIncapacidad));
 		
 		if ($stmt) {
 			$response['status']  = 'success';

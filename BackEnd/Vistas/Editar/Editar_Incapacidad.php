@@ -1,14 +1,25 @@
 <?php
+include("../../Modelo/Conexion.php");
+
+
+
+
+
+
+
+?>
+
+<?php
 include('../../Modelo/Conexion.php');
 
-	$IdSolicitudes = $_POST['IdSolicitudes'];
-	$FechaAtencion = $_POST['FechaAtencion'];
-	$Atendido= $_POST['Atendido'];
-	$Estatus = "Atendido";
-	
-	$IdPersonal = $_POST['IdPersonal'];
+$DiaInicio = date("Y-m-d", strtotime($_POST['DiaInicio']));
+$DiaFinal = date("Y-m-d", strtotime($_POST['DiaFinal']));
+$Descripcion = $_POST['Descripcion'];
+$IdPersonal = $_POST['IdPersonal'];
+//$Documento = $_FILES['archivo'];
 
-	$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+
+  $sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
 	from personal p
 	inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal = ?';
 	$sentencia = $pdo->prepare($sql);
@@ -41,14 +52,16 @@ include('../../Modelo/Conexion.php');
 			//El primer campo es el origen y el segundo el destino
 			if(move_uploaded_file($source, $target_path)) {	
 				//echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
-				$sql = 'UPDATE solicitudes SET FechaAtencion=:FechaAtencion, Atendido=:Atendido, Estatus=:Estatus, Documento=:Documento Where IdSolicitudes=:IdSolicitudes';
-				$sentencia=$pdo->prepare($sql);
-				if($sentencia->execute([':FechaAtencion'=>$FechaAtencion, ':Atendido'=>$Atendido, ':Estatus'=>$Estatus, ':Documento'=>$filename, ':IdSolicitudes'=>$IdSolicitudes]))
-				{
-				echo 1;
-				}else{
-					echo 2;
-				}
+      
+                $sql = 'UPDATE incapacidad SET DiaInicio=:DiaInicio, DiaFinal=:DiaFinal, Descripcion=:Descripcion, Documento=:Documento, IdPersonal=:IdPersonal)';'
+        
+            $statement = $pdo->prepare($sql);
+            if($statement->execute([':DiaInicio'=> $DiaInicio, ':DiaFinal'=>$DiaFinal, ':Descripcion' => $Descripcion, ':Documento'=>$filename, ':IdPersonal'=>$IdPersonal]))
+            {
+              echo 1;            
+            }else{
+              echo 2;
+            }
 
 				} else {	
 				echo "Ha ocurrido un error, por favor int�ntelo de nuevo.<br>";
@@ -56,6 +69,9 @@ include('../../Modelo/Conexion.php');
 			closedir($dir); //Cerramos el directorio de destino
 		}
 	}
+
+
+
 	
 	
 

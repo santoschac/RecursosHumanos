@@ -23,7 +23,7 @@
 		$NombreCarpeta = $result['Usuario'];
 		$NombreDocumento = $result['Documento'];
 		
-		unlink('../Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+		unlink('../../VistasU/Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
 
 		$sql = "DELETE FROM solicitudes WHERE IdSolicitudes=:IdSolicitudes";
 		$stmt = $pdo->prepare($sql);
@@ -31,8 +31,7 @@
 		
 		if ($stmt) {
 			$response['status']  = 'success';
-			$response['message'] = 'Eliminado con éxito ...';    
-			      
+            $response['message'] = 'Eliminado con éxito ...';            
 		} else {
 			$response['status']  = 'error';
 			$response['message'] = 'No se puede eliminar ...';
