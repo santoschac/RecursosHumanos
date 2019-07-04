@@ -7,7 +7,24 @@ if(isset($_SESSION['Usuario'])){
  else{
   header('location:../Vistas/login.php');
  }
-	
+
+ $sql1 = $pdo->prepare('SELECT count(IdSolicitudes) as Cantidad from solicitudes where  Estatus="Espera"');
+$sql1 -> execute();
+$Cantidad = $sql1->fetch();
+    
+ //notificaciones
+$sql= $pdo->prepare("SELECT c.Solicitud, c.Descripcion, character_length(Descripcion) as numletras, c.FechaSolicitud, c.Estatus, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+from solicitudes c 
+inner join personal p on c.IdPersonal = p.IdPersonal
+where Estatus  = 'Espera'");
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+// foreach($resultado as $dato){
+//    echo  $dato['Descripcion'];
+// }
+
+
 ?>
 
 <!doctype html>
@@ -222,7 +239,7 @@ if(isset($_SESSION['Usuario'])){
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="nav-item dropdown">
+                                                <!-- <li class="nav-item dropdown">
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle"><i
                                                             class="educate-icon educate-message edu-chat-pro"
@@ -291,84 +308,52 @@ if(isset($_SESSION['Usuario'])){
                                                             <a href="#">View All Messages</a>
                                                         </div>
                                                     </div>
-                                                </li>
-                                                <!-- <li class="nav-item"><a href="#" data-toggle="dropdown" role="button"
+                                                </li> -->
+                                                <!--Apartado de notificaciones---> 
+                                                
+                                               <?php if($_SESSION['IdTipoUsuario']==1):?>
+                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle"><i
                                                             class="educate-icon educate-bell"
-                                                            aria-hidden="true"></i><span
-                                                            class="indicator-nt"></span></a>
+                                                            aria-hidden="true"></i> <?php if($Cantidad['Cantidad']!=0):?><span class="indicator-nt"></span><?php endif;?></a>
                                                     <div role="menu"
                                                         class="notification-author dropdown-menu animated zoomIn">
                                                         <div class="notification-single-top">
-                                                            <h1>Notifications</h1>
+                                                            <h1>Notificaciones</h1>
                                                         </div>
+                                                       <?php if($Cantidad['Cantidad']!=0){?>
                                                         <ul class="notification-menu">
+                                                        
                                                             <li>
-                                                                <a href="#">
+                                                            <?php foreach($resultado as $dato){?>
+                                                                <a href="../Vistas/Solicitudes.php">
                                                                     <div class="notification-icon">
                                                                         <i class="educate-icon educate-checked edu-checked-pro admin-check-pro"
                                                                             aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Advanda Cro</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
+                                                                    <p><?php echo date("d-m-Y", strtotime($dato['FechaSolicitud'])) ."<br/><strong>Nombre:</strong> ". $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ."<br/><strong>Solicitud:</strong> ". $dato['Solicitud'] ."<br/><strong>Descripición</strong> ". $dato['Descripcion']?></p>
+                                                                      
                                                                     </div>
                                                                 </a>
+                                                                <?php }?>
                                                             </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-cloud edu-cloud-computing-down"
-                                                                            aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Sulaiman din</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-eraser edu-shield"
-                                                                            aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart edu-analytics-arrow"
-                                                                            aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
+                                                            
                                                         </ul>
-                                                        <div class="notification-view">
-                                                            <a href="#">View All Notification</a>
-                                                        </div>
+                                                            <?php }else{
+                                                                echo "No hay notificaciones";}?>
+                                                        
+                                                       
+                                                       
                                                     </div>
-                                                </li> -->
+                                                </li> 
+                                                <?php endif; ?>
+                                                
+                                             <!--Fin Apartado de notificaciones--->
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <img src="../Recursos/img/product/pro4.jpg" alt="" />
+                                                        <img src="../Recursos/img/iconousuario.png" alt="" />
                                                         <span class="admin-name">
                                                             <?php echo $_SESSION['Usuario'] ?></span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
