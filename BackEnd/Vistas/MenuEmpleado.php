@@ -184,24 +184,24 @@ $_SESSION['IdPersonal'] = $empleados->IdPersonal;
                             </div>
                         </div>
                     </div>
-                   <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgyellow bg-3 responsive-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
-                                    <h4 style="color:white">Jornada laboral</h4>
+                                    <h4 style="color:white">Permisos</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-department"></i>
+                                    <i class="educate-icon educate-data-table icon-wrap"></i>
                                 </div>
                                 <div class="m-t-xl widget-cl-3">
                                     
-                                    <p style="color:white">Ver la jornada laboral del empleado.</p>
+                                    <p style="color:white">Ver los permisos realizados por el empleado.</p>
                                 </div>
-                                <a href="AsignarJornada_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                                <a href="Permisos_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                   <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgred bg-4 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">

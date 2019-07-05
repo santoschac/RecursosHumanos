@@ -147,8 +147,6 @@ if(isset($_POST['todos'])){
             </div>
         </div> <br>
         <!-- Static Table End -->
-                                                               
-        
         <?php
         include ("../Master/Footer.php");
         ?>

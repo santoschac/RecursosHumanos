@@ -29,11 +29,11 @@ CREATE TABLE `asignarjornada` (
   `FechaInicio` datetime DEFAULT NULL,
   `FechaFinal` datetime DEFAULT NULL,
   PRIMARY KEY (`IdAsignarJornada`),
-  KEY `RefPersonal17` (`IdPersonal`),
   KEY `RefJornada18` (`IdJornada`),
+  KEY `RefPersonal17` (`IdPersonal`),
   CONSTRAINT `RefJornada18` FOREIGN KEY (`IdJornada`) REFERENCES `jornada` (`IdJornada`),
   CONSTRAINT `RefPersonal17` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,8 +42,35 @@ CREATE TABLE `asignarjornada` (
 
 LOCK TABLES `asignarjornada` WRITE;
 /*!40000 ALTER TABLE `asignarjornada` DISABLE KEYS */;
-INSERT INTO `asignarjornada` VALUES (1,1,1,'2019-07-02 00:00:00','2019-07-31 00:00:00');
 /*!40000 ALTER TABLE `asignarjornada` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bonos`
+--
+
+DROP TABLE IF EXISTS `bonos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bonos` (
+  `IdBono` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(200) DEFAULT NULL,
+  `Fecha` datetime DEFAULT NULL,
+  `Monto` varchar(15) DEFAULT NULL,
+  `IdPersonal` int(11) NOT NULL,
+  PRIMARY KEY (`IdBono`),
+  KEY `RefPersonal24` (`IdPersonal`),
+  CONSTRAINT `RefPersonal24` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bonos`
+--
+
+LOCK TABLES `bonos` WRITE;
+/*!40000 ALTER TABLE `bonos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bonos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -61,13 +88,13 @@ CREATE TABLE `cambios` (
   `IdPuesto` int(11) NOT NULL,
   `Descripcion` varchar(230) DEFAULT NULL,
   PRIMARY KEY (`IdCambio`),
-  KEY `RefPersonal3` (`IdPersonal`),
   KEY `RefSucursal21` (`IdSucursal`),
   KEY `RefPuestos22` (`IdPuesto`),
+  KEY `RefPersonal3` (`IdPersonal`),
   CONSTRAINT `RefPersonal3` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`),
   CONSTRAINT `RefPuestos22` FOREIGN KEY (`IdPuesto`) REFERENCES `puestos` (`IdPuesto`),
   CONSTRAINT `RefSucursal21` FOREIGN KEY (`IdSucursal`) REFERENCES `sucursal` (`IdSucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +103,6 @@ CREATE TABLE `cambios` (
 
 LOCK TABLES `cambios` WRITE;
 /*!40000 ALTER TABLE `cambios` DISABLE KEYS */;
-INSERT INTO `cambios` VALUES (1,'2019-07-02 00:00:00',1,57,16,'cambio de puesto por ');
 /*!40000 ALTER TABLE `cambios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +124,7 @@ CREATE TABLE `capacitacion` (
   KEY `RefCursos10` (`IdCurso`),
   CONSTRAINT `RefCursos10` FOREIGN KEY (`IdCurso`) REFERENCES `cursos` (`IdCurso`),
   CONSTRAINT `RefPersonal4` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +133,6 @@ CREATE TABLE `capacitacion` (
 
 LOCK TABLES `capacitacion` WRITE;
 /*!40000 ALTER TABLE `capacitacion` DISABLE KEYS */;
-INSERT INTO `capacitacion` VALUES (1,'se llevo un diez de diez','2019-07-02 00:00:00',1,4);
 /*!40000 ALTER TABLE `capacitacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +150,7 @@ CREATE TABLE `cursos` (
   `Tipo` varchar(30) DEFAULT NULL,
   `Fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`IdCurso`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +175,7 @@ CREATE TABLE `empresa` (
   `NombreEmpresa` varchar(30) DEFAULT NULL,
   `ClaveEmpresa` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`IdEmpresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +202,7 @@ CREATE TABLE `estado` (
   PRIMARY KEY (`IdEstado`),
   KEY `RefPais8` (`IDPais`),
   CONSTRAINT `RefPais8` FOREIGN KEY (`IDPais`) REFERENCES `pais` (`IDPais`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,6 +213,35 @@ LOCK TABLES `estado` WRITE;
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
 INSERT INTO `estado` VALUES (1,'Yucatán',1),(2,'Quintana Roo',1),(3,'Campeche',1),(4,'Tabasco',1),(5,'Veracruz',1),(6,'Chiapas',1);
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `incapacidad`
+--
+
+DROP TABLE IF EXISTS `incapacidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `incapacidad` (
+  `IdIncapacidad` int(11) NOT NULL AUTO_INCREMENT,
+  `DiaInicio` datetime DEFAULT NULL,
+  `DiaFinal` datetime DEFAULT NULL,
+  `Descripcion` char(10) DEFAULT NULL,
+  `Documento` varchar(70) DEFAULT NULL,
+  `IdPersonal` int(11) NOT NULL,
+  PRIMARY KEY (`IdIncapacidad`),
+  KEY `RefPersonal23` (`IdPersonal`),
+  CONSTRAINT `RefPersonal23` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incapacidad`
+--
+
+LOCK TABLES `incapacidad` WRITE;
+/*!40000 ALTER TABLE `incapacidad` DISABLE KEYS */;
+/*!40000 ALTER TABLE `incapacidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -234,7 +288,7 @@ CREATE TABLE `jornada` (
   `HoraInicio` time DEFAULT NULL,
   `HoraFin` time DEFAULT NULL,
   PRIMARY KEY (`IdJornada`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +297,6 @@ CREATE TABLE `jornada` (
 
 LOCK TABLES `jornada` WRITE;
 /*!40000 ALTER TABLE `jornada` DISABLE KEYS */;
-INSERT INTO `jornada` VALUES (1,'Lunes','Viernes','08:00:00','16:00:00');
 /*!40000 ALTER TABLE `jornada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,6 +322,36 @@ LOCK TABLES `pais` WRITE;
 /*!40000 ALTER TABLE `pais` DISABLE KEYS */;
 INSERT INTO `pais` VALUES (1,'Mexico');
 /*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permisos`
+--
+
+DROP TABLE IF EXISTS `permisos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permisos` (
+  `IdPermiso` int(11) NOT NULL AUTO_INCREMENT,
+  `Dia` datetime DEFAULT NULL,
+  `Descripcion` varchar(150) DEFAULT NULL,
+  `Devolucion` varchar(100) DEFAULT NULL,
+  `Estatus` varchar(30) DEFAULT NULL,
+  `IdPersonal` int(11) NOT NULL,
+  PRIMARY KEY (`IdPermiso`),
+  KEY `RefPersonal25` (`IdPersonal`),
+  CONSTRAINT `RefPersonal25` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permisos`
+--
+
+LOCK TABLES `permisos` WRITE;
+/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (2,'2019-07-05 00:00:00','fff','Devolución de días','Aprobado',10),(18,'2019-07-05 00:00:00','bcbcbnmjhj','Cuenta de vacaciones','Aprobado',10);
+/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -331,7 +414,7 @@ CREATE TABLE `personal` (
 
 LOCK TABLES `personal` WRITE;
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
-INSERT INTO `personal` VALUES (1,'Angel Jesus','Perez','Cazanova','BADD110313HCMLNS09','Empleado','65 B No 334 X 8 Y 10','Fraccionamiento Villas Oriente','Merida',97160,'VECJ880326','03674922220','1970-01-01','bachillerato','Masculino','Soltero(a)','','','','Centro Aluminio',50,50,50,'1970-01-01 00:00:00','','2019-07-02 00:00:00','1970-01-01 00:00:00','2019-07-02 00:00:00','Fijo','',16,2,57,1),(2,'Aidee Marisela','Cauich','Cauich',NULL,'Empleado','REG 515 MZA 8 LOTE 17 C 54','Benito Juarez','Benito Juarez',77516,NULL,NULL,NULL,NULL,'Masculino','Soltero(a)',NULL,NULL,NULL,'Coordinadores',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,3,1,1),(3,'Eric Fernando','Euan','Toledano',NULL,'Empleado','Calle 23 A Por 14 y 16  Diag 235','Fracc Pinos del Norte','Merida',97138,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Fernando Euan Alonzo','Blanca Estela Toledano Herrera','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,4,1,1),(4,'Ana Gabriela','Castillo','Dorantes','BADD110313HCMLNS09','Empleado','Calle 77 No 502 x 50 y 54','Fracc Pacabtun','Merida',97160,'VECJ880326','03674922220','1970-01-01','bachillerato','Femenino','Soltero(a)','','Esteban Castillo Mendoza','Aurora Dorantes Chuc','Oficina',50,50,50,'1970-01-01 00:00:00','','2019-07-02 00:00:00','1970-01-01 00:00:00','2019-07-02 00:00:00','Fijo','',1,5,63,1),(5,'Francisco Odilon','Cauich','Borges',NULL,'Empleado','Calle 24 No 99 A x 21 y 19','Mococha','Mococha',97454,NULL,NULL,NULL,NULL,'Masculino','Soltero(a)',NULL,'Pascual Odilon Cauich Martinez','Maria Isabel Borges Canche','Sur Aluminio',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,6,1,1),(6,'Rosario de Fátima','Gorocica','Zapata',NULL,'Empleado','CALLE 79 X 28 Y 30','VICENTE SOLIS','Merida',97180,NULL,NULL,NULL,NULL,'Femenino','Soltero(a)',NULL,'GOROCICA MOURE MANUEL DE JESUS','ZAPATA GURUBEL JULIA YOLANDA','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,7,1,1),(7,'Angel Ignacio','Tzuc','Cordero',NULL,'Empleado','Calle 14 x17 y 19','Mococha','Mococha',97454,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Tzuc May Jose Felipe','Cordero Baak Librada','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,8,1,1),(8,'Raul Arturo','Mendoza','Guemes',NULL,'Empleado','Calle 67 F x 128 y 128 B','Bosques Yucalpeten','Merida',97248,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Mendoza Rivero Raul Arturo','Guemes Urive Maria Isabel','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,9,1,1),(9,'Rafael','Chiang Sam','Echeverria',NULL,'Empleado','Calle 69 x 62 A y 64','La Herradura','Caucel',97300,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Chiang Sam Rafael Arturo','Echeverria Ortiz Maria del Consuelo','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,10,1,1),(10,'Jose Isauro','Chac','Cante','BADD110313HCMLNS09','Empleado','calle 14','Gineres','fah',97360,'VECJ880326','03674922220','1997-02-02','bachillerato','Masculino','Soltero(a)','','','','Ti',50,50,50,'1970-01-01 00:00:00','','2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Temporal','',4,11,73,1);
+INSERT INTO `personal` VALUES (1,'Angel Jesus','Perez','Cazanova',NULL,'Empleado','65 B No 334 X 8 Y 10','Fraccionamiento Villas Oriente','Merida',97160,NULL,NULL,NULL,NULL,'Masculino','Soltero(a)',NULL,NULL,NULL,'Centro Aluminio',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,2,1,1),(2,'Aidee Marisela','Cauich','Cauich',NULL,'Empleado','REG 515 MZA 8 LOTE 17 C 54','Benito Juarez','Benito Juarez',77516,NULL,NULL,NULL,NULL,'Masculino','Soltero(a)',NULL,NULL,NULL,'Coordinadores',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,3,1,1),(3,'Eric Fernando','Euan','Toledano',NULL,'Empleado','Calle 23 A Por 14 y 16  Diag 235','Fracc Pinos del Norte','Merida',97138,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Fernando Euan Alonzo','Blanca Estela Toledano Herrera','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,4,1,1),(4,'Ana Gabriela','Castillo','Dorantes',NULL,'Empleado','Calle 77 No 502 x 50 y 54','Fracc Pacabtun','Merida',97160,NULL,NULL,NULL,NULL,'Femenino','Soltero(a)',NULL,'Esteban Castillo Mendoza','Aurora Dorantes Chuc','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,5,1,1),(5,'Francisco Odilon','Cauich','Borges',NULL,'Empleado','Calle 24 No 99 A x 21 y 19','Mococha','Mococha',97454,NULL,NULL,NULL,NULL,'Masculino','Soltero(a)',NULL,'Pascual Odilon Cauich Martinez','Maria Isabel Borges Canche','Sur Aluminio',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,6,1,1),(6,'Rosario de Fátima','Gorocica','Zapata',NULL,'Empleado','CALLE 79 X 28 Y 30','VICENTE SOLIS','Merida',97180,NULL,NULL,NULL,NULL,'Femenino','Soltero(a)',NULL,'GOROCICA MOURE MANUEL DE JESUS','ZAPATA GURUBEL JULIA YOLANDA','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,7,1,1),(7,'Angel Ignacio','Tzuc','Cordero',NULL,'Empleado','Calle 14 x17 y 19','Mococha','Mococha',97454,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Tzuc May Jose Felipe','Cordero Baak Librada','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,8,1,1),(8,'Raul Arturo','Mendoza','Guemes',NULL,'Empleado','Calle 67 F x 128 y 128 B','Bosques Yucalpeten','Merida',97248,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Mendoza Rivero Raul Arturo','Guemes Urive Maria Isabel','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,9,1,1),(9,'Rafael','Chiang Sam','Echeverria',NULL,'Empleado','Calle 69 x 62 A y 64','La Herradura','Caucel',97300,NULL,NULL,NULL,NULL,'Masculino','Casado(a)',NULL,'Chiang Sam Rafael Arturo','Echeverria Ortiz Maria del Consuelo','Oficina',NULL,NULL,NULL,NULL,NULL,'2019-07-02 00:00:00',NULL,'2019-07-02 00:00:00','Fijo',NULL,1,10,1,1),(10,'Jose','Chac','Cante','BADD110313HCMLNS09','Empleado','calle 14','Gineres','ffy',97360,'VECJ880326','03674922220','1997-02-02','bachillerato','Masculino','Soltero(a)','','Santos Chac Chan','Maria Cante Pool','Ti',50,50,50,'1970-01-01 00:00:00','','2019-07-05 00:00:00',NULL,'2019-07-05 00:00:00','Temporal','',2,11,50,1);
 /*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,7 +432,7 @@ CREATE TABLE `poblacion` (
   PRIMARY KEY (`IdPoblacion`),
   KEY `RefEstado9` (`IdEstado`),
   CONSTRAINT `RefEstado9` FOREIGN KEY (`IdEstado`) REFERENCES `estado` (`IdEstado`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +441,7 @@ CREATE TABLE `poblacion` (
 
 LOCK TABLES `poblacion` WRITE;
 /*!40000 ALTER TABLE `poblacion` DISABLE KEYS */;
-INSERT INTO `poblacion` VALUES (1,'Mérida',1),(2,'Kanasín',1),(3,'Tizimín',1),(4,'Ticul',1),(5,'Cancún',2),(6,'Felipe Carrillo Puerto',2),(7,'Cozumel',2),(8,'Playa del Carmen',2),(9,'Kantunilkín',2),(10,'Ciudad del Carmen',3),(11,'San Francisco de Campeche',3),(12,'Villahermosa',4),(13,'Coatzacoalcos',5),(14,'Minatitlán',5),(15,'Palenque',6),(16,'Kinchil',1);
+INSERT INTO `poblacion` VALUES (1,'Mérida',1),(2,'Kanasín',1),(3,'Tizimín',1),(4,'Ticul',1),(5,'Cancún',2),(6,'Felipe Carrillo Puerto',2),(7,'Cozumel',2),(8,'Playa del Carmen',2),(9,'Kantunilkín',2),(10,'Ciudad del Carmen',3),(11,'San Francisco de Campeche',3),(12,'Villahermosa',4),(13,'Coatzacoalcos',5),(14,'Minatitlán',5),(15,'Palenque',6);
 /*!40000 ALTER TABLE `poblacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,7 +456,7 @@ CREATE TABLE `puestos` (
   `IdPuesto` int(11) NOT NULL AUTO_INCREMENT,
   `NombrePuesto` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`IdPuesto`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,7 +490,7 @@ CREATE TABLE `solicitudes` (
   PRIMARY KEY (`IdSolicitudes`),
   KEY `RefPersonal2` (`IdPersonal`),
   CONSTRAINT `RefPersonal2` FOREIGN KEY (`IdPersonal`) REFERENCES `personal` (`IdPersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +499,6 @@ CREATE TABLE `solicitudes` (
 
 LOCK TABLES `solicitudes` WRITE;
 /*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
-INSERT INTO `solicitudes` VALUES (2,'Vigencia de imss','Hola Mundo.','2019-07-02 00:00:00','2019-07-02 00:00:00','SCANTE',NULL,'Atendido','Empleados.xlsx',10);
 /*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,7 +520,7 @@ CREATE TABLE `sucursal` (
   KEY `RefPoblacion13` (`IdPoblacion`),
   CONSTRAINT `RefEmpresa12` FOREIGN KEY (`IdEmpresa`) REFERENCES `empresa` (`IdEmpresa`),
   CONSTRAINT `RefPoblacion13` FOREIGN KEY (`IdPoblacion`) REFERENCES `poblacion` (`IdPoblacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -447,7 +529,7 @@ CREATE TABLE `sucursal` (
 
 LOCK TABLES `sucursal` WRITE;
 /*!40000 ALTER TABLE `sucursal` DISABLE KEYS */;
-INSERT INTO `sucursal` VALUES (1,'Oficina Matriz','YUCATAN',1,1),(2,'Suc. Azcorra','YUCATAN',1,1),(3,'Suc. CEDIS','YUCATAN',1,1),(4,'Suc. Cordemex','YUCATAN',2,1),(5,'Suc. Oriente','YUCATAN',2,1),(6,'Suc. Chichi Suarez','YUCATAN',2,1),(7,'Suc. Aleman','YUCATAN',2,1),(8,'Suc. Portes Gil','YUCATAN',2,1),(9,'Suc. Prado Norte','YUCATAN',2,1),(10,'Suc. Donde','YUCATAN',2,1),(11,'Suc. Montejo1','YUCATAN',2,1),(12,'Suc. Centro','YUCATAN',2,1),(13,'Suc. Chenku','YUCATAN',2,1),(14,'Suc. Montejo2','YUCATAN',2,1),(15,'Suc. Itzimna','YUCATAN',2,1),(16,'Suc. Montecristo','YUCATAN',2,1),(17,'Suc. Pinos','YUCATAN',2,1),(18,'Suc. Santiago','YUCATAN',2,1),(19,'Suc. Caucel','YUCATAN',2,1),(20,'Suc. Las Americas','YUCATAN',2,1),(21,'Suc.  San Ramon Norte','YUCATAN',2,1),(22,'Suc. Mayoreo Merida','YUCATAN',2,1),(23,'Suc. Cedis Merida','YUCATAN',2,1),(24,'Suc. Dorada','YUCATAN',2,1),(25,'Suc. Canek','YUCATAN',2,1),(26,'Suc. FiestaII','YUCATAN',2,1),(27,'Suc. Buenavista','YUCATAN',2,1),(28,'Suc. Xelpac','YUCATAN',2,2),(29,'Suc. Sur','YUCATAN',2,1),(30,'Suc. Portillo2','Q.Roo',2,5),(31,'Suc. Portillo3','Q.Roo',2,5),(32,'Suc. La Luna','Q.Roo',2,5),(33,'Suc. Playa','Q.Roo',2,8),(34,'Suc. Playa Centro','Q.Roo',2,8),(35,'Suc.  Portillo1','Q.Roo',2,5),(36,'Suc. Chichen','Q.Roo',2,5),(37,'Suc. Zazil-Ha','Q.Roo',2,8),(38,'Suc. Zazil-Ha','Q.Roo',2,5),(39,'Suc. Cd Carmen','Campeche',2,10),(40,'Suc. Cd Carmen 2','Campeche',2,10),(41,'Oficina Matriz','YUCATAN',3,1),(42,'Suc. Circuito','YUCATAN',3,1),(43,'Suc. Oriente','YUCATAN',3,1),(44,'Suc. Centro','YUCATAN',3,1),(45,'Suc. Itzaes','YUCATAN',3,1),(46,'Suc. Sur','YUCATAN',3,1),(47,'Suc. Turquesa','YUCATAN',3,1),(48,'Suc. Talleres','Q.Roo',3,5),(49,'Suc. Portillo','Q.Roo',3,5),(50,'Oficina Matriz','Q.Roo',4,5),(51,'Suc. Andres Q.Roo','Q.Roo',4,5),(52,'Suc. Portillo','Q.Roo',4,5),(53,'Suc. Torcasita','Q.Roo',4,5),(54,'Oficina Matriz','YUCATAN',5,1),(55,'Suc. Quetzalcoalt','YUCATAN',5,1),(56,'Suc. Tanlum','YUCATAN',5,1),(57,'Suc. Canek','YUCATAN',5,1),(58,'Suc. Los Reyes','YUCATAN',5,1),(59,'Oficina Matriz','YUCATAN',6,1),(60,'Suc. Circuito','YUCATAN',6,1),(61,'Suc.  Calle 30','YUCATAN',6,1),(62,'Suc. Circuito','YUCATAN',7,1),(63,'Suc. Itzaes','YUCATAN',7,1),(64,'Suc. 99','YUCATAN',7,1),(65,'Oficina Matriz','YUCATAN',8,1),(66,'Suc. Circuito','YUCATAN',8,1),(67,'Oficina Matriz','YUCATAN',9,1),(68,'Suc. Juan B. Sosa','YUCATAN',9,1),(69,'Oficina Matriz','YUCATAN',10,1),(70,'Suc. Chuburna','YUCATAN',10,1),(71,'Suc. Xoclan','YUCATAN',10,1),(72,'Oficina Matriz','YUCATAN',11,1),(73,'Suc. Centro','YUCATAN',11,1),(74,'Suc. Itzaes','YUCATAN',11,1),(75,'Oficina Matriz','Q. Roo',2,1);
+INSERT INTO `sucursal` VALUES (1,'Oficina Matriz','YUCATAN',1,1),(2,'Suc. Azcorra','YUCATAN',1,1),(3,'Suc. CEDIS','YUCATAN',1,1),(4,'Suc. Cordemex','YUCATAN',2,1),(5,'Suc. Oriente','YUCATAN',2,1),(6,'Suc. Chichi Suarez','YUCATAN',2,1),(7,'Suc. Aleman','YUCATAN',2,1),(8,'Suc. Portes Gil','YUCATAN',2,1),(9,'Suc. Prado Norte','YUCATAN',2,1),(10,'Suc. Donde','YUCATAN',2,1),(11,'Suc. Montejo1','YUCATAN',2,1),(12,'Suc. Centro','YUCATAN',2,1),(13,'Suc. Chenku','YUCATAN',2,1),(14,'Suc. Montejo2','YUCATAN',2,1),(15,'Suc. Itzimna','YUCATAN',2,1),(16,'Suc. Montecristo','YUCATAN',2,1),(17,'Suc. Pinos','YUCATAN',2,1),(18,'Suc. Santiago','YUCATAN',2,1),(19,'Suc. Caucel','YUCATAN',2,1),(20,'Suc. Las Americas','YUCATAN',2,1),(21,'Suc.  San Ramon Norte','YUCATAN',2,1),(22,'Suc. Mayoreo Merida','YUCATAN',2,1),(23,'Suc. Cedis Merida','YUCATAN',2,1),(24,'Suc. Dorada','YUCATAN',2,1),(25,'Suc. Canek','YUCATAN',2,1),(26,'Suc. FiestaII','YUCATAN',2,1),(27,'Suc. Buenavista','YUCATAN',2,1),(28,'Suc. Xelpac','YUCATAN',2,2),(29,'Suc. Sur','YUCATAN',2,1),(30,'Suc. Portillo2','Q.Roo',2,5),(31,'Suc. Portillo3','Q.Roo',2,5),(32,'Suc. La Luna','Q.Roo',2,5),(33,'Suc. Playa','Q.Roo',2,8),(34,'Suc. Playa Centro','Q.Roo',2,8),(35,'Suc.  Portillo1','Q.Roo',2,5),(36,'Suc. Chichen','Q.Roo',2,5),(37,'Suc. Zazil-Ha','Q.Roo',2,8),(38,'Suc. Zazil-Ha','Q.Roo',2,5),(39,'Suc. Cd Carmen','Campeche',2,10),(40,'Suc. Cd Carmen 2','Campeche',2,10),(41,'Oficina Matriz','YUCATAN',3,1),(42,'Suc. Circuito','YUCATAN',3,1),(43,'Suc. Oriente','YUCATAN',3,1),(44,'Suc. Centro','YUCATAN',3,1),(45,'Suc. Itzaes','YUCATAN',3,1),(46,'Suc. Sur','YUCATAN',3,1),(47,'Suc. Turquesa','YUCATAN',3,1),(48,'Suc. Talleres','Q.Roo',3,5),(49,'Suc. Portillo','Q.Roo',3,5),(50,'Oficina Matriz','Q.Roo',4,5),(51,'Suc. Andres Q.Roo','Q.Roo',4,5),(52,'Suc. Portillo','Q.Roo',4,5),(53,'Suc. Torcasita','Q.Roo',4,5),(54,'Oficina Matriz','YUCATAN',5,1),(55,'Suc. Quetzalcoalt','YUCATAN',5,1),(56,'Suc. Tanlum','YUCATAN',5,1),(57,'Suc. Canek','YUCATAN',5,1),(58,'Suc. Los Reyes','YUCATAN',5,1),(59,'Oficina Matriz','YUCATAN',6,1),(60,'Suc. Circuito','YUCATAN',6,1),(61,'Suc.  Calle 30','YUCATAN',6,1),(62,'Suc. Circuito','YUCATAN',7,1),(63,'Suc. Itzaes','YUCATAN',7,1),(64,'Suc. 99','YUCATAN',7,1),(65,'Oficina Matriz','YUCATAN',8,1),(66,'Suc. Circuito','YUCATAN',8,1),(67,'Oficina Matriz','YUCATAN',9,1),(68,'Suc. Juan B. Sosa','YUCATAN',9,1),(69,'Oficina Matriz','YUCATAN',10,1),(70,'Suc. Chuburna','YUCATAN',10,1),(71,'Suc. Xoclan','YUCATAN',10,1),(72,'Oficina Matriz','YUCATAN',11,1),(73,'Suc. Centro','YUCATAN',11,1),(74,'Suc. Itzaes','YUCATAN',11,1);
 /*!40000 ALTER TABLE `sucursal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -499,7 +581,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'SCANTE','$2y$10$mhw61sj7rm702E/yKiA3WuVS36U8jwXe7mk9wj4XcKlKU9hq16YKu',1),(2,'APEREZ','$2y$10$RrFqE9AiI8CWWHlQl/jh5.CeQ5eDf5nm9j3sWkPW6Ly5wKHLi8r3C',2),(3,'ACAUICH','123',2),(4,'EEUAN','123',2),(5,'ACASTILLO','$2y$10$I8ZC5S5zc2y09vbBZVE7PuFkMctUeGncLLCX1oG965HPiUqgfWACm',2),(6,'FCAUICH','123',2),(7,'FGOROCICA','123',2),(8,'ATZUC','123',2),(9,'RMENDOZA','123',2),(10,'RCHIANGSAM','123',2),(11,'JCANTE','$2y$10$UcA6rfjSbDNUL4Irh7SnkuGk5t08UZVjetWv8321cVPHQhua1j4LG',2);
+INSERT INTO `usuario` VALUES (1,'SCANTE','$2y$10$mhw61sj7rm702E/yKiA3WuVS36U8jwXe7mk9wj4XcKlKU9hq16YKu',1),(2,'APEREZ','123',2),(3,'ACAUICH','123',2),(4,'EEUAN','123',2),(5,'ACASTILLO','123',2),(6,'FCAUICH','123',2),(7,'FGOROCICA','123',2),(8,'ATZUC','123',2),(9,'RMENDOZA','123',2),(10,'RCHIANGSAM','123',2),(11,'JCANTE','$2y$10$L9MaSFZJl.CJnLK76AESDOSFUDYB8yE.sAj.YrnxqC6f3KpRtsQi2',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -512,4 +594,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-02 15:02:42
+-- Dump completed on 2019-07-05 11:43:52
