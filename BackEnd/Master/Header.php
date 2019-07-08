@@ -94,6 +94,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <!-- modernizr JS
 		============================================ -->
     <script src="../Recursos/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+   
 </head>
 
 <body>
@@ -127,6 +130,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Incapacidad" href="Incapacidad.php"><span class="mini-sub-pro">Incapacidad</span></a></li>
                                 <li><a title="Bonos" href="Bonos.php"><span class="mini-sub-pro">Bonos</span></a></li>
                                 <li><a title="Permisos" href="Permisos.php"><span class="mini-sub-pro">Permisos</span></a></li>
+                                <li><a title="Horas Extras" href="Exc.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
                             </ul>
                         </li>
                         <li>

@@ -94,7 +94,7 @@ include("../Modelo/Conexion.php");
                                                                 <select name="IdPais" id="IdPais" class="form-control" required>
                                                                     <option value="" selected="" disabled="" >Seleccionar</option>
                                                                     <?php foreach ($pdo->query('SELECT IDPais, NombrePais FROM pais') as $row):?>													
-                                                                     <option value="<?php echo $row['IDPais']?>"><?php echo $row['NombrePais']?></option>
+                                                                     <option value="<?php echo $row['IDPais'];?>"><?php echo $row['NombrePais'];?></option>
 
                                                                 <?php endforeach; ?>
                                                                 </select>
@@ -125,8 +125,8 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="hidden" name="poblacion_id" id="poblacion_id" />
-										<input type="hidden" name="operation" id="operation" />
+                                        <input type="text" name="poblacion_id" id="poblacion_id" />
+										<input type="text" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
                                         <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
                                     </div>
@@ -241,13 +241,13 @@ $(document).ready(function(){
 			{
 				$('#ModalAgregar').modal('show');
 			    $('#IDPais').val(data.IDPais);
-				//$('#IdEstado').val(data.IdEstado);
+				$('#IdEstado').val(data.IdEstado);
 				$('#NombrePoblacion').val(data.NombrePoblacion);				
 				$('.modal-title').text("Actualizar Población");
 				$('#poblacion_id').val(poblacion_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
-                $('#formulario')[0].reset();
+                //$('#formulario')[0].reset();
                 
             
 			}
