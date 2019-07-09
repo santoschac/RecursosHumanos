@@ -8,7 +8,7 @@ from cambios c
 inner join puestos pu on c.IdPuesto = pu.IdPuesto
 inner join sucursal s on c.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join personal p on c.IdPersonal = p.IdPersonal");
+inner join personal p on c.IdPersonal = p.IdPersonal order by IdCambio desc");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 

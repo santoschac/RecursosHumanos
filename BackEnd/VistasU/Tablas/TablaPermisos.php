@@ -5,7 +5,7 @@ session_start();
 $IdPersonal = $_SESSION['IdPersonal'];
 $sql= $pdo->prepare("SELECT p.IdPermiso, p.Dia, p.Descripcion, p.Devolucion, p.Estatus, p.IdPersonal, pe.Nombre, pe.ApellidoPaterno, pe.ApellidoMaterno
 from permisos p
-inner join personal pe on p.IdPersonal = pe.IdPersonal where p.IdPersonal = $IdPersonal");
+inner join personal pe on p.IdPersonal = pe.IdPersonal where p.IdPersonal = $IdPersonal order by IdPermiso desc");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 

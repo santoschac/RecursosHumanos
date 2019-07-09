@@ -1,5 +1,11 @@
 <?php include "../Master/Header.php"; ?>
 
+<!-- normalize CSS
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
+
+
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
     <div class="container-fluid">
@@ -104,7 +110,7 @@
         var datos = $('#frmExcel1').serialize();
         // alert(datos);
         $.ajax({
-            url: "Excel/Exc.php",
+            url: "../Vistas/Excel/Exc.php",
             method: 'POST',
             data: new FormData(this),
             contentType: false,

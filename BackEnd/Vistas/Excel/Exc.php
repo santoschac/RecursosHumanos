@@ -4,14 +4,6 @@
     require_once "../../ClasesExcel/PHPExcel/IOFactory.php";
     $usuario = $_SESSION['Usuario'];
 
-    ?>
-
-    <!-- normalize CSS
-		============================================ -->
-        <link rel="stylesheet" href="../../Recursos/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="../../Recursos/css/data-table/bootstrap-editable.css">
-
-    <?php
 
     if (isset($_POST['operacion'])) {
         if ($_POST['operacion'] == "Agregar") {

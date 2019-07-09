@@ -88,6 +88,7 @@ include("../Modelo/Conexion.php");
                                        
                                        <div class="form-group-inner">
 
+                                       
 									   <div class="form-group">
                                                                 <label>Pais</label>
 
@@ -102,10 +103,22 @@ include("../Modelo/Conexion.php");
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Estado</label>
+
+                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
+                                                                    <option value="" selected="" disabled="" >Seleccionar</option>
+                                                                    <?php foreach ($pdo->query('SELECT IdEstado, NombreEstado FROM estado') as $row):?>													
+                                                                     <option value="<?php echo $row['IdEstado'];?>"><?php echo $row['NombreEstado'];?></option>
+
+                                                                <?php endforeach; ?>
+                                                                </select>
+
+                                                            </div>
+                                                            <!-- <div class="form-group">
+                                                                <label>Estado</label>
                                                                 <select name="IdEstado" id="IdEstado" class="form-control" required>
                                                                     <option value="" selected="" disabled="" required>Seleccionar</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> -->
 									   
 
 
@@ -125,8 +138,8 @@ include("../Modelo/Conexion.php");
                                        <!--Fin Agregar form dentro del moal-->
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="text" name="poblacion_id" id="poblacion_id" />
-										<input type="text" name="operation" id="operation" />
+                                        <input type="hidden" name="poblacion_id" id="poblacion_id" />
+										<input type="hidden" name="operation" id="operation" />
 										<input type="submit" name="action" id="action" class="btn btn-primary" value="Agregar" />
                                         <button data-dismiss="modal" class="btn btn-danger" href="#">Cancelar</button>                                       
                                     </div>
@@ -240,7 +253,7 @@ $(document).ready(function(){
 			success:function(data)
 			{
 				$('#ModalAgregar').modal('show');
-			    $('#IDPais').val(data.IDPais);
+			    $('#IdPais').val(data.IDPais);
 				$('#IdEstado').val(data.IdEstado);
 				$('#NombrePoblacion').val(data.NombrePoblacion);				
 				$('.modal-title').text("Actualizar Población");

@@ -95,7 +95,14 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 		============================================ -->
     <script src="../Recursos/js/vendor/modernizr-2.8.3.min.js"></script>
 
+<!--apartir de aqui los puse para ver lo de excel-->
+    <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
 
+   
+    <!-- normalize CSS para la tabla
+		============================================ -->
+    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
    
 </head>
 
@@ -131,6 +138,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Bonos" href="Bonos.php"><span class="mini-sub-pro">Bonos</span></a></li>
                                 <li><a title="Permisos" href="Permisos.php"><span class="mini-sub-pro">Permisos</span></a></li>
                                 <li><a title="Horas Extras" href="Exc.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
+                                <li><a title="Accidentes" href="Accidentes.php"><span class="mini-sub-pro">Accidentes</span></a></li>
                             </ul>
                         </li>
                         <li>

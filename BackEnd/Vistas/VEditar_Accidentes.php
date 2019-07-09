@@ -2,26 +2,30 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
+if(isset($_GET['IdAccidentes'])){
+    $IdAccidentes = $_GET['IdAccidentes'];
 
-
-$IdCambio = $_GET['IdCambio'];
-$sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
-from cambios c
-inner join puestos pu on c.IdPuesto = pu.IdPuesto
-inner join sucursal s on c.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join personal p on c.IdPersonal = p.IdPersonal where IdCambio = :IdCambio';
+    $sql1 = 'SELECT a.IdAccidentes, a.Descripcion, a.Fecha, a.Reporta, a.Accidentes, a.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+from accidentes a
+inner join personal p on a.IdPersonal = p.IdPersonal
+inner join puestos pu on p.IdPuesto = pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa where IdAccidentes = :IdAccidentes';
 $sentencia=$pdo->prepare($sql1);
-$sentencia->execute(['IdCambio'=>$IdCambio]);
-$cambios = $sentencia->fetch(PDO::FETCH_OBJ);
+$sentencia->execute(['IdAccidentes'=>$IdAccidentes]);
+$accidentes = $sentencia->fetch(PDO::FETCH_OBJ);
+}
 
-$sql2= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+
+
+$sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
 inner join sucursal s on p.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa");
-$sql2->execute();
-$resultado=$sql2->fetchALL(PDO::FETCH_ASSOC);
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
 
 if(isset($_GET['IdPersonal'])){
 
@@ -68,9 +72,9 @@ if(isset($_GET['IdPersonal'])){
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><a href="Cambios.php">Cambios</a> <span class="bread-slash">/</span>
+                                            <li><a href="Accidentes.php">Accidentes</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Cambio</span>
+                                            <li><span class="bread-blod">Agregar Accidente</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,16 +92,16 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Cambio</a></li>
+                                <li class="active"><a href="#description">Agregar Accidente</a></li>
                                 
                             </ul>
-                           
+                            
                             <!--Alertas-->
                             <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos Actualizados con éxito
+                                  Datos insertados con éxito
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -114,15 +118,14 @@ if(isset($_GET['IdPersonal'])){
                                                 <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
+                                                        <input type="text" name="IdAccidentes" id="IdAccidents" value="<?php echo $IdAccidentes?>">
 
                                                         <div class="form-group">
-                                                        <input type="text" name="IdCambio" id="IdCambio" value="<?php echo $IdCambio?>">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
+                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="form-group">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-                                                                    required="" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->Nombre ." ". $cambios->ApellidoPaterno ." ". $cambios->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    required="" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->Nombre ." ". $accidentes->ApellidoPaterno ." ". $accidentes->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
                                                                      maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                     class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
@@ -132,77 +135,59 @@ if(isset($_GET['IdPersonal'])){
 
                                                         <div class="form-group">
                                                             <label>Empresa</label>
-                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->NombreEmpresa?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
-                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombreSucursal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->NombreSucursal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto</label>
-                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->NombrePuesto?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->NombrePuesto?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
-                                                        <div class="form-group data-custon-pick">
-                                                            <label><strong>Fecha Inicio</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d", strtotime($cambios->FechaInicio)); ?>">
-                                                            </div>
-                                                        </div>
+                                                        
                                                                
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                       
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?=  date("Y-m-d", strtotime($accidentes->Fecha)); ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Reporta</label>
+                                                            <input type="text" name="Reporta" id="Reporta"class="form-control" value="<?= $accidentes->Reporta?>" readonly>
+                                                                
+                                                        </div>
                                                         
                                                         <div class="form-group">
-                                                            <label>Nueva Empresa</label>
-                                                            <?php
-                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
-                                                            $sql->execute();
-                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
-                                                            
-                                                            ?>
-                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
-                                                            <option value="" selected="" disabled="">Seleccionar</option>
-                                                                <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdEmpresa'];?>" <?php if($dato['IdEmpresa']=== $cambios->IdEmpresa): echo'selected'; endif;?>> <?php echo $dato['NombreEmpresa']; ?> </option>
-                                                                <?php } ?>
-                                                            </select>
-
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Nueva Sucursal</label>
-                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                            <label>Accidente</label>
+                                                            <select name="Accidentes" id="Accidentes"class="form-control" required>
                                                                 <option value="" selected="" disabled="">Seleccionar</option>
+                                                                <option value="Responsable"<?php if("Responsable"===$accidentes->Accidentes): echo "Selected"; endif; ?>>Responsable</option>
+                                                                <option value="Afectado"<?php if("Afectado"===$accidentes->Accidentes): echo "Selected"; endif; ?>>Afectado</option>
                                                             </select>
                                                         </div>
-                                                      
-                                                            <div class="chosen-select-single mg-b-20">
-                                                                <label><strong>Puesto</strong></label>
-                                                                    <select name="IdPuesto" id="IdPuesto" required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
-                                                                    <option value="">Seleccionar</option>';
-                                                                   <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
-                                                                    <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $cambios->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
-                                                                <?php endforeach;?>
-                                                                    </select>
-                                                                
-                                                            </div>
-
+                                                        
                                                             <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" ><?= $cambios->Descripcion;?></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="200" ><?=$accidentes->Descripcion?></textarea>
                                                     </div>
-                                                                
                                                            
                                                         </div>
+                                                        
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
                                                                 <br/>
                                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                                                    <a href="Cambios.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                                    <a href="Accidentes.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -252,8 +237,7 @@ if(isset($_GET['IdPersonal'])){
                                             <tr>
                                             <th>No</th>
                                             <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            
+                                            <th>Apellidos</th>                                            
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -275,7 +259,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VEditar_Cambio.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VEditar_Accidentes.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>&IdAccidentes=<?php echo $IdAccidentes?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -320,24 +304,7 @@ if(isset($_GET['IdPersonal'])){
     <script src="../Recursos/js/chosen/chosen-active.js"></script>
     
     <script type="text/javascript" language="javascript">
-    $(document).ready(function () {
-        $("#IdEmpresa").change(function () {
-            // e.preventDefault();
-
-            $("#IdEmpresa option:selected").each(function () {
-                IdEmpresa = $(this).val();
-                
-                $.post("Combo/Seleccionar_Sucursal.php", {
-                    IdEmpresa: IdEmpresa
-                    },
-                    function (data) {
-                        
-                        $("#IdSucursal").html(data);
-                    });
-            });
-        });
-    });
-
+ 
 
     $(document).ready(function(){
        
@@ -348,14 +315,14 @@ if(isset($_GET['IdPersonal'])){
 //alert(datos);
 
                $.ajax({
-                   url:"Editar/Editar_Cambio.php",
+                   url:"Editar/Editar_Accidentes.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
+                     alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){
