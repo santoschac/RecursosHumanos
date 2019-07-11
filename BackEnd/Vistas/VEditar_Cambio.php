@@ -70,7 +70,7 @@ if(isset($_GET['IdPersonal'])){
                                             </li>
                                             <li><a href="Cambios.php">Cambios</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Cambio</span>
+                                            <li><span class="bread-blod">Actualizar Cambio</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,7 +88,7 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Cambio</a></li>
+                                <li class="active"><a href="#description">Actualizar Cambio</a></li>
                                 
                             </ul>
                            
@@ -118,9 +118,10 @@ if(isset($_GET['IdPersonal'])){
 
                                                         <div class="form-group">
                                                         <input type="hidden" name="IdCambio" id="IdCambio" value="<?php echo $IdCambio?>">
-                                                            <label class="control-label" for="Personal">Personal</label>
+                                                            
                                                             <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="form-group">
+                                                            <label class="control-label" for="Personal">Personal</label>
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->Nombre ." ". $cambios->ApellidoPaterno ." ". $cambios->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
                                                                      maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"

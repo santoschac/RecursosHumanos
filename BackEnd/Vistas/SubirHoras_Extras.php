@@ -3,23 +3,25 @@
 <!-- forms CSS
 	============================================ -->
     <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
+    
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
+    <br/>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd" style="text-align: center">
-                            <h1>Subir <span class="table-project-n">archivo</span> de reporte</h1>
-                            <ul class="breadcome-menu">
+                            <h1>Subir <span class="table-project-n">archivo</span> de horas extras</h1>
+                            <!-- <ul class="breadcome-menu">
                                 <li><a href="Index.php" data-toggle="tooltip" title="Regresar al inicio">Inicio</a>
                                     <span class="bread-slash">/</span>
                                 </li>
                                 <li><span class="bread-blod">Reportes</span>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div> <br> <br>
                     <!-- Formulario -->
@@ -27,7 +29,7 @@
                         <div class="form-group-inner">
                             <div class="row">
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                    <label class="login2 pull-right pull-right-pro">Agregar Archivo Excel</label>
+                                    <label class="login2 pull-right pull-right-pro">Agregar Excel</label>
                                 </div>
                                 <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
                                 <div class="file-upload-inner ts-forms">
@@ -39,7 +41,7 @@
                                                         </label>
                                                         <div class="file-button">
                                                             Seleccionar 
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]"  required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                            <input type="file" name="excel"  required onchange="document.getElementById('prepend-big-btn').value = this.value;">
                                                         </div>
                                                         <input type="text" id="prepend-big-btn"
                                                             placeholder="          Ningún archivo seleccionado" readonly >
@@ -56,7 +58,7 @@
                                         <i class="fa fa-save" aria-hidden="true"></i>
                                         Guardar
                                     </button>
-                                    <a id="can" class="btn btn-custon-rounded-two btn-danger external" href="../Vistas/index.php">
+                                    <a id="can" class="btn btn-custon-rounded-two btn-danger external" href="../Vistas/Horas_Extras.php">
                                         <i class="fa fa-times edu-danger-error" aria-hidden="true"></i>
                                         Cancelar
                                     </a>
@@ -78,22 +80,28 @@
             </div>
         </div>
     </div> <br>
-
+    <style>
+    #mdialTamanio{
+      width: 35% !important;
+      
+      }
+  </style>
+        
     <!-- Modal Cancelar -->
     <div id="Cancelar" class="modal modal-edu-general FullColor-popup-DangerModal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog" id="mdialTamanio">
             <div class="modal-content">
                 <div class="modal-close-area modal-close-df">
                     <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
                 </div>
                 <div class="modal-body">
-                    <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
-                    <h2>Cancelar!</h2>
-                    <p>¿Está seguro que desea cancelar?, el archivo aun no se guarda</p>
+                    <span class="educate-icon educate-info modal-check-pro information-icon-pro"></span>
+                    <h2>¿Estás seguro?</h2>
+                    <p>Archivo no guardado.</p>
                 </div>
                 <div class="modal-footer danger-md">
                     <a data-dismiss="modal" href="#">Cancelar</a>
-                    <a href="Exc.php" class="external">Aceptar</a>
+                    <a href="Horas_Extras.php" class="external">Aceptar</a>
                 </div>
             </div>
         </div>
@@ -114,13 +122,14 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                 alert(data);
-                $("#tabla").html(data);
+                // alert(data);
+                
                 $("#BotonVer").hide();
                 $("#BotonGuardar").show();
                 $("#operacion").val("Guardar");
                 $("#can").hide();
                 $("#regresar").show();
+                $("#tabla").html(data);
             }
         });
     });

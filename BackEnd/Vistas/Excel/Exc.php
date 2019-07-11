@@ -21,6 +21,7 @@
             
                     $numfilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow(); ?>
                     
+                
                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
                         data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar">
                         <tr>
@@ -67,7 +68,7 @@
 
             <!-- data table JS
             ============================================ -->
-            <script src="../../Recursos/js/data-table/bootstrap-table.js"></script>
+            <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
             
         <?php
         }

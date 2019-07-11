@@ -22,7 +22,7 @@
 		$NombreCarpeta = $result['Usuario'];
 		$NombreDocumento = $result['Documento'];
 		
-		unlink('../../VistasU/Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+		unlink('../../VistasU/Documentos/Incapacidades/'.$NombreCarpeta.'/'.$NombreDocumento);
 
 
 

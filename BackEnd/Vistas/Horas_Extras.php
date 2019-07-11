@@ -18,10 +18,10 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Incapacidad</h4>
+                                <h4>Horas Extras</h4>
                                 
                                 
-                                <a href="VAlta_Incapacidad.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
+                                <a href="SubirHoras_Extras.php"><button type="button" class="btn btn-primary" >Subir archivo excel</button></a>
                             
                                 </div>
 							</div>
@@ -46,13 +46,11 @@ include("../Modelo/Conexion.php");
 									</button>
                                     El nombre ya existe
                             </div>
-
-                        
                                 <!--Fin alertas-->
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaIncapacidad"></div> <!-- products will be load here -->
+<div id="TablaHorasExtras"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -62,12 +60,6 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-
-        
-       
-
-
-      
 
 <?php
  include ("../Master/Footer.php");
@@ -84,19 +76,19 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readIncapacidad(); /* it will load products when document loads */
+		readHorasExtras(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdIncapacidad = $(this).data('id');
-			SwalDelete(IdIncapacidad);
+			var IdHorasExtras = $(this).data('id');
+			SwalDelete(IdHorasExtras);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdIncapacidad){
+	function SwalDelete(IdHorasExtras){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -112,15 +104,15 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Incapacidad.php",
+			   		url: "Eliminar/Eliminar_HorasExtras.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdIncapacidad,
+			       	data: 'delete='+IdHorasExtras,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readIncapacidad();
+                     readHorasExtras();
                     
 			     })
 			     .fail(function(){
@@ -133,8 +125,8 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readIncapacidad(){
-		$('#TablaIncapacidad').load('Tablas/TablaIncapacidad.php');	
+    function readHorasExtras(){
+		$('#TablaHorasExtras').load('Tablas/TablaHorasExtras.php');	
 	}
     
 </script> 

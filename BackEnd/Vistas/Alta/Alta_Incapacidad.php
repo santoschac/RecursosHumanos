@@ -36,7 +36,7 @@ $IdPersonal = $_POST['IdPersonal'];
 			$filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
 			$source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 			
-			$directorio = '../../VistasU/Documentos'; //Declaramos un  variable con la ruta donde guardaremos los archivos	
+			$directorio = '../../VistasU/Documentos/Incapacidades/'; //Declaramos un  variable con la ruta donde guardaremos los archivos	
 			$directorio = $directorio.'/'.$CarpetaUsuario;
 			
 			//Validamos si la ruta de destino existe, en caso de no existir la creamos
@@ -48,6 +48,21 @@ $IdPersonal = $_POST['IdPersonal'];
 			$dir=opendir($directorio); //Abrimos el directorio de destino
 			$target_path = $directorio.'/'.$filename; //Indicamos la ruta de destino, as� como el nombre del archivo
 			
+
+
+			$sql3 = 'SELECT i.IdIncapacidad, i.Descripcion, i.Documento, i.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+			from incapacidad i
+			inner join personal p on i.IdPersonal = p.IdPersonal
+			inner join usuario u on p.IdUsuario = u.IdUsuario where Documento = ? and Usuario = ? ';
+    	$sentencia3 = $pdo->prepare($sql3);
+    	$sentencia3 ->execute(array($filename, $CarpetaUsuario  ));
+    	$result = $sentencia3->fetch();
+
+
+		if($result){
+			echo 3;
+		}else{
+
 			//Movemos y validamos que el archivo se haya cargado correctamente
 			//El primer campo es el origen y el segundo el destino
 			if(move_uploaded_file($source, $target_path)) {	
@@ -67,13 +82,10 @@ $IdPersonal = $_POST['IdPersonal'];
 				echo "Ha ocurrido un error, por favor intentelo de nuevo.<br>";
 			}
 			closedir($dir); //Cerramos el directorio de destino
+
+		}
+
 		}
 	}
 
-
-
-	
-	
-
-	
 ?>

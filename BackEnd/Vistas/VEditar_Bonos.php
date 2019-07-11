@@ -88,7 +88,7 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Bono</a></li>
+                                <li class="active"><a href="#description">Actualizar Bono</a></li>
                                 
                             </ul>
                            
@@ -120,12 +120,12 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
                                                             <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
-                                                            <div class="input-group custom-go-button">
+                                                            <div class="form-group">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdBono'])):?><?=$Bonos->Nombre ." ". $Bonos->ApellidoPaterno ." ". $Bonos->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                     maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
                                                             </div>
 
                                                         </div>

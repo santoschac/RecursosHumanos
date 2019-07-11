@@ -75,7 +75,14 @@ if(isset($_GET['Respuesta'])){
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                               No se pudo realizar la solicitud 
+                               Error al realizar la solicitud 
+                            </div>
+
+                            <div class="alert alert-warning alert-mg-b" id="existe" style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                               Existe un archivo con el mismo nombre.
                             </div>
                              
                         <!--Fin alertas-->
@@ -238,8 +245,13 @@ $(document).ready(function(){
                    setTimeout(function(){
                    $("#error").fadeOut();
                    },2000);
-                   //$('#formulario')[0].reset();
- 
+                   }
+                   else if(data==3)
+                   {
+                    $("#existe").fadeIn();
+                   setTimeout(function(){
+                   $("#existe").fadeOut();
+                   },2000);
                    }
 
                }

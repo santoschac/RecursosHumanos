@@ -137,7 +137,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Incapacidad" href="Incapacidad.php"><span class="mini-sub-pro">Incapacidad</span></a></li>
                                 <li><a title="Bonos" href="Bonos.php"><span class="mini-sub-pro">Bonos</span></a></li>
                                 <li><a title="Permisos" href="Permisos.php"><span class="mini-sub-pro">Permisos</span></a></li>
-                                <li><a title="Horas Extras" href="Exc.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
+                                <li><a title="Horas Extras" href="Horas_Extras.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
                                 <li><a title="Accidentes" href="Accidentes.php"><span class="mini-sub-pro">Accidentes</span></a></li>
                             </ul>
                         </li>
@@ -403,10 +403,15 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
             </div>
 
+        <style>
+            #mdialTamanio{
+            width: 50% !important;
+            }
+        </style>
             <!--inicio modal-->
-            <div id="ConfirmarCerrarSecion" class="modal modal-edu-general fullwidth-popup-InformationproModal fade"
+            <div id="ConfirmarCerrarSecion" class="modal modal-edu-general default-popup-PrimaryModal fade"
                 role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog" id="mdialTamanio">
                     <div class="modal-content">
                         <div class="modal-close-area modal-close-df">
                             <!--<a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>-->
@@ -418,7 +423,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 page</p> -->
                         </div>
                         <div class="modal-footer info-md">
-                            <a data-dismiss="modal" href="#">Cancelar</a>
+                            <a data-dismiss="modal"  href="#">Cancelar</a>
                             <a href="../Modelo/Cerrar_Sesion.php">Aceptar</a>
                         </div>
                     </div>

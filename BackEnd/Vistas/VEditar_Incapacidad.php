@@ -108,6 +108,12 @@ if(isset($_GET['IdPersonal'])){
                                   </button>
                                   El  ya existe
                               </div>
+                              <div class="alert alert-warning alert-mg-b" id="existe" style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                               Existe un archivo con el mismo nombre.
+                            </div>
                              <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -340,6 +346,13 @@ $(document).ready(function(){
                         $("#error").fadeIn();
                        setTimeout(function(){
                        $("#error").fadeOut();
+                       },3000);
+                       }
+                       else if(data==3)
+                       {
+                        $("#existe").fadeIn();
+                       setTimeout(function(){
+                       $("#existe").fadeOut();
                        },3000);
                        }
     

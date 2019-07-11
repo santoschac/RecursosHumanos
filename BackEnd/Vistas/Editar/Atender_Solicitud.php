@@ -8,12 +8,12 @@ include('../../Modelo/Conexion.php');
 	
  $IdPersonal = $_POST['IdPersonal'];
 
-	$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+	$sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
 	from personal p
 	inner join usuario u on p.IdUsuario=u.IdUsuario where IdPersonal = ?';
-	$sentencia = $pdo->prepare($sql);
-	$sentencia->execute(array($IdPersonal));
-	$resultado = $sentencia->fetch();
+	$sentencia1 = $pdo->prepare($sql1);
+	$sentencia1->execute(array($IdPersonal));
+	$resultado = $sentencia1->fetch();
 
 	$CarpetaUsuario = $resultado['Usuario'];
 
@@ -25,7 +25,7 @@ include('../../Modelo/Conexion.php');
 			$filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
 			$source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 			
-			$directorio = '../../VistasU/Documentos'; //Declaramos un  variable con la ruta donde guardaremos los archivos	
+			$directorio = '../../VistasU/Documentos/Solicitudes'; //Declaramos un  variable con la ruta donde guardaremos los archivos	
 			$directorio = $directorio.'/'.$CarpetaUsuario;
 			
 			//Validamos si la ruta de destino existe, en caso de no existir la creamos
@@ -37,6 +37,23 @@ include('../../Modelo/Conexion.php');
 			$dir=opendir($directorio); //Abrimos el directorio de destino
 			$target_path = $directorio.'/'.$filename; //Indicamos la ruta de destino, as� como el nombre del archivo
 			
+			
+			
+			$sql3 = 'SELECT s.IdSolicitudes, s.Solicitud,  s.Estatus, s.Documento, s.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
+			from solicitudes s 
+			inner join personal p on s.IdPersonal = p.IdPersonal
+			inner join usuario u on p.IdUsuario = u.IdUsuario where Documento = ? and Usuario = ? ';
+    	$sentencia3 = $pdo->prepare($sql3);
+    	$sentencia3 ->execute(array($filename, $CarpetaUsuario  ));
+    	$result = $sentencia3->fetch();
+
+
+		if($result){
+			echo 3;
+		}else{
+			
+
+			
 			//Movemos y validamos que el archivo se haya cargado correctamente
 			//El primer campo es el origen y el segundo el destino
 			if(move_uploaded_file($source, $target_path)) {	
@@ -47,13 +64,13 @@ include('../../Modelo/Conexion.php');
 					if($_POST['Respuesta'] == "si"){
 
 						// eliminar el archio localmente
-		$sql1 = 'SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, s.IdSolicitudes, s.Solicitud, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, s.VigenteImms, s.Estatus, s.Documento, s.IdPersonal
+		$sql4 = 'SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, s.IdSolicitudes, s.Solicitud, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, s.VigenteImms, s.Estatus, s.Documento, s.IdPersonal
 		from personal p
 		inner join usuario u on p.IdUsuario = u.IdUsuario
 		inner join solicitudes s on p.IdPersonal = s.IdPersonal where IdSolicitudes = ?';
-		$sentencia = $pdo->prepare($sql1);
-		$sentencia->execute(array($IdSolicitudes));
-		$result = $sentencia->fetch();
+		$sentencia4 = $pdo->prepare($sql4);
+		$sentencia4->execute(array($IdSolicitudes));
+		$result = $sentencia4->fetch();
 
 		$NombreCarpeta = $result['Usuario'];
 		$NombreDocumento = $result['Documento'];
@@ -66,20 +83,25 @@ include('../../Modelo/Conexion.php');
 
 
 
-				$sql = 'UPDATE solicitudes SET FechaAtencion=:FechaAtencion, Atendido=:Atendido, Estatus=:Estatus, Documento=:Documento Where IdSolicitudes=:IdSolicitudes';
-				$sentencia=$pdo->prepare($sql);
-				if($sentencia->execute([':FechaAtencion'=>$FechaAtencion, ':Atendido'=>$Atendido, ':Estatus'=>$Estatus, ':Documento'=>$filename, ':IdSolicitudes'=>$IdSolicitudes]))
+				$sql5 = 'UPDATE solicitudes SET FechaAtencion=:FechaAtencion, Atendido=:Atendido, Estatus=:Estatus, Documento=:Documento Where IdSolicitudes=:IdSolicitudes';
+				$sentencia5=$pdo->prepare($sql5);
+				if($sentencia5->execute([':FechaAtencion'=>$FechaAtencion, ':Atendido'=>$Atendido, ':Estatus'=>$Estatus, ':Documento'=>$filename, ':IdSolicitudes'=>$IdSolicitudes]))
 				{
 				echo 1;
 				}else{
 					echo 2;
 				}
 
-				} else {	
-				echo "Ha ocurrido un error, por favor int�ntelo de nuevo.<br>";
-			}
+				}
+				else 
+				{	
+					echo "Ha ocurrido un error, por favor int�ntelo de nuevo.<br>";
+				}
 			closedir($dir); //Cerramos el directorio de destino
+		 }
+
 		}
+			
 	}
 	
 	
