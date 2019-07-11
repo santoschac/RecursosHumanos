@@ -12,7 +12,19 @@ $sentencia = $pdo->prepare($sql);
 $sentencia ->execute([':IdSolicitudes'=>$IdSolicitudes]);
 $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
 
+if(isset($_GET['Respuesta'])){
+    $Respuesta = "si";
+}
+
+
+
 ?>
+
+
+<!-- forms CSS
+	============================================ -->
+    <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
+
 
 <!-- Mobile Menu end -->
 <div class="breadcome-area">
@@ -74,8 +86,10 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
+                                   
                                         <form method="POST" id="formulario" class="add-department">
                                             <div class="row">
+                                            <input type="hidden" name="Respuesta" id="Respuesta" value="<?php if(isset($_GET['Respuesta'])){ echo $Respuesta; }?>">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <input type="hidden" name="IdSolicitudes" id="IdSolicitudes" value="<?php echo $IdSolicitudes?>">
                                                 <div class="form-group">
@@ -135,11 +149,27 @@ $solicitudes = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         
                                                         <input name="Atendido" id="Atendido" type="text" value="<?php echo $_SESSION['Usuario'];?>" class="form-control" readonly>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <label><strong>Documentos</strong></label>
+                                                    <div class="file-upload-inner ts-forms">
+                                                    
+                                                        <div class="input prepend-big-btn">
+                                                        
+                                                            <label class="icon-right" for="prepend-big-btn">
+                                                                <i class="fa fa-download"></i>
+                                                            </label>
+                                                            <div class="file-button">
+                                                                Seleccionar 
+                                                                <input type="file" class="form-control" id="archivo[]" name="archivo[]"  required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                            </div>
+                                                            <input type="text" id="prepend-big-btn"
+                                                                placeholder="          Ningún archivo seleccionado" readonly >
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="form-group">
                                                         <label>Documentos</label>
                                                        
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" >
-                                                     </div>
+                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" required>
+                                                     </div> -->
 
                                                    
 
@@ -182,8 +212,8 @@ $(document).ready(function(){
        var datos = $('#formulario').serialize();
        
        //var formData = new FormData($("#formulario")[0]);
-       //alert(datos);
-      //alert(datos);
+       
+     // alert(datos);
            $.ajax({
                url:"Editar/Atender_Solicitud.php",
                method:'POST',

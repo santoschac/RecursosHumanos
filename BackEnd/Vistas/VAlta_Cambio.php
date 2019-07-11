@@ -2,7 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-$message="";
 
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
@@ -81,15 +80,7 @@ if(isset($_GET['IdPersonal'])){
                                 <li class="active"><a href="#description">Agregar Cambio</a></li>
                                 
                             </ul>
-                            <?php
-                             if(($message=="insertado")):?>
-                                <div class="alert alert-success">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <?= $message;?>
-                                </div>
-                                <?php endif;?>
+                            
                             <!--Alertas-->
                             <div class="alert alert-success" id="exito" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -176,7 +167,7 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                
-                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
+                                                                    <select name="IdPuesto" id="IdPuesto" class="form-control" required>
                                                                     <option value="">Seleccionar</option>
                                                                    <?php   foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
                                                                     echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';
@@ -272,7 +263,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VAlta_Cambio.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_Cambio.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><span class="glyphicon">&#xe013;</span></button><a>
                                                     
                                                 </td>
                                             </tr>

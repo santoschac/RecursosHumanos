@@ -18,7 +18,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Estados</h4>
+                                <h4>Estados</h4>
                                 
                                 <div class="add-product">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button>
@@ -44,7 +44,7 @@ include("../Modelo/Conexion.php");
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    El nombre ya existe
+                                    El estado ya existe
                             </div>
                                 <!--Fin alertas-->
                             <div class="sparkline13-graph">

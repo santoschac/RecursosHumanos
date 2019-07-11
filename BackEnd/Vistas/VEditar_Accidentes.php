@@ -118,11 +118,11 @@ if(isset($_GET['IdPersonal'])){
                                                 <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" name="IdAccidentes" id="IdAccidents" value="<?php echo $IdAccidentes?>">
+                                                        <input type="hidden" name="IdAccidentes" id="IdAccidents" value="<?php echo $IdAccidentes?>">
 
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="form-group">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdAccidentes'])):?><?=$accidentes->Nombre ." ". $accidentes->ApellidoPaterno ." ". $accidentes->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
@@ -322,7 +322,7 @@ if(isset($_GET['IdPersonal'])){
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

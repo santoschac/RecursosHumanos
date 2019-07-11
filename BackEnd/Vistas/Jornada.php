@@ -18,7 +18,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Jornadas</h4>
+                                <h4>Jornadas</h4>
                                 
                                 <div class="add-product">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button>
@@ -111,7 +111,7 @@ include("../Modelo/Conexion.php");
                                                         
 
 														<div class="form-group">
-                                                                <label>Día Fin</label>
+                                                                <label>Día fin</label>
 																<select name="FechaFin" id="FechaFin" class="form-control">
 																			<option value="" selected="" disabled="">Seleccionar</option>
 																			<option value="Lunes">Lunes</option>
@@ -127,7 +127,7 @@ include("../Modelo/Conexion.php");
                                                         
 
 														<div class="form-group">
-															 <label>Hora Fin</label>
+															 <label>Hora fin</label>
 															 <input type="time" name="HoraFin" id="HoraFin" class="form-control" value="" required>
 														</div>
                                                                 

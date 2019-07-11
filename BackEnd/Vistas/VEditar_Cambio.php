@@ -117,9 +117,9 @@ if(isset($_GET['IdPersonal'])){
 
 
                                                         <div class="form-group">
-                                                        <input type="text" name="IdCambio" id="IdCambio" value="<?php echo $IdCambio?>">
+                                                        <input type="hidden" name="IdCambio" id="IdCambio" value="<?php echo $IdCambio?>">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
                                                             <div class="form-group">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdCambio'])):?><?=$cambios->Nombre ." ". $cambios->ApellidoPaterno ." ". $cambios->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
@@ -153,34 +153,31 @@ if(isset($_GET['IdPersonal'])){
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        
+                                                                                                                
                                                         <div class="form-group">
-                                                            <label>Nueva Empresa</label>
-                                                            <?php
-                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
-                                                            $sql->execute();
-                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
-                                                            
-                                                            ?>
-                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
-                                                            <option value="" selected="" disabled="">Seleccionar</option>
-                                                                <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdEmpresa'];?>" <?php if($dato['IdEmpresa']=== $cambios->IdEmpresa): echo'selected'; endif;?>> <?php echo $dato['NombreEmpresa']; ?> </option>
-                                                                <?php } ?>
-                                                            </select>
-
+                                                        <label>Empresa</label>
+                                                        <select name="IdEmpresa" id="IdEmpresa" class="form-control" require>
+                                                        <option value="" selected="" disabled="">Seleccionar</option>
+                                                        <?php foreach($pdo->query('SELECT IdEmpresa, NombreEmpresa from empresa')as $row):?>
+                                                        <option value="<?php echo $row['IdEmpresa']?>" <?php if($row['IdEmpresa']=== $cambios->IdEmpresa): echo'selected'; endif;?>><?php echo $row['NombreEmpresa']?></option>
+                                                                <?php endforeach;?>
+                                                          </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nueva Sucursal</label>
-                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                            <select name="IdSucursal" id="IdSucursal" class="form-control" required>
                                                                 <option value="" selected="" disabled="">Seleccionar</option>
+                                                                <?php foreach($pdo->query('SELECT IdSucursal, NombreSucursal from sucursal')as $row):?>
+                                                                <option value="<?php echo $row['IdSucursal']?>"<?php if($row['IdSucursal']===$cambios->IdSucursal): echo "Selected"; endif;?>><?php echo $row['NombreSucursal']?></option>
+                                                            
+                                                            <?php endforeach;?>
                                                             </select>
                                                         </div>
                                                       
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
                                                                     <select name="IdPuesto" id="IdPuesto" required data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
-                                                                    <option value="">Seleccionar</option>';
+                                                                    <option value="" disabled="">Seleccionar</option>';
                                                                    <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row):?>												
                                                                     <option value="<?php echo $row['IdPuesto']?>" <?php if($row['IdPuesto']=== $cambios->IdPuesto): echo'selected'; endif;?> ><?php echo $row['NombrePuesto']?> </option>
                                                                 <?php endforeach;?>

@@ -1,12 +1,12 @@
 <?php
 include('../../Modelo/Conexion.php');
 
-	$IdSolicitudes = $_POST['IdSolicitudes'];
-	$FechaAtencion = $_POST['FechaAtencion'];
-	$Atendido= $_POST['Atendido'];
-	$Estatus = "Atendido";
+ $IdSolicitudes = $_POST['IdSolicitudes'];
+ $FechaAtencion = $_POST['FechaAtencion'];
+ $Atendido= $_POST['Atendido'];
+ $Estatus = "Atendido";
 	
-	$IdPersonal = $_POST['IdPersonal'];
+ $IdPersonal = $_POST['IdPersonal'];
 
 	$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.Usuario
 	from personal p
@@ -16,7 +16,7 @@ include('../../Modelo/Conexion.php');
 	$resultado = $sentencia->fetch();
 
 	$CarpetaUsuario = $resultado['Usuario'];
-	
+
 	//Como el elemento es un arreglos utilizamos foreach para extraer todos los valores
 	foreach($_FILES["archivo"]['tmp_name'] as $key => $tmp_name)
 	{
@@ -41,6 +41,31 @@ include('../../Modelo/Conexion.php');
 			//El primer campo es el origen y el segundo el destino
 			if(move_uploaded_file($source, $target_path)) {	
 				//echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
+
+				if(isset($_POST['Respuesta'])){
+
+					if($_POST['Respuesta'] == "si"){
+
+						// eliminar el archio localmente
+		$sql1 = 'SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, s.IdSolicitudes, s.Solicitud, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, s.VigenteImms, s.Estatus, s.Documento, s.IdPersonal
+		from personal p
+		inner join usuario u on p.IdUsuario = u.IdUsuario
+		inner join solicitudes s on p.IdPersonal = s.IdPersonal where IdSolicitudes = ?';
+		$sentencia = $pdo->prepare($sql1);
+		$sentencia->execute(array($IdSolicitudes));
+		$result = $sentencia->fetch();
+
+		$NombreCarpeta = $result['Usuario'];
+		$NombreDocumento = $result['Documento'];
+		
+		unlink('../../VistasU/Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+					}
+					
+				}
+				
+
+
+
 				$sql = 'UPDATE solicitudes SET FechaAtencion=:FechaAtencion, Atendido=:Atendido, Estatus=:Estatus, Documento=:Documento Where IdSolicitudes=:IdSolicitudes';
 				$sentencia=$pdo->prepare($sql);
 				if($sentencia->execute([':FechaAtencion'=>$FechaAtencion, ':Atendido'=>$Atendido, ':Estatus'=>$Estatus, ':Documento'=>$filename, ':IdSolicitudes'=>$IdSolicitudes]))

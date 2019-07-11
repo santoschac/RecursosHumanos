@@ -39,6 +39,11 @@ if(isset($_GET['IdPersonal'])){
  <!-- chosen CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
+ 
+ <!-- forms CSS
+	============================================ -->
+    <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
+
   
     
     
@@ -154,10 +159,22 @@ if(isset($_GET['IdPersonal'])){
                                                         <textarea name="Descripcion" id="Descripcion"
                                                             placeholder="Descripcion" required="" maxlength="200" ></textarea>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Documentos</label>                                                       
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" >
-                                                     </div>
+                                                    <label><strong>Documentos</strong></label>
+                                                    <div class="file-upload-inner ts-forms">
+                                                    
+                                                        <div class="input prepend-big-btn">
+                                                        
+                                                            <label class="icon-right" for="prepend-big-btn">
+                                                                <i class="fa fa-download"></i>
+                                                            </label>
+                                                            <div class="file-button">
+                                                                Seleccionar 
+                                                                <input type="file" class="form-control" id="archivo[]" name="archivo[]" required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                            </div>
+                                                            <input type="text" id="prepend-big-btn"
+                                                                placeholder="          Ningún archivo seleccionado" readonly >
+                                                        </div>
+                                                    </div>
                                                            
                                                         </div>
                                                         
@@ -240,7 +257,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VAlta_Incapacidad.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_Incapacidad.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><span class="glyphicon glyphicon-ok"></span></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -301,7 +318,7 @@ $(document).ready(function(){
                    processData:false,
                    success:function(data)
                    {
-                    // alert(data);
+                     alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

@@ -114,7 +114,7 @@ include("../Modelo/Conexion.php");
 																	</select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Nivel Academico</label>
+                                                                    <label>Nivel Académico</label>
                                                                     <input name="NivelAcademico" id="NivelAcademico" type="text" class="form-control"
                                                                         placeholder="Nivel Academico" maxlength="60" required>
                                                                 </div>
@@ -190,7 +190,7 @@ include("../Modelo/Conexion.php");
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
                                                             <div class="form-group">
-                                                                <label>Pais</label>
+                                                                <label>País</label>
 
                                                                 <select name="IdPais" id="IdPais" class="form-control" required>
                                                                     <option value=" " selected="" disabled="" >Seleccionar</option>
@@ -373,10 +373,10 @@ include("../Modelo/Conexion.php");
                                                                     echo'</select>';
                                                                 ?>
                                                             </div> -->
-                                                            <div class="chosen-select-single mg-b-20">
+                                                            <div class="form-group">
                                                                 <label><strong>Puesto</strong></label>
                                                                  
-                                                                    <select name="IdPuesto" id="IdPuesto" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
+                                                                    <select name="IdPuesto" id="IdPuesto" class="form-control" required>
                                                                     <option value="">Seleccionar</option>
                                                                   <?php  foreach ($pdo->query('SELECT IdPuesto, NombrePuesto FROM puestos') as $row) {													
                                                                     echo '<option value="'.$row['IdPuesto'].'">'.$row['NombrePuesto'].'</option>';

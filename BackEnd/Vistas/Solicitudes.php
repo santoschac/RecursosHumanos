@@ -17,7 +17,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div >
-                                    <h4>Lista de Solicitudes</h4>
+                                    <h4>Solicitudes</h4>
                                     <div class="add-product">
                                     <a href="Solicitudes_Historial.php">Historial</a>
                                    </div>

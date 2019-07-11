@@ -17,7 +17,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div >
-                                    <h4>Lista de cursos</h4>
+                                    <h4>Cursos</h4>
 									
 									<a href="VAlta_Curso.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             

@@ -42,7 +42,23 @@ $IdPersonal = $_POST['IdPersonal'];
 			//El primer campo es el origen y el segundo el destino
 			if(move_uploaded_file($source, $target_path)) {	
 				//echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
-      
+	  
+				
+				// eliminar el archio localmente
+		$sql1 = 'SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, i.IdIncapacidad, i.DiaInicio, i.DiaFinal, i.Descripcion, i.Documento
+		from personal p
+		inner join usuario u on p.IdUsuario = u.IdUsuario
+		inner join incapacidad i on p.IdPersonal = i.IdPersonal where IdIncapacidad = ?';
+		$sentencia = $pdo->prepare($sql1);
+		$sentencia->execute(array($IdIncapacidad));
+		$result = $sentencia->fetch();
+
+		$NombreCarpeta = $result['Usuario'];
+		$NombreDocumento = $result['Documento'];
+		
+		unlink('../../VistasU/Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+
+		
                 $sql = 'UPDATE incapacidad SET DiaInicio=:DiaInicio, DiaFinal=:DiaFinal, Descripcion=:Descripcion, Documento=:Documento, IdPersonal=:IdPersonal where IdIncapacidad=:IdIncapacidad';
 				$statement = $pdo->prepare($sql);
 						if($statement->execute([':DiaInicio'=> $DiaInicio, ':DiaFinal'=>$DiaFinal, ':Descripcion' => $Descripcion, ':Documento'=>$filename, ':IdPersonal'=>$IdPersonal, ':IdIncapacidad'=>$IdIncapacidad]))

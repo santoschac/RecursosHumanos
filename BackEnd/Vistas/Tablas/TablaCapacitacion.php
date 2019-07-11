@@ -29,7 +29,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Personal</th>
                                             <th>Curso</th>
                                             <th>Evaluación</th>
-                                            <th>Fecha capacitación</th>                                                              
+                                            <th>Fecha</th>                                                              
                                                                  
                                             <th>Configuración</th>
                                             </tr>

@@ -18,7 +18,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Puestos</h4>
+                                <h4>Puestos</h4>
                                 
                                 <div class="add-product">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button>

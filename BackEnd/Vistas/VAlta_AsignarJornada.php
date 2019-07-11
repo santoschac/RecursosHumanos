@@ -265,7 +265,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VAlta_AsignarJornada.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_AsignarJornada.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><span class="glyphicon glyphicon-ok"></span></button><a>
                                                     
                                                 </td>
                                             </tr>

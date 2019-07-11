@@ -1,10 +1,8 @@
 <?php include "../Master/Header.php"; ?>
 
-<!-- normalize CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
-
+<!-- forms CSS
+	============================================ -->
+    <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
@@ -32,21 +30,21 @@
                                     <label class="login2 pull-right pull-right-pro">Agregar Archivo Excel</label>
                                 </div>
                                 <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="file-upload-inner ts-forms">
-                                        <div class="input prepend-big-btn">
-                                            <!-- <label class="icon-right" for="prepend-big-btn">
-                                                <i class="fa fa-download"></i>
-                                            </label> -->
-                                            <div class="file-button">
-                                                Agregar
-                                                <input type="file" name="excel"
-                                                    onchange="document.getElementById('prepend-big-btn').value = this.value;"
-                                                    accept=".xlsx" required>
-                                            </div>
-                                            <!-- <input type="text" id="prepend-big-btn"
-                                                placeholder="No se ha seleccionado ningun archivo"> -->
-                                        </div>
-                                    </div>
+                                <div class="file-upload-inner ts-forms">
+                                                    
+                                                    <div class="input prepend-big-btn">
+                                                    
+                                                        <label class="icon-right" for="prepend-big-btn">
+                                                            <i class="fa fa-download"></i>
+                                                        </label>
+                                                        <div class="file-button">
+                                                            Seleccionar 
+                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]"  required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                        </div>
+                                                        <input type="text" id="prepend-big-btn"
+                                                            placeholder="          Ningún archivo seleccionado" readonly >
+                                                    </div>
+                                                </div>
                                 </div>
                                 <input type="hidden" name="operacion" id="operacion" value="Agregar">
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">

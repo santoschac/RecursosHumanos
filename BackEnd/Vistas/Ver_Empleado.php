@@ -134,7 +134,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                   
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Nivel Academico</label>
+                                                                    <label>Nivel Académico</label>
                                                                     <input name="NivelAcademico" id="NivelAcademico" value="<?= $empleado->NivelAcademico?>" type="text" class="form-control" readonly>
                                                                 </div>
                                                                 <div class="form-group">
@@ -200,7 +200,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
                                                             <div class="form-group">
-                                                                <label>Pais</label>
+                                                                <label>País</label>
                                                                 <input name="Pais" id="Pais" class="form-control" value="<?= $empleado->NombrePais?>" readonly>
 
                                                                

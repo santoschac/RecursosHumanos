@@ -51,6 +51,9 @@ if(isset($_GET['IdPersonal'])){
  <!-- chosen CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
+<!-- forms CSS
+	============================================ -->
+    <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
   
     
     
@@ -70,7 +73,7 @@ if(isset($_GET['IdPersonal'])){
                                             </li>
                                             <li><a href="Incapacidad.php">Incapacidad</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Agregar Incapacidad</span>
+                                            <li><span class="bread-blod">Actualizar Incapacidad</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,7 +91,7 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Agregar Incapacidad</a></li>
+                                <li class="active"><a href="#description">Actualizar Incapacidad</a></li>
                                 
                             </ul>
                             
@@ -114,17 +117,15 @@ if(isset($_GET['IdPersonal'])){
                                                 <form  method="POST" id="formulario" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-<input type="text" name="IdIncapacidad" id="IdIncapacidad" value="<?php echo $IdIncapacidad?>">
+                                                        <input type="hidden" name="IdIncapacidad" id="IdIncapacidad" value="<?php echo $IdIncapacidad?>">
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
-                                                            <input type="text" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?>" >
-                                                            <div class="input-group custom-go-button">
-                                                                <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->Nombre ." ". $Incapacidades->ApellidoPaterno ." ". $Incapacidades->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Incapacidades->IdPersonal;?><?php endif;?>" >
+                                                            <div class="form-group">
+                                                                <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal" required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->Nombre ." ". $Incapacidades->ApellidoPaterno ." ". $Incapacidades->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                     maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
                                                             </div>
 
                                                         </div>
@@ -166,10 +167,22 @@ required="" value="<?php if(isset($_GET['IdIncapacidad'])):?><?=$Incapacidades->
                                                         <textarea name="Descripcion" id="Descripcion"
                                                             placeholder="Descripcion" required="" maxlength="200" ><?= $Incapacidades->Descripcion?></textarea>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Documentos</label>                                                       
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" >
-                                                     </div>
+                                                    <label><strong>Documentos</strong></label>
+                                                    <div class="file-upload-inner ts-forms">
+                                                    
+                                                        <div class="input prepend-big-btn">
+                                                        
+                                                            <label class="icon-right" for="prepend-big-btn">
+                                                                <i class="fa fa-download"></i>
+                                                            </label>
+                                                            <div class="file-button">
+                                                                Seleccionar 
+                                                                <input type="file" class="form-control" id="archivo[]" name="archivo[]" required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                            </div>
+                                                            <input type="text" id="prepend-big-btn"
+                                                                placeholder="          Ningún archivo seleccionado" readonly >
+                                                        </div>
+                                                    </div>
                                                            
                                                         </div>
                                                         

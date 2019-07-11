@@ -118,13 +118,13 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group">
                                                             <label class="control-label" for="Personal">Personal</label>
 <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(!isset($_GET['IdPersonal'])):?><?=$asignarjornada->IdPersonal?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
-                                                            <div class="input-group custom-go-button">
+                                                           
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(!isset($_GET['IdPersonal'])):?><?=$asignarjornada->Nombre ." " . $asignarjornada->ApellidoPaterno ." " . $asignarjornada->ApellidoMaterno?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                     maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
-                                                            </div>
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
+                                                           
 
                                                         </div>
 
@@ -149,7 +149,7 @@ if(isset($_GET['IdPersonal'])){
                                                                 <label><strong>Jornadas</strong></label>
                                                                  
                                                                     <select name="IdJornada" id="IdJornada" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
-                                                                    <option value="">Seleccionar</option>
+                                                                    <option value="" disabled="">Seleccionar</option>
                                                                   <?php  foreach ($pdo->query('SELECT IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,"%r") as HoraInicio, TIME_FORMAT(HoraFin,"%r") as HoraFin from jornada') as $row):?>													
                                                                     <option value="<?php echo $row['IdJornada']?>" <?php if($row['IdJornada'] === $asignarjornada->IdJornada): echo "selected"; endif; ?>><?php echo $row['FechaInicio'] ." de " . $row['FechaFin'] ." de ". $row['HoraInicio']." a ". $row['HoraFin'];?></option>
                                                                     <?php  endforeach;?>

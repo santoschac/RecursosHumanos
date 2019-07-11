@@ -309,7 +309,7 @@ if(isset($_GET['IdPersonal'])){
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

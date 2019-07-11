@@ -28,7 +28,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                             <th>No</th>
                                             <th>Personal</th>
-                                            <th>Fecha inicio</th>
+                                            <th>Fecha de inicio</th>
                                             <th>Motivo de cambio</th>
                                             <th>Empresa</th>
                                             <th>Sucursal</th>                                                              

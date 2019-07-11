@@ -18,7 +18,7 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Lista de Cambios</h4>
+                                <h4>Cambios</h4>
                                 
                                 
                                 <a href="VAlta_Cambio.php"><button type="button" class="btn btn-primary" >Agregar</button></a>

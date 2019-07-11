@@ -22,7 +22,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Pais</th>
+                                            <th>País</th>
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>

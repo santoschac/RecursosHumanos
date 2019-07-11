@@ -54,7 +54,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Documento']; ?></td>
                                                 <td><a href="../VistasU/Documentos/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
                                                 <td>
-                                                <a href="Atender_Solicitud.php?IdSolicitudes=<?php echo $dato['IdSolicitudes']; ?>"><button data-toggle="tooltip" title="Atender" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="Atender_Solicitud.php?IdSolicitudes=<?php echo $dato['IdSolicitudes']; ?>&Respuesta=Si"><button data-toggle="tooltip" title="Atender" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>

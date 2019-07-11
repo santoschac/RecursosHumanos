@@ -64,7 +64,7 @@ $IdPersonal = $_POST['IdPersonal'];
             }
 
 				} else {	
-				echo "Ha ocurrido un error, por favor int�ntelo de nuevo.<br>";
+				echo "Ha ocurrido un error, por favor intentelo de nuevo.<br>";
 			}
 			closedir($dir); //Cerramos el directorio de destino
 		}

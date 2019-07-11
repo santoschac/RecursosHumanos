@@ -117,15 +117,15 @@ if(isset($_GET['IdPersonal'])){
 
                                                         <input type="hidden" name="IdCapacitacion" id="IdCapacitaion" value="<?php echo $IdCapacitacion?>">
                                                         <div class="form-group">
-                                                            <label class="control-label" for="Personal">Personal</label>
+                                                            <label  for="Personal">Personal</label>
                                                             <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
-                                                            <div class="input-group custom-go-button">
+                                                           
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->Nombre ." ". $capacitaciones->ApellidoPaterno ." ". $capacitaciones->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                     maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
-                                                            </div>
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
+                                                            
 
                                                         </div>
 
@@ -256,7 +256,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VAlta_Capacitacion.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VEditar_Capacitacion.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     
                                                 </td>
                                             </tr>

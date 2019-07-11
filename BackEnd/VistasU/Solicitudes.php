@@ -121,7 +121,7 @@ include("../Modelo/Conexion.php");
 														</div>
 														<div class="form-group res-mg-t-15">
 															<label text:aling="left">Descripción</label>
-															<textarea name="Descripcion" id="Descrion" placeholder="Realice una breve descripción" required="" maxlength="200"></textarea>
+															<textarea name="Descripcion" id="Descrion" placeholder="Escriba una breve descripción" required="" maxlength="200"></textarea>
 														</div>
 														
                                                     </div>
