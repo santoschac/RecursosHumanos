@@ -97,8 +97,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 <!--apartir de aqui los puse para ver lo de excel-->
     <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
-
-   
     <!-- normalize CSS para la tabla
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
@@ -367,6 +365,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                     </div>
                                                 </li> 
                                                 <?php endif; ?>
+
+                                                
                                                 
                                              <!--Fin Apartado de notificaciones--->
                                                 <li class="nav-item">
@@ -405,7 +405,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
         <style>
             #mdialTamanio{
-            width: 50% !important;
+            width: 37% !important;
             }
         </style>
             <!--inicio modal-->

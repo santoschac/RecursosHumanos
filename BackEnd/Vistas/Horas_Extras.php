@@ -1,14 +1,9 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
 ?>
         
-   <!-- Sweet Alert
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
-
-
+   
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
          <br/>
@@ -64,13 +59,6 @@ include("../Modelo/Conexion.php");
 <?php
  include ("../Master/Footer.php");
 ?>
-
-<script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 

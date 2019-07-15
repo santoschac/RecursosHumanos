@@ -4,7 +4,7 @@
     require_once "../../ClasesExcel/PHPExcel/IOFactory.php";
     $usuario = $_SESSION['Usuario'];
 
-
+    
     if (isset($_POST['operacion'])) {
         if ($_POST['operacion'] == "Agregar") {
             // print_r ($_FILES);
@@ -69,7 +69,7 @@
             <!-- data table JS
             ============================================ -->
             <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-            
+           
         <?php
         }
 
