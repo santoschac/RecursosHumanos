@@ -18,11 +18,11 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Permisos</h4>
+                                <h4>Permisos por hora</h4>
                                 
                                 
 								
-								<a href="VAlta_Permiso.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
+								<a href="VAlta_PermisoHora.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
 							</div>
@@ -51,7 +51,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaPermisos"></div> <!-- products will be load here -->
+<div id="TablaPermisosHora"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -78,19 +78,19 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readPermisos(); /* it will load products when document loads */
+		readPermisosHora(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdPermiso = $(this).data('id');
-			SwalDelete(IdPermiso);
+			var IdPermisoHora = $(this).data('id');
+			SwalDelete(IdPermisoHora);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdPermiso){
+	function SwalDelete(IdPermisoHora){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -106,15 +106,15 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Permiso.php",
+			   		url: "Eliminar/Eliminar_PermisoHora.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdPermiso,
+			       	data: 'delete='+IdPermisoHora,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readPermisos();
+                     readPermisosHora();
                     
 			     })
 			     .fail(function(){
@@ -127,8 +127,8 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readPermisos(){
-		$('#TablaPermisos').load('Tablas/TablaPermisos.php');	
+    function readPermisosHora(){
+		$('#TablaPermisosHora').load('Tablas/TablaPermisosHora.php');	
 	}
     
 </script> 

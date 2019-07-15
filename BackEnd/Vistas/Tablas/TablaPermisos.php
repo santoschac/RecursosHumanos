@@ -3,7 +3,7 @@
 include("../../Modelo/Conexion.php");
 
 
-$sql= $pdo->prepare("SELECT p.IdPermiso, p.Dia, p.Descripcion, p.Devolucion, p.Estatus, p.IdPersonal, pe.Nombre, pe.ApellidoPaterno, pe.ApellidoMaterno
+$sql= $pdo->prepare("SELECT p.IdPermiso, p.Dia, p.Descripcion, p.Devolucion, p.IdPersonal, pe.Nombre, pe.ApellidoPaterno, pe.ApellidoMaterno
 from permisos p
 inner join personal pe on p.IdPersonal = pe.IdPersonal ");
 $sql->execute();
@@ -27,7 +27,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha solicitada</th>
                                             <th>Permiso</th>
                                             <th>Forma de devolución</th>
-                                            <th>Estatus</th>
+                                            
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -40,10 +40,10 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo date("d-m-Y", strtotime($dato['Dia'] )) ?></td>
                                                 <td><?php echo $dato['Descripcion']; ?></td>
                                                 <td><?php echo $dato['Devolucion']; ?></td>
-                                                <td><?php echo $dato['Estatus']; ?></td>
+                                                
                                                 
                                                <td>
-                                                 <button  title="Editar" class="pd-setting-ed update" name="update" id="<?php echo $dato['IdPermiso']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
+                                               <a href="VEditar_Permiso.php?IdPermiso=<?php echo $dato['IdPermiso']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                             <a id="Eliminar" data-id="<?php echo $dato['IdPermiso']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>

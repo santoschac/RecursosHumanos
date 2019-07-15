@@ -18,11 +18,10 @@ include("../Modelo/Conexion.php");
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Permisos</h4>
+                                <h4>Faltas</h4>
                                 
                                 
-								
-								<a href="VAlta_Permiso.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
+                                <a href="VAlta_Falta.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
 							</div>
@@ -31,7 +30,7 @@ include("../Modelo/Conexion.php");
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    Permiso Aprobada con éxito
+                                    Datos insertados con éxito
                                 </div>
 
                                 <div class="alert alert-success" id="actu"  style="display:none">
@@ -45,13 +44,13 @@ include("../Modelo/Conexion.php");
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-                                    Error al realizar el permiso
+                                    El nombre ya existe
                             </div>
                                 <!--Fin alertas-->
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaPermisos"></div> <!-- products will be load here -->
+<div id="TablaFaltas"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -60,9 +59,10 @@ include("../Modelo/Conexion.php");
                 </div>
             </div>
         </div> <br>
+        <!-- Static Table End -->
+
         
-
-
+       
 
 
       
@@ -73,24 +73,28 @@ include("../Modelo/Conexion.php");
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
+
+
+    
    
+
 <script >
 
 	$(document).ready(function(){
 		
-		readPermisos(); /* it will load products when document loads */
+		readCambio(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
-			var IdPermiso = $(this).data('id');
-			SwalDelete(IdPermiso);
+			var IdFalta = $(this).data('id');
+			SwalDelete(IdFalta);
             e.preventDefault();
             //alert(IdPuesto);
 		});
 		
 	});
 	
-	function SwalDelete(IdPermiso){
+	function SwalDelete(IdFalta){
 		
 		swal({
 			title: '¿Estás seguro?',
@@ -106,15 +110,15 @@ include("../Modelo/Conexion.php");
 			  return new Promise(function(resolve) {
 			        
 			     $.ajax({
-			   		url: "Eliminar/Eliminar_Permiso.php",
+			   		url: "Eliminar/Eliminar_Falta.php",
 			    	type: 'POST',
-			       	data: 'delete='+IdPermiso,
+			       	data: 'delete='+IdFalta,
                     dataType: 'json'
                       
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readPermisos();
+                     readCambio();
                     
 			     })
 			     .fail(function(){
@@ -127,8 +131,9 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readPermisos(){
-		$('#TablaPermisos').load('Tablas/TablaPermisos.php');	
+    function readCambio(){
+		$('#TablaFaltas').load('Tablas/TablaFaltas.php');	
 	}
     
 </script> 
+

@@ -201,24 +201,24 @@ $_SESSION['IdPersonal'] = $empleados->IdPersonal;
                             </div>
                         </div>
                     </div>
-                   <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgred bg-4 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
-                                    <h4 style="color:white">Capacitación</h4>
+                                    <h4 style="color:white">Faltas</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-message"></i>
+                                    <i class="educate-icon educate-professor"></i>
                                 </div>
                                 <div class="m-t-xl widget-cl-4">
                                     
                                     <p style="color:white">
-												Ver los cursos tomados por el empleado.</p>
+												Ver las faltas del empleado.<br/><br/></p>
                                 </div>
-                               <a href="Capacitacion_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                               <a href="Faltas_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     
                 </div>
             </div>

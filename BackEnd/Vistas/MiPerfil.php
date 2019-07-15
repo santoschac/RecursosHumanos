@@ -85,6 +85,7 @@ $resultado = $sentencia->fetch();
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <!-- <form id="add-department" action="#" class="add-department"> -->
+                                        
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
@@ -105,21 +106,24 @@ $resultado = $sentencia->fetch();
                                                         placeholder="Apellido Materno"
                                                         value="<?php echo $resultado['ApellidoMaterno'] ?>" readonly="">
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>Usuario</label>
-                                                    <input name="Usuario" type="text" class="form-control"
-                                                        placeholder="Usuario" value="<?php echo $_SESSION['Usuario'] ?>"
-                                                        readonly="">
                                                 </div>
-                                                <div class="form-group">
-                                                                <label>Contraseña</label>
-                                                                <input  value="<?php echo $_SESSION['Contrasena']?>" type="text" class="form-control" placeholder="Contraseña" readonly="">
-                                                            </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Usuario</label>
+                                                        <input name="Usuario" type="text" class="form-control"
+                                                            placeholder="Usuario"
+                                                            value="<?php echo $_SESSION['Usuario'] ?>" readonly="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Contraseña</label>
+                                                        <input value="<?php echo $_SESSION['Contrasena']?>" type="text"
+                                                            class="form-control" placeholder="Contraseña" readonly="">
+                                                    </div>
+                                                            
 
                                             </div>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="payment-adress">
