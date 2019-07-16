@@ -2,17 +2,18 @@
 <?php
 
 include("../../Modelo/Conexion.php");
+
 session_start();
 $IdPersonal = $_SESSION['IdPersonal'];
-
-$sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
-from cambios c
-inner join puestos pu on c.IdPuesto = pu.IdPuesto
-inner join sucursal s on c.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join personal p on c.IdPersonal = p.IdPersonal where c.IdPersonal = $IdPersonal");
+$sql= $pdo->prepare("SELECT v.IdViaje, v.FechaInicio, v.FechaFin, v.Motivo, v.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
+from viajes v
+inner join personal p on v.IdPersonal = p.IdPersonal
+inner join puestos pu on p.IdPuesto = pu.IdPuesto
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+ join empresa e on s.IdEmpresa = e.IdEmpresa where v.IdPersonal = $IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -29,11 +30,13 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                             <th>No</th>
                                             <th>Personal</th>
-                                            <th>Fecha inicio</th>
-                                            <th>Motivo de cambio</th>
                                             <th>Empresa</th>
-                                            <th>Sucursal</th>                                                              
-                                            <th>Puesto</th>                         
+                                            <th>Sucursal</th> 
+                                            <th>Fecha de inicio</th>
+                                            <th>Fecha final</th>
+                                            <th>Motivo del viaje</th>
+                                                                                                         
+                                            <!--<th>Puesto</th>  --> 
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -41,17 +44,19 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <tbody>
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
-                                                <td><?php echo $dato['IdCambio']; ?></td>
-                                                <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno'] ?></td>
-                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaInicio'])); ?></td>
-                                                <td><?php echo $dato['Descripcion'];?></td>
+                                                <td><?php echo $dato['IdViaje']; ?></td>
+                                                <td><?php echo $dato['Nombre'] ." ".  $dato['ApellidoPaterno'] ." ".  $dato['ApellidoMaterno']?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
-                                                <td><?php echo $dato['NombrePuesto']; ?></td>
+                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaInicio'])); ?></td>
+                                                <td><?php echo date("d-m-Y", strtotime( $dato['FechaFin'])); ?></td>
+                                                <td><?php echo $dato['Motivo'];?></td>
+                                                 
+                                                <!--<td><?php echo $dato['NombrePuesto']; ?></td> -->
                                                
                                                 <td>
-                                                    <a href="VEditar_Cambio.php?IdCambio=<?php echo $dato['IdCambio']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                                    <a id="Eliminar" data-id="<?php echo $dato['IdCambio']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                                                    <a href="VEditar_Viaje.php?IdViaje=<?php echo $dato['IdViaje']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                    <a id="Eliminar" data-id="<?php echo $dato['IdViaje']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

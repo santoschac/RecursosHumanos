@@ -1,143 +1,124 @@
 <?php include "../Master/Header.php"; ?>
 
+<!-- normalize CSS
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
-  <!-- forms CSS
-	============================================ -->
-    <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
 
-<!-- Static Table Start -->
-<div class="data-table-area mg-b-15">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="sparkline13-list">
-                    <div class="sparkline13-hd">
-                        <div class="main-sparkline13-hd" style="text-align: center">
-                            <h1>Subir <span class="table-project-n">archivo</span> de reporte</h1>
-                            <ul class="breadcome-menu">
-                                <li><a href="Index.php" data-toggle="tooltip" title="Regresar al inicio">Inicio</a>
-                                    <span class="bread-slash">/</span>
-                                </li>
-                                <li><span class="bread-blod">Reportes</span>
-                                </li>
-                            </ul>
+ <!-- Static Table Start -->
+ <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            
+                            
+                                    <table id="table" data-toggle="table" data-pagination="false" data-search="false" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="false" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th ></th>
+                                                <th >ID</th>
+                                                <th >Task</th>
+                                                <th >Email</th>
+                                                <th >Phone</th>
+                                                <th >Completed</th>
+                                                <th >Task</th>
+                                                <th >Date</th>
+                                                <th >Price</th>
+                                                <th >Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td></td>
+                                                <td>2</td>
+                                                <td>Graphic Design</td>
+                                                <td>fox@itpark.com</td>
+                                                <td>+8801762067304</td>
+                                                <td class="datatable-ct"><span class="pie">230/360</span>
+                                                </td>
+                                                <td>70%</td>
+                                                <td>fab 2, 2017</td>
+                                                <td>$8756</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>3</td>
+                                                <td>Software Development</td>
+                                                <td>gumre@hash.com</td>
+                                                <td>+8801862067308</td>
+                                                <td class="datatable-ct"><span class="pie">0.42/1.461</span>
+                                                </td>
+                                                <td>5%</td>
+                                                <td>Seb 5, 2017</td>
+                                                <td>$9875</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>4</td>
+                                                <td>Woocommerce</td>
+                                                <td>kyum@frok.com</td>
+                                                <td>+8801962066547</td>
+                                                <td class="datatable-ct"><span class="pie">2,7</span>
+                                                </td>
+                                                <td>15%</td>
+                                                <td>Oct 10, 2017</td>
+                                                <td>$3254</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>5</td>
+                                                <td>Joomla</td>
+                                                <td>jams@game.com</td>
+                                                <td>+8801962098745</td>
+                                                <td class="datatable-ct"><span class="pie">200,133</span>
+                                                </td>
+                                                <td>80%</td>
+                                                <td>Nov 20, 2017</td>
+                                                <td>$58745</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>6</td>
+                                                <td>Wordpress</td>
+                                                <td>flat@yem.com</td>
+                                                <td>+8801962254781</td>
+                                                <td class="datatable-ct"><span class="pie">0.42,1.051</span>
+                                                </td>
+                                                <td>30%</td>
+                                                <td>Aug 25, 2017</td>
+                                                <td>$789879</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                           
+
+                                            
+                                        </tbody>
+                                    </table>
+                                
+                            </div>
                         </div>
-                    </div> <br> <br>
-                    <!-- Formulario -->
-                    <form id="frmExcel1" action="../Recursos/Exc.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-group-inner">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                    <label class="login2 pull-right pull-right-pro">Agregar Archivo Excel</label>
-                                </div>
-                                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="file-upload-inner ts-forms">
-                                        <div class="input prepend-big-btn">
-                                            <label class="icon-right" for="prepend-big-btn">
-                                                <i class="fa fa-download"></i>
-                                            </label>
-                                            <div class="file-button">
-                                                Agregar
-                                                <input type="file" name="excel"
-                                                    onchange="document.getElementById('prepend-big-btn').value = this.value;"
-                                                    accept=".xlsx" required>
-                                            </div>
-                                            <input type="text" id="prepend-big-btn"
-                                                placeholder="No se ha seleccionado ningun archivo">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="operacion" id="operacion" value="Agregar">
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                    <button type="submit" id="BotonVer" class="btn btn-custon-rounded-two btn-success">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                        Agregar
-                                    </button>
-                                    <button type="submit" id="BotonGuardar" hidden class="btn btn-custon-rounded-two btn-success">
-                                        <i class="fa fa-save" aria-hidden="true"></i>
-                                        Guardar
-                                    </button>
-                                    <a id="can" class="btn btn-custon-rounded-two btn-danger external" href="../Interfaz/Index.php">
-                                        <i class="fa fa-times edu-danger-error" aria-hidden="true"></i>
-                                        Cancelar
-                                    </a>
-                                    <button type="button" id="regresar" hidden
-                                        class="btn btn-custon-rounded-two btn-danger"
-                                        data-toggle="modal" data-target="#Cancelar">
-                                        <i class="fa fa-times edu-danger-error" aria-hidden="true"></i>
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </div> <br> <br>
-                        </div>
-                    </form>
-                    <br>
-                    <div id="tabla" class="datatable-dashv1-list custom-datatable-overright">
-
                     </div>
                 </div>
             </div>
         </div>
-    </div> <br>
+<?php include "../Master/Footer.php"; ?>
 
-    <!-- Modal Cancelar -->
-    <div id="Cancelar" class="modal modal-edu-general FullColor-popup-DangerModal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-close-area modal-close-df">
-                    <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
-                </div>
-                <div class="modal-body">
-                    <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
-                    <h2>Cancelar!</h2>
-                    <p>¿Está seguro que desea cancelar?, el archivo aun no se guarda</p>
-                </div>
-                <div class="modal-footer danger-md">
-                    <a data-dismiss="modal" href="#">Cancelar</a>
-                    <a href="Exc.php" class="external">Aceptar</a>
-                </div>
-            </div>
-        </div>
-    </div>
+ <!-- data table JS
+		============================================ -->
+        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
-    <?php include "../Master/Footer.php"; ?>
-
-    <script>
-    // Agregar
-    $(document).on('submit', '#frmExcel1', function(event) {
-        event.preventDefault();
-        var datos = $('#frmExcel1').serialize();
-        // alert(datos);
-        $.ajax({
-            url: "../Recursos/Exc.php",
-            method: 'POST',
-            data: new FormData(this),
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                alert(data);
-                $("#tabla").html(data);
-                $("#BotonVer").hide();
-                $("#BotonGuardar").show();
-                $("#operacion").val("Guardar");
-                $("#can").hide();
-                $("#regresar").show();
-            }
-        });
-    });
-    </script>
-
-
-    <!-- Script boton a -->
-    <script type="text/javascript">
-
-        $(document).ready(function(){
-            $("a.external").click(function() {
-                url = $(this).attr("href");
-                window.open(url,'_blank');
-                return false;
-            });
-            
-            $("a.external").off('click');
-        });
-    </script>
+        <script src="../Recursos/js/data-table/tableExport.js"></script>
+        <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

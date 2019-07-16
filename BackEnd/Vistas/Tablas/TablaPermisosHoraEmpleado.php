@@ -2,13 +2,14 @@
 <?php
 include("../../Modelo/Conexion.php");
 
-
+session_start();
+$IdPersonal = $_SESSION['IdPersonal'];
 $sql= $pdo->prepare("SELECT pe.IdPermisoHora, pe.Fecha, TIME_FORMAT(pe.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(pe.HoraFin, '%H:%i %p') as HoraFin, pe.Motivo, pe.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa
 from permisoshora pe
 inner join personal p on pe.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto = pu.IdPuesto
 inner join sucursal s on p.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa");
+inner join empresa e on s.IdEmpresa = e.IdEmpresa where pe.IdPersonal = $IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 

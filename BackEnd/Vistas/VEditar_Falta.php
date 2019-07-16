@@ -165,7 +165,7 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
                                                                 <br/>
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
                                                                     <a href="Faltas.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                             </div>
                                                         </div>

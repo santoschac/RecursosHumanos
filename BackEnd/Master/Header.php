@@ -139,6 +139,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Horas Extras" href="Horas_Extras.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
                                 <li><a title="Accidentes" href="Accidentes.php"><span class="mini-sub-pro">Accidentes</span></a></li>
                                 <li><a title="Faltas" href="Faltas.php"><span class="mini-sub-pro">Faltas</span></a></li>
+                                <li><a title="Viajes" href="Viajes.php"><span class="mini-sub-pro">Viajes</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -195,18 +196,19 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
             <?php if($_SESSION['IdTipoUsuario']==2):?>
             
             <ul class="metismenu" id="menu1">
-            <li>
-                            <a title="Solicitud"  href="../VistasU/Solicitudes.php" aria-expanded="false"><span
-                                    class="educate-icon educate-data-table icon-wrap"></span> <span
-                                    class="mini-click-non">Solicitudes</span></a>
-                            
-                        </li>
-                        <li>
-                            <a title="Permisos"  href="../VistasU/Permisos.php" aria-expanded="false"><span
-                                    class="educate-icon educate-professor icon-wrap"></span> <span
-                                    class="mini-click-non">Permisos</span></a>
-                            
-                        </li>
+                <li>
+                    <a title="Solicitud" href="../VistasU/Solicitudes.php" aria-expanded="false"><span
+                            class="educate-icon educate-data-table icon-wrap"></span> <span
+                            class="mini-click-non">Solicitudes</span></a>
+
+                </li>
+                <!-- <li>
+                                <a title="Permisos"  href="../VistasU/Permisos.php" aria-expanded="false">
+                                    <span class="educate-icon educate-professor icon-wrap"></span> 
+                                    <span class="mini-click-non">Permisos</span></a>
+                                
+                            </li> -->
+                
             </ul>
 
             <?php endif;?>

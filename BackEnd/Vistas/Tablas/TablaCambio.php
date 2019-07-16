@@ -21,9 +21,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
  
-                                                         
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                     
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true"  data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
                                             <th>No</th>
@@ -59,7 +59,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 
 
         
-        
 
 
 
@@ -67,18 +66,18 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
         
         <!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
+    <!-- <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
     
+    <script src="../Recursos/js/data-table/tableExport.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script> -->
 
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+    <!-- data table JS
+		============================================ -->
+        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+    <script src="../Recursos/js/data-table/tableExport.js"></script>
+    <script src="../Recursos/js/data-table/data-table-active.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-editable.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-editable.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="../Recursos/js/data-table/colResizable-1.5.source.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

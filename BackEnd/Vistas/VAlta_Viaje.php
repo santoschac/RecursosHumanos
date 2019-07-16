@@ -3,17 +3,6 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-$IdCapacitacion = $_GET['IdCapacitacion'];
-$sql1 = 'SELECT c.IdCapacitacion, c.Evaluacion, c.IdPersonal, c.IdCurso, c.FechaCapacitacion, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
-from capacitacion c 
-inner join personal p on c.IdPersonal = p.IdPersonal
-inner join puestos pu on p.IdPuesto = pu.IdPuesto
-inner join sucursal s on p.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa where IdCapacitacion = :IdCapacitacion';
-$sentencia=$pdo->prepare($sql1);
-$sentencia->execute([':IdCapacitacion'=>$IdCapacitacion]);
-$capacitaciones = $sentencia->fetch(PDO::FETCH_OBJ);
-
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
@@ -68,9 +57,9 @@ if(isset($_GET['IdPersonal'])){
                                         <ul class="breadcome-menu">
                                             <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><a href="Capacitacion.php">Capacitación</a> <span class="bread-slash">/</span>
+                                            <li><a href="Viajes.php">Viajes</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Actualizar Capacitación</span>
+                                            <li><span class="bread-blod">Agregar viaje</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -88,7 +77,7 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description">Actualizar Capacitación</a></li>
+                                <li class="active"><a href="#description">Agregar Viaje</a></li>
                                 
                             </ul>
                             
@@ -97,13 +86,13 @@ if(isset($_GET['IdPersonal'])){
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos actualizados con éxito
+                                  Datos insertados con éxito
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El  ya existe
+                                  Error al insertar
                               </div>
                              <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -115,31 +104,31 @@ if(isset($_GET['IdPersonal'])){
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                                                        <input type="hidden" name="IdCapacitacion" id="IdCapacitaion" value="<?php echo $IdCapacitacion?>">
+
                                                         <div class="form-group">
-                                                            <label  for="Personal">Personal</label>
-                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->IdPersonal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
-                                                           
+                                                            <label class="control-label" for="Personal">Personal</label>
+                                                            <input type="hidden" name="IdPersonal" id="IdPersonal" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->IdPersonal;?><?php endif;?>" >
+                                                            <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
-                                                                    required="" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->Nombre ." ". $capacitaciones->ApellidoPaterno ." ". $capacitaciones->ApellidoMaterno;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                     maxlength="60" readonly=""><!--<span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                    required="" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
+                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
-                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a> -->
-                                                            
+                                                                    class="glyphicon glyphicon-zoom-in"></span></button></span></a>
+                                                            </div>
 
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Empresa</label>
-                                                            <input name="Empresa" id="Empresa" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->NombreEmpresa;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
-                                                            <input name="Sucursal" id="Sucursal" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->NombreSucursal;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto</label>
-                                                            <input name="Puesto" id="Puesto" value="<?php if(isset($_GET['IdCapacitacion'])):?><?=$capacitaciones->NombrePuesto;?><?php endif;?><?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
                                                         
                                                                
@@ -147,43 +136,35 @@ if(isset($_GET['IdPersonal'])){
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group data-custon-pick">
-                                                            <label><strong>Fecha</strong></label>
+                                                            <label><strong>Fecha Inicio</strong></label>
                                                             <div class="input-group date">
                                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaCapacitacion" id="FechaCapacitacion" class="form-control" value="<?=  date("Y-m-d",  strtotime($capacitaciones->FechaCapacitacion)); ?>">
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Curso</label>
-                                                            <?php
-                                                            $sql = $pdo->prepare('SELECT IdCurso, Nombre FROM cursos') ;
-                                                            $sql->execute();
-                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
-                                                            
-                                                            ?>
-                                                            <select name="IdCurso" id="IdCurso" class="form-control" required>
-                                                            <option value="" selected="" disabled="">Seleccionar</option>
-                                                                <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdCurso'];?>" <?php if($dato['IdCurso']==$capacitaciones->IdCurso): echo "Selected"; endif;?>> <?php echo $dato['Nombre']; ?> </option>
-                                                                <?php } ?>
-                                                            </select>
-
+                                                        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Final</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaFin" id="FechaFin" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
                                                         </div>
+                                                        
                                                         <div class="form-group res-mg-t-15">
-                                                                    <label>Evaluación</label>
-                                                                    <textarea name="Evaluacion" id="Evaluacion" placeholder="Describa la evaluación" required="" maxlength="200"><?= $capacitaciones->Evaluacion?></textarea>
-                                                         </div>
-                                                       
-                                                                
+                                                        <label>Motivo</label>
+                                                        <textarea name="Motivo" id="Motivo"
+                                                            placeholder="Describa el motivo" required="" maxlength="200" ></textarea>
+                                                    </div>
                                                            
                                                         </div>
+                                                        
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
                                                                 <br/>
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
-                                                                    <a href="Capacitacion.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                                                                    <a href="Viajes.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -256,7 +237,7 @@ if(isset($_GET['IdPersonal'])){
                                                 <td><?php echo $dato['Departamento']; ?></td>
                                                 
                                                 <td>
-                                                <a href="VEditar_Capacitacion.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
+                                                <a href="VAlta_Viaje.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><span class="glyphicon">&#xe013;</span></button><a>
                                                     
                                                 </td>
                                             </tr>
@@ -300,26 +281,23 @@ if(isset($_GET['IdPersonal'])){
         <script src="../Recursos/js/chosen/chosen.jquery.js"></script>
     <script src="../Recursos/js/chosen/chosen-active.js"></script>
     
-    <script type="text/javascript" language="javascript">
-    
-
-    $(document).ready(function(){
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
        
-
-       $(document).on('submit', '#formulario', function(event){
+ $(document).on('submit', '#formulario', function(event){
            event.preventDefault();
            var datos = $('#formulario').serialize();
 //alert(datos);
 
                $.ajax({
-                   url:"Editar/Editar_Capacitacion.php",
+                   url:"Alta/Alta_Viaje.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
                    processData:false,
                    success:function(data)
                    {
-                    //alert(data);
+                    // alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){
