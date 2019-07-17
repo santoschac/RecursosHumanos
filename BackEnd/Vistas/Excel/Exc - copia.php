@@ -85,14 +85,14 @@
     
                 $numfilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
     
-                for ($i=1; $i <= $numfilas ; $i++) { 
+                for ($i=2; $i <= $numfilas ; $i++) { 
 
-                    $cod = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-                    $nom = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                    $horas = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                    $fecha = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(); 
+                    $cod = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue(); $cod=strtoupper($cod);
+                    $nom = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue(); $nom=strtoupper($nom);
+                    $horas = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue(); $horas=strtoupper($horas);
+                    $fecha = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue(); $fecha=strtoupper($fecha);
+                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(); $horainicio=strtoupper($horainicio);
+                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(); $horafinal=strtoupper($horafinal);
                    
 
                     $sql_agregar = "INSERT INTO horasextras (Codigo, Nombre, HorasTrabajadas, Fecha, HoraInicio, HoraFinal) 
@@ -101,9 +101,8 @@
                     $sentencia_agregar->execute(array($sql_agregar));
 
                 }
-          
 
-                if ($sentencia_agregar){ ?>
+                if ($sentencia_agregar->execute(array($cod, $nom, $horas, $fecha, $horainicio, $horafinal))) { ?>
                     <script>
                         Swal.fire({
                             position: 'top-end',

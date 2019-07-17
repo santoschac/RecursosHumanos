@@ -75,8 +75,4 @@ include("../../Modelo/Conexion.php");
         }  
        
   }
-
-
-   
-
 ?>

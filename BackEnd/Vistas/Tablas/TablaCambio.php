@@ -66,18 +66,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
         
         <!-- data table JS
 		============================================ -->
-    <!-- <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
     
     <script src="../Recursos/js/data-table/tableExport.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script> -->
-
-    <!-- data table JS
-		============================================ -->
-        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-    <script src="../Recursos/js/data-table/tableExport.js"></script>
-    <script src="../Recursos/js/data-table/data-table-active.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-editable.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-editable.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-resizable.js"></script>
-    <script src="../Recursos/js/data-table/colResizable-1.5.source.js"></script>
     <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>
+
+   

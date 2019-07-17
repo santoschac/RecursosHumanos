@@ -131,11 +131,11 @@ include("../Modelo/Conexion.php");
                                                                
                                                                 <div class="form-group">
                                                                     <label>Curp</label>
-                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" required>
+                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" >
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>IMSS</label>
-                                                                    <input name="Imss" id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11" required>
+                                                                    <input name="Imss" id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11">
                                                                 </div>
                                                                 
                                                                 <div class="form-group">
@@ -216,7 +216,7 @@ include("../Modelo/Conexion.php");
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Delegación</label>
-                                                                    <input name="Delegacion" id="Delegacion" type="text" class="form-control" placeholder="Delegacion" maxlength="49"  required>
+                                                                    <input name="Delegacion" id="Delegacion" type="text" class="form-control" placeholder="Delegacion" maxlength="49" >
                                                                 </div>
                                                                 
                                                                 
@@ -226,16 +226,16 @@ include("../Modelo/Conexion.php");
                                                             
                                                             <div class="form-group">
                                                                 <label>Código Postal</label>
-                                                                    <input name="CodigoPostal" id="CodigoPostal" type="text" class="form-control" placeholder="Código Postal" maxlength="5" onkeypress="return numeros(event)" required>
+                                                                    <input name="CodigoPostal" id="CodigoPostal" type="text" class="form-control" placeholder="Código Postal" maxlength="5" onkeypress="return numeros(event)">
                                                                 </div>
                                                                
                                                                 <div class="form-group">
                                                                 <label>Colonia</label>
-                                                                    <input name="Colonia" id="Colonia" type="text" class="form-control" placeholder="Colonia" maxlength="70" required>
+                                                                    <input name="Colonia" id="Colonia" type="text" class="form-control" placeholder="Colonia" maxlength="70">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Dirección</label>
-                                                                    <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
+                                                                    <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70">
                                                                 </div>
                                                             
                                                                
@@ -306,20 +306,19 @@ include("../Modelo/Conexion.php");
                                                            
                                                                 <div class="form-group">
                                                                 <label>Departamento</label>
-                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60" required>
+                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sueldo Diario</label>
-                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required>
+                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
-                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required>
+                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control"
-                                                                        placeholder="Sueldo Actual" maxlenght="10" required>
+                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10">
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -556,6 +555,7 @@ $(document).ready(function () {
            event.preventDefault();
            var datos = $('#formulario').serialize();
 
+alert(datos);
 
                $.ajax({
                    url:"Alta/Alta_Empleado.php",
@@ -565,7 +565,7 @@ $(document).ready(function () {
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
+                     alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

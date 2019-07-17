@@ -60,7 +60,7 @@ include("../Modelo/Conexion.php");
  include ("../Master/Footer.php");
 ?>
 
-<script >
+<script>
 
 	$(document).ready(function(){
 		
@@ -71,7 +71,7 @@ include("../Modelo/Conexion.php");
 			var IdHorasExtras = $(this).data('id');
 			SwalDelete(IdHorasExtras);
             e.preventDefault();
-            //alert(IdPuesto);
+            //alert(IdHorasExtras);
 		});
 		
 	});
