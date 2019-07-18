@@ -20,7 +20,10 @@ include("../Modelo/Conexion.php");
                                 <div class="main-sparkline13-hd">
                                 <h4>Permisos por hora</h4>
                                 
-                                
+                                <div class="add-product">
+                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
+                                </div>
 								
 								<!-- <a href="VAlta_PermisoHora.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                              -->

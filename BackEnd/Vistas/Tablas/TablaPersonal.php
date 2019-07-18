@@ -30,6 +30,9 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
 
 ?>
 
+
+<!--apartir de aqui los puse para ver lo de excel-->
+<script src="../Recursos/js/jquery-3.2.1.min.js"></script>
   <!-- normalize CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
@@ -57,13 +60,13 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                                
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
-                                        <td><?php echo $dato['Nombre']; ?></td>
-                                        <td><?php echo $dato['ApellidoPaterno']; ?></td>
-                                        <td><?php echo $dato['ApellidoMaterno']; ?></td>
-                                        <td><?php echo $dato['NombreEmpresa'];?></td>
-                                        <td><?php echo $dato['NombreSucursal']; ?></td>
-                                        <td><?php echo $dato['NombrePuesto']; ?> </td>                                       
-                                        <td><?php echo $dato['Usuario']; ?></td>
+                                                <td><a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"> <?php echo $dato['Nombre']; ?></td></a>
+                                                <td><?php echo $dato['ApellidoPaterno']; ?></td>
+                                                <td><?php echo $dato['ApellidoMaterno']; ?></td>
+                                                <td><?php echo $dato['NombreEmpresa'];?></td>
+                                                <td><?php echo $dato['NombreSucursal']; ?></td>
+                                                <td><?php echo $dato['NombrePuesto']; ?> </td>                                       
+                                                <td><?php echo $dato['Usuario']; ?></td>
                                        
                                                 <td>
                                                 <a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Ver información" class="pd-setting-ed"><span class="glyphicon">&#xe105;</span></button><a>
@@ -79,3 +82,5 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+    <script src="../Recursos/js/data-table/tableExport.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

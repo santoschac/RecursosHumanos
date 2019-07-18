@@ -182,7 +182,7 @@ if(isset($_POST['todos'])){
 			
 			var IdPersonal = $(this).data('id');
             var IdUsuario = $(this).data('idd');
-            alert(IdUsuario);
+            //alert(IdUsuario);
 			SwalDelete(IdPersonal, IdUsuario);
             e.preventDefault();
            // alert(IdPersonal);

@@ -12,7 +12,8 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-
+<!--apartir de aqui los puse para ver lo de excel-->
+<script src="../Recursos/js/jquery-3.2.1.min.js"></script>
 <!-- normalize CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
@@ -63,6 +64,5 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
- 
-
-    
+    <script src="../Recursos/js/data-table/tableExport.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

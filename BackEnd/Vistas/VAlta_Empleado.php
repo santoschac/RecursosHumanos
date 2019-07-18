@@ -69,11 +69,17 @@ include("../Modelo/Conexion.php");
                                   </button>
                                   Datos insertados con éxito
                               </div>
-                              <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
+                              <div class="alert alert-danger alert-mg-b" id="existe" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
                                   El Usuario ya existe
+                              </div>
+                              <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  Error al insertar los datos;
                               </div>
                              <!--Fin alertas-->
 
@@ -107,7 +113,7 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sexo</label>
-                                                                    <select name="Sexo" id="Sexo" class="form-control" required>
+                                                                    <select name="Sexo" id="Sexo" class="form-control" require>
 																		<option value="" selected="" disabled="">Seleccionar</option>
 																		<option value="Masculino">Masculino</option>
 																		<option value="Femenino">Femenino</option>
@@ -131,24 +137,24 @@ include("../Modelo/Conexion.php");
                                                                
                                                                 <div class="form-group">
                                                                     <label>Curp</label>
-                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" >
+                                                                    <input name="Curp" id="Curp" type="text" class="form-control" placeholder="Curp" maxlength="18" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>IMSS</label>
-                                                                    <input name="Imss" id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11">
+                                                                    <input name="Imss" id="Imss" type="text" class="form-control" placeholder="IMSS" maxlength="11" required>
                                                                 </div>
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Padre</label>
-                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60" >
+                                                                    <input name="Padre" name="Padre" id="Padre" type="text" class="form-control" placeholder="Nombre completo del Padre" maxlength="60"required >
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Madre</label>
-                                                                    <input name="Madre" name="Madre" id="Madre" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60" >
+                                                                    <input name="Madre" name="Madre" id="Madre" type="text" class="form-control" placeholder="Nombre completo de la  Madre" maxlength="60"required >
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Estado Civil</label>
-                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control" required>
+                                                                <select name="EstadoCivil" id="EstadoCivil" class="form-control" require>
                                                                     <option value="" selected="" disabled="">
                                                                         Seleccionar</option>
                                                                     <option value="Soltero(a)">Soltero(a)</option>
@@ -216,7 +222,7 @@ include("../Modelo/Conexion.php");
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Delegación</label>
-                                                                    <input name="Delegacion" id="Delegacion" type="text" class="form-control" placeholder="Delegacion" maxlength="49" >
+                                                                    <input name="Delegacion" id="Delegacion" type="text" class="form-control" placeholder="Delegacion" maxlength="49" required>
                                                                 </div>
                                                                 
                                                                 
@@ -231,11 +237,11 @@ include("../Modelo/Conexion.php");
                                                                
                                                                 <div class="form-group">
                                                                 <label>Colonia</label>
-                                                                    <input name="Colonia" id="Colonia" type="text" class="form-control" placeholder="Colonia" maxlength="70">
+                                                                    <input name="Colonia" id="Colonia" type="text" class="form-control" placeholder="Colonia" maxlength="70" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Dirección</label>
-                                                                    <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70">
+                                                                    <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
                                                                 </div>
                                                             
                                                                
@@ -306,19 +312,19 @@ include("../Modelo/Conexion.php");
                                                            
                                                                 <div class="form-group">
                                                                 <label>Departamento</label>
-                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60">
+                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sueldo Diario</label>
-                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10">
+                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
-                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10">
+                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10">
+                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required>
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -575,6 +581,13 @@ alert(datos);
 
                        }
                        else if(data==2)
+                       {
+                        $("#existe").fadeIn();
+                       setTimeout(function(){
+                       $("#existe").fadeOut();
+                       },3000);
+                       }
+                       else if(data==3)
                        {
                         $("#error").fadeIn();
                        setTimeout(function(){

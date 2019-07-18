@@ -4,7 +4,13 @@ include '../Modelo/Conexion.php';
 
 $IdPersonal = $_GET['IdPersonal'];
 
-$sql = 'SELECT * FROM personal WHERE IdPersonal=:IdPersonal';
+$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, po.NombrePoblacion, e.IdEstado, e.NombreEstado, pa.IDPais, pa.NombrePais, s.NombreSucursal, em.IdEmpresa, Em.NombreEmpresa
+FROM personal p
+inner join poblacion po on p.IdPoblacion = po.IdPoblacion
+inner join estado e on po.IdEstado = e.IdEstado
+inner join pais pa on e.IDPais = pa.IDPais
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa em on s.IdEmpresa = em.IdEmpresa where IdPersonal= :IdPersonal';
 $sentencia = $pdo->prepare($sql);
 $sentencia->execute([':IdPersonal'=>$IdPersonal]);
 $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
@@ -30,11 +36,10 @@ $_SESSION['IdPersonal'] = $empleados->IdPersonal;
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
-                                            <!-- <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form> -->
-                                            <h4>Nombre: <?=$empleados->Nombre ." ". $empleados->ApellidoPaterno ." ". $empleados->ApellidoMaterno?></h4>
+                                            <strong>Nombre: </strong><?=$empleados->Nombre ." ". $empleados->ApellidoPaterno ." ". $empleados->ApellidoMaterno?>&nbsp;&nbsp;&nbsp;
+                                            <strong>Empresa: </strong><?=$empleados->NombreEmpresa?>&nbsp;&nbsp;&nbsp;
+                                            <strong>Sucursal: </strong><?=$empleados->NombreSucursal?>
+                                        
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

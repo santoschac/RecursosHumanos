@@ -12,26 +12,51 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
-                            
-                            
-                                    <table id="table" data-toggle="table" data-pagination="false" data-search="false" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="false" data-toolbar="#toolbar">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>Projects <span class="table-project-n">Data</span> Table</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                                <th ></th>
-                                                <th >ID</th>
-                                                <th >Task</th>
-                                                <th >Email</th>
-                                                <th >Phone</th>
-                                                <th >Completed</th>
-                                                <th >Task</th>
-                                                <th >Date</th>
-                                                <th >Price</th>
-                                                <th >Action</th>
+                                                <th data-field="state" data-checkbox="true"></th>
+                                                <th data-field="id">ID</th>
+                                                <th data-field="name" data-editable="true">Task</th>
+                                                <th data-field="email" data-editable="true">Email</th>
+                                                <th data-field="phone" data-editable="true">Phone</th>
+                                                <th data-field="complete">Completed</th>
+                                                <th data-field="task" data-editable="true">Task</th>
+                                                <th data-field="date" data-editable="true">Date</th>
+                                                <th data-field="price" data-editable="true">Price</th>
+                                                <th data-field="action">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            <tr>
+                                                <td></td>
+                                                <td>1</td>
+                                                <td>Web Development</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>+8801962067309</td>
+                                                <td class="datatable-ct"><span class="pie">1/6</span>
+                                                </td>
+                                                <td>10%</td>
+                                                <td>Jul 14, 2017</td>
+                                                <td>$5455</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td></td>
                                                 <td>2</td>
@@ -102,18 +127,73 @@
                                                 <td class="datatable-ct"><i class="fa fa-check"></i>
                                                 </td>
                                             </tr>
-                                           
-
-                                            
+                                            <tr>
+                                                <td></td>
+                                                <td>7</td>
+                                                <td>Ecommerce</td>
+                                                <td>hasan@wpm.com</td>
+                                                <td>+8801962254863</td>
+                                                <td class="datatable-ct"><span class="pie">2,7</span>
+                                                </td>
+                                                <td>15%</td>
+                                                <td>July 17, 2017</td>
+                                                <td>$21424</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>8</td>
+                                                <td>Android Apps</td>
+                                                <td>ATM@devep.com</td>
+                                                <td>+8801962875469</td>
+                                                <td class="datatable-ct"><span class="pie">2,7</span>
+                                                </td>
+                                                <td>15%</td>
+                                                <td>June 11, 2017</td>
+                                                <td>$78978</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>9</td>
+                                                <td>Prestashop</td>
+                                                <td>presta@Prest.com</td>
+                                                <td>+8801962067524</td>
+                                                <td class="datatable-ct"><span class="pie">2,7</span>
+                                                </td>
+                                                <td>15%</td>
+                                                <td>May 9, 2017</td>
+                                                <td>$45645</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>10</td>
+                                                <td>Game Development</td>
+                                                <td>Dev@game.com</td>
+                                                <td>+8801962067457</td>
+                                                <td class="datatable-ct"><span class="pie">2,7</span>
+                                                </td>
+                                                <td>15%</td>
+                                                <td>April 5, 2017</td>
+                                                <td>$4564545</td>
+                                                <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                </td>
+                                            </tr>
+                                          
                                         </tbody>
                                     </table>
-                                
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+                 
 <?php include "../Master/Footer.php"; ?>
 
  <!-- data table JS

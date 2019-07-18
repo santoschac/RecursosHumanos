@@ -140,6 +140,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Accidentes" href="Accidentes.php"><span class="mini-sub-pro">Accidentes</span></a></li>
                                 <li><a title="Faltas" href="Faltas.php"><span class="mini-sub-pro">Faltas</span></a></li>
                                 <li><a title="Viajes" href="Viajes.php"><span class="mini-sub-pro">Viajes</span></a></li>
+                                <li><a title="Viáticos" href="Viaticos.php"><span class="mini-sub-pro">Viáticos</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -150,7 +151,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                         </li>
                         
                         <li>
-                        <a title="Capacitación" href="../Vistas/Cambios.php" aria-expanded="false"><span
+                        <a title="Cambios" href="../Vistas/Cambios.php" aria-expanded="false"><span
                                 class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
                                 class="mini-click-non">Cambios</span></a>
                         </li>
@@ -202,12 +203,12 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                             class="mini-click-non">Solicitudes</span></a>
 
                 </li>
-                <!-- <li>
-                                <a title="Permisos"  href="../VistasU/Permisos.php" aria-expanded="false">
+                <li>
+                                <a title="Viáticos"  href="../VistasU/Viaticos.php" aria-expanded="false">
                                     <span class="educate-icon educate-professor icon-wrap"></span> 
-                                    <span class="mini-click-non">Permisos</span></a>
+                                    <span class="mini-click-non">Viáticos</span></a>
                                 
-                            </li> -->
+                            </li>
                 
             </ul>
 
@@ -252,6 +253,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <ul class="nav navbar-nav mai-top-nav">
                                                 <li class="nav-item"><a href="../Vistas/index.php"
                                                         class="nav-link">Inicio</a>
+                                                </li>
+                                                <li class="nav-item"><a href="../Vistas/Empleados.php"
+                                                        class="nav-link">Empleados</a>
                                                 </li>
 
                                             </ul>

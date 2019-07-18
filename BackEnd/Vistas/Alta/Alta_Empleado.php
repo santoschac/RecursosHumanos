@@ -72,7 +72,12 @@ include("../../Modelo/Conexion.php");
         {
           echo 1;
 
-        }  
+        }else{
+          echo 3;
+          $sen ="DELETE from usuario where IdUsuario = $IdUsuario";
+          $sentencia = $pdo->prepare($sen);
+          $sentencia->execute();
+        }
        
   }
 ?>

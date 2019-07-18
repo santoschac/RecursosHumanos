@@ -15,12 +15,18 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 ?>
 
-<!-- normalize CSS
+ 
+   
+
+<!--apartir de aqui los puse para ver lo de excel-->
+    <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
+    <!-- normalize CSS para la tabla
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
- 
+
+
                      
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true"  data-toolbar="#toolbar">
