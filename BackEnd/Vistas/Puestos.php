@@ -92,13 +92,6 @@ include("../Modelo/Conexion.php");
                                                         <input type="text" id="NombrePuesto" name="NombrePuesto" class="form-control" placeholder="Escriba el nombre del puesto" required maxlength="50"/>
                                                         <br/>
                                                     </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
-                                       
                                         </div>
                                         
                                        <!--Fin Agregar form dentro del moal-->
@@ -115,20 +108,12 @@ include("../Modelo/Conexion.php");
                         </div>
         <!--fin modal agregar-->
 
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-
-
-    
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
@@ -136,15 +121,12 @@ $(document).ready(function(){
 		$('.modal-title').text("Agregar Puesto");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
-        
 		
 	});
 	
-
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
 		var Nombre = $('#NombrePuesto').val();
-		
 		
 		if(Nombre != '')
 		{
@@ -216,9 +198,6 @@ $(document).ready(function(){
 		})
 	});
 	
-	
-	
-	
 });
 </script>
 
@@ -282,4 +261,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

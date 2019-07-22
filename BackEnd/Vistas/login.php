@@ -84,12 +84,7 @@
                   id="Usuario" class="form-control" onkeyup="this.value=this.value.toUpperCase()" maxlength="40">
 
               </div>
-              <!-- <div class="form-group">
-                <label class="control-label" for="password">Contraseña</label>
-                <input type="password" title="Por favor ingrese su contraseña" placeholder="******" required="" value=""
-                  name="Contrasena" id="Contrasena" class="form-control">
-
-              </div> -->
+             
 
               <div class="form-group">
                 <label class="control-label" for="password">Contraseña</label>
@@ -101,10 +96,7 @@
                 </div>
                 <br />
               </div>
-              <!-- <div class="checkbox login-checkbox">
-                                <label><input type="checkbox" class="i-checks"> Recuérdame </label>
-                                
-                                </div> -->
+              
               <?php
                                 if(isset($_GET["creado"]) && $_GET["creado"] == 'true')
                                 {
@@ -131,7 +123,7 @@
  
       </div>
       <div class="text-center login-footer">
-        <!-- <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p> -->
+       
       </div>
     </div>
   </div>

@@ -3,7 +3,6 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-
 $IdCambio = $_GET['IdCambio'];
 $sql1 = 'SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.IdPuesto, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
 from cambios c
@@ -290,9 +289,6 @@ if(isset($_GET['IdPersonal'])){
         <!-- Static Table End -->
            
                                 
-                            
-                                        
-                                    
                                 </div>
                             </div>
                         </div>
@@ -343,7 +339,7 @@ if(isset($_GET['IdPersonal'])){
        $(document).on('submit', '#formulario', function(event){
            event.preventDefault();
            var datos = $('#formulario').serialize();
-//alert(datos);
+
 
                $.ajax({
                    url:"Editar/Editar_Cambio.php",

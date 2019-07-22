@@ -6,19 +6,8 @@ include("../../Modelo/Conexion.php");
     $IdJornada = $_POST['IdJornada'];
     $FechaInicio = $_POST['FechaInicio'];
     $FechaFinal = $_POST['FechaFinal'];
-   
-    
-//     $sql = 'SELECT * FROM usuario WHERE Usuario = ?';
-//     $sentencia = $pdo->prepare($sql);
-//     $sentencia ->execute(array($_POST["Usuario"]));
-//     $resultado = $sentencia->fetch();
-
-//   if($resultado){
-//     echo 2;
-//   }else{
 
     
-
     $sql = 'INSERT INTO asignarjornada (IdPersonal, IdJornada, FechaInicio, FechaFinal)
            VALUES (:IdPersonal, :IdJornada, :FechaInicio, :FechaFinal)';
    
@@ -28,9 +17,4 @@ include("../../Modelo/Conexion.php");
           echo 1;
 
         }  
-  //}
-
-
-   
-
 ?>

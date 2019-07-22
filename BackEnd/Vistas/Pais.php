@@ -91,13 +91,7 @@ include("../Modelo/Conexion.php");
                                                         <label>País</label>
                                                         <input type="text" id="NombrePais" name="NombrePais" class="form-control" placeholder="Escriba el nombre del País" required maxlength="50"/>
                                                         <br/>
-                                                    </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
+                                                    </div>                                                  
                                        
                                         </div>
                                         
@@ -113,12 +107,7 @@ include("../Modelo/Conexion.php");
                                 <form>
                             </div>
                         </div>
-        <!--fin modal agregar-->
-
-
-
-
-      
+        <!--fin modal agregar-->     
 
 <?php
  include ("../Master/Footer.php");
@@ -127,8 +116,6 @@ include("../Modelo/Conexion.php");
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
 
-
-    
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
@@ -206,27 +193,21 @@ $(document).ready(function(){
 				$('.modal-title').text("Actualizar país");
 				$('#pais_id').val(pais_id);
 				$('#action').val("Actualizar");
-                $('#operation').val("Edit");
-                
+                $('#operation').val("Edit");                
             
 			}
 		})
 	});
-	
-	
-	
-	
+
 });
 </script>
 
    
-
 <script >
 
 	$(document).ready(function(){
 		
-		readPais(); /* it will load products when document loads */
-		
+		readPais(); /* it will load products when document loads */		
 		$(document).on('click', '#Eliminar', function(e){
 			
 			var IdPais = $(this).data('id');
@@ -278,5 +259,4 @@ $(document).ready(function(){
 		$('#TablaPais').load('Tablas/TablaPais.php');	
 	}
     
-</script> 
-
+</script>

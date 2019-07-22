@@ -39,12 +39,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                             <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                                      
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
@@ -227,12 +222,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </select>
 
                                                             </div>
-                                                            <!-- <div class="form-group">
-                                                                <label>Estado</label>
-                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
-                                                                    <option value="none" selected="" disabled="">Seleccionar</option>
-                                                                </select>
-                                                            </div> -->
+                                                            
                                                             <div class="form-group">
                                                                 <label>Población</label>
                                                                 <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
@@ -244,12 +234,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </select>
 
                                                             </div>
-                                                            <!-- <div class="form-group">
-                                                                <label>Población</label>
-                                                                <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
-                                                                    <option value="" selected="" disabled="">Seleccionar</option>
-                                                                </select>
-                                                            </div> -->
+                                                          
                                                                 
                                                                 <div class="form-group">
                                                                 <label>Delegación</label>
@@ -391,14 +376,8 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <?php endforeach; ?>
                                                                 </select>
 
-                                                            </div>
-                                                           
-                                                        <!-- <div class="form-group">
-                                                            <label>Sucursal</label>
-                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
-                                                                <option value="" selected="" disabled="">Seleccionar</option>
-                                                            </select>
-                                                        </div> -->
+                                                            </div>                                                          
+                                                      
                                                           
                                                             <div class="chosen-select-single mg-b-20">
                                                                 <label><strong>Puesto</strong></label>
@@ -479,9 +458,6 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 <?php
  include ("../Master/Footer.php");
 ?>
-
-
-
 
     <!-- datapicker JS
 		============================================ -->
@@ -634,5 +610,3 @@ $(document).ready(function () {
         }
     }
 </script>
-    
-    

@@ -1,8 +1,6 @@
 <?php
 include("../../Modelo/Conexion.php");
 
-
-
     $NombreSucursal = $_POST['NombreSucursal'];
     $Region = $_POST['Region'];
     $IdEmpresa = $_POST['IdEmpresa'];
@@ -25,6 +23,3 @@ include("../../Modelo/Conexion.php");
         echo 2;
         
     }
-
-
-   

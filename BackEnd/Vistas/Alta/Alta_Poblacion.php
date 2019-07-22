@@ -1,8 +1,5 @@
 <?php
-
-
 include ("../../Modelo/Conexion.php");
-
 
 if(isset($_POST["operation"]))
 {
@@ -32,9 +29,6 @@ if(isset($_POST["operation"]))
         }
 
 		}
-
-
-    
 	}
 	if($_POST["operation"] == "Edit")
 	{
@@ -70,5 +64,3 @@ if(isset($_POST["operation"]))
 }
 
 ?>
-
-

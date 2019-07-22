@@ -24,9 +24,6 @@
 		
 		unlink('../../VistasU/Documentos/Incapacidades/'.$NombreCarpeta.'/'.$NombreDocumento);
 
-
-
-
 		$sql = "DELETE FROM incapacidad WHERE IdIncapacidad=:IdIncapacidad";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(':IdIncapacidad'=>$IdIncapacidad));

@@ -1,9 +1,6 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
-
-
 ?>
         
    <!-- Sweet Alert
@@ -65,22 +62,11 @@ include("../Modelo/Conexion.php");
         </div> <br>
         <!-- Static Table End -->
 
-        
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 
@@ -140,4 +126,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script> 
-

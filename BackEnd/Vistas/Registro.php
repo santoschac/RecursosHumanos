@@ -92,24 +92,7 @@
                               </div>
                               
                             </div>
-                            <!-- <div class="form-group">
-                                <label class="control-label" for="contrasena">Nombre</label>
-                                <input type="text"  title="Por favor ingrese su Nombre" placeholder="Nombre" required="" value="" name="Nombre" id="Nombre" class="form-control" maxlength="30">
-                                
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="ApellellidoPaterno">Apellellido Paterno</label>
-                                <input type="text" id="ApellidoPaterno" name="ApellidoPaterno" title="Por favor ingrese su apellido paterno" placeholder="Apellellido Paterno" required="" value="" class="form-control" maxlength="35">
-                                
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="ApellellidoMaterno">Apellellido Materno</label>
-                                <input type="text" id="ApellidoMaterno" name="ApellidoMaterno" title="Por favor ingrese su apellido materno" placeholder="Apellellido Materno" required="" value=""  class="form-control" maxlength="35">
-                                
-                            </div> -->
-                            <!-- <div class="checkbox login-checkbox">
-                               <p class="help-block small">(if this is a private computer)</p> 
-                            </div> -->
+                           
                             <?php
                             if(isset($_GET["existe"]) && $_GET["existe"] == 'true')
                             {

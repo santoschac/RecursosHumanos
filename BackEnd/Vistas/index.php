@@ -1,12 +1,6 @@
 <?php
 include("../Master/Header.php");
-    
 ?>
-            
-
-                      
-                
-       
           <!-- Static Table Start -->
         <div class="data-table-area mg-b-15">
         <br/>
@@ -24,21 +18,15 @@ include("../Master/Header.php");
                             </div>
                             <div class="col-md-3"></div>
                         </div>
-                         
-                         
+ 
                         <br/><br/><br/><br/><br/>
-
 
                     </div>
                 </div>
             </div>
         </div> <br>
         <!-- Static Table End -->
-        
-       
-        
-        
-        
+
         <?php
         include ("../Master/Footer.php");
         ?>

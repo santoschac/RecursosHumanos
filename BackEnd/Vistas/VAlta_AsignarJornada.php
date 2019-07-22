@@ -3,22 +3,6 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-// $sql1= $pdo->prepare("select IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,'%r') as HoraInicio, TIME_FORMAT(HoraFin,'%r') as HoraFin from jornada");
-// $sql1->execute();
-// $resultados=$sql1->fetchALL(PDO::FETCH_ASSOC);
-
-//     if(isset($_GET['IdJornada'])){
-
-//     $IdJornada = $_GET['IdJornada'];
-//     $sql = 'select IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,"%r") as HoraInicio, TIME_FORMAT(HoraFin,"%r") as HoraFin from jornada WHERE IdJornada=:IdJornada';
-//     $statement = $pdo->prepare($sql);
-//     $statement-> execute([':IdJornada'=> $IdJornada]);
-//     $jornadas = $statement->fetch(PDO::FETCH_OBJ);
-//     }
-
-
-
-
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
@@ -175,14 +159,7 @@ if(isset($_GET['IdPersonal'])){
                                                                 <input type="date" name="FechaFinal" id="FechaFinal" class="form-control" value="<?php echo date("Y-m-d"); ?>">
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="form-group data-custon-pick">
-                                                            <label><strong>Fecha Inicio</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaIn" id="FechaIni" class="form-control" value="<?php echo date("Y-m-d"); ?>">
-                                                            </div>
-                                                        </div>
-                                                         -->
+                                                       
                                                                 
                                                            
                                                         </div>
@@ -352,5 +329,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

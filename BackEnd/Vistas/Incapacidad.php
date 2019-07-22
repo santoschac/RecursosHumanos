@@ -8,7 +8,6 @@ include("../Modelo/Conexion.php");
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
-
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
          <br/>
@@ -19,7 +18,6 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                 <h4>Incapacidad</h4>
-                                
                                 
                                 <a href="VAlta_Incapacidad.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
@@ -61,24 +59,13 @@ include("../Modelo/Conexion.php");
                 </div>
             </div>
         </div> <br>
-        <!-- Static Table End -->
-
-        
-       
-
-
-      
+        <!-- Static Table End -->  
 
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 
@@ -138,4 +125,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script> 
-

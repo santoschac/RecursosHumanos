@@ -1,23 +1,11 @@
 <?php
 
-
 include ("../../Modelo/Conexion.php");
-
 
 if(isset($_POST["operation"]))
 {
 	if($_POST["operation"] == "Add")
 	{
-	
-		// $sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
-    	// $sentencia = $pdo->prepare($sql);
-    	// $sentencia ->execute(array($_POST["NombrePuesto"]));
-    	// $resultado = $sentencia->fetch();
-
-		// if($resultado){
-		// 	echo 3;
-		// }else{
-			
 
 			if(isset($_POST["FechaFin"])){
 
@@ -31,25 +19,12 @@ if(isset($_POST["operation"]))
 		if ($statement->execute([':FechaInicio' => $_POST["FechaInicio"], ':FechaFin' =>	$FechaFin, ':HoraInicio' => $_POST["HoraInicio"], ':HoraFin' => $_POST['HoraFin']])){
 			echo 1;
 		}
-		
-
-
-		//}
-
-
     
 	}
 	if($_POST["operation"] == "Edit")
 	{
 	
-		// $sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
-    	// $sentencia = $pdo->prepare($sql);
-    	// $sentencia ->execute(array($_POST["NombrePuesto"]));
-    	// $resultado = $sentencia->fetch();
-
-		// if($resultado){
-		// 	echo 3;
-		// }else{
+		
 		 	$statement = $pdo->prepare(
 			"UPDATE jornada 
 			SET FechaInicio = :FechaInicio, FechaFin=:FechaFin, HoraInicio=:HoraInicio, HoraFin=:HoraFin
@@ -69,11 +44,9 @@ if(isset($_POST["operation"]))
 		{
 			echo 2;
 		}
-		//}
+		
 		
 	}
 }
 
 ?>
-
-

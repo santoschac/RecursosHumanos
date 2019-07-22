@@ -121,18 +121,7 @@ if(isset($_GET['Respuesta'])){
                                                         <textarea name="Descripcion" id="Descripcion"
                                                             placeholder="Descripcion" required="" maxlength="200" readonly><?=$solicitudes->Descripcion;?></textarea>
                                                     </div>
-                                                   
-                                                    <!-- <div class="form-group">
-
-
-                                                        <label>Tipo de capacitación</label>
-                                                        <select name="Tipo" id="Tipo" class="form-control" required>
-                                                            <option value="" disabled="">Seleccionar</option>
-                                                            <option value="Interna" <?php if("Interna"===$cursos->Tipo): echo "Selected"; endif;?>>Interna</option>
-                                                            <option value="Externa" <?php if("Externa"===$cursos->Tipo): echo "Selected"; endif;?>>Externa</option>
-
-                                                        </select>
-                                                    </div> -->
+                          
 
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -172,14 +161,7 @@ if(isset($_GET['Respuesta'])){
                                                                 placeholder="          Ningún archivo seleccionado" readonly >
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label>Documentos</label>
-                                                       
-                                                            <input type="file" class="form-control" id="archivo[]" name="archivo[]" required>
-                                                     </div> -->
-
-                                                   
-
+                                                  
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -217,8 +199,6 @@ $(document).ready(function(){
    $(document).on('submit', '#formulario', function(event){
        event.preventDefault();
        var datos = $('#formulario').serialize();
-       
-       //var formData = new FormData($("#formulario")[0]);
        
      // alert(datos);
            $.ajax({

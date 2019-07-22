@@ -1,6 +1,4 @@
 <?php
-
-
 include ("../../Modelo/Conexion.php");
 
 $Dia= $_POST['Dia'];
@@ -26,12 +24,4 @@ if($statement->execute([':Dia'=> $Dia, ':Descripcion'=>$Descripcion, ':Devolucio
 		  {
 			  echo 2;
 		  }
-
-
-
-		
-
-  
 ?>
-
-

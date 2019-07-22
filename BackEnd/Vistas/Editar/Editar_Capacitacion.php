@@ -2,8 +2,6 @@
 
 include("../../Modelo/Conexion.php");
 
-
-
   $IdCapacitacion = $_POST['IdCapacitacion'];
   $Evaluacion = $_POST['Evaluacion'];
   $IdPersonal= $_POST['IdPersonal'];
@@ -18,7 +16,5 @@ include("../../Modelo/Conexion.php");
   if($statement->execute([':Evaluacion'=>$Evaluacion, ':IdPersonal'=>$IdPersonal, ':IdCurso'=>$IdCurso, ':FechaCapacitacion'=>$FechaCapacitacion, ':IdCapacitacion'=>$IdCapacitacion])){
     echo 1;
   }
-
-  
 
 ?>

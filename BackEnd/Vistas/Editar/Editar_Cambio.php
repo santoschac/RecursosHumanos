@@ -2,9 +2,6 @@
 
 include("../../Modelo/Conexion.php");
 
-
-
-
   $IdCambio = $_POST['IdCambio'];
   $FechaInicio = date("Y-m-d", strtotime($_POST['FechaInicio']));
   $IdPersonal= $_POST['IdPersonal'];
@@ -24,7 +21,5 @@ include("../../Modelo/Conexion.php");
       echo 1;
     }
   }
-
-  
 
 ?>

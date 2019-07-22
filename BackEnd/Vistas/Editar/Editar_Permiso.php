@@ -28,12 +28,4 @@ if($statement->execute([':Dia'=> $Dia, ':Descripcion'=>$Descripcion, ':Devolucio
 		  {
 			  echo 2;
 		  }
-
-
-
-		
-
-  
 ?>
-
-

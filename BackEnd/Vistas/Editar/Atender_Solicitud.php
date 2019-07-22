@@ -79,9 +79,6 @@ include('../../Modelo/Conexion.php');
 					}
 					
 				}
-				
-
-
 
 				$sql5 = 'UPDATE solicitudes SET FechaAtencion=:FechaAtencion, Atendido=:Atendido, Estatus=:Estatus, Documento=:Documento Where IdSolicitudes=:IdSolicitudes';
 				$sentencia5=$pdo->prepare($sql5);
@@ -103,8 +100,4 @@ include('../../Modelo/Conexion.php');
 		}
 			
 	}
-	
-	
-
-	
 ?>

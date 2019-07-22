@@ -264,76 +264,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <!-- <li class="nav-item dropdown">
-                                                    <a href="#" data-toggle="dropdown" role="button"
-                                                        aria-expanded="false" class="nav-link dropdown-toggle"><i
-                                                            class="educate-icon educate-message edu-chat-pro"
-                                                            aria-hidden="true"></i><span
-                                                            class="indicator-ms"></span></a>
-                                                    <div role="menu"
-                                                        class="author-message-top dropdown-menu animated zoomIn">
-                                                        <div class="message-single-top">
-                                                            <h1>Mensajes</h1>
-                                                        </div>
-                                                        <ul class="message-menu">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="message-img">
-                                                                        <img src="../Recursos/img/contact/1.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="message-content">
-                                                                        <span class="message-date">16 Sept</span>
-                                                                        <h2>Advanda Cro</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="message-img">
-                                                                        <img src="../Recursos/img/contact/4.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="message-content">
-                                                                        <span class="message-date">16 Sept</span>
-                                                                        <h2>Sulaiman din</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="message-img">
-                                                                        <img src="../Recursos/img/contact/3.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="message-content">
-                                                                        <span class="message-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="message-img">
-                                                                        <img src="../Recursos/img/contact/2.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="message-content">
-                                                                        <span class="message-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="message-view">
-                                                            <a href="#">View All Messages</a>
-                                                        </div>
-                                                    </div>
-                                                </li> -->
+                                               
                                                 <!--Apartado de notificaciones---> 
                                                 
                                                <?php if($_SESSION['IdTipoUsuario']==1):?>

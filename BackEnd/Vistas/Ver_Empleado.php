@@ -437,9 +437,6 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
  include ("../Master/Footer.php");
 ?>
 
-
-
-
     <!-- datapicker JS
 		============================================ -->
     <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
@@ -520,12 +517,5 @@ $(document).ready(function () {
             });
         });
     });
-
-
-   
+    
     </script>
-    
-    
-  
-    
-    

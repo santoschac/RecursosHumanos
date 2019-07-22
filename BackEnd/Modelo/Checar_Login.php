@@ -30,13 +30,11 @@ if (password_verify($_POST['Contrasena'], $resultado['Contrasena'])) {
 	$_SESSION['IdTipoUsuario'] = $resultado['IdTipoUsuario'];
 	$_SESSION['IdPersonal'] = $result['IdPersonal'];
 
-	
-	
-		header("location: ../Vistas/index.php");
+
+	header("location: ../Vistas/index.php");
 	
 }else
 {
 	header("location: ../Vistas/login.php?error=true");		
 }
-
 ?>

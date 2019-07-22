@@ -2,9 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-
-
-
 ?>
      
     <!-- datapicker CSS
@@ -24,12 +21,7 @@ include("../Modelo/Conexion.php");
                             <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                                        
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
@@ -242,11 +234,8 @@ include("../Modelo/Conexion.php");
                                                                 <div class="form-group">
                                                                 <label>Dirección</label>
                                                                     <input name="Direccion" id="Direccion" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
-                                                                </div>
-                                                            
+                                                                </div>                                                           
                                                                
-                                                                
-                                                                
                                                             </div>
                                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -366,18 +355,7 @@ include("../Modelo/Conexion.php");
                                                                 <option value="" selected="" disabled="">Seleccionar</option>
                                                             </select>
                                                         </div>
-                                                            <!---->
-                                                            <!-- <div class="chosen-select-single mg-b-20">
-                                                                <label><strong>Sucursal</strong></label>
-                                                                
-                                                                    <select name="IdSucursal" id="IdSucursal" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1" required>
-                                                                    <option value="">Seleccionar</option>
-                                                                  ?php   foreach ($pdo->query('SELECT IdSucursal, NombreSucursal FROM sucursal') as $row) {													
-                                                                    echo '<option value="'.$row['IdSucursal'].'">'.$row['NombreSucursal'].'</option>';
-                                                                    }
-                                                                    echo'</select>';
-                                                                ?>
-                                                            </div> -->
+                                                            
                                                             <div class="form-group">
                                                                 <label><strong>Puesto</strong></label>
                                                                  
@@ -406,10 +384,6 @@ include("../Modelo/Conexion.php");
                                                                 <textarea name="ConceptoBaja" id="ConceptoBaja" placeholder="Concepto Baja" ></textarea>
                                                             </div>
                                                         </div>
-                                                            
-
-
-                                                            
 
                                                             <div class="form-group">
                                                                 <div class="form-group">
@@ -450,7 +424,6 @@ include("../Modelo/Conexion.php");
         </div>
          <!--End Single pro tab review Start-->
   
-    
 
 <?php
  include ("../Master/Footer.php");

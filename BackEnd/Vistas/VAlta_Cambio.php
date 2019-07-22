@@ -25,7 +25,6 @@ if(isset($_GET['IdPersonal'])){
     $Personal = $statement->fetch(PDO::FETCH_OBJ);
     }
 
-
 ?>
 
 <!-- normalize CSS
@@ -278,11 +277,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+ 
                                 </div>
                             </div>
                         </div>
@@ -367,5 +362,3 @@ if(isset($_GET['IdPersonal'])){
     });
 
     </script>
-
-   

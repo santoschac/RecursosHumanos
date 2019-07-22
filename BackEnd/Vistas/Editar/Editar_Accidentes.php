@@ -13,8 +13,6 @@ include("../../Modelo/Conexion.php");
 
 
   if($statement->execute([':Descripcion'=>$Descripcion, ':Fecha'=>$Fecha, ':Accidentes'=>$Accidentes, ':IdAccidentes'=>$IdAccidentes])){
-   
      echo 1;    
   }
-
 ?>

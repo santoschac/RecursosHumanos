@@ -1,13 +1,11 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
 ?>
         
    <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
-
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
@@ -97,17 +95,11 @@ include("../Modelo/Conexion.php");
                                                                     ?>
                                                                 </div>
 
-
                                                         <label>Nombre del estado</label>
                                                         <input type="text" id="NombreEstado" name="NombreEstado" class="form-control" placeholder="Escriba el nombre del estado" required maxlength="50"/>
                                                         <br/>
                                                     </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
+                                                   
                                        
                                         </div>
                                         
@@ -123,22 +115,14 @@ include("../Modelo/Conexion.php");
                                 <form>
                             </div>
                         </div>
-        <!--fin modal agregar-->
-
-
-
-
-      
-
+		<!--fin modal agregar-->
+		
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-
-
-    
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
@@ -146,16 +130,13 @@ $(document).ready(function(){
 		$('.modal-title').text("Agregar Estado");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
-        
-		
+        	
 	});
 	
-
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
 		var datos = $('#formulario').serialize();
-		
-
+	
 			$.ajax({
 				url:"Alta/Alta_Estado.php",
 				method:'POST',
@@ -197,7 +178,6 @@ $(document).ready(function(){
 
 				}
 			});
-		
 	});
 
     $(document).on('click', '.update', function(){
@@ -217,18 +197,12 @@ $(document).ready(function(){
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
                 
-            
 			}
 		})
 	});
-	
-	
-	
-	
+		
 });
 </script>
-
-   
 
 <script >
 
@@ -287,5 +261,4 @@ $(document).ready(function(){
 		$('#TablaEstado').load('Tablas/TablaEstado.php');	
 	}
     
-</script> 
-
+</script>

@@ -19,7 +19,9 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                 <h4>Viajes</h4>
-                                
+                                <div class="add-product">
+                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
 <!--                                 
                                 <a href="VAlta_Viaje.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                              -->
@@ -61,22 +63,11 @@ include("../Modelo/Conexion.php");
         </div> <br>
         <!-- Static Table End -->
 
-        
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 
@@ -136,4 +127,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script> 
-

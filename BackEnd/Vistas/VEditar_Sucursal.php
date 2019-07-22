@@ -2,8 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-
-
 $IdSucursal= $_GET['IdSucursal'];
 
 $sql = 'SELECT s.IdSucursal, s.NombreSucursal, s.Region, em.IdEmpresa, em.NombreEmpresa, s.IdPoblacion, p.NombrePoblacion, e.IdEstado, e.NombreEstado
@@ -93,8 +91,7 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <?php endforeach; ?>
                                                                     </select>
                                                                     
-                                                                </div>
-                                                            
+                                                                </div>                                                            
                                                             
                                                                 <div class="form-group">
                                                                 <label>Nombre Sucursal</label>
@@ -128,12 +125,7 @@ $sucursales = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                    
                                                                 </div>
                                                             
-                                                                <!-- <div class="form-group">
-                                                                <label>Población</label>
-                                                                    <select name="IdPoblacion" id="IdPoblacion" class="form-control" required>
-																			<option value="" selected  disabled="">Seleccionar</option>      
-                                                                    </select>
-                                                                </div> -->
+                                                               
                                                                 <div class="form-group">
                                                                 <label>Región</label>
                                                                 <input name="Region" id="Region" value="<?=$sucursales->Region;?>" type="text" class="form-control" placeholder="Región" required="" maxlength="60">
@@ -185,8 +177,6 @@ $(document).ready(function () {
 });
 
 </script>
-
-
 
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){

@@ -19,14 +19,11 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                 <h4>Permisos por hora</h4>
-                                
-                                <div class="add-product">
-                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
-                                        </div>
-                                </div>
-								
+
 								<!-- <a href="VAlta_PermisoHora.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
-                             -->
+                             --><div class="add-product">
+                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -64,12 +61,6 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         
-
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
@@ -81,7 +72,7 @@ include("../Modelo/Conexion.php");
 
 	$(document).ready(function(){
 		
-		readPermisosHora(); /* it will load products when document loads */
+		readPermisosHoraEmpleado(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
@@ -117,7 +108,7 @@ include("../Modelo/Conexion.php");
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readPermisosHora();
+                     readPermisosHoraEmpleado();
                     
 			     })
 			     .fail(function(){
@@ -130,7 +121,7 @@ include("../Modelo/Conexion.php");
 		
 	}
 
-    function readPermisosHora(){
+    function readPermisosHoraEmpleado(){
 		$('#TablaPermisosHoraEmpleado').load('Tablas/TablaPermisosHoraEmpleado.php');	
 	}
     

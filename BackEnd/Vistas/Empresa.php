@@ -99,12 +99,6 @@ include("../Modelo/Conexion.php");
                                                         <input type="text" id="ClaveEmpresa" name="ClaveEmpresa" class="form-control" placeholder="Escribe la clave de la empresa" required maxlength="10"/>
                                                         <br/>
                                                     </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
                                        
                                         </div>
                                         
@@ -123,19 +117,11 @@ include("../Modelo/Conexion.php");
                         </div>
         <!--fin modal agregar-->
 
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
     
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
@@ -145,18 +131,13 @@ $(document).ready(function(){
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
         
-		
 	});
 	
-
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
 		var datos = $('#formulario').serialize();
 		
-		//alert(datos);
-		
-		
-			
+
 			$.ajax({
 				url:"Alta/Alta_Empresa.php",
 				method:'POST',
@@ -203,7 +184,6 @@ $(document).ready(function(){
 				}
 			});
 		
-		
 	});
 
     $(document).on('click', '.update', function(){
@@ -228,13 +208,8 @@ $(document).ready(function(){
 		})
 	});
 	
-	
-	
-	
 });
 </script>
-
-   
 
 <script >
 
@@ -294,4 +269,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

@@ -1,7 +1,6 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
 ?>
         
    <!-- Sweet Alert
@@ -113,25 +112,11 @@ include("../Modelo/Conexion.php");
                                                                 </select>
 
                                                             </div>
-                                                            <!-- <div class="form-group">
-                                                                <label>Estado</label>
-                                                                <select name="IdEstado" id="IdEstado" class="form-control" required>
-                                                                    <option value="" selected="" disabled="" required>Seleccionar</option>
-                                                                </select>
-                                                            </div> -->
-									   
-
-
+                                                          
                                                         <label>Población</label>
                                                         <input type="text" id="NombrePoblacion" name="NombrePoblacion" class="form-control" placeholder="Escriba el nombre de la población" required maxlength="50"/>
                                                         <br/>
-                                                    </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
+                                                    </div>                                                  
                                        
                                         </div>
                                         
@@ -160,9 +145,6 @@ include("../Modelo/Conexion.php");
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-
-
-    
 <script type="text/javascript" language="javascript" >
 
 $(document).ready(function () {
@@ -181,23 +163,20 @@ $(document).ready(function () {
         });
     });
 
-
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
 		$('#formulario')[0].reset();
 		$('.modal-title').text("Agregar Población");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
-        
-		
+        	
 	});
 	
 
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
 		var datos = $('#formulario').serialize();
-		
-//alert(datos);
+
 			$.ajax({
 				url:"Alta/Alta_Poblacion.php",
 				method:'POST',
@@ -239,7 +218,6 @@ $(document).ready(function(){
 
 				}
 			});
-		
 	});
 
     $(document).on('click', '.update', function(){
@@ -260,20 +238,12 @@ $(document).ready(function(){
 				$('#poblacion_id').val(poblacion_id);
 				$('#action').val("Actualizar");
                 $('#operation').val("Edit");
-                //$('#formulario')[0].reset();
-                
-            
 			}
 		})
 	});
 	
-	
-	
-	
 });
 </script>
-
-   
 
 <script >
 
@@ -333,4 +303,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

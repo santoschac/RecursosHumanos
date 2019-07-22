@@ -170,16 +170,7 @@ if(isset($_GET['IdPersonal'])){
                                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                                 <input type="date" name="FechaFinal" id="FechaFinal" class="form-control" value="<?php echo date("Y-m-d", strtotime($asignarjornada->FechaFinal)); ?>">
                                                             </div>
-                                                        <!-- <div class="form-group data-custon-pick">
-                                                            <label><strong>Fecha Inicio</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaIn" id="FechaIni" class="form-control" value="<?php echo date("Y-m-d"); ?>">
-                                                            </div>
-                                                        </div>
-                                                         -->
-                                                                
-                                                           
+ 
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -347,5 +338,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

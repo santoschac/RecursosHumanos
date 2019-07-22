@@ -46,19 +46,9 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 <!-- Static Table End -->
 
 
-
-
-
-
-
-
-<?php
-        include ("../Master/Footer.php");
-        ?>
+<?php include ("../Master/Footer.php");?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
 
 <script type="text/javascript" language="javascript">
     $(document).ready(function () {
@@ -77,10 +67,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
         });
     });
 
-
     $(document).ready(function () {
-
-
 
         $(document).on('submit', '#formulario', function (event) {
             event.preventDefault();
@@ -120,15 +107,8 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
             }
 
         });
-
-
-
-
-
-
     });
 </script>
-
 
 <script>
     $(document).ready(function () {
@@ -181,7 +161,6 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
         });
 
     }
-
     function readCurso() {
         $('#TablaSucursal').load('Tablas/TablaSucursal.php');
     }

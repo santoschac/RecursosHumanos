@@ -61,12 +61,6 @@ include("../Modelo/Conexion.php");
         </div> <br>
         <!-- Static Table End -->
 
-        
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
@@ -130,5 +124,4 @@ include("../Modelo/Conexion.php");
 		$('#TablaBono').load('Tablas/TablaBono.php');	
 	}
     
-</script> 
-
+</script>

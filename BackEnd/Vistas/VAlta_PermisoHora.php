@@ -129,8 +129,7 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group">
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
-                                                        </div>
-                                                        
+                                                        </div>                                                       
                                                                
                                                             
                                                         </div>
@@ -156,8 +155,7 @@ if(isset($_GET['IdPersonal'])){
                                                         <label>Motivo</label>
                                                         <textarea name="Motivo" id="Motivo"
                                                             placeholder="Describa el motivo" required="" maxlength="200" ></textarea>
-                                                    </div>
-                                                       
+                                                    </div>                                                       
                                                            
                                                         </div>
                                                         
@@ -255,10 +253,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
+    
                                     
                                 </div>
                             </div>
@@ -326,5 +321,3 @@ if(isset($_GET['IdPersonal'])){
     });
 
     </script>
-
-   

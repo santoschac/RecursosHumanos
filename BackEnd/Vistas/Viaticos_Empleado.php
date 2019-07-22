@@ -21,9 +21,12 @@ include("../Modelo/Conexion.php");
                                 <div class="main-sparkline13-hd">
                                 <h4>Viáticos</h4>
                                 
-                                <div class="add-product">
-                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button> -->
-                            </div>
+                                
+								<div class="add-product">
+                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
+								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" id="boton_agregar" data-target="#ModalAgregar">Agregar</button> -->
+                           
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -51,7 +54,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaViatico"></div> <!-- products will be load here -->
+<div id="TablaViaticoEmpleado"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -248,7 +251,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						readViatico();
+						readViaticoEmpleado();
 						//$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
@@ -305,7 +308,7 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		
-		readViatico(); /* it will load products when document loads */
+		readViaticoEmpleado(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
@@ -341,7 +344,7 @@ $(document).ready(function(){
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readViatico();
+                     readViaticoEmpleado();
                     
 			     })
 			     .fail(function(){
@@ -354,8 +357,8 @@ $(document).ready(function(){
 		
 	}
 
-    function readViatico(){
-		$('#TablaViatico').load('Tablas/TablaViatico.php');	
+    function readViaticoEmpleado(){
+		$('#TablaViaticoEmpleado').load('Tablas/TablaViaticoEmpleado.php');	
 	}
     
 </script> 

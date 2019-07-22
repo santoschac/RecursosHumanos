@@ -40,9 +40,7 @@ if(isset($_GET['IdPersonal'])){
  <!-- chosen CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
-  
-    
-    
+
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -129,9 +127,7 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group">
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
-                                                        </div>
-                                                        
-                                                               
+                                                        </div>  
                                                             
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -252,11 +248,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+             
                                 </div>
                             </div>
                         </div>
@@ -321,5 +313,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

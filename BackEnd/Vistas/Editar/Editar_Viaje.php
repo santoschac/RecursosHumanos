@@ -8,7 +8,6 @@ include("../../Modelo/Conexion.php");
   $Motivo = $_POST['Motivo'];
   //$IdPersonal= $_POST['IdPersonal'];
 
-
   $sql = 'UPDATE viajes SET FechaInicio=:FechaInicio, FechaFin=:FechaFin, Motivo=:Motivo WHERE IdViaje= :IdViaje';  
   $statement =$pdo->prepare($sql);
 

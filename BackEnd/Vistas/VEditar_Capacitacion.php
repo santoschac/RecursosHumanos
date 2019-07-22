@@ -343,5 +343,3 @@ if(isset($_GET['IdPersonal'])){
     });
 
     </script>
-
-   

@@ -5,9 +5,7 @@ include ("Conexion.php");
 $Usuario = $_POST['Usuario'];
 $Contrasena = $_POST['Contrasena'];
 $tipo = 1;
-// $nombre= $_POST['Nombre'];
-// $apellidopaterno = $_POST['ApellidoPaterno'];
-// $apellidomaterno = $_POST['ApellidoMaterno'];
+
 
 //Para verificar si el usuario existe
 $sql = 'SELECT * FROM usuario WHERE Usuario = ?';
@@ -20,7 +18,6 @@ if ($resultado) {
   header("location: ../Vistas/Registro.php?existe=true");
     die();
 }
-
 
 //La contraseña se pasa al hash(encriptacion)
 $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);

@@ -1,7 +1,6 @@
 <?php 
     require "../../Modelo/Conexion.php";
 
-
     $id=$_POST['IdEmpresa'];
 
     $sql= $pdo->prepare("SELECT * FROM sucursal WHERE IdEmpresa = '$id'");
@@ -14,6 +13,4 @@
         $html.= "<option value='".$fila['IdSucursal']."'>".$fila['NombreSucursal']."</option>";
     }
     echo $html;
-
-
 ?>

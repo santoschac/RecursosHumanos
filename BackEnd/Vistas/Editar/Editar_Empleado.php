@@ -2,8 +2,6 @@
 
 include("../../Modelo/Conexion.php");
 
-
-
     $IdPersonal= $_POST['IdPersonal'];
 
     $Nombre= $_POST['Nombre'];
@@ -66,10 +64,4 @@ include("../../Modelo/Conexion.php");
     }
 
    }
-
-    
-
-    
-
-
 ?>

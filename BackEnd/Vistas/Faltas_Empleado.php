@@ -22,7 +22,9 @@ include("../Modelo/Conexion.php");
                                 
                                 
                                 <!-- <a href="VAlta_Falta.php"><button type="button" class="btn btn-primary" >Agregar</button></a> -->
-                            
+                                <div class="add-product">
+                                             <a href="MenuEmpleado.php?IdPersonal=<?php echo $_SESSION['IdPersonal'];?>">Regresar</a>
+                                        </div>
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -60,23 +62,11 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-
-        
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 
@@ -136,4 +126,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script> 
-

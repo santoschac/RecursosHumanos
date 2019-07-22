@@ -1,7 +1,6 @@
 <?php 
     require "../../Modelo/Conexion.php";
 
-
     $id=$_POST['IdPais'];
 
     $sql= $pdo->prepare("SELECT * FROM estado WHERE IdPais = '$id'");
@@ -14,6 +13,5 @@
         $html.= "<option value='".$fila['IdEstado']."'>".$fila['NombreEstado']."</option>";
     }
     echo $html;
-
 
 ?>

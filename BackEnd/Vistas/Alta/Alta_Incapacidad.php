@@ -1,17 +1,6 @@
 <?php
 include("../../Modelo/Conexion.php");
 
-
-
-
-
-
-
-?>
-
-<?php
-include('../../Modelo/Conexion.php');
-
 $DiaInicio = date("Y-m-d", strtotime($_POST['DiaInicio']));
 $DiaFinal = date("Y-m-d", strtotime($_POST['DiaFinal']));
 $Descripcion = $_POST['Descripcion'];

@@ -286,11 +286,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+            
                                 </div>
                             </div>
                         </div>
@@ -363,5 +359,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

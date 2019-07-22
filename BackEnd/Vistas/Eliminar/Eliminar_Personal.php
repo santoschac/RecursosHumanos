@@ -20,9 +20,6 @@
 		$stmt1->execute(array(':IdUsuario'=>$IdUsuario));
 		}
 
-
-		
-		
 		if ($stmt1) {
 			$response['status']  = 'success';
             $response['message'] = 'Eliminado con éxito ...';            

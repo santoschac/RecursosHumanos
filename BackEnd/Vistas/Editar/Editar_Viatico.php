@@ -21,6 +21,9 @@ if(isset($_POST["viatico_id"]))
 		$output["Fecha"] = date("Y-m-d", strtotime($row["Fecha"]));
 		$output['IdPoblacion'] = $row['IdPoblacion'];
 		$output['IdEstado'] = $row['IdEstado'];
+		$output['Comprobado'] = $row['Comprobado'];
+		$output['Cantidad'] = $row['Cantidad'];
+		$output["FechaAprobado"] = date("Y-m-d", strtotime($row["FechaAprobado"]));
 	}
 	echo json_encode($output);
 }

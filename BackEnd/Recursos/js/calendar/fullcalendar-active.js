@@ -32,7 +32,7 @@ $(function() {
     },
 		events: [
 			{
-				title: 'All Day Event',
+				title: 'vacaciones',
 				start: YM + '-01',
 				color: '#006DF0'
 			},

@@ -19,9 +19,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                 <h4>Permisos</h4>
-                                
-                                
-								
+
 								<a href="VAlta_Permiso.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
@@ -61,19 +59,12 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         
-
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-   
 <script >
 
 	$(document).ready(function(){

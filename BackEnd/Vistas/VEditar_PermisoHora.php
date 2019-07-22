@@ -15,30 +15,7 @@ $sentencia=$pdo->prepare($sql1);
 $sentencia->execute(['IdPermisoHora'=>$IdPermisoHora]);
 $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
 
-// $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
-// from personal p
-// inner join puestos pu on p.IdPuesto= pu.IdPuesto
-// inner join sucursal s on p.IdSucursal = s.IdSucursal
-// inner join empresa e on s.IdEmpresa = e.IdEmpresa");
-// $sql->execute();
-// $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
-
-
-// if(isset($_GET['IdPersonal'])){
-
-//     $IdPersonal = $_GET['IdPersonal'];
-//     $sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
-//     from personal p
-//     inner join puestos pu on p.IdPuesto= pu.IdPuesto
-//     inner join sucursal s on p.IdSucursal = s.IdSucursal
-//     inner join empresa e on s.IdEmpresa = e.IdEmpresa WHERE IdPersonal=:IdPersonal';
-//     $statement = $pdo->prepare($sql);
-//     $statement-> execute([':IdPersonal'=> $IdPersonal]);
-//     $Personal = $statement->fetch(PDO::FETCH_OBJ);
-//     }
-
-
-// ?>
+?>
 
 <!-- normalize CSS
 		============================================ -->
@@ -268,11 +245,7 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+            
                                 </div>
                             </div>
                         </div>
@@ -339,5 +312,3 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
     });
 
     </script>
-
-   

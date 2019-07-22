@@ -94,12 +94,7 @@ include("../Modelo/Conexion.php");
                                                         <input type="text" id="NombrePuesto" name="NombrePuesto" class="form-control" placeholder="Escriba el nombre del puesto" required maxlength="50"/>
                                                         <br/>
                                                     </div>
-                                                    <!-- <div class="login-btn-inner">
-                                                        <div class="inline-remember-me">
-                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Guardar</button>
-                                                            <a href="Puestos.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                        </div>
-                                                    </div> -->
+                                                   
                                        
                                         </div>
                                         
@@ -116,11 +111,6 @@ include("../Modelo/Conexion.php");
                             </div>
                         </div>
         <!--fin modal agregar-->
-
-
-
-
-      
 
 <?php
  include ("../Master/Footer.php");
@@ -142,7 +132,6 @@ $(document).ready(function(){
 		
 	});
 	
-
 	$(document).on('submit', '#formulario', function(event){
 		event.preventDefault();
 		var Nombre = $('#NombrePuesto').val();
@@ -218,13 +207,8 @@ $(document).ready(function(){
 		})
 	});
 	
-	
-	
-	
 });
 </script>
-
-   
 
 <script >
 
@@ -284,4 +268,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

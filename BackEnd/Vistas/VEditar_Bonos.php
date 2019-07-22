@@ -52,8 +52,6 @@ if(isset($_GET['IdPersonal'])){
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
   
-    
-    
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -261,11 +259,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+                
                                 </div>
                             </div>
                         </div>

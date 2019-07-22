@@ -149,11 +149,6 @@ include("../Modelo/Conexion.php");
                         </div>
         <!--fin modal agregar-->
 
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
@@ -161,8 +156,6 @@ include("../Modelo/Conexion.php");
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
 
-
-    
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
     $('#boton_agregar').click(function(){
@@ -170,8 +163,6 @@ $(document).ready(function(){
 		$('.modal-title').text("Agregar Jornada");
 		$('#action').val("Agregar");
 		$('#operation').val("Add");
-        
-		
 	});
 	
 
@@ -221,8 +212,6 @@ $(document).ready(function(){
 
 				}
 			});
-		
-		
 	});
 
     $(document).on('click', '.update', function(){
@@ -248,14 +237,9 @@ $(document).ready(function(){
 			}
 		})
 	});
-	
-	
-	
-	
+
 });
 </script>
-
-   
 
 <script >
 
@@ -315,4 +299,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

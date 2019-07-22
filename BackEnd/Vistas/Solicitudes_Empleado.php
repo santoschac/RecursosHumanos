@@ -44,22 +44,11 @@ include("../Modelo/Conexion.php");
         </div> <br>
         <!-- Static Table End -->
 
-          
-                                       
-                                      
-        
-         
-        
         <?php
         include ("../Master/Footer.php");
         ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-
-
 
 <script >
 
@@ -119,4 +108,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script>
-           

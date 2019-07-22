@@ -33,10 +33,7 @@ include("../../Modelo/Conexion.php");
     $UltimaModificacion = date("Y-m-d", strtotime( $_POST['UltimaModificacion']));
     $TipoContrato = $_POST['TipoContrato'];
     
-  
     $Telefono = $_POST['Telefono'];
-   
-    
     
     $IdPuesto= $_POST['IdPuesto'];
     $IdSucursal = $_POST['IdSucursal'];

@@ -13,8 +13,6 @@ $sentencia=$pdo->prepare($sql1);
 $sentencia->execute(['IdFalta'=>$IdFalta]);
 $faltas = $sentencia->fetch(PDO::FETCH_OBJ);
 
-
-
 $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join puestos pu on p.IdPuesto= pu.IdPuesto
@@ -139,11 +137,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <label>Sucursal</label>
                                                             <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdFalta'])):?><?=$faltas->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
                                                         </div>
-                                                       
-                                                       
-                                                               
-                                                            
-                                                        </div>
+                                                    </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
                                                             <label>Puesto</label>
@@ -155,8 +149,7 @@ if(isset($_GET['IdPersonal'])){
                                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                                 <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("Y-m-d", strtotime($faltas->Fecha));?>">
                                                             </div>
-                                                        </div>
-                                                        
+                                                        </div>                                                       
                                                            
                                                         </div>
                                                         
@@ -255,10 +248,6 @@ if(isset($_GET['IdPersonal'])){
         </div> 
         <!-- Static Table End -->
            
-                                
-                            
-                                        
-                                    
                                 </div>
                             </div>
                         </div>
@@ -323,5 +312,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

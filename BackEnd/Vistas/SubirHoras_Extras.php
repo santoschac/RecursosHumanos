@@ -16,12 +16,7 @@
                             <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <!-- <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div> -->
+                                      
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
@@ -49,13 +44,7 @@
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd" style="text-align: center">
                             <h1>Subir <span class="table-project-n">archivo</span> de horas extras</h1>
-                            <!-- <ul class="breadcome-menu">
-                                <li><a href="Index.php" data-toggle="tooltip" title="Regresar al inicio">Inicio</a>
-                                    <span class="bread-slash">/</span>
-                                </li>
-                                <li><span class="bread-blod">Reportes</span>
-                                </li>
-                            </ul> -->
+                            
                         </div>
                     </div> <br> <br>
                     <!-- Formulario -->

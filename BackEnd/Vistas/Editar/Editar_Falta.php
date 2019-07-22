@@ -2,9 +2,6 @@
 
 include("../../Modelo/Conexion.php");
 
-
-
-
   $IdFalta = $_POST['IdFalta'];
   $Fecha = date("Y-m-d", strtotime($_POST['Fecha']));
   $IdPersonal= $_POST['IdPersonal'];
@@ -19,7 +16,5 @@ include("../../Modelo/Conexion.php");
   }else{
     echo 2;
   }
-
-  
 
 ?>

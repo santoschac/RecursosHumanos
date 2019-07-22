@@ -2,9 +2,6 @@
 
 include("../../Modelo/Conexion.php");
 
-
-
-
   $IdBono = $_POST['IdBono'];
   $Descripcion = $_POST['Descripcion'];
   $Fecha = date("Y-m-d", strtotime($_POST['Fecha']));
@@ -20,7 +17,5 @@ include("../../Modelo/Conexion.php");
    
     echo 1;
   }
-
-  
 
 ?>

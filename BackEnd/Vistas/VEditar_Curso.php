@@ -11,9 +11,6 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
 
 ?>
 
-
-
-
 <!-- Mobile Menu end -->
 <div class="breadcome-area">
     <div class="container-fluid">
@@ -160,8 +157,7 @@ $(document).ready(function(){
                processData:false,
                success:function(data)
                {
-                   //alert(data);
-                   //$('#formulario')[0].reset();
+                  
                    if(data==1){
                    //readCurso();
                    $("#exito").fadeIn();

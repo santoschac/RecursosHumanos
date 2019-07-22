@@ -44,9 +44,7 @@ if(isset($_GET['IdPersonal'])){
 	============================================ -->
     <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
 
-  
-    
-    
+
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -277,11 +275,7 @@ if(isset($_GET['IdPersonal'])){
                 </div>
             </div>
         </div> 
-        <!-- Static Table End -->
-           
-                                
-                            
-                                        
+        <!-- Static Table End -->       
                                     
                                 </div>
                             </div>
@@ -355,5 +349,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

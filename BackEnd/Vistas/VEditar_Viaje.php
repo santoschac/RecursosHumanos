@@ -2,8 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-
-
 $IdViaje = $_GET['IdViaje'];
 $sql1 = 'SELECT v.IdViaje, v.FechaInicio, v.FechaFin, v.Motivo, v.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
 from viajes v
@@ -143,9 +141,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdViaje'])):?><?= $viajes->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
                                                         </div>
-                                                        
-                                                               
-                                                            
+
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group data-custon-pick">
@@ -265,11 +261,7 @@ if(isset($_GET['IdPersonal'])){
             </div>
         </div> 
         <!-- Static Table End -->
-           
-                                
-                            
-                                        
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -334,5 +326,3 @@ $(document).ready(function(){
     });
 
     </script>
-
-   

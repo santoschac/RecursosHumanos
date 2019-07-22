@@ -89,47 +89,10 @@ if(isset($_POST['todos'])){
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <!-- <h4>Lista de Empleados</h4>
-                                </div>
-                                <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
-                             -->
+                             
                             
                             </div>
-                             <!---->
-                             <!-- <br/>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h4>Lista de Empleados</h4>
-                                    <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar Empleado</button></a>
-                                </div>
-                                <div class="col-md-3">
-                                                            <label>Empresa</label>
-                                                            <?php
-                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
-                                                            $sql->execute();
-                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
-                                                            
-                                                            ?>
-                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
-                                                            <option value="" selected="" disabled="">Seleccionar</option>
-                                                                <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
-                                                                <?php } ?>
-                                                            </select>
-
-                                </div>
-                                <div class="col-md-3">
-                                <label>Sucursal</label>
-                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
-                                                                <option value="" selected="" disabled="">Seleccionar</option>
-                                                            </select>           
-                                </div>
-                                <div class="col-md-3"><br/>
-                                <button class="btn btn-primary">Aceptar</button>
-                                <br/><br/>
-                                </div>
-                                <br/> -->
-                            <!---->
+                            
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">                                                
                                     

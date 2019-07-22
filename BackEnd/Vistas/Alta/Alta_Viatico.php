@@ -43,15 +43,14 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Edit")
 	{
 			$statement = $pdo->prepare(
-			"UPDATE solicitudes 
-			SET NombrePuesto = :NombrePuesto
-			WHERE IdPuesto = :id
-			"
+			"UPDATE viaticos SET Comprobado=:Comprobado, Cantidad=:Cantidad, FechaAprobado=:FechaAprobado WHERE IdViatico = :id"
 		);
 		$result = $statement->execute(
 			array(
-				':NombrePuesto'	=>	$_POST["NombrePuesto"],
-				':id'			=>	$_POST["puesto_id"]
+				':Comprobado'	=>	$_POST["Comprobado"],
+				':Cantidad' => $_POST['Cantidad'],
+				':FechaAprobado' => $_POST['FechaAprobado'],
+				':id'			=>	$_POST["viatico_id"]
 			)
 		);
 		if(!empty($result))

@@ -1,9 +1,7 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
-
 ?>
-        
    <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
@@ -19,8 +17,7 @@ include("../Modelo/Conexion.php");
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
                                 <h4>Accidentes</h4>
-                                
-                                
+ 
                                 <a href="VAlta_Accidentes.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                             
                                 </div>
@@ -60,23 +57,11 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-
-        
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
-
-
-
-    
-   
 
 <script >
 
@@ -136,4 +121,3 @@ include("../Modelo/Conexion.php");
 	}
     
 </script> 
-

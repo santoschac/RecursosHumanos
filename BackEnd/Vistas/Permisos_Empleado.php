@@ -122,9 +122,7 @@ include("../Modelo/Conexion.php");
 																		<option value="Aprobado">Aprobado</option>
 																	</select>
                                                                 </div>
-																
-										
-										    
+
                                        
                                         </div>
 										
@@ -144,10 +142,6 @@ include("../Modelo/Conexion.php");
 						</div>
         <!--fin modal agregar-->
 
-
-
-
-      
 
 <?php
  include ("../Master/Footer.php");
