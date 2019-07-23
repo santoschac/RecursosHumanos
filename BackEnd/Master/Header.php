@@ -80,8 +80,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/metisMenu/metisMenu-vertical.css">
     <!-- calendar CSS
 		============================================ -->
-    <link rel="stylesheet" href="../Recursos/css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="../Recursos/css/calendar/fullcalendar.print.min.css">
+    <!-- <link rel="stylesheet" href="../Recursos/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="../Recursos/css/calendar/fullcalendar.print.min.css"> -->
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/style.css">
@@ -141,6 +141,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Faltas" href="Faltas.php"><span class="mini-sub-pro">Faltas</span></a></li>
                                 <li><a title="Viajes" href="Viajes.php"><span class="mini-sub-pro">Viajes</span></a></li>
                                 <li><a title="Viáticos" href="Viaticos.php"><span class="mini-sub-pro">Viáticos</span></a></li>
+                                <li><a title="Vacaciones" href="Vacaciones.php"><span class="mini-sub-pro">Vacaciones</span></a></li>
                             </ul>
                         </li>
                         <li>
@@ -256,6 +257,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 </li>
                                                 <li class="nav-item"><a href="../Vistas/Empleados.php"
                                                         class="nav-link">Empleados</a>
+                                                </li>
+                                                <li class="nav-item"><a href="../Vistas/Vacaciones.php"
+                                                        class="nav-link">Vacaciones</a>
                                                 </li>
 
                                             </ul>
