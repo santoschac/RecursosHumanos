@@ -38,19 +38,13 @@ if(isset($_POST['todos'])){
                                 </div>
                                 <form method="post" action="#">
                                 <div class="col-md-3">
-                                                            <label>Empresa</label>
-                                                            <?php
-                                                            $sql = $pdo->prepare('SELECT IdEmpresa, NombreEmpresa FROM empresa') ;
-                                                            $sql->execute();
-                                                            $result=$sql->fetchAll(PDO::FETCH_ASSOC);
-                                                            
-                                                            ?>
-                                                            <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
-                                                            <option value="" selected="" disabled="">Seleccionar</option>
-                                                                <?php foreach ($result as $dato) {?>
-                                                                    <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
-                                                                <?php } ?>
-                                                            </select>
+                                    <label>Empresa</label>
+                                    <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                      <option value="" selected="" disabled="">Seleccionar</option>
+                                       <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa from empresa')as $dato){?>
+                                       <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                       <?php } ?>
+                                    </select>
 
                                 </div>
                                 <div class="col-md-3">

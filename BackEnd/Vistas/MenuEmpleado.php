@@ -56,6 +56,12 @@ $CantidadViajes = $sql8->fetch();
 $sql9 = $pdo->prepare("SELECT count(IdPersonal) as cantidad FROM viaticos where IdPersonal = $IdPersonal");
 $sql9 -> execute();
 $CantidadViaticos= $sql9->fetch();
+
+$sql10 = $pdo->prepare("SELECT c.IdComision, c.MontoCobrado, c.MontoComision, c.IdComisionPorcentaje, c.Fecha, c.Porcentaje, count(por.IdPersonal) as cantidad
+from comision c
+inner join comisionporcentaje por on c.IdComisionPorcentaje = por.IdComisionPorcentaje   where por.IdPersonal = $IdPersonal");
+$sql10 -> execute();
+$CantidadComision= $sql10->fetch();
 ?>
 
 
@@ -161,7 +167,7 @@ $CantidadViaticos= $sql9->fetch();
                                     <h4 style="color:white">Capacitación (<?php echo $CantidadCapacitacion['cantidad']?>)</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-message"></i>
+                                    <i class="educate-icon educate-form icon-wrap"></i>
                                 </div>
                                 <div class="m-t-xl widget-cl-4">
                                     
@@ -312,34 +318,33 @@ $CantidadViaticos= $sql9->fetch();
                             </div>
                         </div>
                     </div>
-                  <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgyellow bg-3 responsive-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
-                                    <h4 style="color:white">Permisos</h4>
+                                    <h4 style="color:white">Vacaciones</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-data-table icon-wrap"></i>
+                                    <i class="educate-icon educate-event icon-wrap sub-icon-mg"></i>
                                 </div>
                                 <div class="m-t-xl widget-cl-3">
                                     
-                                    <p style="color:white">Ver los permisos y permisos por horas realizados por el empleado.</p>
+                                    <p style="color:white">Ver la fecha de vacaciones del empleado.</p>
                                 </div>
-                                <div class="row">
-                                <div class="col-md-5"><a href="Permisos_Empleado.php"><button  class="btn btn-secondary" style="color:black">Permisos</button></a></div>
-                                <div class="col-md-4"><a href="Permisos_HoraEmpleado.php"><button  class="btn btn-secondary" style="color:black">Permisos por hrs</button></a></div>
+                                
+                               <a href="Vacaciones_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
                                 
                                 
                                 </div>
                                 
                             </div>
                     </div>
-                    </div>
+                   
                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="hpanel shadow-inner hbgred bg-4 res-tablet-mg-t-30 dk-res-t-pro-30">
                             <div class="panel-body">
                                 <div class="stats-title pull-left">
-                                    <h4 style="color:white">Faltas</h4>
+                                    <h4 style="color:white">Comisión (<?php echo $CantidadComision['cantidad'];?>)</h4>
                                 </div>
                                 <div class="stats-icon pull-right">
                                     <i class="educate-icon educate-professor"></i>
@@ -347,14 +352,14 @@ $CantidadViaticos= $sql9->fetch();
                                 <div class="m-t-xl widget-cl-4">
                                     
                                     <p style="color:white">
-												Ver las faltas del empleado.<br/><br/></p>
+												Ver las comisiones del empleado.<br/><br/></p>
                                 </div>
-                               <a href="Faltas_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
+                               <a href="Comision_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
                             </div>
                         </div>
                     </div>
                     
-                </div> -->
+                </div>
             </div>
             <br/>
         </div>

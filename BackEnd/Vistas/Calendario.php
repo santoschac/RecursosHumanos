@@ -376,7 +376,7 @@ $(document).ready(function () {
 			 data: {Event:Event},
 			 success: function(rep) {
 					if(rep == 'OK'){
-						alert('Evento se ha guardado correctamente');
+						alert('Dato guardado correctamente');
 					}else{
 						alert('No se pudo guardar. Inténtalo de nuevo.'); 
 					}

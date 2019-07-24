@@ -6,32 +6,31 @@
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
 
- <!-- Static Table Start -->
- <div class="data-table-area mg-b-15">
- <br/>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline13-list">
-                            
-                        <div class="calender-area mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="calender-inner">
-                            <div id='calendar'></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                 
+    <!-- colorpicker CSS
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/css/colorpicker/colorpicker.css">
+
+ 
+        
+        <div class="form-group data-custon-pick">
+                                                            <label><strong>Fecha Inicio</strong></label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                                            </div>
+                                                        </div>
+             <?php echo "hola mundo";
+             echo $fechainicio = "24-07-2019";
+             echo $fechavencida = "22-07-2019";
+
+             if($fechavencida<$fechainicio){
+                 echo "la fecha ya vencio";
+             }else{
+                 echo "la fecha no ha vencido";
+             }
+             
+             ?>
+                                                        
 <?php include "../Master/Footer.php"; ?>
 
  <!-- data table JS
@@ -40,3 +39,9 @@
 
         <script src="../Recursos/js/data-table/tableExport.js"></script>
         <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>
+
+
+        <!-- colorpicker JS
+		============================================ -->
+    <script src="../Recursos/js/colorpicker/jquery.spectrum.min.js"></script>
+    <script src="../Recursos/js/colorpicker/color-picker-active.js"></script>

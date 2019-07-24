@@ -134,14 +134,26 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 <li><a title="Empleados" href="Empleados.php"><span class="mini-sub-pro">Empleados</span></a></li>
                                 <li><a title="Incapacidad" href="Incapacidad.php"><span class="mini-sub-pro">Incapacidad</span></a></li>
                                 <li><a title="Bonos" href="Bonos.php"><span class="mini-sub-pro">Bonos</span></a></li>
+
+                                <li><a title="Permisos" class="has-arrow" aria-expanded="false" href="#"><span class="mini-sub-pro">Permisos</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Permisos" href="Permisos.php"><span class="mini-sub-pro">Permisos</span></a></li>
                                 <li><a title="Permiso por  hora" href="Permisos_Hora.php"><span class="mini-sub-pro">Permisos por hora</span></a></li>
+                                </ul></li>
+                                
                                 <li><a title="Horas Extras" href="Horas_Extras.php"><span class="mini-sub-pro">Horas Extras</span></a></li>
                                 <li><a title="Accidentes" href="Accidentes.php"><span class="mini-sub-pro">Accidentes</span></a></li>
                                 <li><a title="Faltas" href="Faltas.php"><span class="mini-sub-pro">Faltas</span></a></li>
                                 <li><a title="Viajes" href="Viajes.php"><span class="mini-sub-pro">Viajes</span></a></li>
                                 <li><a title="Viáticos" href="Viaticos.php"><span class="mini-sub-pro">Viáticos</span></a></li>
                                 <li><a title="Vacaciones" href="Vacaciones.php"><span class="mini-sub-pro">Vacaciones</span></a></li>
+
+                                <li><a title="Comisiones" class="has-arrow" aria-expanded="false" href="Comisiones.php"><span class="mini-sub-pro">Comisiones</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Porecentaje Comisiones" href="Porcentaje_Comision.php"><span class="mini-sub-pro">Porcentaje comisión</span></a></li>
+                                <li><a title="Comisión" href="Comision.php"><span class="mini-sub-pro">Comisión</span></a></li>
+                                </ul>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -258,9 +270,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <li class="nav-item"><a href="../Vistas/Empleados.php"
                                                         class="nav-link">Empleados</a>
                                                 </li>
-                                                <li class="nav-item"><a href="../Vistas/Vacaciones.php"
+                                                <!-- <li class="nav-item"><a href="../Vistas/Vacaciones.php"
                                                         class="nav-link">Vacaciones</a>
-                                                </li>
+                                                </li> -->
 
                                             </ul>
                                         </div>
