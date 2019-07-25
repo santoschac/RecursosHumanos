@@ -216,6 +216,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
+						readViatico();
 						//$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
@@ -226,6 +227,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
+						readViatico();
 						//$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');

@@ -3,13 +3,13 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
 
-$sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
-from personal p
-inner join puestos pu on p.IdPuesto= pu.IdPuesto
-inner join sucursal s on p.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa");
-$sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+// $sql= $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+// from personal p
+// inner join puestos pu on p.IdPuesto= pu.IdPuesto
+// inner join sucursal s on p.IdSucursal = s.IdSucursal
+// inner join empresa e on s.IdEmpresa = e.IdEmpresa");
+// $sql->execute();
+// $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 
 if(isset($_GET['IdPersonal'])){
@@ -194,6 +194,32 @@ if(isset($_GET['IdPersonal'])){
                                         </div>
                                     </div>
                                     
+                                     <!---->
+                                     <div class="row">
+                               
+                               <form method="post" action="#" id="formulariotabla">
+                               <div class="col-md-1"></div>
+                               <div class="col-md-4">
+                                   <label>Empresa</label>
+                                   <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                     <option value="" selected="" disabled="">Seleccionar</option>
+                                      <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa from empresa')as $dato){?>
+                                      <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                      <?php } ?>
+                                   </select>
+                               </div>
+                               <div class="col-md-4">
+                               <label>Sucursal</label>
+                                                           <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                               <option value="" selected="" disabled="">Seleccionar</option>
+                                                           </select>           
+                               </div>
+                               <div class="col-md-3"><br/>
+                               <button class="btn btn-primary" type="submit">Aceptar</button>
+                               </div> 
+                               </form>
+                               </div>
+                                   <!---->
                                     
                <!-- Static Table Start -->
          <div class="data-table-area mg-b-15">
@@ -202,44 +228,9 @@ if(isset($_GET['IdPersonal'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                            
-                            <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">                                                
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
-                                        data-cookie-id-table="saveId"  data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            
-                                            <th>Empresa</th>
-                                            <th>Sucursal</th>
-                                            <th>Puesto</th>
-                                            <th>Departamento</th>
-                                            <th>Seleccionar</th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>
-                                        <?php foreach ($resultado as $dato) {?>
-                                            <tr>
-                                                <td><?php echo $dato['IdPersonal']; ?></td>
-                                                <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
-                                                
-                                                <td><?php echo $dato['NombreEmpresa']; ?></td>
-                                                <td><?php echo $dato['NombreSucursal']; ?></td>
-                                                <td><?php echo $dato['NombrePuesto']; ?></td>
-                                                <td><?php echo $dato['Departamento']; ?></td>
-                                                
-                                                <td>
-                                                <a href="VAlta_Viaje.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" class="pd-setting-ed"><span class="glyphicon">&#xe013;</span></button><a>
-                                                    
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        </tbody>
-                                    </table> <br>
+                        <div class="sparkline13-graph">
+                                <div id="tabla" class="datatable-dashv1-list custom-datatable-overright">                                                
+                                  
                                 </div>
                             </div>
                         </div>
@@ -306,6 +297,49 @@ $(document).ready(function(){
                        },3000);
                        }
     
+                   }
+               });
+       });
+  
+    });
+
+    
+    $(document).ready(function () {
+        $("#IdEmpresa").change(function () {
+            // e.preventDefault();
+
+            $("#IdEmpresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
+
+    $(document).ready(function(){
+       
+       $(document).on('submit', '#formulariotabla', function(event){
+           event.preventDefault();
+           var datos = $('#formulariotabla').serialize();
+//alert(datos);
+
+               $.ajax({
+                   url:"TablasModal/TablaPersonalViaje.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     //alert(data);
+                     $("#tabla").html(data);
+                     
                    }
                });
        });

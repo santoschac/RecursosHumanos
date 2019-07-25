@@ -4,7 +4,7 @@
 -- Project :      BDRecursosH.DM1
 -- Author :       Lenovo
 --
--- Date Created : Wednesday, July 24, 2019 14:44:44
+-- Date Created : Thursday, July 25, 2019 09:40:00
 -- Target DBMS : MySQL 5.x
 --
 
@@ -53,6 +53,7 @@ CREATE TABLE Bonos(
 );
 
 
+
 -- 
 -- TABLE: Cambios 
 --
@@ -81,7 +82,6 @@ CREATE TABLE Capacitacion(
     IdCurso              INT             NOT NULL,
     PRIMARY KEY (IdCapacitacion)
 );
-
 
 
 -- 
@@ -195,7 +195,6 @@ CREATE TABLE Jornada(
     HoraFin        TIME,
     PRIMARY KEY (IdJornada)
 );
-
 
 
 -- 
@@ -344,7 +343,6 @@ CREATE TABLE Sucursal(
 );
 
 
-
 -- 
 -- TABLE: TipoUsuario 
 --
@@ -398,6 +396,25 @@ CREATE TABLE Viajes(
     Motivo         VARCHAR(200),
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdViaje)
+);
+
+
+
+-- 
+-- TABLE: Viaticos 
+--
+
+CREATE TABLE Viaticos(
+    IdViatico        INT               AUTO_INCREMENT,
+    Motivo           VARCHAR(200),
+    Monto            DECIMAL(10, 0),
+    Comprobado       VARCHAR(30),
+    Cantidad         DECIMAL(10, 0),
+    Fecha            DATE,
+    FechaAprobado    DATE,
+    IdPoblacion      INT               NOT NULL,
+    IdPersonal       INT               NOT NULL,
+    PRIMARY KEY (IdViatico)
 );
 
 
@@ -627,6 +644,21 @@ ALTER TABLE Vacaciones ADD CONSTRAINT RefPersonal29
 --
 
 ALTER TABLE Viajes ADD CONSTRAINT RefPersonal28 
+    FOREIGN KEY (IdPersonal)
+    REFERENCES Personal(IdPersonal)
+;
+
+
+-- 
+-- TABLE: Viaticos 
+--
+
+ALTER TABLE Viaticos ADD CONSTRAINT RefPoblacion32 
+    FOREIGN KEY (IdPoblacion)
+    REFERENCES Poblacion(IdPoblacion)
+;
+
+ALTER TABLE Viaticos ADD CONSTRAINT RefPersonal33 
     FOREIGN KEY (IdPersonal)
     REFERENCES Personal(IdPersonal)
 ;

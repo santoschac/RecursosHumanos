@@ -1,47 +1,67 @@
-<?php include "../Master/Header.php"; ?>
+<!DOCTYPE html>
+<html lang="en">
+<?php
+ include ("../Master/Header.php");
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body><br/><br/><br/><br/>
 
-<!-- normalize CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
+    <?php 
+    
+    if(isset($_SESSION['IdSucursal'])){
+        echo "llego el valor";
+    }else{
+        echo "no llego el valor";
+    }
+    
+    ;?>
 
+    
+<div class="row">
+    
+    
+    <form method="post" action="#" id="formulario">
+    &nbsp;&nbsp;&nbsp;<input type="text" name="prueba" id="prueba" value="">
 
-    <!-- colorpicker CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/colorpicker/colorpicker.css">
+    <button class="btn btn-primary" type="submit">Aceptar</button>
+    </form>
 
- 
-        
-        <div class="form-group data-custon-pick">
-                                                            <label><strong>Fecha Inicio</strong></label>
-                                                            <div class="input-group date">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control" value="<?php echo date("Y-m-d"); ?>">
-                                                            </div>
-                                                        </div>
-             <?php echo "hola mundo";
-             echo $fechainicio = "24-07-2019";
-             echo $fechavencida = "22-07-2019";
+</div>
+    <br/><br/><br/><br/>
+</body>
+<?php
+ include ("../Master/Footer.php");
+?>
+</html>
 
-             if($fechavencida<$fechainicio){
-                 echo "la fecha ya vencio";
-             }else{
-                 echo "la fecha no ha vencido";
-             }
-             
-             ?>
-                                                        
-<?php include "../Master/Footer.php"; ?>
+<script type="text/javascript" language="javascript">
 
- <!-- data table JS
-		============================================ -->
-        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+$(document).ready(function(){
+       
+       $(document).on('submit', '#formulario', function(event){
+           event.preventDefault();
+           var datos = $('#formulario').serialize();
+alert(datos);
 
-        <script src="../Recursos/js/data-table/tableExport.js"></script>
-        <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>
-
-
-        <!-- colorpicker JS
-		============================================ -->
-    <script src="../Recursos/js/colorpicker/jquery.spectrum.min.js"></script>
-    <script src="../Recursos/js/colorpicker/color-picker-active.js"></script>
+               $.ajax({
+                   url:"Prueba_alta.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     alert(data);
+                     //$("#formulario").html(data);
+                     
+                   }
+               });
+       });
+  
+    });
+    </script>

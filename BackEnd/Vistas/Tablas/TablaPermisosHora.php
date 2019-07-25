@@ -1,9 +1,27 @@
 
 <?php
 include("../../Modelo/Conexion.php");
+session_start();
 
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
 
-$sql= $pdo->prepare("SELECT pe.IdPermisoHora, pe.Fecha, TIME_FORMAT(pe.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(pe.HoraFin, '%H:%i %p') as HoraFin, pe.Motivo, pe.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT pe.IdPermisoHora, pe.Fecha, TIME_FORMAT(pe.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(pe.HoraFin, '%H:%i %p') as HoraFin, pe.Motivo, pe.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa
+        from permisoshora pe
+        inner join personal p on pe.IdPersonal = p.IdPersonal
+        inner join puestos pu on p.IdPuesto = pu.IdPuesto
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+        inner join empresa e on s.IdEmpresa = e.IdEmpresa where s.IdSucursal = $IdSucursal");
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}else
+{
+    $sql= $pdo->prepare("SELECT pe.IdPermisoHora, pe.Fecha, TIME_FORMAT(pe.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(pe.HoraFin, '%H:%i %p') as HoraFin, pe.Motivo, pe.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal, e.IdEmpresa, e.NombreEmpresa
 from permisoshora pe
 inner join personal p on pe.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto = pu.IdPuesto
@@ -11,6 +29,11 @@ inner join sucursal s on p.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}
+
+
+
 
 ?>
 

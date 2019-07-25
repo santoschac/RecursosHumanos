@@ -1,6 +1,11 @@
 <?php
 include ("../../Modelo/Conexion.php");
 session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
 if(isset($_SESSION['IdSucursal'])){
     
         $IdSucursal= $_SESSION['IdSucursal'];

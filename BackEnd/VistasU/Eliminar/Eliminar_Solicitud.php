@@ -23,7 +23,7 @@
 		$NombreCarpeta = $result['Usuario'];
 		$NombreDocumento = $result['Documento'];
 		
-		unlink('../Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+		unlink('../Documentos/Solicitudes/'.$NombreCarpeta.'/'.$NombreDocumento);
 
 		$sql = "DELETE FROM solicitudes WHERE IdSolicitudes=:IdSolicitudes";
 		$stmt = $pdo->prepare($sql);

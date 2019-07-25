@@ -7,9 +7,9 @@ if($_SESSION['IdTipoUsuario']==2){
     echo "<br/><h1>no se puede acceder a este sitio</h1>";
 }
 
-if(isset($_POST['IdSucursal'])){
-     $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
-}
+// if(isset($_POST['IdSucursal'])){
+//      $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+// }
 
 if(isset($_POST['todos'])){   
     unset($_SESSION['IdSucursal']);
@@ -36,7 +36,7 @@ if(isset($_POST['todos'])){
                                     <h4>Empleados</h4>
                                     <a href="VAlta_Empleado.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
                                 </div>
-                                <form method="post" action="#">
+                                <form method="post" action="#" id="formulariotabla">
                                 <div class="col-md-3">
                                     <label>Empresa</label>
                                     <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
@@ -45,7 +45,6 @@ if(isset($_POST['todos'])){
                                        <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
                                        <?php } ?>
                                     </select>
-
                                 </div>
                                 <div class="col-md-3">
                                 <label>Sucursal</label>
@@ -192,4 +191,28 @@ if(isset($_POST['todos'])){
 		$('#TablaPersonal').load('Tablas/TablaPersonal.php');	
 	}
     
+
+    $(document).ready(function(){
+       
+       $(document).on('submit', '#formulariotabla', function(event){
+           event.preventDefault();
+           var datos = $('#formulariotabla').serialize();
+//alert(datos);
+
+               $.ajax({
+                   url:"Tablas/TablaPersonal.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     //alert(data);
+                     $("#TablaPersonal").html(data);
+                    // readPersonal();
+                   }
+               });
+       });
+  
+    });
 </script>
