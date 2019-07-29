@@ -3,12 +3,32 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql = $pdo->prepare('SELECT s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
-s.Estatus, s.IdPersonal, s.Solicitud, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno
-from solicitudes s
-inner join personal p on s.IdPersonal = p.IdPersonal  where Estatus = "Espera" order by IdSolicitudes desc') ;
-$sql->execute();
-$result=$sql->fetchAll(PDO::FETCH_ASSOC);
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql = $pdo->prepare("SELECT s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
+        s.Estatus, s.IdPersonal, s.Solicitud, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, p.IdSucursal
+        from solicitudes s
+        inner join personal p on s.IdPersonal = p.IdPersonal  where Estatus = 'Espera' and IdSucursal = $IdSucursal order by IdSolicitudes desc") ;
+        $sql->execute();
+        $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+
+}else
+{
+    $sql = $pdo->prepare('SELECT s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
+    s.Estatus, s.IdPersonal, s.Solicitud, p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno
+    from solicitudes s
+    inner join personal p on s.IdPersonal = p.IdPersonal  where Estatus = "Espera" order by IdSolicitudes desc') ;
+    $sql->execute();
+    $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 ?>

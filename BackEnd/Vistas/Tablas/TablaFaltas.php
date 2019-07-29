@@ -3,7 +3,31 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT f.IdFalta, f.IdPersonal, f.Fecha, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $Anio = date("Y", strtotime($_POST['Fecha']));
+        $Mes = date("m", strtotime($_POST['Fecha']));
+
+        $sql= $pdo->prepare(" SELECT f.IdFalta, f.IdPersonal, f.Fecha, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
+        from faltas f
+        inner join personal p on f.IdPersonal = p.IdPersonal
+        inner join puestos pu on p.IdPuesto = pu.IdPuesto
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+         join empresa e on s.IdEmpresa = e.IdEmpresa where s.IdSucursal = $IdSucursal and MONTH(Fecha) = $Mes AND YEAR(Fecha) = $Anio");
+        $sql->execute();
+        $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+        
+}
+else
+{
+    $sql= $pdo->prepare("SELECT f.IdFalta, f.IdPersonal, f.Fecha, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
 from faltas f
 inner join personal p on f.IdPersonal = p.IdPersonal
 inner join puestos pu on p.IdPuesto = pu.IdPuesto
@@ -12,9 +36,12 @@ inner join sucursal s on p.IdSucursal = s.IdSucursal
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
+}
+
+
 
 ?>
-
+    <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
 <!-- normalize CSS
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
@@ -57,28 +84,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
                                 
-
-        
-        
-
-
-
-
-        
         <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+    <script src="../Recursos/js/data-table/tableExport.js"></script>
+    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

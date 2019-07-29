@@ -6,7 +6,11 @@ $message="";
 $IdUsuario = $_SESSION['IdUsuario'];
 
 
-$sql = 'SELECT * FROM personal WHERE IdUsuario = ?';
+$sql = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno,  p.IdUsuario, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+FROM personal p
+inner join sucursal s on p.IdSucursal = s.IdSucursal
+inner join empresa e on s.IdEmpresa = e.IdEmpresa 
+inner join puestos pu on p.IdPuesto = pu.IdPuesto where IdUsuario = ?';
 $sentencia = $pdo->prepare($sql);
 $sentencia->execute(array($IdUsuario));
 $resultado = $sentencia->fetch();
@@ -95,14 +99,40 @@ $resultado = $sentencia->fetch();
                                                         placeholder="Apellido Paterno"
                                                         value="<?php echo $resultado['ApellidoPaterno'] ?>" readonly="">
                                                 </div>
-                                                <label>Apellido Materno</label>
+                                                
                                                 <div class="form-group">
+                                                <label>Apellido Materno</label>
                                                     <input name="ApellidoMaterno" type="text" class="form-control"
                                                         placeholder="Apellido Materno"
                                                         value="<?php echo $resultado['ApellidoMaterno'] ?>" readonly="">
                                                 </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <label>Empresa</label>
+                                                    <input name="Empresa" type="text" class="form-control"
+                                                        placeholder="Empresa"
+                                                        value="<?php echo $resultado['NombreEmpresa'] ?>" readonly="">
+                                                </div>
+                                                
+                                                
+                                                
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                <label>Sucursal</label>
+                                                    <input name="Sucursal" type="text" class="form-control"
+                                                        placeholder="Sucursal"
+                                                        value="<?php echo $resultado['NombreSucursal'] ?>" readonly="">
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <label>Puesto</label>
+                                                    <input name="Puesto" type="text" class="form-control"
+                                                        placeholder="Puesto"
+                                                        value="<?php echo $resultado['NombrePuesto'] ?>" readonly="">
+                                                </div>
                                                     <div class="form-group">
                                                         <label>Usuario</label>
                                                         <input name="Usuario" type="text" class="form-control"

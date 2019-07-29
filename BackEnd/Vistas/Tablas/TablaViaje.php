@@ -3,14 +3,38 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT v.IdViaje, v.FechaInicio, v.FechaFin, v.Motivo, v.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
-from viajes v
-inner join personal p on v.IdPersonal = p.IdPersonal
-inner join puestos pu on p.IdPuesto = pu.IdPuesto
-inner join sucursal s on p.IdSucursal = s.IdSucursal
- join empresa e on s.IdEmpresa = e.IdEmpresa");
-$sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT v.IdViaje, v.FechaInicio, v.FechaFin, v.Motivo, v.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
+        from viajes v
+        inner join personal p on v.IdPersonal = p.IdPersonal
+        inner join puestos pu on p.IdPuesto = pu.IdPuesto
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+         join empresa e on s.IdEmpresa = e.IdEmpresa where s.IdSucursal = $IdSucursal");
+        $sql->execute();
+        $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}
+else
+{
+
+    $sql= $pdo->prepare("SELECT v.IdViaje, v.FechaInicio, v.FechaFin, v.Motivo, v.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
+    from viajes v
+    inner join personal p on v.IdPersonal = p.IdPersonal
+    inner join puestos pu on p.IdPuesto = pu.IdPuesto
+    inner join sucursal s on p.IdSucursal = s.IdSucursal
+    join empresa e on s.IdEmpresa = e.IdEmpresa");
+    $sql->execute();
+    $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}
+
+
 
 
 ?>

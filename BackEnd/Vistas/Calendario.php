@@ -59,6 +59,10 @@ else
     
 	<!-- FullCalendar -->
 	<link href='../Recursos/css/fullcalendar/fullcalendar.css' rel='stylesheet' />
+	 <!-- Sweet Alert
+		============================================ -->
+        <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
+
 
 	<div class="breadcome-area">
                 <div class="container-fluid">
@@ -249,6 +253,7 @@ else
     </div>
     <!-- /.container -->
 	<?php include"../Master/Footer.php";?>
+	<script src="../Recursos/js/sweetalert2@8.js"></script>
     <!-- jQuery Version 1.11.1 -->
 	<script src="../Recursos/js/jquery-3.2.1.min.js"></script>
    
@@ -376,9 +381,24 @@ $(document).ready(function () {
 			 data: {Event:Event},
 			 success: function(rep) {
 					if(rep == 'OK'){
-						alert('Dato guardado correctamente');
+						Swal.fire({
+                            position: 'top-end',
+                            type: 'success',
+                            title: 'Datos Guardados',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                       // setTimeout('document.location.reload()',1000);
 					}else{
-						alert('No se pudo guardar. Inténtalo de nuevo.'); 
+						Swal.fire({
+                            position: 'top-end',
+                            type: 'error',
+                            title: 'No se pudo guardar',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                        //setTimeout('document.location.reload()',1000);
+						
 					}
 				}
 			});

@@ -5,7 +5,7 @@ include("../Modelo/Conexion.php");
 
 $IdPersonal= $_SESSION['IdPersonal'];
 
-$sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, 
+$sql1 = 'SELECT p.IdPersonal, p.Codigo, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, 
 p.EstadoCivil, p.Hijos, p.Padre, p.Madre, p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, 
 p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, u.Usuario, u.Contrasena, po.NombrePoblacion, e.NombreEstado, pa.NombrePais
 from personal p
@@ -105,6 +105,10 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
                                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Código</label>
+                                                                   <input name="Codigo" id="Codigo" type="text" value="<?=$empleado->Codigo?>" class="form-control" placeholder="Código" required="" readonly>
+                                                                </div>
                                                                 <div class="form-group">
                                                                 <label>Nombres</label>
                                                                 <input name="IdPersonal" id="IdPersonal" value="<?php echo $IdPersonal?>" type="hidden" class="form-control" required="" >                                                                

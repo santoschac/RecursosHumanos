@@ -3,6 +3,27 @@
 
 include("../../Modelo/Conexion.php");
 
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada, a.FechaInicio, a.FechaFinal , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio as FechaInicioJornada , jo.FechaFin as FechaFinJornada, TIME_FORMAT(jo.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(HoraFin, '%H:%i %p') as HoraFin
+        from asignarjornada a 
+        inner join personal p on a.IdPersonal = p.IdPersonal
+        inner join puestos pu on p.IdPuesto= pu.IdPuesto
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+        inner join empresa e on s.IdEmpresa = e.IdEmpresa 
+        inner join jornada jo on jo.IdJornada = a.IdJornada where s.IdSucursal = $IdSucursal");
+        $sql->execute();
+        $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}
+else{
+
 $sql= $pdo->prepare("SELECT a.IdAsignarJornada, a.IdPersonal, a.IdJornada, a.FechaInicio, a.FechaFinal , p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Departamento, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, jo.IdJornada, jo.FechaInicio as FechaInicioJornada , jo.FechaFin as FechaFinJornada, TIME_FORMAT(jo.HoraInicio, '%H:%i %p') as HoraInicio, TIME_FORMAT(HoraFin, '%H:%i %p') as HoraFin
 from asignarjornada a 
 inner join personal p on a.IdPersonal = p.IdPersonal
@@ -12,6 +33,9 @@ inner join empresa e on s.IdEmpresa = e.IdEmpresa
 inner join jornada jo on jo.IdJornada = a.IdJornada");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}
+
 
 
 ?>

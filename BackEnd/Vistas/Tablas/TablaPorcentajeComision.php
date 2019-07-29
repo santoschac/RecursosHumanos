@@ -3,14 +3,35 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT pc.IdComisionPorcentaje, pc.Porcentaje, pc.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT pc.IdComisionPorcentaje, pc.Porcentaje, pc.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+        from comisionporcentaje pc
+        inner join personal p on pc.IdPersonal = p.IdPersonal
+        inner join sucursal s on p.IdSucursal = s.IdSucursal
+        inner join empresa e on s.IdEmpresa = e.IdEmpresa
+        inner join puestos pu on p.IdPuesto = pu.IdPuesto where s.IdSucursal = $IdSucursal");
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}else{
+  $sql= $pdo->prepare("SELECT pc.IdComisionPorcentaje, pc.Porcentaje, pc.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
 from comisionporcentaje pc
 inner join personal p on pc.IdPersonal = p.IdPersonal
 inner join sucursal s on p.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa
 inner join puestos pu on p.IdPuesto = pu.IdPuesto");
 $sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);  
+}
+
 
 
 ?>

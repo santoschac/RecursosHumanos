@@ -3,6 +3,25 @@
 
 include("../../Modelo/Conexion.php");
 
+
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT v.IdViatico, v.Motivo, v.Monto, v.Comprobado, v.Cantidad, v.IdPoblacion, v.IdPersonal, v.Fecha, v.FechaAprobado, pe.Nombre, pe.ApellidoPaterno, pe.ApellidoMaterno, pe.IdSucursal, p.NombrePoblacion, e.NombreEstado
+        from viaticos v
+        inner join personal pe on v.IdPersonal = pe.IdPersonal
+        inner join poblacion p on v.IdPoblacion = p.IdPoblacion
+        inner join estado e on p.IdEstado = e.IdEstado where IdSucursal = $IdSucursal");
+        $sql->execute();
+        $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}else
+{
 $sql= $pdo->prepare("SELECT v.IdViatico, v.Motivo, v.Monto, v.Comprobado, v.Cantidad, v.IdPoblacion, v.IdPersonal, v.Fecha, v.FechaAprobado, pe.Nombre, pe.ApellidoPaterno, pe.ApellidoMaterno, p.NombrePoblacion, e.NombreEstado
 from viaticos v
 inner join personal pe on v.IdPersonal = pe.IdPersonal
@@ -10,6 +29,8 @@ inner join poblacion p on v.IdPoblacion = p.IdPoblacion
 inner join estado e on p.IdEstado = e.IdEstado");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}
+
 
 
    

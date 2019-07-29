@@ -73,6 +73,12 @@ include("../Modelo/Conexion.php");
                                   </button>
                                   Error al insertar los datos;
                               </div>
+                              <div class="alert alert-danger alert-mg-b" id="existecodi" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  El Código ya existe
+                              </div>
                              <!--Fin alertas-->
 
                             <form method="POST" id="formulario">
@@ -84,6 +90,10 @@ include("../Modelo/Conexion.php");
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
                                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Código</label>
+                                                                   <input name="Codigo" id="Codigo" type="text" class="form-control" placeholder="Código" required="" maxlength="27">
+                                                                </div>
                                                                 <div class="form-group">
                                                                 <label>Nombres</label>
                                                                    <input name="Nombre" id="Nombre" type="text" class="form-control" placeholder="Nombre" required="" maxlength="60">
@@ -565,6 +575,13 @@ alert(datos);
                         $("#error").fadeIn();
                        setTimeout(function(){
                        $("#error").fadeOut();
+                       },3000);
+                       }
+                       else if(data==4)
+                       {
+                        $("#existecodi").fadeIn();
+                       setTimeout(function(){
+                       $("#existecodi").fadeOut();
                        },3000);
                        }
     

@@ -267,9 +267,11 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <li class="nav-item"><a href="../Vistas/index.php"
                                                         class="nav-link">Inicio</a>
                                                 </li>
+                                                <?php if($_SESSION['IdTipoUsuario']==1):?>
                                                 <li class="nav-item"><a href="../Vistas/Empleados.php"
                                                         class="nav-link">Empleados</a>
                                                 </li>
+                                                <?php endif;?>
                                                 <!-- <li class="nav-item"><a href="../Vistas/Vacaciones.php"
                                                         class="nav-link">Vacaciones</a>
                                                 </li> -->

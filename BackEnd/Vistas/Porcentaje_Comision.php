@@ -1,27 +1,76 @@
 <?php
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
+
+if(isset($_POST['todos'])){   
+    unset($_SESSION['IdSucursal']);
+   
+}
 ?>
 
    <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
+ <!-- Mobile Menu end -->
+ <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                 <!---->
+                             
+                            <div class="row">
+                                <div class="col-md-3">
+                                <h4>Porcentaje comisión</h4>
+                                <a href="VAlta_PorcentajeComision.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
+                            
+                                 </div>
+                                <form method="post" action="#" id="formulariotabla">
+                                <div class="col-md-3">
+                                    <label>Empresa</label>
+                                    <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                      <option value="" selected="" disabled="">Seleccionar</option>
+                                       <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa from empresa')as $dato){?>
+                                       <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                       <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>           
+                                </div>
+                                <div class="col-md-1"><br/>
+                                <button class="btn btn-primary" type="submit">Aceptar</button>
+                                </div> 
+                                </form>
+                                <form method="post">
+                                <div class="col-md-1"><br/>
+                                <input type="hidden" name="todos" id="todos" value="todos">
+                                <button class="btn btn-success" type="submit">Ver todos</button>
+                                </div>
+                                </form>
+                                
+                               
+                                
+                            <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
-         <br/>
             <div class="container-fluid" >
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Porcentaje comisión</h4>
                                 
-                                
-                                <a href="VAlta_PorcentajeComision.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
-                            
                                 </div>
 							</div>
 							    <!--Alertas-->
@@ -124,5 +173,47 @@ include("../Modelo/Conexion.php");
     function readPorecentajeComision(){
 		$('#TablaPorcentajeComision').load('Tablas/TablaPorcentajeComision.php');	
 	}
+
+    $(document).ready(function () {
+        $("#IdEmpresa").change(function () {
+            // e.preventDefault();
+
+            $("#IdEmpresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
+
+    $(document).ready(function(){
+       
+       $(document).on('submit', '#formulariotabla', function(event){
+           event.preventDefault();
+           var datos = $('#formulariotabla').serialize();
+//alert(datos);
+
+               $.ajax({
+                   url:"Tablas/TablaPorcentajeComision.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     //alert(data);
+                     $("#TablaPorcentajeComision").html(data);
+                    // readPersonal();
+                   }
+               });
+       });
+  
+    });
     
 </script> 

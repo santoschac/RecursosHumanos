@@ -10,7 +10,7 @@ if(isset($_SESSION['IdSucursal'])){
     
         $IdSucursal= $_SESSION['IdSucursal'];
 
-        $sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa
+        $sql = $pdo->prepare("SELECT p.Codigo, p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa
         from personal p
         inner join usuario u on p.IdUsuario = u.IdUsuario
         inner join puestos pu on p.IdPuesto = pu.IdPuesto
@@ -22,7 +22,7 @@ if(isset($_SESSION['IdSucursal'])){
 else
 {
 
-$sql = $pdo->prepare("SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
+$sql = $pdo->prepare("SELECT p.Codigo, p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa
 from personal p
 inner join usuario u on p.IdUsuario = u.IdUsuario
 inner join puestos pu on p.IdPuesto = pu.IdPuesto
@@ -48,14 +48,15 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                        <th>No</th>                                       
+                                        <th>No</th>
+                                        <th>Usuario</th> 
+                                        <th>Código</th>                               
                                         <th>Nombre</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
                                         <th>Empresa</th>
                                         <th>Sucursal</th>
-                                        <th>Puesto</th>
-                                        <th>Usuario</th>
+                                        <th>Puesto</th>                                        
                                         <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -65,13 +66,15 @@ $resultado = $sql->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                                
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
+                                                <td><a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><?php echo $dato['Usuario']; ?></td></a>
+                                                <td><?php echo $dato['Codigo'] ?></td>
                                                 <td><a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"> <?php echo $dato['Nombre']; ?></td></a>
                                                 <td><?php echo $dato['ApellidoPaterno']; ?></td>
                                                 <td><?php echo $dato['ApellidoMaterno']; ?></td>
                                                 <td><?php echo $dato['NombreEmpresa'];?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?> </td>                                       
-                                                <td><?php echo $dato['Usuario']; ?></td>
+                                               
                                        
                                                 <td>
                                                 <a href="MenuEmpleado.php?IdPersonal=<?php echo $dato['IdPersonal']; ?>"><button data-toggle="tooltip" title="Ver información" class="pd-setting-ed"><span class="glyphicon">&#xe105;</span></button><a>

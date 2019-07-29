@@ -150,7 +150,7 @@ if(isset($_GET['IdPersonal'])){
                                                                  
                                                                     <select name="IdJornada" id="IdJornada" data-placeholder="Seleccionar" class="chosen-select" tabindex="-1">
                                                                     <option value="" disabled="">Seleccionar</option>
-                                                                  <?php  foreach ($pdo->query('SELECT IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio,"%r") as HoraInicio, TIME_FORMAT(HoraFin,"%r") as HoraFin from jornada') as $row):?>													
+                                                                  <?php  foreach ($pdo->query('SELECT IdJornada, FechaInicio, FechaFin, TIME_FORMAT(HoraInicio, "%H:%i %p") as HoraInicio, TIME_FORMAT(HoraFin,"%H:%i %p") as HoraFin from jornada') as $row):?>													
                                                                     <option value="<?php echo $row['IdJornada']?>" <?php if($row['IdJornada'] === $asignarjornada->IdJornada): echo "selected"; endif; ?>><?php echo $row['FechaInicio'] ." de " . $row['FechaFin'] ." de ". $row['HoraInicio']." a ". $row['HoraFin'];?></option>
                                                                     <?php  endforeach;?>
                                                                     </select>

@@ -1,67 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
  include ("../Master/Header.php");
+
+ if(isset($_POST['Fecha'])){
+
+    $Anio = date("Y", strtotime($_POST['Fecha'])) ;
+    $Mes = date("m", strtotime($_POST['Fecha'])) ;
+
+    echo $Anio;
+    echo $Mes;
+ }else{
+
+ }
 ?>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body><br/><br/><br/><br/>
 
-    <?php 
-    
-    if(isset($_SESSION['IdSucursal'])){
-        echo "llego el valor";
-    }else{
-        echo "no llego el valor";
-    }
-    
-    ;?>
 
-    
+<form method="post" action="#">
 <div class="row">
-    
-    
-    <form method="post" action="#" id="formulario">
-    &nbsp;&nbsp;&nbsp;<input type="text" name="prueba" id="prueba" value="">
-
-    <button class="btn btn-primary" type="submit">Aceptar</button>
-    </form>
-
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="sparkline16-list responsive-mg-b-30">
+                            <div class="sparkline16-hd">
+                                <div class="main-sparkline16-hd">
+                                    <h1>Data picker</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline16-graph">
+                                <div class="date-picker-inner">
+                                   
+                                    
+                                    
+                                    <div class="form-group data-custon-pick" id="data_4">
+                                        <label>Month select</label>
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("d/m/Y")?>">
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 </div>
-    <br/><br/><br/><br/>
-</body>
+<input type="submit">
+</form>
+
+
+
 <?php
  include ("../Master/Footer.php");
 ?>
-</html>
 
-<script type="text/javascript" language="javascript">
-
-$(document).ready(function(){
-       
-       $(document).on('submit', '#formulario', function(event){
-           event.preventDefault();
-           var datos = $('#formulario').serialize();
-alert(datos);
-
-               $.ajax({
-                   url:"Prueba_alta.php",
-                   method:'POST',
-                   data:new FormData(this),
-                   contentType:false,
-                   processData:false,
-                   success:function(data)
-                   {
-                     alert(data);
-                     //$("#formulario").html(data);
-                     
-                   }
-               });
-       });
-  
-    });
-    </script>
+<!-- datapicker JS
+		============================================ -->
+        <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../Recursos/js/datapicker/datepicker-active.js"></script>

@@ -3,11 +3,32 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT a.IdAccidentes, a.Descripcion, a.Fecha, a.Reporta, a.Accidentes, a.IdAccidentes, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT a.IdAccidentes, a.Descripcion, a.Fecha, a.Reporta, a.Accidentes, a.IdAccidentes, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.IdSucursal
+        from accidentes a
+        inner join personal p on a.IdPersonal = p.IdPersonal where IdSucursal = $IdSucursal");
+        $sql->execute();
+        $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}else{
+
+    $sql= $pdo->prepare("SELECT a.IdAccidentes, a.Descripcion, a.Fecha, a.Reporta, a.Accidentes, a.IdAccidentes, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
 from accidentes a
 inner join personal p on a.IdPersonal = p.IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}
+
+
+
 
 
 ?>

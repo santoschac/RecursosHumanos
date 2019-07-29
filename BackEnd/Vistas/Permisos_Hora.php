@@ -2,6 +2,11 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
+
+if(isset($_POST['todos'])){   
+    unset($_SESSION['IdSucursal']);
+   
+}
 ?>
         
    <!-- Sweet Alert

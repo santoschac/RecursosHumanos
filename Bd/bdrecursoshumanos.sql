@@ -4,7 +4,7 @@
 -- Project :      BDRecursosH.DM1
 -- Author :       Lenovo
 --
--- Date Created : Thursday, July 25, 2019 09:40:00
+-- Date Created : Monday, July 29, 2019 14:00:04
 -- Target DBMS : MySQL 5.x
 --
 
@@ -39,6 +39,7 @@ CREATE TABLE AsignarJornada(
 
 
 
+
 -- 
 -- TABLE: Bonos 
 --
@@ -51,6 +52,7 @@ CREATE TABLE Bonos(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdBono)
 );
+
 
 
 
@@ -70,6 +72,7 @@ CREATE TABLE Cambios(
 
 
 
+
 -- 
 -- TABLE: Capacitacion 
 --
@@ -82,6 +85,8 @@ CREATE TABLE Capacitacion(
     IdCurso              INT             NOT NULL,
     PRIMARY KEY (IdCapacitacion)
 );
+
+
 
 
 -- 
@@ -100,6 +105,7 @@ CREATE TABLE Comision(
 
 
 
+
 -- 
 -- TABLE: ComisionPorcentaje 
 --
@@ -110,6 +116,7 @@ CREATE TABLE ComisionPorcentaje(
     IdPersonal              INT               NOT NULL,
     PRIMARY KEY (IdComisionPorcentaje)
 );
+
 
 
 
@@ -128,6 +135,7 @@ CREATE TABLE Cursos(
 
 
 
+
 -- 
 -- TABLE: Empresa 
 --
@@ -138,6 +146,7 @@ CREATE TABLE Empresa(
     ClaveEmpresa     VARCHAR(10),
     PRIMARY KEY (IdEmpresa)
 );
+
 
 
 
@@ -154,6 +163,7 @@ CREATE TABLE Estado(
 
 
 
+
 -- 
 -- TABLE: Faltas 
 --
@@ -164,6 +174,25 @@ CREATE TABLE Faltas(
     IdPersonal    INT         NOT NULL,
     PRIMARY KEY (IdFalta)
 );
+
+
+
+
+-- 
+-- TABLE: HorasExtras 
+--
+
+CREATE TABLE HorasExtras(
+    IdHorasExtras      INT             AUTO_INCREMENT,
+    Codigo             VARCHAR(30),
+    Nombre             VARCHAR(150),
+    HorasTrabajadas    INT,
+    Fecha              DATE,
+    HoraInicio         TIME,
+    HoraFinal          TIME,
+    PRIMARY KEY (IdHorasExtras)
+);
+
 
 
 
@@ -183,6 +212,7 @@ CREATE TABLE Incapacidad(
 
 
 
+
 -- 
 -- TABLE: Jornada 
 --
@@ -197,6 +227,8 @@ CREATE TABLE Jornada(
 );
 
 
+
+
 -- 
 -- TABLE: Pais 
 --
@@ -206,6 +238,7 @@ CREATE TABLE Pais(
     NombrePais    VARCHAR(40),
     PRIMARY KEY (IDPais)
 );
+
 
 
 
@@ -221,6 +254,7 @@ CREATE TABLE Permisos(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdPermiso)
 );
+
 
 
 
@@ -240,12 +274,14 @@ CREATE TABLE PermisosHora(
 
 
 
+
 -- 
 -- TABLE: Personal 
 --
 
 CREATE TABLE Personal(
     IdPersonal            INT               AUTO_INCREMENT,
+    Codigo                VARCHAR(30),
     Nombre                VARCHAR(50),
     ApellidoPaterno       VARCHAR(60),
     ApellidoMaterno       VARCHAR(60),
@@ -284,6 +320,7 @@ CREATE TABLE Personal(
 
 
 
+
 -- 
 -- TABLE: Poblacion 
 --
@@ -297,6 +334,7 @@ CREATE TABLE Poblacion(
 
 
 
+
 -- 
 -- TABLE: Puestos 
 --
@@ -306,6 +344,7 @@ CREATE TABLE Puestos(
     NombrePuesto    VARCHAR(70),
     PRIMARY KEY (IdPuesto)
 );
+
 
 
 
@@ -329,6 +368,7 @@ CREATE TABLE Solicitudes(
 
 
 
+
 -- 
 -- TABLE: Sucursal 
 --
@@ -343,6 +383,8 @@ CREATE TABLE Sucursal(
 );
 
 
+
+
 -- 
 -- TABLE: TipoUsuario 
 --
@@ -352,6 +394,7 @@ CREATE TABLE TipoUsuario(
     NombreTipo       VARCHAR(30),
     PRIMARY KEY (IdTipoUsuario)
 );
+
 
 
 
@@ -366,6 +409,7 @@ CREATE TABLE Usuario(
     IdTipoUsuario    INT             NOT NULL,
     PRIMARY KEY (IdUsuario)
 );
+
 
 
 
@@ -385,6 +429,7 @@ CREATE TABLE Vacaciones(
 
 
 
+
 -- 
 -- TABLE: Viajes 
 --
@@ -397,6 +442,7 @@ CREATE TABLE Viajes(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdViaje)
 );
+
 
 
 
@@ -416,6 +462,7 @@ CREATE TABLE Viaticos(
     IdPersonal       INT               NOT NULL,
     PRIMARY KEY (IdViatico)
 );
+
 
 
 

@@ -3,7 +3,27 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.Descripcion, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
+        from cambios c
+        inner join puestos pu on c.IdPuesto = pu.IdPuesto
+        inner join sucursal s on c.IdSucursal = s.IdSucursal
+        inner join empresa e on s.IdEmpresa = e.IdEmpresa
+        inner join personal p on c.IdPersonal = p.IdPersonal where s.IdSucursal = $IdSucursal order by IdCambio desc");
+$sql->execute();
+$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+
+}
+else{
+    $sql= $pdo->prepare("SELECT  c.IdCambio, c.FechaInicio, c.IdPersonal, c.IdSucursal, c.Descripcion, pu.NombrePuesto, s.NombreSucursal, e.NombreEmpresa, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
 from cambios c
 inner join puestos pu on c.IdPuesto = pu.IdPuesto
 inner join sucursal s on c.IdSucursal = s.IdSucursal
@@ -11,6 +31,9 @@ inner join empresa e on s.IdEmpresa = e.IdEmpresa
 inner join personal p on c.IdPersonal = p.IdPersonal order by IdCambio desc");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+}
+
+
 
 
 ?>

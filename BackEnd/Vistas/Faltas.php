@@ -2,6 +2,12 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
+
+if(isset($_POST['todos'])){   
+    unset($_SESSION['IdSucursal']);
+   
+}
+
 ?>
         
    <!-- Sweet Alert
@@ -9,21 +15,71 @@ include("../Modelo/Conexion.php");
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
 
+  <!-- Mobile Menu end -->
+  <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                 <!---->
+                             
+                            <div class="row">
+                                <div class="col-md-1">
+                                <h4>Faltas</h4>
+                                <a href="VAlta_Falta.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
+                                
+                                   </div>
+                                <form method="post" action="#" id="formulariotabla">
+                                <div class="col-md-3">
+                                <label>Empresa</label>
+                                    <select name="IdEmpresa" id="IdEmpresa" class="form-control" required>
+                                      <option value="" selected="" disabled="">Seleccionar</option>
+                                       <?php foreach ($pdo->query('SELECT IdEmpresa, NombreEmpresa from empresa')as $dato){?>
+                                       <option value="<?php echo $dato['IdEmpresa'];?>"> <?php echo $dato['NombreEmpresa']; ?> </option>
+                                       <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                <label>Sucursal</label>
+                                                            <select name="IdSucursal" id="IdSucursal"class="form-control" required>
+                                                                <option value="" selected="" disabled="">Seleccionar</option>
+                                                            </select>           
+                                </div>
+                                <div class="col-md-2 " id="data_4">
+                                <label>Mes y año</label>
+                                <div class="input-group date" >
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("d/m/Y")?>" readonly required>
+                                        </div>          
+                                </div>
+                                <div class="col-md-1"><br/>
+                                <button class="btn btn-primary" type="submit">Aceptar</button>
+                                </div> 
+                                </form>
+                                <form method="post">
+                                <div class="col-md-1"><br/>
+                                <input type="hidden" name="todos" id="todos" value="todos">
+                                <button class="btn btn-success" type="submit">Ver todos</button>
+                                </div>
+                                </form>
+                                
+                               
+                                
+                            <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
-         <br/>
             <div class="container-fluid" >
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                <h4>Faltas</h4>
-                                
-                                
-                                <a href="VAlta_Falta.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
-                            
-                                </div>
+                               </div>
 							</div>
 							    <!--Alertas-->
                                 <div class="alert alert-success" id="exito"  style="display:none">
@@ -66,6 +122,10 @@ include("../Modelo/Conexion.php");
 ?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
+<!-- datapicker JS
+		============================================ -->
+        <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../Recursos/js/datapicker/datepicker-active.js"></script>
 
 <script >
 
@@ -123,5 +183,48 @@ include("../Modelo/Conexion.php");
     function readCambio(){
 		$('#TablaFaltas').load('Tablas/TablaFaltas.php');	
 	}
+
+    $(document).ready(function () {
+        $("#IdEmpresa").change(function () {
+            // e.preventDefault();
+
+            $("#IdEmpresa option:selected").each(function () {
+                IdEmpresa = $(this).val();
+                
+                $.post("Combo/Seleccionar_Sucursal.php", {
+                    IdEmpresa: IdEmpresa
+                    },
+                    function (data) {
+                        
+                        $("#IdSucursal").html(data);
+                    });
+            });
+        });
+    });
+
+    $(document).ready(function(){
+       
+       $(document).on('submit', '#formulariotabla', function(event){
+           event.preventDefault();
+           var datos = $('#formulariotabla').serialize();
+//alert(datos);
+
+               $.ajax({
+                   url:"Tablas/TablaFaltas.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                     //alert(data);
+                     $("#TablaFaltas").html(data);
+                    // readPersonal();
+                   }
+               });
+       });
+  
+    });
+
     
 </script> 

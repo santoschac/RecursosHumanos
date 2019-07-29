@@ -3,13 +3,34 @@
 
 include("../../Modelo/Conexion.php");
 
-$sql = $pdo->prepare('SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario,s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
+session_start();
+
+if(isset($_POST['IdSucursal'])){
+    $_SESSION['IdSucursal'] = $_POST['IdSucursal'];
+}
+
+if(isset($_SESSION['IdSucursal'])){
+    
+        $IdSucursal= $_SESSION['IdSucursal'];
+        $sql = $pdo->prepare("
+        SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, p.IdSucursal, u.IdUsuario, u.Usuario,s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
+        s.Estatus, s.IdPersonal, s.Solicitud, s.Documento 
+        from personal p
+        inner join usuario u on p.IdUsuario = u.IdUsuario
+        inner join solicitudes s on p.IdPersonal = s.IdPersonal where Estatus = 'Atendido' and IdSucursal = $IdSucursal order by IdSolicitudes desc") ;
+        $sql->execute();
+        $result=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+else{
+   $sql = $pdo->prepare('SELECT p.Nombre , p.ApellidoPaterno, p.ApellidoMaterno, u.IdUsuario, u.Usuario,s.IdSolicitudes, s.Descripcion, s.FechaSolicitud, s.FechaAtencion, s.Atendido, 
 s.Estatus, s.IdPersonal, s.Solicitud, s.Documento 
 from personal p
 inner join usuario u on p.IdUsuario = u.IdUsuario
 inner join solicitudes s on p.IdPersonal = s.IdPersonal where Estatus = "Atendido" order by IdSolicitudes desc') ;
 $sql->execute();
-$result=$sql->fetchAll(PDO::FETCH_ASSOC);
+$result=$sql->fetchAll(PDO::FETCH_ASSOC); 
+}
+
 
 
 ?>
@@ -52,7 +73,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Atendido']; ?></td>
                                                 <td><?php echo $dato['Estatus']; ?></td>
                                                 <td><?php echo $dato['Documento']; ?></td>
-                                                <td><a href="../VistasU/Documentos/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
+                                                <td><a href="../VistasU/Documentos/Solicitudes/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
                                                 <td>
                                                 <a href="Atender_Solicitud.php?IdSolicitudes=<?php echo $dato['IdSolicitudes']; ?>&Respuesta=Si"><button data-toggle="tooltip" title="Atender" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button><a>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
