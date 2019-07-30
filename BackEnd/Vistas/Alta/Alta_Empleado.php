@@ -1,7 +1,6 @@
 <?php
 include("../../Modelo/Conexion.php");
 
-    $Codigo = $_POST['Codigo'];
     $Nombre= $_POST['Nombre'];
     $ApellidoPaterno = $_POST['ApellidoPaterno'];
     $ApellidoMaterno = $_POST['ApellidoMaterno'];
@@ -50,18 +49,8 @@ include("../../Modelo/Conexion.php");
     $sentencia ->execute(array($_POST["Usuario"]));
     $resultado = $sentencia->fetch();
 
-
-
-    $sql2 = 'SELECT * FROM personal WHERE Codigo = ?';
-    $sentencia2 = $pdo->prepare($sql2);
-    $sentencia2 ->execute(array($_POST["Codigo"]));
-    $resultado2 = $sentencia2->fetch();
-
   if($resultado){
     echo 2;
-  }else if($resultado2)
-  {
-echo 4;
   }else{
 
     $sql1 = 'INSERT INTO usuario (Usuario, Contrasena, IdTipoUsuario) VALUES(:Usuario, :Contrasena, :IdTipoUsuario)';
@@ -70,11 +59,11 @@ echo 4;
 
     $IdUsuario = $pdo->lastInsertId();
 
-    $sql = 'INSERT INTO personal (Codigo, Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, Telefono, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
-           VALUES (:Codigo, :Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :Telefono, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
+    $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, Telefono, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
+           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :Telefono, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
    
     $statement = $pdo->prepare($sql);
-    if($statement->execute([':Codigo'=>$Codigo, ':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion,':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
+    if($statement->execute([':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion,':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
         ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>NULL, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':Telefono'=>$Telefono, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
         {
           echo 1;

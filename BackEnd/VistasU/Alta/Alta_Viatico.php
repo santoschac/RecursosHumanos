@@ -16,15 +16,16 @@ if(isset($_POST["operation"]))
 		// $IdPersonal = $_SESSION['IdPersonal'];
 
 		// $Estatus= "Espera";	
-		
-		$statement = $pdo->prepare("INSERT INTO viaticos (Motivo, Monto, IdPoblacion, IdPersonal, Fecha) VALUES (:Motivo, :Monto, :IdPoblacion, :IdPersonal, :Fecha)");
+		$Comprobado = "Espera";
+		$statement = $pdo->prepare("INSERT INTO viaticos (Motivo, Monto, IdPoblacion, IdPersonal, Fecha, Comprobado) VALUES (:Motivo, :Monto, :IdPoblacion, :IdPersonal, :Fecha, :Comprobado)");
 		$result = $statement->execute(
 			array(
 				':Motivo'	=>	$_POST['Motivo'],
 				':Monto' => $_POST['Monto'],
 				':IdPoblacion' => $_POST['IdPoblacion'],
 				':IdPersonal' => $_POST['IdPersonal'],
-				':Fecha' => $_POST['Fecha']
+				':Fecha' => $_POST['Fecha'],
+				':Comprobado'=> $Comprobado
 				
 			)
 		);

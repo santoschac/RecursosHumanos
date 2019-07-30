@@ -12,9 +12,10 @@ if(isset($_POST['IdSucursal'])){
 if(isset($_SESSION['IdSucursal'])){
 
         $IdSucursal= $_SESSION['IdSucursal'];
-        $Anio = date("Y", strtotime($_POST['Fecha']));
-        $Mes = date("m", strtotime($_POST['Fecha']));
 
+         $Anio = date("Y", strtotime($_POST['Fecha']));
+         $Mes = date("m", strtotime($_POST['Fecha']));
+  
         $sql= $pdo->prepare(" SELECT f.IdFalta, f.IdPersonal, f.Fecha, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, pu.NombrePuesto, s.IdSucursal, s.NombreSucursal,  e.IdEmpresa, e.NombreEmpresa
         from faltas f
         inner join personal p on f.IdPersonal = p.IdPersonal
@@ -23,6 +24,8 @@ if(isset($_SESSION['IdSucursal'])){
          join empresa e on s.IdEmpresa = e.IdEmpresa where s.IdSucursal = $IdSucursal and MONTH(Fecha) = $Mes AND YEAR(Fecha) = $Anio");
         $sql->execute();
         $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+      
+        
         
 }
 else

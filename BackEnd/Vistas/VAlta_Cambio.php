@@ -164,7 +164,7 @@ if(isset($_GET['IdPersonal'])){
                                                             </select>
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
-                                                                <label><strong>Puesto</strong></label>
+                                                                <label><strong>Nuevo Puesto</strong></label>
                                                                
                                                                     <select name="IdPuesto" id="IdPuesto" class="form-control" required>
                                                                     <option value="">Seleccionar</option>

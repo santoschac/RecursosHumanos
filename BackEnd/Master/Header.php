@@ -10,19 +10,13 @@ if(isset($_SESSION['Usuario'])){
 
  $sql1 = $pdo->prepare('SELECT count(IdSolicitudes) as Cantidad from solicitudes where  Estatus="Espera"');
 $sql1 -> execute();
-$Cantidad = $sql1->fetch();
-    
- //notificaciones
-$sql= $pdo->prepare("SELECT c.Solicitud, c.Descripcion, character_length(Descripcion) as numletras, c.FechaSolicitud, c.Estatus, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno
-from solicitudes c 
-inner join personal p on c.IdPersonal = p.IdPersonal
-where Estatus  = 'Espera'");
-$sql->execute();
-$resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
+$CantidadSolicitudes = $sql1->fetch();
 
-// foreach($resultado as $dato){
-//    echo  $dato['Descripcion'];
-// }
+$sql2 = $pdo->prepare('SELECT count(IdViatico) as Cantidad from viaticos where  Comprobado="Espera"');
+$sql2 -> execute();
+$CantidadViaticos = $sql2->fetch();
+    
+ 
 
 
 ?>
@@ -289,34 +283,75 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <li class="nav-item"><a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle"><i
                                                             class="educate-icon educate-bell"
-                                                            aria-hidden="true"></i> <?php if($Cantidad['Cantidad']!=0):?><span class="indicator-nt"></span><?php endif;?></a>
+                                                            aria-hidden="true"></i> <?php if($CantidadSolicitudes['Cantidad']!=0 && $CantidadViaticos['Cantidad']!=0):?><span class="indicator-nt"></span><?php endif;?></a>
                                                     <div role="menu"
                                                         class="notification-author dropdown-menu animated zoomIn">
                                                         <div class="notification-single-top">
                                                             <h1>Notificaciones</h1>
                                                         </div>
-                                                       <?php if($Cantidad['Cantidad']!=0){?>
-                                                        <ul class="notification-menu">
-                                                        
-                                                            <li>
-                                                            <?php foreach($resultado as $dato){?>
-                                                                <a href="../Vistas/Solicitudes.php">
-                                                                    <div class="notification-icon">
-                                                                        <i class="educate-icon educate-checked edu-checked-pro admin-check-pro"
-                                                                            aria-hidden="true"></i>
-                                                                    </div>
+                                                      
+                                                        <!-- <ul class="notification-menu">                                                        
+                                                            <li>                                                            
+                                                                <a href="../Vistas/Solicitudes.php">                                                                    
+                                                                    
                                                                     <div class="notification-content">
-                                                                    <p><?php echo date("d-m-Y", strtotime($dato['FechaSolicitud'])) ."<br/><strong>Nombre:</strong> ". $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ."<br/><strong>Solicitud:</strong> ". $dato['Solicitud'] ."<br/><strong>Descripición</strong> ". $dato['Descripcion']?></p>
-                                                                      
+                                                                        <div class="row">
+                                                                            <div class="col-md-2">
+                                                                                <div class="notification-icon">
+                                                                                    <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
+                                                                                </div> 
+                                                                            </div>
+                                                                            <div class="col-md-10"><p><strong><br/>&nbsp; &nbsp;  <?php echo $CantidadSolicitudes['Cantidad']?> Solicitudes Pendientes</strong></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </a>                                                               
+                                                            </li>                                                           
+                                                        </ul> -->
+                                                        <?php if($CantidadSolicitudes['Cantidad']!=0){?>
+                                                                                                                     
+                                                                <a style="color:black" href="../Vistas/Solicitudes.php">                                                                    
+                                                                    
+                                                                    <div class="notification-content">
+                                                                        <div class="row">
+                                                                            <div class="col-md-1"></div>
+                                                                            <div class="col-md-2">
+                                                                            <img src="../Recursos/img/palomita.png" alt="" /> 
+                                                                            </div>
+                                                                            <div class="col-md-9"><p><strong><?php echo $CantidadSolicitudes['Cantidad']?> Solicitudes Pendientes</strong></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        
                                                                     </div>
                                                                 </a>
-                                                                <?php }?>
-                                                            </li>
+                                                                <br/>
                                                             
-                                                        </ul>
-                                                            <?php }else{
-                                                                echo "No hay notificaciones";}?>
-                                                        
+                                                            <?php }?>
+                                                            <?php if($CantidadViaticos['Cantidad']!=0){?>
+                                                                                                                
+                                                                <a style="color:black" href="../Vistas/Viaticos.php">                                                                    
+                                                                    
+                                                                    <div class="notification-content">
+                                                                        <div class="row">
+                                                                        <div class="col-md-1"></div>
+                                                                            <div class="col-md-2">
+                                                                            <img src="../Recursos/img/palomita.png" alt="" />
+                                                                            </div>
+                                                                            <div class="col-md-9"><p><strong> <?php echo $CantidadViaticos['Cantidad']?> Viáticos Pendientes</strong></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </a>
+                                                                <br/>
+                                                            
+                                                            
+
+                                                           <?php }?>
+                                                        <?php if($CantidadSolicitudes['Cantidad']==0 && $CantidadViaticos['Cantidad']==0) {?>
+                                                            <strong>No hay notificaciones.</strong><br/><br/>
+                                                            <?php }?>
                                                        
                                                        
                                                     </div>

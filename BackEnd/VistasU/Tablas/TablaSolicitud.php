@@ -5,7 +5,7 @@ include("../../Modelo/Conexion.php");
 
 $IdPersonal = $_SESSION['IdPersonal'];
 
-$sql= $pdo->prepare("SELECT * FROM solicitudes where IdPersonal = $IdPersonal");
+$sql= $pdo->prepare("SELECT * FROM solicitudes where IdPersonal = $IdPersonal order by IdSolicitudes desc");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 

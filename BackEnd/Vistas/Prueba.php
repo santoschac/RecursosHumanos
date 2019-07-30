@@ -1,13 +1,9 @@
 <?php
  include ("../Master/Header.php");
 
- if(isset($_POST['Fecha'])){
+ if(isset($_POST['hora'])){
 
-    $Anio = date("Y", strtotime($_POST['Fecha'])) ;
-    $Mes = date("m", strtotime($_POST['Fecha'])) ;
-
-    echo $Anio;
-    echo $Mes;
+    echo $_POST['hora'];
  }else{
 
  }
@@ -23,22 +19,8 @@
                                     <h1>Data picker</h1>
                                 </div>
                             </div>
-                            <div class="sparkline16-graph">
-                                <div class="date-picker-inner">
-                                   
-                                    
-                                    
-                                    <div class="form-group data-custon-pick" id="data_4">
-                                        <label>Month select</label>
-                                        <div class="input-group date">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("d/m/Y")?>">
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
+                            <input type="time" name="hora" id="hora" >
+                         </div>
                     </div>
 </div>
 <input type="submit">

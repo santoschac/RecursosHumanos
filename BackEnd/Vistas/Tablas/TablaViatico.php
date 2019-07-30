@@ -17,7 +17,7 @@ if(isset($_SESSION['IdSucursal'])){
         from viaticos v
         inner join personal pe on v.IdPersonal = pe.IdPersonal
         inner join poblacion p on v.IdPoblacion = p.IdPoblacion
-        inner join estado e on p.IdEstado = e.IdEstado where IdSucursal = $IdSucursal");
+        inner join estado e on p.IdEstado = e.IdEstado where IdSucursal = $IdSucursal and Comprobado ='Espera' order by IdViatico desc");
         $sql->execute();
         $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }else
@@ -26,7 +26,7 @@ $sql= $pdo->prepare("SELECT v.IdViatico, v.Motivo, v.Monto, v.Comprobado, v.Cant
 from viaticos v
 inner join personal pe on v.IdPersonal = pe.IdPersonal
 inner join poblacion p on v.IdPoblacion = p.IdPoblacion
-inner join estado e on p.IdEstado = e.IdEstado");
+inner join estado e on p.IdEstado = e.IdEstado where Comprobado ='Espera' order by IdViatico desc");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }

@@ -4,7 +4,7 @@
 -- Project :      BDRecursosH.DM1
 -- Author :       Lenovo
 --
--- Date Created : Monday, July 29, 2019 14:00:04
+-- Date Created : Tuesday, July 30, 2019 11:14:14
 -- Target DBMS : MySQL 5.x
 --
 
@@ -39,7 +39,6 @@ CREATE TABLE AsignarJornada(
 
 
 
-
 -- 
 -- TABLE: Bonos 
 --
@@ -52,7 +51,6 @@ CREATE TABLE Bonos(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdBono)
 );
-
 
 
 
@@ -72,7 +70,6 @@ CREATE TABLE Cambios(
 
 
 
-
 -- 
 -- TABLE: Capacitacion 
 --
@@ -88,21 +85,19 @@ CREATE TABLE Capacitacion(
 
 
 
-
 -- 
 -- TABLE: Comision 
 --
 
 CREATE TABLE Comision(
     IdComision              INT               AUTO_INCREMENT,
-    Porcentaje              DECIMAL(10, 0),
-    MontoCobrado            DECIMAL(10, 0),
-    MontoComision           DECIMAL(10, 0),
+    Porcentaje              DECIMAL(10, 1),
+    MontoCobrado            DECIMAL(10, 1),
+    MontoComision           DECIMAL(10, 1),
     Fecha                   DATETIME,
     IdComisionPorcentaje    INT               NOT NULL,
     PRIMARY KEY (IdComision)
 );
-
 
 
 
@@ -112,11 +107,10 @@ CREATE TABLE Comision(
 
 CREATE TABLE ComisionPorcentaje(
     IdComisionPorcentaje    INT               AUTO_INCREMENT,
-    Porcentaje              DECIMAL(18, 0),
+    Porcentaje              DECIMAL(18, 1),
     IdPersonal              INT               NOT NULL,
     PRIMARY KEY (IdComisionPorcentaje)
 );
-
 
 
 
@@ -135,7 +129,6 @@ CREATE TABLE Cursos(
 
 
 
-
 -- 
 -- TABLE: Empresa 
 --
@@ -146,7 +139,6 @@ CREATE TABLE Empresa(
     ClaveEmpresa     VARCHAR(10),
     PRIMARY KEY (IdEmpresa)
 );
-
 
 
 
@@ -163,7 +155,6 @@ CREATE TABLE Estado(
 
 
 
-
 -- 
 -- TABLE: Faltas 
 --
@@ -177,22 +168,20 @@ CREATE TABLE Faltas(
 
 
 
-
 -- 
 -- TABLE: HorasExtras 
 --
 
 CREATE TABLE HorasExtras(
     IdHorasExtras      INT             AUTO_INCREMENT,
-    Codigo             VARCHAR(30),
     Nombre             VARCHAR(150),
     HorasTrabajadas    INT,
     Fecha              DATE,
     HoraInicio         TIME,
     HoraFinal          TIME,
+    IdPersonal         INT             NOT NULL,
     PRIMARY KEY (IdHorasExtras)
 );
-
 
 
 
@@ -212,7 +201,6 @@ CREATE TABLE Incapacidad(
 
 
 
-
 -- 
 -- TABLE: Jornada 
 --
@@ -228,7 +216,6 @@ CREATE TABLE Jornada(
 
 
 
-
 -- 
 -- TABLE: Pais 
 --
@@ -238,7 +225,6 @@ CREATE TABLE Pais(
     NombrePais    VARCHAR(40),
     PRIMARY KEY (IDPais)
 );
-
 
 
 
@@ -254,7 +240,6 @@ CREATE TABLE Permisos(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdPermiso)
 );
-
 
 
 
@@ -274,14 +259,12 @@ CREATE TABLE PermisosHora(
 
 
 
-
 -- 
 -- TABLE: Personal 
 --
 
 CREATE TABLE Personal(
     IdPersonal            INT               AUTO_INCREMENT,
-    Codigo                VARCHAR(30),
     Nombre                VARCHAR(50),
     ApellidoPaterno       VARCHAR(60),
     ApellidoMaterno       VARCHAR(60),
@@ -320,7 +303,6 @@ CREATE TABLE Personal(
 
 
 
-
 -- 
 -- TABLE: Poblacion 
 --
@@ -334,7 +316,6 @@ CREATE TABLE Poblacion(
 
 
 
-
 -- 
 -- TABLE: Puestos 
 --
@@ -344,7 +325,6 @@ CREATE TABLE Puestos(
     NombrePuesto    VARCHAR(70),
     PRIMARY KEY (IdPuesto)
 );
-
 
 
 
@@ -368,7 +348,6 @@ CREATE TABLE Solicitudes(
 
 
 
-
 -- 
 -- TABLE: Sucursal 
 --
@@ -384,7 +363,6 @@ CREATE TABLE Sucursal(
 
 
 
-
 -- 
 -- TABLE: TipoUsuario 
 --
@@ -394,7 +372,6 @@ CREATE TABLE TipoUsuario(
     NombreTipo       VARCHAR(30),
     PRIMARY KEY (IdTipoUsuario)
 );
-
 
 
 
@@ -409,7 +386,6 @@ CREATE TABLE Usuario(
     IdTipoUsuario    INT             NOT NULL,
     PRIMARY KEY (IdUsuario)
 );
-
 
 
 
@@ -429,7 +405,6 @@ CREATE TABLE Vacaciones(
 
 
 
-
 -- 
 -- TABLE: Viajes 
 --
@@ -442,7 +417,6 @@ CREATE TABLE Viajes(
     IdPersonal     INT             NOT NULL,
     PRIMARY KEY (IdViaje)
 );
-
 
 
 
@@ -462,7 +436,6 @@ CREATE TABLE Viaticos(
     IdPersonal       INT               NOT NULL,
     PRIMARY KEY (IdViatico)
 );
-
 
 
 
@@ -571,6 +544,16 @@ ALTER TABLE Estado ADD CONSTRAINT RefPais8
 --
 
 ALTER TABLE Faltas ADD CONSTRAINT RefPersonal26 
+    FOREIGN KEY (IdPersonal)
+    REFERENCES Personal(IdPersonal)
+;
+
+
+-- 
+-- TABLE: HorasExtras 
+--
+
+ALTER TABLE HorasExtras ADD CONSTRAINT RefPersonal34 
     FOREIGN KEY (IdPersonal)
     REFERENCES Personal(IdPersonal)
 ;

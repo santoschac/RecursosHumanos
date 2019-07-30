@@ -25,33 +25,36 @@
                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-key-events="true" data-cookie="true"
                         data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar">
                         <tr>
-                            <th>codigo</th>
+                           
                             <th>Nombre</th>
                             <th>Horas</th>
                             <th>Fecha</th>
                             <th>HoraInicio</th>
                             <th>HoraFinal</th>
+                            <th>IdPersonal</th>
                             
                         </tr>
                     <?php
             
                     for ($i=2; $i <= $numfilas ; $i++) { 
 
-                        $cod = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-                        $nom = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                        $horas = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                        $fecha = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                        $horainicio = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                        $horafinal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                        
+                        $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+                        $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+                        $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+                        $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+                        $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+                        $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
                         
                         ?>
                         <tr>
-                            <td><?php echo $cod; ?></td>
+                            
                             <td><?php echo $nom; ?></td>
                             <td><?php echo $horas; ?></td>
                             <td><?php echo $fecha ;?></td>
                             <td><?php echo $horainicio; ?></td>
                             <td><?php echo $horafinal; ?></td>
+                            <td><?php echo $idpersonal; ?></td>
                            
                         </tr>
                     <?php
@@ -87,16 +90,17 @@
     
                 for ($i=1; $i <= $numfilas ; $i++) { 
 
-                    $cod = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-                    $nom = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                    $horas = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                    $fecha = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue(); 
+                    
+                    $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+                    $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+                    $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(); 
+                    $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
                    
 
-                    $sql_agregar = "INSERT INTO horasextras (Codigo, Nombre, HorasTrabajadas, Fecha, HoraInicio, HoraFinal) 
-                    VALUE ('$cod','$nom','$horas','$fecha','$horainicio','$horafinal')";
+                    $sql_agregar = "INSERT INTO horasextras (Nombre, HorasTrabajadas, Fecha, HoraInicio, HoraFinal, IdPersonal) 
+                    VALUE ('$nom','$horas','$fecha','$horainicio','$horafinal', '$idpersonal')";
                     $sentencia_agregar = $pdo->prepare($sql_agregar);
                     $sentencia_agregar->execute(array($sql_agregar));
 

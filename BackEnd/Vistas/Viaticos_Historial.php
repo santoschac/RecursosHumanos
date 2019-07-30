@@ -23,9 +23,8 @@ if(isset($_POST['todos'])){
                              
                             <div class="row">
                                 <div class="col-md-3">
-                                <h4>Viáticos</h4>
-                                <a href="Viaticos_Historial.php"><button type="button" class="btn btn-primary" >Historial</button></a>
-								 
+                                <h4>Historial Viáticos</h4>
+                                <a href="Viaticos.php"><button type="button" class="btn btn-primary" >Viáticos</button></a>
 								  </div>
                                 <form method="post" action="#" id="formulariotabla">
                                 <div class="col-md-3">
@@ -103,7 +102,7 @@ if(isset($_POST['todos'])){
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
 
-<div id="TablaViatico"></div> <!-- products will be load here -->
+<div id="TablaViaticoHistorial"></div> <!-- products will be load here -->
 
 
                             </div>
@@ -300,7 +299,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						readViatico();
+						readViaticoHistorial();
 						//$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
@@ -357,7 +356,7 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		
-		readViatico(); /* it will load products when document loads */
+		readViaticoHistorial(); /* it will load products when document loads */
 		
 		$(document).on('click', '#Eliminar', function(e){
 			
@@ -393,7 +392,7 @@ $(document).ready(function(){
 			     })
 			     .done(function(response){
 			     	swal('Eliminado!', response.message, response.status);
-                     readViatico();
+                     readViaticoHistorial();
                     
 			     })
 			     .fail(function(){
@@ -406,8 +405,8 @@ $(document).ready(function(){
 		
 	}
 
-    function readViatico(){
-		$('#TablaViatico').load('Tablas/TablaViatico.php');	
+    function readViaticoHistorial(){
+		$('#TablaViaticoHistorial').load('Tablas/TablaViaticoHistorial.php');	
 	}
 
 	$(document).ready(function () {
@@ -436,7 +435,7 @@ $(document).ready(function(){
 //alert(datos);
 
                $.ajax({
-                   url:"Tablas/TablaViatico.php",
+                   url:"Tablas/TablaViaticoHistorial.php",
                    method:'POST',
                    data:new FormData(this),
                    contentType:false,
@@ -444,7 +443,7 @@ $(document).ready(function(){
                    success:function(data)
                    {
                      //alert(data);
-                     $("#TablaViatico").html(data);
+                     $("#TablaViaticoHistorial").html(data);
                     // readPersonal();
                    }
                });

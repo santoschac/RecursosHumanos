@@ -4,7 +4,6 @@ include("../../Modelo/Conexion.php");
 
     $IdPersonal= $_POST['IdPersonal'];
 
-    $Codigo = $_POST['Codigo'];
     $Nombre= $_POST['Nombre'];
     $ApellidoPaterno = $_POST['ApellidoPaterno'];
     $ApellidoMaterno = $_POST['ApellidoMaterno'];
@@ -50,14 +49,14 @@ include("../../Modelo/Conexion.php");
    $sentencia = $pdo->prepare($sql1);
    if($sentencia->execute([':Usuario'=> $Usuario, ':Contrasena'=>$Contrasena, ':IdUsuario'=> $IdUsuario])){
 
-    $sql = 'UPDATE personal SET Codigo=:Codigo, Nombre= :Nombre, ApellidoPaterno= :ApellidoPaterno, ApellidoMaterno= :ApellidoMaterno, Curp= :Curp, Tipo= :Tipo, Direccion= :Direccion, Colonia= :Colonia, Delegacion = :Delegacion, 
+    $sql = 'UPDATE personal SET Nombre= :Nombre, ApellidoPaterno= :ApellidoPaterno, ApellidoMaterno= :ApellidoMaterno, Curp= :Curp, Tipo= :Tipo, Direccion= :Direccion, Colonia= :Colonia, Delegacion = :Delegacion, 
     CodigoPostal = :CodigoPostal, Rfc= :Rfc, Imss= :Imss, FechaNacimiento= :FechaNacimiento, NivelAcademico= :NivelAcademico, Sexo= :Sexo, EstadoCivil= :EstadoCivil, Hijos= :Hijos, Padre= :Padre, Madre= :Madre,
     Departamento= :Departamento, SueldoDiario= :SueldoDiario, SueldoAnterior= :SueldoAnterior, SueldoActual= :SueldoActual, FechaBaja= :FechaBaja, ConceptoBaja= :ConceptoBaja, FechaAlta= :FechaAlta, 
     FechaAntiguedad= :FechaAntiguedad, UltimaModificacion= :UltimaModificacion, TipoContrato= :TipoContrato, Telefono=:Telefono, IdPuesto= :IdPuesto, IdSucursal= :IdSucursal, IdPoblacion= :IdPoblacion WHERE IdPersonal= :IdPersonal';
     
     $statement =$pdo->prepare($sql);
     
-    if($statement->execute([':Codigo'=>$Codigo, ':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno'=>$ApellidoMaterno,':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=> $Delegacion, 
+    if($statement->execute([':Nombre'=>$Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno'=>$ApellidoMaterno,':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=> $Delegacion, 
     ':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, ':Madre'=>$Madre, 
     ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, 
     ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':Telefono'=>$Telefono, ':IdPuesto'=>$IdPuesto, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion, ':IdPersonal'=>$IdPersonal])){

@@ -73,12 +73,7 @@ include("../Modelo/Conexion.php");
                                   </button>
                                   Error al insertar los datos;
                               </div>
-                              <div class="alert alert-danger alert-mg-b" id="existecodi" style="display:none">
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                                  El Código ya existe
-                              </div>
+                             
                              <!--Fin alertas-->
 
                             <form method="POST" id="formulario">
@@ -90,10 +85,7 @@ include("../Modelo/Conexion.php");
                                                 <div id="dropzone1" class="pro-ad addcoursepro">
                                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label>Código</label>
-                                                                   <input name="Codigo" id="Codigo" type="text" class="form-control" placeholder="Código" required="" maxlength="27">
-                                                                </div>
+                                                            
                                                                 <div class="form-group">
                                                                 <label>Nombres</label>
                                                                    <input name="Nombre" id="Nombre" type="text" class="form-control" placeholder="Nombre" required="" maxlength="60">
@@ -174,7 +166,7 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Teléfono</label>
-                                                                    <input name="Telefono" id="Telefono"  type="text" value="" class="form-control" placeholder="Teléfono"  maxlength="10" />
+                                                                    <input name="Telefono" id="Telefono"  type="text" value="" class="form-control" placeholder="Teléfono"  maxlength="10" onkeypress="return numeros(event)"/>
                                                                 </div>
                                                                
                                                                 
@@ -315,15 +307,15 @@ include("../Modelo/Conexion.php");
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sueldo Diario</label>
-                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required>
+                                                                    <input name="SueldoDiario" id="SueldoDiario" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
-                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required>
+                                                                    <input name="SueldoAnterior" id="SueldoAnterior" type="text" class="form-control" placeholder="Sueldo Anterior" maxlenght="10" required onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required>
+                                                                    <input name="SueldoActual" id="SueldoActual" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required onkeypress="return numeros(event)">
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -577,13 +569,7 @@ alert(datos);
                        $("#error").fadeOut();
                        },3000);
                        }
-                       else if(data==4)
-                       {
-                        $("#existecodi").fadeIn();
-                       setTimeout(function(){
-                       $("#existecodi").fadeOut();
-                       },3000);
-                       }
+                       
     
                    }
                });

@@ -49,7 +49,7 @@ if(isset($_POST['todos'])){
                                 <label>Mes y año</label>
                                 <div class="input-group date" >
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input type="text" name="Fecha" id="Fecha" class="form-control" value="<?php echo date("d/m/Y")?>" readonly required>
+                                            <input type="text" name="Fecha" id="Fecha" class="form-control" value="" readonly required>
                                         </div>          
                                 </div>
                                 <div class="col-md-1"><br/>
