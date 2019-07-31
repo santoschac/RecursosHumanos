@@ -2,13 +2,13 @@
     session_start();
     require_once "../../Modelo/Conexion.php";
     require_once "../../ClasesExcel/PHPExcel/IOFactory.php";
-    $usuario = $_SESSION['Usuario'];
+   // $usuario = $_SESSION['Usuario'];
 
     
     if (isset($_POST['operacion'])) {
         if ($_POST['operacion'] == "Agregar") {
             // print_r ($_FILES);
-            $archivo=$usuario."_".$_FILES['excel']['name'];
+            $archivo=$_FILES['excel']['name'];
             $destino="../Excel/".$archivo;
 
             if (copy($_FILES['excel']['tmp_name'],$destino)) {
@@ -78,7 +78,7 @@
 
         if ($_POST['operacion'] == "Guardar") {
             // print_r ($_FILES);
-            $archivo=$usuario."_".$_FILES['excel']['name'];
+            $archivo=$_FILES['excel']['name'];
 
             if (file_exists("../Excel/".$archivo)) {
 
@@ -107,7 +107,8 @@
                 }
           
 
-                if ($sentencia_agregar){ ?>
+                if ($sentencia_agregar){ unlink('../Excel/'.$archivo);?>
+                
                     <script>
                         Swal.fire({
                             position: 'top-end',
@@ -116,11 +117,12 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        setTimeout('document.location.reload()',1000);
+                        setTimeout('document.location.reload()',1000);                        
                     </script>
+                    
                 <?php   
-                } else { 
-                ?>
+                } else{ ?>
+                
                     <script>
                         Swal.fire({
                             title: 'Error!',

@@ -61,7 +61,7 @@
   <script src="../Recursos/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body style="background-image: url(../Recursos/img/fondo/fondo1.jpg);">
+<body style="background-image: url(../Recursos/img/fondo/fondo2.jpg);">
   <!-- style="background-color:#0071BB;" -->
   <!--background="fondo.gif"-->
   <!--[if lt IE 8]>

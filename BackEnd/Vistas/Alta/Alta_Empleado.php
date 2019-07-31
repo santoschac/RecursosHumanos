@@ -42,7 +42,7 @@ include("../../Modelo/Conexion.php");
     $Contrasena = $_POST['Contrasena'];
     $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
 
-    $IdTipoUsuario=2;
+    $IdTipoUsuario= $_POST['IdTipoUsuario'];
     
     $sql = 'SELECT * FROM usuario WHERE Usuario = ?';
     $sentencia = $pdo->prepare($sql);

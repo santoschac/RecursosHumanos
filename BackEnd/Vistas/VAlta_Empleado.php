@@ -71,7 +71,7 @@ include("../Modelo/Conexion.php");
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Error al insertar los datos;
+                                  Error al insertar los datos.
                               </div>
                              
                              <!--Fin alertas-->
@@ -257,7 +257,15 @@ include("../Modelo/Conexion.php");
                                                                 <label>Usuario</label>
                                                                     <input name="Usuario" id="Usuario" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
                                                                 </div>                                                                                                                               
-                                                  
+                                                                <div class="form-group">
+                                                                        <label><strong>Tipo Usuario</strong></label>
+                                                                        <select name="IdTipoUsuario" id="IdTipoUsuario" class="form-control" required>
+                                                                            <!-- <option value="" selected="" disabled="">Seleccionar</option> -->
+                                                                            <option value="1">Administrador</option>
+                                                                            <option value="2" selected="">Empleado</option>
+
+                                                                        </select>
+                                                                    </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
@@ -536,8 +544,9 @@ $(document).ready(function () {
            event.preventDefault();
            var datos = $('#formulario').serialize();
 
-alert(datos);
+        //alert(datos);
 
+        
                $.ajax({
                    url:"Alta/Alta_Empleado.php",
                    method:'POST',

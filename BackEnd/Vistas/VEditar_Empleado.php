@@ -69,7 +69,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                 <li class="active"><a href="#personales">Datos Personales</a></li>
                                 <li><a href="#DireccionId">Dirección</a></li>
                                 <li><a href="#LaboralID">Laboral</a></li>
-                                <li><a href="#UsuarioId">Usuario</a></li>
+                                <!-- <li><a href="#UsuarioId">Usuario</a></li> -->
                                 
                                
                             </ul>
@@ -79,13 +79,13 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  Datos Actualizados con éxito
+                                  Datos Actualizados con éxito.
                               </div>
                               <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El Empleado ya existe
+                                  Error al insertar los datos.
                               </div>
                              <!--Fin alertas-->
 
@@ -268,7 +268,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                 </div>
                                             </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="UsuarioId">
+                                <!-- <div class="product-tab-list tab-pane fade" id="UsuarioId">
                                      <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                                                                        
@@ -278,7 +278,15 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <input type="hidden" name="IdUsuario" id="IdUsuario" value="<?=$empleado->IdUsuario?>" required>
                                                                     <input name="Usuario" id="Usuario" value="<?= $empleado->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
                                                                 </div>                                                                                                                               
-                                                  
+                                                                <div class="form-group">
+                                                                        <label><strong>Tipo Usuario</strong></label>
+                                                                        <select name="IdTipoUsuario" id="IdTipoUsuario" class="form-control" required>
+                                                                             <option value="" selected="" disabled="">Seleccionar</option> 
+                                                                            <option value="1"  <?php if($empleado->IdTipoUsuario === "1"): echo "Selected"; endif;?>>Administrador</option>
+                                                                            <option value="2" <?php if($empleado->IdTipoUsuario === "2"): echo "Selected"; endif;?>>Empleado</option>
+
+                                                                        </select>
+                                                                    </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             
@@ -288,7 +296,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="input-group custom-go-button">
                                                                     <input type="password" name="Contrasena"
                                                                         id="Contrasena" class="form-control"
-                                                                        placeholder="******" required="" value="<?=$empleado->Contrasena?>"
+                                                                        placeholder="******" 
                                                                         maxlength="40">
                                                                     <span class="input-group-btn"><button
                                                                             class="btn btn-primary" type="button"
@@ -309,7 +317,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             </div>
                                                             
                                                         </div>
-                                </div>
+                                </div> -->
                                 <div class="product-tab-list tab-pane fade" id="LaboralID">
                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -414,12 +422,12 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 
                                                             <div class="form-group">
 
-                                                                <div class="form-group">
+                                                                <!-- <div class="form-group">
                                                                     <label><strong>Fecha de Antigüedad</strong></label>
                                                                     <div class="input-group date">
                                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                                         <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>">
-                                                                    </div>
+                                                                    </div> -->
 
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
@@ -437,7 +445,8 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="payment-adress">
-                                                        <a href="Empleados.php" class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
+                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -554,8 +563,9 @@ $(document).ready(function () {
        $(document).on('submit', '#formulario', function(event){
            event.preventDefault();
            var datos = $('#formulario').serialize();
-
-               $.ajax({
+          // alert(datos);
+           
+            $.ajax({
                    url:"Editar/Editar_Empleado.php",
                    method:'POST',
                    data:new FormData(this),
@@ -582,11 +592,13 @@ $(document).ready(function () {
     
                    }
                });
-       });
+            
+            });
   
     });
     </script>
-      <script>
+
+<script>
     function mostrarContrasena() {
       var tipo = document.getElementById("Contrasena");
       if (tipo.type == "password") {
@@ -610,4 +622,12 @@ $(document).ready(function () {
             element.style.display='none';
         }
     }
+</script>
+
+<!--script para quitar los espacios-->
+<script type="text/javascript">
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  return tecla!=32;
+}
 </script>

@@ -265,6 +265,7 @@ $CantidadViaticos = $sql2->fetch();
                                                 <li class="nav-item"><a href="../Vistas/Empleados.php"
                                                         class="nav-link">Empleados</a>
                                                 </li>
+                                                
                                                 <?php endif;?>
                                                 <!-- <li class="nav-item"><a href="../Vistas/Vacaciones.php"
                                                         class="nav-link">Vacaciones</a>
