@@ -15,6 +15,7 @@ include("../../Modelo/Conexion.php");
     if($statement->execute([':IdPersonal'=>$IdPersonal, ':IdJornada'=>$IdJornada, ':FechaInicio'=>$FechaInicio, ':FechaFinal'=> $FechaFinal]))
         {
           echo 1;
-
-        }  
+        }else{
+          echo 2;
+        }
 ?>

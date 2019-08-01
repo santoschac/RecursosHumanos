@@ -21,7 +21,11 @@ $Descripcion = $_POST['Descripcion'];
           {
             if($sentencia ->execute([':IdPuesto'=>$IdPuesto, ':IdSucursal'=>$IdSucursal, ':IdPersonal'=>$IdPersonal])){
               echo 1;
+            }else{
+              echo 2;
             }
            
+          }else{
+            echo 2;
           }
 ?>

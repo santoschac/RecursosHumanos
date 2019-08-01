@@ -15,5 +15,7 @@ $sql = 'INSERT INTO capacitacion (Evaluacion, IdPersonal, IdCurso, FechaCapacita
       if($statement->execute([':Evaluacion'=> $Evaluacion, ':IdPersonal'=>$IdPersonal, ':IdCurso' => $IdCurso, ':FechaCapacitacion'=>$FechaCapacitacion]))
       {
         echo 1;
+      }else{
+        echo 2;
       }
 ?>

@@ -12,7 +12,8 @@ $sql = 'INSERT INTO bonos (Descripcion, Fecha, Monto, IdPersonal)
    $statement = $pdo->prepare($sql);
    if($statement->execute([':Descripcion'=> $Descripcion, ':Fecha'=>$Fecha, ':Monto' => $Monto, ':IdPersonal'=>$IdPersonal]))
    {
-      echo 1;
-  
-    }
+     echo 1;
+   }else{
+     echo 2;
+   }
 ?>

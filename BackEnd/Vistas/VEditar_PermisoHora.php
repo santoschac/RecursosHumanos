@@ -145,7 +145,7 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group res-mg-t-15">
                                                         <label>Motivo</label>
                                                         <textarea name="Motivo" id="Motivo"
-                                                            placeholder="Describa el motivo" required="" maxlength="200" ><?=$permisoshoras->Motivo?></textarea>
+                                                            placeholder="Describa el motivo" required="" maxlength="198" ><?=$permisoshoras->Motivo?></textarea>
                                                     </div>
                                                        
                                                            

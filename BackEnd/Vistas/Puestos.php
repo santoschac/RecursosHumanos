@@ -7,7 +7,7 @@ include("../Modelo/Conexion.php");
    <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
-
+		
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
@@ -178,6 +178,8 @@ $(document).ready(function(){
 
     $(document).on('click', '.update', function(){
 		var puesto_id = $(this).attr("id");
+		//alert(puesto_id);
+		
 		$.ajax({
 			url:"Editar/Editar_Puesto.php",
 			method:"POST",

@@ -171,7 +171,7 @@ if(isset($_GET['IdPersonal'])){
                                                         </div>
                                                         <div class="form-group res-mg-t-15">
                                                                     <label>Evaluación</label>
-                                                                    <textarea name="Evaluacion" id="Evaluacion" placeholder="Describa la evaluación" required="" maxlength="200"><?= $capacitaciones->Evaluacion?></textarea>
+                                                                    <textarea name="Evaluacion" id="Evaluacion" placeholder="Describa la evaluación" required="" maxlength="98"><?= $capacitaciones->Evaluacion?></textarea>
                                                          </div>
                                                        
                                                                 

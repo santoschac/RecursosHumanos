@@ -33,12 +33,6 @@ if(isset($_GET['IdPersonal'])){
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
 
- <!-- datapicker CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/datapicker/datepicker3.css">
- <!-- chosen CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
   
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
@@ -89,7 +83,7 @@ if(isset($_GET['IdPersonal'])){
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El  ya existe
+                                  Error al insertar.
                               </div>
                              <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -158,7 +152,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" ></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="220" ></textarea>
                                                     </div>
                                                            
                                                         </div>
@@ -262,15 +256,6 @@ if(isset($_GET['IdPersonal'])){
 		============================================ -->
         <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
-  <!-- datapicker JS
-		============================================ -->
-        <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
-    <script src="../Recursos/js/datapicker/datepicker-active.js"></script>
-
-    <!-- chosen JS
-		============================================ -->
-        <script src="../Recursos/js/chosen/chosen.jquery.js"></script>
-    <script src="../Recursos/js/chosen/chosen-active.js"></script>
     
     <script type="text/javascript" language="javascript">
  

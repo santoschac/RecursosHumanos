@@ -156,11 +156,11 @@ if(isset($_GET['IdPersonal'])){
                                                             <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" require ><?=$Bonos->Descripcion?></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="198" require ><?=$Bonos->Descripcion?></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                             <label>Monto $</label>
-                                                            <input name="Monto" id="Monto" value="<?=$Bonos->Monto?>" type="text" class="form-control" placeholder="Monto" onkeypress="return numeros(event)" required>
+                                                            <input name="Monto" id="Monto" value="<?=$Bonos->Monto?>" type="text" class="form-control" placeholder="Monto" onkeypress="return numeros(event)" required maxlength="10">
                                                         </div>
                                                            
                                                         </div>

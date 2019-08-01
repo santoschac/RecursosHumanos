@@ -9,6 +9,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 
 ?>
+<!-- <script src="../Recursos/js/jquery-3.2.1.min.js"></script> -->
 
 <!-- normalize CSS
 		============================================ -->
@@ -58,17 +59,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
         <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+<!-- Exportar tabla
+		============================================ -->
+        <script src="../Recursos/js/data-table/tableExport.js"></script>
+<script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

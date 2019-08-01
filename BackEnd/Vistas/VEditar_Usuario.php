@@ -81,7 +81,7 @@ $usuarios = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <input type="hidden" name="IdUsuario" id="IdUsuario" value="<?php echo $IdUsuario;?>">
                                                                 <div class="form-group">
                                                                 <label>Usuario</label>                                                                
-                                                                    <input name="Usuario" id="Usuario" value="<?= $usuarios->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
+                                                                    <input name="Usuario" id="Usuario" value="<?= $usuarios->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="40"  required>
                                                                 </div>                                                                                                                               
                                                                 <div class="form-group">
                                                                         <label><strong>Tipo Usuario</strong></label>

@@ -39,12 +39,12 @@
                     for ($i=2; $i <= $numfilas ; $i++) { 
 
                         
-                        $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-                        $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                        $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                        $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                        $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                        $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                        $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$nom=strtoupper($nom);
+                        $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$horas=strtoupper($horas);
+                        $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();$fecha=strtoupper($fecha);
+                        $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();$horainicio=strtoupper($horainicio);
+                        $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();$horafinal=strtoupper($horafinal);
+                        $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();$idpersonal=strtoupper($idpersonal);
                         
                         ?>
                         <tr>
@@ -88,15 +88,15 @@
     
                 $numfilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
     
-                for ($i=1; $i <= $numfilas ; $i++) { 
+                for ($i=2; $i <= $numfilas ; $i++) { 
 
                     
-                    $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-                    $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-                    $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue(); 
-                    $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                    $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$nom=strtoupper($nom);
+                    $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$horas=strtoupper($horas);
+                    $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();$fecha=strtoupper($fecha);
+                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();$horainicio=strtoupper($horainicio);
+                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();$horafinal=strtoupper($horafinal);
+                    $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();$idpersonal=strtoupper($idpersonal);
                    
 
                     $sql_agregar = "INSERT INTO horasextras (Nombre, HorasTrabajadas, Fecha, HoraInicio, HoraFinal, IdPersonal) 

@@ -33,14 +33,6 @@ if(isset($_GET['IdPersonal'])){
         <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
-
- <!-- datapicker CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/datapicker/datepicker3.css">
- <!-- chosen CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
-    
     
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
@@ -91,7 +83,7 @@ if(isset($_GET['IdPersonal'])){
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El  ya existe
+                                  Error al insertar.
                               </div>
                              <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -110,7 +102,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                    maxlength="60" required readonly><span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                     class="glyphicon glyphicon-zoom-in"></span></button></span></a>
                                                             </div>
@@ -154,7 +146,7 @@ if(isset($_GET['IdPersonal'])){
                                                                 <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" ></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="148" ></textarea>
                                                     </div>
                                                        
                                                            

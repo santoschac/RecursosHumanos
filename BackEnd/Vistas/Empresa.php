@@ -90,7 +90,7 @@ include("../Modelo/Conexion.php");
                                        <div class="form-group-inner">
                                                         <br/>
                                                         <label>Nombre de la empresa</label>
-                                                        <input type="text" id="NombreEmpresa" name="NombreEmpresa" class="form-control" placeholder="Escribe el nombre de la empresa" required maxlength="50"/>
+                                                        <input type="text" id="NombreEmpresa" name="NombreEmpresa" class="form-control" placeholder="Escribe el nombre de la empresa" required maxlength="30"/>
                                                         <br/>
 													</div>
 													<div class="form-group-inner">

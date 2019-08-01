@@ -129,7 +129,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <div class="form-group">
                                                                     <label>Nivel Académico</label>
                                                                     <input name="NivelAcademico" id="NivelAcademico" value="<?= $empleado->NivelAcademico?>" type="text" class="form-control"
-                                                                        placeholder="Nivel Academico" maxlength="60" required>
+                                                                        placeholder="Nivel Academico" maxlength="67" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Rfc</label>                                                                
@@ -251,11 +251,11 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                
                                                                 <div class="form-group">
                                                                 <label>Colonia</label>
-                                                                    <input name="Colonia" id="Colonia" value="<?= $empleado->Colonia?>" type="text" class="form-control" placeholder="Colonia" maxlength="70" required>
+                                                                    <input name="Colonia" id="Colonia" value="<?= $empleado->Colonia?>" type="text" class="form-control" placeholder="Colonia" maxlength="80" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Dirección</label>
-                                                                    <input name="Direccion" id="Direccion" value="<?= $empleado->Direccion?>" type="text" class="form-control" placeholder="Dirección" maxlength="70" required>
+                                                                    <input name="Direccion" id="Direccion" value="<?= $empleado->Direccion?>" type="text" class="form-control" placeholder="Dirección" maxlength="120" required>
                                                                 </div>
                                                                 
                                                             </div>
@@ -336,16 +336,16 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sueldo Diario</label>
-                                                                    <input name="SueldoDiario" id="SueldoDiario" value="<?= $empleado->SueldoDiario?>" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" required onkeypress="return numeros(event)">
+                                                                    <input name="SueldoDiario" id="SueldoDiario" value="<?= $empleado->SueldoDiario?>" type="text" class="form-control" placeholder="Sueldo Diario" maxlength="10" required onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Anterior</label>
                                                                     <input name="SueldoAnterior" id="SueldoAnterior" value="<?=$empleado->SueldoAnterior?>" type="text" class="form-control"
-                                                                        placeholder="Sueldo Anterior" maxlenght="10" required onkeypress="return numeros(event)">
+                                                                        placeholder="Sueldo Anterior" maxlength="10" required onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Sueldo Actual</label>
-                                                                    <input name="SueldoActual" id="SueldoActual" value="<?= $empleado->SueldoActual?>" type="text" class="form-control" placeholder="Sueldo Actual" maxlenght="10" required onkeypress="return numeros(event)">
+                                                                    <input name="SueldoActual" id="SueldoActual" value="<?= $empleado->SueldoActual?>" type="text" class="form-control" placeholder="Sueldo Actual" maxlength="10" required onkeypress="return numeros(event)">
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -408,7 +408,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                 <label><strong>Fecha Baja</strong></label>
                                                                 <div class="input-group date">
                                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                    <input name="FechaBaja" id="FechaBaja" type="date" class="form-control" value="<?= date("Y-m-d", strtotime($empleado->FehaBaja));?>">
+                                                                    <input name="FechaBaja" id="FechaBaja" type="date" class="form-control"  maxlength="70" value="<?= date("Y-m-d", strtotime($empleado->FehaBaja));?>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group res-mg-t-15">

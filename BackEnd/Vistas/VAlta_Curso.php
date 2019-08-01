@@ -69,7 +69,7 @@ include("../Modelo/Conexion.php");
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>Nombre del Curso</label>
-                                                                <input name="NombreCurso" id="NombreCurso" type="text" class="form-control" placeholder="Nombre del curso" required="">
+                                                                <input name="NombreCurso" id="NombreCurso" type="text" class="form-control" placeholder="Nombre del curso" required="" maxlength="33">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Tipo de capacitación</label>
@@ -95,7 +95,7 @@ include("../Modelo/Conexion.php");
 
                                     <div class="form-group res-mg-t-15">
                                                                     <label>Descripción</label>
-                                                                    <textarea name="DescripcionCurso" id="DescripcionCurso" placeholder="Describa el curso" required="" maxlength="200"></textarea>
+                                                                    <textarea name="DescripcionCurso" id="DescripcionCurso" placeholder="Describa el curso" required="" maxlength="198"></textarea>
                                                                 </div>
                                                                 
                                                         </div>

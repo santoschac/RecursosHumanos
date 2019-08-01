@@ -43,7 +43,7 @@ else
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
-
+    <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
  
                                                          
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true"
@@ -97,16 +97,7 @@ else
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+    <!-- Exportar tabla
+		============================================ -->
+<script src="../Recursos/js/data-table/tableExport.js"></script>
+<script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

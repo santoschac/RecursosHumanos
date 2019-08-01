@@ -91,7 +91,7 @@ if(isset($_GET['IdPersonal'])){
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El  ya existe
+                                  Error al insertar.
                               </div>
                              <!--Fin alertas-->
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -159,7 +159,7 @@ if(isset($_GET['IdPersonal'])){
                                                         </div>
                                                         <div class="form-group res-mg-t-15">
                                                                     <label>Evaluación</label>
-                                                                    <textarea name="Evaluacion" id="Evaluacion" placeholder="Describa la evaluación" required="" maxlength="200"></textarea>
+                                                                    <textarea name="Evaluacion" id="Evaluacion" placeholder="Describa la evaluación" required="" maxlength="98"></textarea>
                                                          </div>
                                                        
                                                                 

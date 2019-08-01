@@ -32,19 +32,19 @@ if(isset($_GET['IdPersonal'])){
         <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
-
- <!-- datapicker CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/datapicker/datepicker3.css">
- <!-- chosen CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
+ 
  
  <!-- forms CSS
 	============================================ -->
     <link rel="stylesheet" href="../Recursos/css/all-type-forms.css">
-
-
+   
+<!-- este estilo es para que sea readonly y required al mismo tiempo asignar required data-readonly
+	============================================ -->
+<style>
+   input[data-readonly] {
+  pointer-events: none;
+}
+</style>
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -94,7 +94,7 @@ if(isset($_GET['IdPersonal'])){
                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                   </button>
-                                  El  ya existe
+                                  Error al insertar los datos.
                               </div>
                               <div class="alert alert-warning alert-mg-b" id="existe" style="display:none">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -119,7 +119,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <div class="input-group custom-go-button">
                                                                 <input type="text" name="Personal" id="Personal" class="form-control" placeholder="Nombre Personal"
                                                                     required="" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->Nombre ." ". $Personal->ApellidoPaterno ." ". $Personal->ApellidoMaterno;?><?php endif;?>"
-                                                                    maxlength="60" readonly=""><span class="input-group-btn"><a class="Primary mg-b-10"
+                                                                    maxlength="60"  data-readonly required><span class="input-group-btn"><a class="Primary mg-b-10"
                                                                     href="#" data-toggle="modal" data-target="#ModalTablaPersonal"><button class="btn btn-primary" type="button"><span
                                                                     class="glyphicon glyphicon-zoom-in"></span></button></span></a>
                                                             </div>
@@ -128,15 +128,15 @@ if(isset($_GET['IdPersonal'])){
 
                                                         <div class="form-group">
                                                             <label>Empresa</label>
-                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior" readonly>
+                                                            <input name="EmpresaAnterior" id="EmpresaAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreEmpresa?><?php endif;?>" type="text" class="form-control" placeholder="Empresa anterior"  required data-readonly >
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
-                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
+                                                            <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?=$Personal->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" required data-readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Puesto</label>
-                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
+                                                            <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPersonal'])):?><?= $Personal->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" required data-readonly>
                                                         </div>
                                                         
                                                                
@@ -382,3 +382,4 @@ $(document).ready(function(){
     });
 
     </script>
+    

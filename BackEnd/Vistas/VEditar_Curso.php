@@ -79,7 +79,7 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <input type="hidden" name="IdCurso" id="IdCurso" value="<?php echo $IdCurso?>">
                                                         <input name="NombreCurso" id="NombreCurso" type="text"
                                                             value="<?= $cursos->Nombre;?>" class="form-control"
-                                                            placeholder="Nombre del curso" required="">
+                                                            placeholder="Nombre del curso" required="" maxlength="33">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Tipo de capacitación</label>
@@ -106,7 +106,7 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                                                     <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="DescripcionCurso" id="DescripcionCurso"
-                                                            placeholder="Describa el curso" required="" maxlength="200"><?=$cursos->DescripcionCurso;?></textarea>
+                                                            placeholder="Describa el curso" required="" maxlength="198"><?=$cursos->DescripcionCurso;?></textarea>
                                                     </div>
 
                                                 </div>

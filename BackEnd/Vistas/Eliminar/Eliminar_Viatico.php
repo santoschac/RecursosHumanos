@@ -9,7 +9,7 @@
 		require_once '../../Modelo/Conexion.php';
 		
 		$IdViatico = $_POST['delete'];
-		$sql = "DELETE FROM viatico WHERE IdViatico=:IdViatico";
+		$sql = "DELETE FROM viaticos WHERE IdViatico=:IdViatico";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(':IdViatico'=>$IdViatico));
 		

@@ -163,7 +163,7 @@ if(isset($_GET['IdComisionPorcentaje'])){
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                             <label><strong>Monto comisión ($)</strong></label>
-                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" value="<?= $comisiones->MontoComision?>" required>
+                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" value="<?= $comisiones->MontoComision?>" required required onkeypress="return numeros(event)" maxlength="10">
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                             <label><strong>Monto cobrado ($)</strong></label>
@@ -338,3 +338,26 @@ if(isset($_GET['IdComisionPorcentaje'])){
     });
 
     </script>
+
+       <!-- validar solo numeros
+		============================================ -->
+        <script>
+        function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}
+
+</script>

@@ -35,15 +35,6 @@ if(isset($_GET['IdComisionPorcentaje'])){
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
 
- <!-- datapicker CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/datapicker/datepicker3.css">
- <!-- chosen CSS
-		============================================ -->
-        <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
-  
-    
-    
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -150,7 +141,7 @@ if(isset($_GET['IdComisionPorcentaje'])){
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                             <label><strong>Monto comisión</strong></label>
-                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" required>
+                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" required onkeypress="return numeros(event)" maxlength="10">
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                             <label><strong>Monto cobrado</strong></label>
@@ -262,16 +253,6 @@ if(isset($_GET['IdComisionPorcentaje'])){
  <!-- data table JS
 		============================================ -->
         <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-  <!-- datapicker JS
-		============================================ -->
-        <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
-    <script src="../Recursos/js/datapicker/datepicker-active.js"></script>
-
-    <!-- chosen JS
-		============================================ -->
-        <script src="../Recursos/js/chosen/chosen.jquery.js"></script>
-    <script src="../Recursos/js/chosen/chosen-active.js"></script>
     
     <script type="text/javascript" language="javascript">
 
@@ -357,3 +338,25 @@ if(isset($_GET['IdComisionPorcentaje'])){
   
     });
     </script>
+       <!-- validar solo numeros
+		============================================ -->
+        <script>
+        function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}
+
+</script>

@@ -176,7 +176,7 @@ if(isset($_GET['IdPersonal'])){
                                                             <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="Descripcion" id="Descripcion"
-                                                            placeholder="Descripcion" required="" maxlength="200" ><?=$accidentes->Descripcion?></textarea>
+                                                            placeholder="Descripcion" required="" maxlength="220" ><?=$accidentes->Descripcion?></textarea>
                                                     </div>
                                                            
                                                         </div>

@@ -16,5 +16,7 @@ $statement = $pdo->prepare($sql);
 if($statement->execute([':Descripcion'=> $Descripcion, ':Fecha'=>$Fecha, ':Reporta' => $Reporta, ':Accidentes'=>$Accidentes, ':IdPersonal'=>$IdPersonal]))
 {
   echo 1;
-}      
+}else{
+  echo 2;
+}   
 ?>
