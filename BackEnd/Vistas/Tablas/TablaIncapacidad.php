@@ -36,9 +36,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
- 
+    <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
                                                          
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
@@ -64,7 +64,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['DiaFinal'])); ?></td>
                                                 
                                                 <td><?php echo $dato['Documento']; ?></td>                                               
-                                                <td><a href="../VistasU/Documentos/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
+                                                <td><a href="../VistasU/Documentos/Incapacidades/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
                                                 <td>
                                                     <a href="VEditar_Incapacidad.php?IdIncapacidad=<?php echo $dato['IdIncapacidad']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdIncapacidad']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
@@ -86,16 +86,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
-    
+<!-- Exportar tabla
+		============================================ -->
 
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+<script src="../Recursos/js/data-table/tableExport.js"></script>
+<script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>

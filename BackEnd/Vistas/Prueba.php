@@ -1,111 +1,42 @@
 <?php
- include ("../Master/Header.php");
+include("../Master/Header.php");
+include("../Modelo/Conexion.php");
+
+$IdUsuario= $_GET['IdUsuario'];
+
+$sql1 = 'SELECT * from usuario where IdUsuario= :IdUsuario';
+$sentencia = $pdo->prepare($sql1);
+$sentencia ->execute([':IdUsuario'=>$IdUsuario]);
+$usuarios = $sentencia->fetch(PDO::FETCH_OBJ);
+
 ?>
+
 <!-- normalize CSS
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
-<!--apartir de aqui los puse para ver lo de excel-->
-<script src="../Recursos/js/jquery-3.2.1.min.js"></script>
-      <!-- Static Table Start -->
-      <div class="data-table-area mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                    <h1>Projects <span class="table-project-n">Data</span> Table</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">
-                                    <div id="toolbar">
-                                        <select class="form-control dt-tb">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
-										</select>
+    
+ <!-- Mobile Menu end -->
+ <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                       
                                     </div>
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-                                                <th data-field="state" data-checkbox="true"></th>
-                                                <th data-field="id">ID</th>
-                                                <th data-field="name" data-editable="true">Task</th>
-                                                <th data-field="email" data-editable="true">Email</th>
-                                                <th data-field="phone" data-editable="true">Phone</th>
-                                                <th data-field="complete">Completed</th>
-                                                <th data-field="task" data-editable="true">Task</th>
-                                                <th data-field="date" data-editable="true">Date</th>
-                                                <th data-field="price" data-editable="true">Price</th>
-                                                <th data-field="action">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td>1</td>
-                                                <td>Web Development</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>+8801962067309</td>
-                                                <td class="datatable-ct"><span class="pie">1/6</span>
-                                                </td>
-                                                <td>10%</td>
-                                                <td>Jul 14, 2017</td>
-                                                <td>$5455</td>
-                                                <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>2</td>
-                                                <td>Graphic Design</td>
-                                                <td>fox@itpark.com</td>
-                                                <td>+8801762067304</td>
-                                                <td class="datatable-ct"><span class="pie">230/360</span>
-                                                </td>
-                                                <td>70%</td>
-                                                <td>fab 2, 2017</td>
-                                                <td>$8756</td>
-                                                <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>3</td>
-                                                <td>Software Development</td>
-                                                <td>gumre@hash.com</td>
-                                                <td>+8801862067308</td>
-                                                <td class="datatable-ct"><span class="pie">0.42/1.461</span>
-                                                </td>
-                                                <td>5%</td>
-                                                <td>Seb 5, 2017</td>
-                                                <td>$9875</td>
-                                                <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>4</td>
-                                                <td>Woocommerce</td>
-                                                <td>kyum@frok.com</td>
-                                                <td>+8801962066547</td>
-                                                <td class="datatable-ct"><span class="pie">2,7</span>
-                                                </td>
-                                                <td>15%</td>
-                                                <td>Oct 10, 2017</td>
-                                                <td>$3254</td>
-                                                <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                </td>
-                                            </tr>
-                                            
-                                          
-                                           
-                                        </tbody>
-                                    </table>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="index.php">Inicio</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><a href="Empleados.php">Empleados</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Actualizar Usuario</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -113,19 +44,210 @@
                 </div>
             </div>
         </div>
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Agregar Cambio</a></li>
+                                
+                            </ul>
+                            
+                            <!--Alertas-->
+                            <div class="alert alert-success" id="exito" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  Datos insertados con éxito
+                              </div>
+                              <div class="alert alert-danger alert-mg-b" id="error" style="display:none">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  El  ya existe
+                              </div>
+                             <!--Fin alertas-->
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <form  method="POST" id="formulario" class="add-department">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        
+                                                                <input type="text" name="IdUsuario" id="IdUsuario" value="<?php echo $IdUsuario?>">
+                                                                <div class="form-group">
+                                                                <label>Usuario</label>
+                                                                <input type="hidden" name="IdUsuario" id="IdUsuario" value="<?=$empleado->IdUsuario?>" required>
+                                                                    <input name="Usuario" id="Usuario" value="<?= $usuarios->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
+                                                                </div>                                                                                                                               
+                                                                <div class="form-group">
+                                                                        <label><strong>Tipo Usuario</strong></label>
+                                                                        <select name="IdTipoUsuario" id="IdTipoUsuario" class="form-control" required>
+                                                                            <!-- <option value="" selected="" disabled="">Seleccionar</option> -->
+                                                                            <option value="1"  <?php if($usuarios->IdTipoUsuario === "1"): echo "Selected"; endif;?>>Administrador</option>
+                                                                            <option value="2" <?php if($usuarios->IdTipoUsuario === "2"): echo "Selected"; endif;?>>Empleado</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        
+                                                            <div class="form-group">
+                                                                <label class="control-label"
+                                                                    for="password">Nueva Contraseña</label>
+                                                                <div class="input-group custom-go-button">
+                                                                    <input type="password" name="Contrasena" id="Contrasena" class="form-control" required
+                                                                        placeholder="******" maxlength="40">
+                                                                    <span class="input-group-btn"><button
+                                                                            class="btn btn-primary" type="button"
+                                                                            onclick="mostrarContrasena()"><span
+                                                                                class="glyphicon glyphicon-eye-open"></span></button></span>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <br/>
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
+                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 <?php
  include ("../Master/Footer.php");
 ?>
 
-
-        <!-- data table JS
+ <!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-    <script src="../Recursos/js/data-table/tableExport.js"></script>
-    <script src="../Recursos/js/data-table/data-table-active.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-editable.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-editable.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-resizable.js"></script>
-    <script src="../Recursos/js/data-table/colResizable-1.5.source.js"></script>
-    <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>
+        <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+
+  <!-- datapicker JS
+		============================================ -->
+        <script src="../Recursos/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../Recursos/js/datapicker/datepicker-active.js"></script>
+
+<!-- validar solo numeros
+		============================================ -->
+        <script>
+        function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}
+
+</script>
+    
+
+    
+<script type="text/javascript" language="javascript" >
+
+    $(document).ready(function(){
+       
+
+       $(document).on('submit', '#formulario', function(event){
+           event.preventDefault();
+           var datos = $('#formulario').serialize();
+           alert(datos);
+           
+            $.ajax({
+                   url:"Editar/Editar_Usuario.php",
+                   method:'POST',
+                   data:new FormData(this),
+                   contentType:false,
+                   processData:false,
+                   success:function(data)
+                   {
+                    alert(data);
+                       if(data==1){
+                       $("#exito").fadeIn();
+                       setTimeout(function(){
+                       $("#exito").fadeOut();
+                       },3000);
+                       $('#formulario')[0].reset();
+
+                       }
+                       else if(data==2)
+                       {
+                        $("#error").fadeIn();
+                       setTimeout(function(){
+                       $("#error").fadeOut();
+                       },3000);
+                       }
+    
+                   }
+               });
+            
+            });
+  
+    });
+    </script>
+
+<script>
+    function mostrarContrasena() {
+      var tipo = document.getElementById("Contrasena");
+      if (tipo.type == "password") {
+        tipo.type = "text";
+      } else {
+        tipo.type = "password";
+      }
+    }
+  </script>
+    
+    
+  <!--ocultar y mostrar un div con un checkbox-->
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
+
+<!--script para quitar los espacios-->
+<script type="text/javascript">
+function validar(e) {
+  tecla = (document.all) ? e.keyCode : e.which;
+  return tecla!=32;
+}
+</script>
