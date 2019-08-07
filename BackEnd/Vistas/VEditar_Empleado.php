@@ -268,56 +268,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                 </div>
                                             </div>
                                 </div>
-                                <!-- <div class="product-tab-list tab-pane fade" id="UsuarioId">
-                                     <div class="row">
-                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                                                                                       
-                                                                
-                                                                <div class="form-group">
-                                                                <label>Usuario</label>
-                                                                <input type="hidden" name="IdUsuario" id="IdUsuario" value="<?=$empleado->IdUsuario?>" required>
-                                                                    <input name="Usuario" id="Usuario" value="<?= $empleado->Usuario?>" onkeypress="return validar(event)" onkeyup="this.value=this.value.toUpperCase()"  type="text" class="form-control" placeholder="Usuario" maxlength="49"  required>
-                                                                </div>                                                                                                                               
-                                                                <div class="form-group">
-                                                                        <label><strong>Tipo Usuario</strong></label>
-                                                                        <select name="IdTipoUsuario" id="IdTipoUsuario" class="form-control" required>
-                                                                             <option value="" selected="" disabled="">Seleccionar</option> 
-                                                                            <option value="1"  <?php if($empleado->IdTipoUsuario === "1"): echo "Selected"; endif;?>>Administrador</option>
-                                                                            <option value="2" <?php if($empleado->IdTipoUsuario === "2"): echo "Selected"; endif;?>>Empleado</option>
-
-                                                                        </select>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            
-                                                            <div class="form-group">
-                                                                <label class="control-label"
-                                                                    for="password">Contraseña</label>
-                                                                <div class="input-group custom-go-button">
-                                                                    <input type="password" name="Contrasena"
-                                                                        id="Contrasena" class="form-control"
-                                                                        placeholder="******" 
-                                                                        maxlength="40">
-                                                                    <span class="input-group-btn"><button
-                                                                            class="btn btn-primary" type="button"
-                                                                            onclick="mostrarContrasena()"><span
-                                                                                class="glyphicon glyphicon-eye-open"></span></button></span>
-                                                                </div>
-                                                                <br />
-                                                            </div>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="payment-adress">
-                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Actualizar</button>
-                                                                    <a href="Empleados.php"  class="btn btn-success waves-effect waves-light">Regresar</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                </div> -->
+                                
                                 <div class="product-tab-list tab-pane fade" id="LaboralID">
                                 <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

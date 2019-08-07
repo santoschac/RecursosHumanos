@@ -26,7 +26,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            
                                             <th>Nombre</th>
                                             <th>Horas Trabajadas</th>
                                             <th>Fecha</th>
@@ -41,7 +40,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
                                                 <td><?php echo $dato['IdHorasExtras']; ?></td>
-                                                   
                                                 <td><?php echo $dato['Nombre'];?></td>    
                                                 <td><?php echo $dato['HorasTrabajadas']?></td>                                        
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['Fecha'])); ?></td>
@@ -58,28 +56,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
                                 
-
-        
-        
-
-
-
-
-        
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    
+    <script src="../Recursos/js/data-table/bootstrap-table.js"></script> 

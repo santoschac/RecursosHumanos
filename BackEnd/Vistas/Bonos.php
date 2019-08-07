@@ -2,8 +2,6 @@
 include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 
-
-
 if(isset($_POST['todos'])){   
     unset($_SESSION['IdSucursal']);
    
@@ -54,10 +52,7 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                 <!---->
                             </div>
                         </div>
                     </div>

@@ -62,7 +62,7 @@ include("../Modelo/Conexion.php");
 			var IdSolicitudes = $(this).data('id');
 			SwalDelete(IdSolicitudes);
             e.preventDefault();
-            //alert(IdPuesto);
+          
 		});
 		
 	});

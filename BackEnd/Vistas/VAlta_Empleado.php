@@ -544,9 +544,7 @@ $(document).ready(function () {
            event.preventDefault();
            var datos = $('#formulario').serialize();
 
-        //alert(datos);
 
-        
                $.ajax({
                    url:"Alta/Alta_Empleado.php",
                    method:'POST',

@@ -207,9 +207,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaPorcentajeComision").html(data);
-                    // readPersonal();
                    }
                });
        });

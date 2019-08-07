@@ -61,14 +61,7 @@ include("../Modelo/Conexion.php");
                 </div>
             </div>
         </div> <br>
-        <!-- Static Table End -->
-		<!-- <style>
-    #mdialTamanio{
-      width: 35% !important;
-	
-	
-  </style> -->
-        
+     
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
                             <div class="modal-dialog" id="mdialTamanio">
@@ -148,8 +141,7 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				    //alert(data);
-					//$('#formulario')[0].reset();
+				    
 					if(data==1)
 					{
 						readAsignarJornada();
@@ -221,7 +213,7 @@ $(document).ready(function(){
 			var IdAsignarJornada = $(this).data('id');
 			SwalDelete(IdAsignarJornada);
             e.preventDefault();
-            //alert(IdAsingnarJornada);
+           
 		});
 		
 	});

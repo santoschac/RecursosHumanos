@@ -15,7 +15,6 @@ if(isset($_POST["empresa_id"]))
 	{
 		$output["NombreEmpresa"] = $row["NombreEmpresa"];
 		$output["ClaveEmpresa"] = $row["ClaveEmpresa"];
-		//$output["last_name"] = $row["last_name"];
 		
 	}
 	echo json_encode($output);

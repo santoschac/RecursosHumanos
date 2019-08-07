@@ -110,11 +110,7 @@ $CantidadViaticos = $sql2->fetch();
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                 <?php if($_SESSION['IdTipoUsuario']==1):?>
                     <ul class="metismenu" id="menu1">
-                        <!-- <li class="active">
-                            <a title="Empleados" href="../Vistas/Empleados.php" aria-expanded="false"><span
-                                    class="educate-icon educate-professor icon-wrap" aria-hidden="true"></span> <span
-                                    class="mini-click-non">Empleados</span></a>
-                        </li> -->
+                       
                         <li >
                             <a title="Incidencias" class="has-arrow" href="#" aria-expanded="false"><span
                                     class="educate-icon educate-form icon-wrap" aria-hidden="true"></span> <span

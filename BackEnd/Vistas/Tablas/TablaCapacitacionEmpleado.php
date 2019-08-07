@@ -30,8 +30,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Personal</th>
                                             <th>Curso</th>
                                             <th>Evaluación</th>
-                                            <th>Fecha capacitación</th>                                                              
-                                                                 
+                                            <th>Fecha capacitación</th>
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -55,28 +54,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
                                 
-
-        
-        
-
-
-
-
-        
-        <!-- data table JS
+ <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    

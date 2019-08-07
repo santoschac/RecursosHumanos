@@ -52,10 +52,7 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                <!---->
                             </div>
                         </div>
                     </div>

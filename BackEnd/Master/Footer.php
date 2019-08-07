@@ -59,11 +59,6 @@
     <script src="../Recursos/js/sparkline/jquery.sparkline.min.js"></script>
     <script src="../Recursos/js/sparkline/jquery.charts-sparkline.js"></script>
     <script src="../Recursos/js/sparkline/sparkline-active.js"></script>
-    <!-- calendar JS
-		============================================ -->
-    <!-- <script src="../Recursos/js/calendar/moment.min.js"></script>
-    <script src="../Recursos/js/calendar/fullcalendar.min.js"></script>
-    <script src="../Recursos/js/calendar/fullcalendar-active.js"></script> -->
     <!-- maskedinput JS
 		============================================ -->
     <script src="js/jquery.maskedinput.min.js"></script>

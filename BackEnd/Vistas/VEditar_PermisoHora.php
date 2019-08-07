@@ -119,10 +119,7 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
                                                         <div class="form-group">
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdPermisoHora'])):?><?= $permisoshoras->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
-                                                        </div>
-                                                        
-                                                               
-                                                            
+                                                        </div>                                                      
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                        
@@ -207,8 +204,7 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
                                             <tr>
                                             <th>No</th>
                                             <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            
+                                            <th>Apellidos</th>                                            
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -222,8 +218,7 @@ $permisoshoras = $sentencia->fetch(PDO::FETCH_OBJ);
                                             <tr>
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
                                                 <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
-                                                
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>

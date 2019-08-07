@@ -204,7 +204,6 @@ if(isset($_POST['todos'])){
        $(document).on('submit', '#formulariotabla', function(event){
            event.preventDefault();
            var datos = $('#formulariotabla').serialize();
-//alert(datos);
 
                $.ajax({
                    url:"Tablas/TablaVacaciones.php",
@@ -214,9 +213,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaVacaciones").html(data);
-                    // readPersonal();
                    }
                });
        });

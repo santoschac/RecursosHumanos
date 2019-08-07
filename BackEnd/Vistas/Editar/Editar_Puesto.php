@@ -14,7 +14,6 @@ if(isset($_POST["puesto_id"]))
 	foreach($result as $row)
 	{
 		$output["NombrePuesto"] = $row["NombrePuesto"];
-		//$output["last_name"] = $row["last_name"];
 		
 	}
 	echo json_encode($output);

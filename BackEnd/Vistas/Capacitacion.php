@@ -53,10 +53,7 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                <!---->
                             </div>
                         </div>
                     </div>
@@ -110,11 +107,6 @@ if(isset($_POST['todos'])){
         <!-- Static Table End -->
 
         
-       
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>

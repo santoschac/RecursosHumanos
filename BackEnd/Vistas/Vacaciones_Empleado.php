@@ -70,8 +70,6 @@ include("../Modelo/Conexion.php");
 <?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-   
-
 <script >
 
 	$(document).ready(function(){

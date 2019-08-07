@@ -37,7 +37,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
 
-
 ?>
 
 <!-- normalize CSS
@@ -69,15 +68,13 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['IdAsignarJornada']; ?></td>
                                                 <td><?php echo $dato['Nombre'] .' '. $dato['ApellidoPaterno'].' '. $dato['ApellidoMaterno']; ?></td>
                                                 <td><?php echo $dato['FechaInicioJornada']  ." a ". $dato['FechaFinJornada']." de ". $dato['HoraInicio'] ." a ". $dato['HoraFin']; ?></td>
-                                                <td><?php echo date("d-m-Y", strtotime($dato['FechaInicio']));?></td>
-                                                
+                                                <td><?php echo date("d-m-Y", strtotime($dato['FechaInicio']));?></td>                                                
                                                 <td><?php echo date("d-m-Y", strtotime($dato['FechaFinal'])) ;?></td>
                                                 <td><?php echo $dato['NombreEmpresa'];?></td>
                                                 <td><?php echo $dato['NombreSucursal'];?></td>
                                                 <td><?php echo $dato['NombrePuesto'];?></td>
                                                 
-                                                <td>  
-                                              
+                                                <td>                                                
                                                <a href="VEditar_AsignarJornada.php?IdAsignarJornada=<?php echo $dato['IdAsignarJornada']; ?>"><button  title="Editar" class="pd-setting-ed" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                                <a id="Eliminar" data-id="<?php echo $dato['IdAsignarJornada']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="p-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 
@@ -88,14 +85,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                     </table> <br>
                                 
 
-        
-        
-
-
-
-
-        
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 <!-- Exportar tabla

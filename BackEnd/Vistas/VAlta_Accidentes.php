@@ -333,9 +333,7 @@ if(isset($_GET['IdPersonal'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#tabla").html(data);
-                     
                    }
                });
        });

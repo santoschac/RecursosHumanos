@@ -31,10 +31,6 @@ $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
-
-
-   
-
 ?>
 
 <!-- normalize CSS
@@ -57,8 +53,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha solicitud</th>   
                                             <th>Comprobar</th>
                                             <th>Fecha de comprobación</th>        
-                                            <th>Monto final</th>  
-                                                          
+                                            <th>Monto final</th>
                                             <th>Configuración</th>
                                     </tr>
                                         </thead>
@@ -78,7 +73,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td>$ <?php echo $dato['Cantidad'];?></td>
                                                
                                                 
-                                                
                                                 <td>
                                                     <button  title="Editar" class="pd-setting-ed update" name="update" id="<?php echo $dato['IdViatico']; ?>"><span class="glyphicon">&#xe013;</span></button>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdViatico']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
@@ -88,9 +82,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
                                 
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+<script src="../Recursos/js/data-table/bootstrap-table.js"></script>
     <!-- Exportar tabla
 		============================================ -->
 <script src="../Recursos/js/data-table/tableExport.js"></script>

@@ -41,8 +41,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 }
 
-
-
 ?>
     <script src="../Recursos/js/jquery-3.2.1.min.js"></script>
 <!-- normalize CSS
@@ -57,13 +55,11 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            
                                             <th>Fecha falta</th>
                                             <th>Personal</th>
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
-                                                                   
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -72,7 +68,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
                                                 <td><?php echo $dato['IdFalta']; ?></td>
-                                                                                                
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['Fecha'])); ?></td>
                                                 <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']?></td>
                                                 <td><?php echo $dato['NombreEmpresa'];?></td>  

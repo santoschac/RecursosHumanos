@@ -93,8 +93,6 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
 
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-
                                                     <div class="form-group">
                                                         <label>Fecha del Curso</label>
                                                         <div class="input-group date">
@@ -102,7 +100,6 @@ $cursos = $sentencia->fetch(PDO::FETCH_OBJ);
                                                             <input type="date" name="Fecha" id="Fecha" class="form-control" value="<?=date("Y-m-d", strtotime( $cursos->Fecha)); ?>">
                                                         </div>
                                                     </div>
-
                                                     <div class="form-group res-mg-t-15">
                                                         <label>Descripción</label>
                                                         <textarea name="DescripcionCurso" id="DescripcionCurso"
@@ -172,8 +169,7 @@ $(document).ready(function(){
                    setTimeout(function(){
                    $("#error").fadeOut();
                    },2000);
-                   //$('#formulario')[0].reset();
- 
+               
                    }
 
                }

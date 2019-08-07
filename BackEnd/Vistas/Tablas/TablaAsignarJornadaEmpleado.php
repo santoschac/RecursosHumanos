@@ -1,4 +1,3 @@
-
 <?php
 
 include("../../Modelo/Conexion.php");
@@ -13,7 +12,6 @@ inner join empresa e on s.IdEmpresa = e.IdEmpresa
 inner join jornada jo on jo.IdJornada = a.IdJornada where a.IdPersonal = $IdPersonal");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -61,26 +59,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 
 
         
-        
-
-
-
-
-        
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
-
-    
-
-
-	 
-	 
-		
-	 
-	 
-
-
-
-
-    

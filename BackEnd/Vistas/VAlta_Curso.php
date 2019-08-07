@@ -49,11 +49,18 @@ include("../Modelo/Conexion.php");
                                     Datos insertados con éxito
                                 </div>
 
-                                <div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
+                                <div class="alert alert-danger alert-mg-b" id="existe"  style="display:none">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
                                     El curso ya existe
+                            </div>
+
+                            <div class="alert alert-danger alert-mg-b" id="error"  style="display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+                                    Error al insertar
                             </div>
                              
                              <!--Fin alertas-->
@@ -152,9 +159,9 @@ $(document).ready(function(){
                    //$('#formulario')[0].reset();
                    if(data==1){
                    //readCurso();
-                   $("#error").fadeIn();
+                   $("#existe").fadeIn();
                    setTimeout(function(){
-                   $("#error").fadeOut();
+                   $("#existe").fadeOut();
                    },2000);
                    
                    }
@@ -163,6 +170,15 @@ $(document).ready(function(){
                     $("#exito").fadeIn();
                    setTimeout(function(){
                    $("#exito").fadeOut();
+                   },2000);
+                   $('#formulario')[0].reset();
+                   
+                   }
+                   else if(data==3)
+                   {
+                    $("#error").fadeIn();
+                   setTimeout(function(){
+                   $("#error").fadeOut();
                    },2000);
                    $('#formulario')[0].reset();
                    

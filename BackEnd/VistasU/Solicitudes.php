@@ -179,8 +179,6 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				    //alert(data);
-					//$('#formulario')[0].reset();
 					if(data==1)
 					{
 						readSolicitudes();
@@ -189,7 +187,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
-						//$('#NombrePuesto').val('');
+						
 					}
                     else if(data ==2)
                     {
@@ -199,14 +197,13 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						//$('#NombrePuesto').val('');
+						
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-					//	$('#NombrePuesto').val('');
 
                     }
 
@@ -227,7 +224,6 @@ $(document).ready(function(){
 			{
 				$('#ModalAgregar').modal('show');
 				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
 				$('#puesto_id').val(puesto_id);
 				$('#action').val("Actualizar");
@@ -238,14 +234,9 @@ $(document).ready(function(){
 		})
 	});
 	
-	
-	
-	
 });
 </script>
-
    
-
 <script >
 
 	$(document).ready(function(){
@@ -304,4 +295,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

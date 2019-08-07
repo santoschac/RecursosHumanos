@@ -17,9 +17,6 @@ $empleados = $sentencia->fetch(PDO::FETCH_OBJ);
 
 $_SESSION['IdPersonal'] = $empleados->IdPersonal;
 
-// $sql = $pdo->prepare('SELECT count(IdCambio) as Cantidad from cambios where IdPersonal = ?');
-// $sql -> execute(array($IdPersonal));
-// $resulCambios = $sql->fetch();
 
 $sql1 = $pdo->prepare("SELECT count(IdPersonal) as cantidad FROM cambios where IdPersonal = $IdPersonal");
 $sql1 -> execute();
@@ -389,66 +386,7 @@ $CantidadComision= $sql10->fetch();
                         </div>
                     </div>
                 
-                      <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="hpanel shadow-inner hbgblue bg-2 responsive-mg-b-30">
-                            <div class="panel-body">
-                                <div class="stats-title pull-left">
-                                    <h4 style="color:white">Viáticos (<?php echo $CantidadViajes['cantidad']?>)</h4>
-                                </div>
-                                <div class="stats-icon pull-right">
-                                <i class="educate-icon educate-charts"></i>
-                                </div>
-                                <div class="m-t-xl widget-cl-2">
-                                    
-                                    <p style="color:white">Ver los viáticos del empleado.<br/><br/></p>
-                                </div>
-                               <a href="Viaticos_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="hpanel shadow-inner hbgyellow bg-3 responsive-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
-                            <div class="panel-body">
-                                <div class="stats-title pull-left">
-                                    <h4 style="color:white">Vacaciones</h4>
-                                </div>
-                                <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-event icon-wrap sub-icon-mg"></i>
-                                </div>
-                                <div class="m-t-xl widget-cl-3">
-                                    
-                                    <p style="color:white">Ver la fecha de vacaciones del empleado.</p>
-                                </div>
-                                
-                               <a href="Vacaciones_Empleado.php"><button  class="btn btn-secondary" style="color:black">Más info</button></a>
-                                
-                                
-                                </div>
-                                
-                            </div>
-                    </div>
-                   
-                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="hpanel shadow-inner hbgred bg-4 res-tablet-mg-t-30 dk-res-t-pro-30">
-                            <div class="panel-body">
-                                <div class="stats-title pull-left">
-                                    <h4 style="color:white">Comisión (<?php echo $CantidadComision['cantidad'];?>)</h4>
-                                </div>
-                                <div class="stats-icon pull-right">
-                                    <i class="educate-icon educate-professor"></i>
-                                </div>
-                                <div class="m-t-xl widget-cl-4">
-                                    
-                                    <p style="color:white">
-												Ver las comisiones del empleado.<br/><br/></p>
-                                </div>
-                               <a href="Comision_Empleado.php"> <button  class="btn btn-secondary" style="color:black">Más info</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div> -->
+                  
             </div>
             <br/>
         </div>

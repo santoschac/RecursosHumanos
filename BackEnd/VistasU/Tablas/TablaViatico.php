@@ -12,9 +12,6 @@ inner join estado e on p.IdEstado = e.IdEstado where IdPersonal =$IdPersonal ord
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
-
-   
-
 ?>
 
 <!-- normalize CSS

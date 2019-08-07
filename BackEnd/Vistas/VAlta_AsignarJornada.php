@@ -251,9 +251,6 @@ if(isset($_GET['IdPersonal'])){
         <!-- Static Table End -->
            
                                 
-                            
-                                        
-                                    
                                 </div>
                             </div>
                         </div>

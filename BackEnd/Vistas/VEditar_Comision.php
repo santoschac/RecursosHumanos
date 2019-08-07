@@ -144,8 +144,7 @@ if(isset($_GET['IdComisionPorcentaje'])){
                                                         <div class="form-group">
                                                             <label>Puesto</label>
                                                             <input name="PuestoAnterior" id="PuestoAnterior" value="<?php if(isset($_GET['IdComision'])):?><?= $comisiones->NombrePuesto?><?php endif;?>" type="text" class="form-control" placeholder="Puesto anterior" readonly>
-                                                        </div>
-                                                       
+                                                        </div>                                                      
                                                                
                                                             
                                                         </div>

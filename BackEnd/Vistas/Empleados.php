@@ -58,10 +58,7 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                <!---->
                             </div>
                         </div>
                     </div>
@@ -77,9 +74,7 @@ if(isset($_POST['todos'])){
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                             
-                            
+                                <div class="main-sparkline13-hd">          
                             </div>
                             
                             <div class="sparkline13-graph">

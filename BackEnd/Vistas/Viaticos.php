@@ -280,35 +280,34 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				   //alert(data);
-					//$('#formulario')[0].reset();
+				   
 					if(data==1)
 					{
-						//readSolicitudes();
+						
 						$('#ModalAgregar').modal('hide');
 						$("#exito").fadeIn();
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
-						//$('#NombrePuesto').val('');
+						
 					}
                     else if(data ==2)
                     {
-						//readSolicitudes();
+						
 						$('#ModalAgregar').modal('hide');
 						$("#actu").fadeIn();
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
 						readViatico();
-						//$('#NombrePuesto').val('');
+						
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-					//	$('#NombrePuesto').val('');
+					
 
                     }
 
@@ -344,7 +343,6 @@ $(document).ready(function(){
 			}
 		})
 	});
-	
 	
 	
 	
@@ -431,7 +429,7 @@ $(document).ready(function(){
        $(document).on('submit', '#formulariotabla', function(event){
            event.preventDefault();
            var datos = $('#formulariotabla').serialize();
-//alert(datos);
+
 
                $.ajax({
                    url:"Tablas/TablaViatico.php",
@@ -441,9 +439,8 @@ $(document).ready(function(){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaViatico").html(data);
-                    // readPersonal();
+                    
                    }
                });
        });

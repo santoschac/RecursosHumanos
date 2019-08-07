@@ -32,9 +32,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 
 }
 
-
-
-
 ?>
 
 <!-- normalize CSS

@@ -7,7 +7,6 @@ $sql = $pdo->prepare('SELECT * FROM cursos') ;
 $sql->execute();
 $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
-
 ?>
 
 

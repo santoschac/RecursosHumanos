@@ -14,7 +14,6 @@ if(isset($_POST["pais_id"]))
 	foreach($result as $row)
 	{
 		$output["NombrePais"] = $row["NombrePais"];
-		//$output["last_name"] = $row["last_name"];
 		
 	}
 	echo json_encode($output);

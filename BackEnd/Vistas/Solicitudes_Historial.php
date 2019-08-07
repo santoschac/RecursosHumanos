@@ -8,7 +8,7 @@ if(isset($_POST['todos'])){
 }
 ?>
          
-         <!-- Sweet Alert
+<!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 

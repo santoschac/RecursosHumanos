@@ -191,7 +191,6 @@ $(document).ready(function(){
 			{
 				$('#ModalAgregar').modal('show');
 				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
 				$('#puesto_id').val(puesto_id);
 				$('#action').val("Actualizar");

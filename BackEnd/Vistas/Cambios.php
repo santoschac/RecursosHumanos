@@ -52,10 +52,7 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                <!---->
                             </div>
                         </div>
                     </div>
@@ -208,9 +205,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaCambio").html(data);
-                    // readPersonal();
                    }
                });
        });

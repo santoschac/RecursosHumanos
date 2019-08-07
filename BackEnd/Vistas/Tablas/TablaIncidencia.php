@@ -9,7 +9,6 @@ inner join personal p on i.IdPersonal = p.IdPersonal') ;
 $sql->execute();
 $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
-
 ?>
 
 
@@ -62,6 +61,3 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
- 
-
-    

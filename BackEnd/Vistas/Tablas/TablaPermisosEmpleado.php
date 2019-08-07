@@ -16,8 +16,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
- 
-                                                         
+                   
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
@@ -27,7 +26,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha solicitada</th>
                                             <th>Permiso</th>
                                             <th>Forma de devolución</th>
-                                            
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>

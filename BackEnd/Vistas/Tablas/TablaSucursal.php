@@ -31,8 +31,6 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                             <th>Región</th>
                                             <th>Población</th>
                                             <th>Estado</th>
-                                            
-                                            
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -46,8 +44,6 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Region']; ?></td>
                                                 <td><?php echo $dato['NombrePoblacion']; ?></td>
                                                 <td><?php echo $dato['NombreEstado']; ?></td>
-                                                
-                                                
                                                 
                                                 <td>
                                                 <a href="VEditar_Sucursal.php?IdSucursal=<?php echo $dato['IdSucursal']; ?>"><button  title="Editar" class="pd-setting-ed "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>

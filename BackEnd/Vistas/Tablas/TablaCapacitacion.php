@@ -47,8 +47,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Personal</th>
                                             <th>Curso</th>
                                             <th>Evaluación</th>
-                                            <th>Fecha</th>                                                              
-                                                                 
+                                            <th>Fecha</th>
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -61,7 +60,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Nombre'];?></td>
                                                 <td><?php echo $dato['Evaluacion'];?></td>
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['FechaCapacitacion'])); ?></td>
-                                                
                                                
                                                 <td>
                                                     <a href="VEditar_Capacitacion.php?IdCapacitacion=<?php echo $dato['IdCapacitacion']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
@@ -72,12 +70,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
                                 
-
-        
-        
-
-
-
 
         
         <!-- data table JS

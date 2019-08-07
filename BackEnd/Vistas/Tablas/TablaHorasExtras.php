@@ -25,8 +25,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
 
-
-
 ?>
 
 <!-- normalize CSS
@@ -41,7 +39,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            
                                             <th>Nombre</th>
                                             <th>Horas Trabajadas</th>
                                             <th>Fecha</th>
@@ -57,7 +54,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         <?php foreach ($resultado as $dato) {?>
                                             <tr>
                                                 <td><?php echo $dato['IdHorasExtras']; ?></td>
-                                                  
                                                 <td><?php echo $dato['Nombre'];?></td>    
                                                 <td><?php echo $dato['HorasTrabajadas']?><?php if($dato['HorasTrabajadas']!=1){echo " hrs";}else{echo " hr";}?></td>                                        
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['Fecha'])); ?></td>
@@ -65,8 +61,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['HoraFinal']; ?></td>
                                                 <td><?php echo $dato['IdPersonal'];?></td> 
                                                
-                                                <td>
-                                                    <!-- <a href="VEditar_Cambio.php?IdCambio=<?php echo $dato['IdCambio']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a> -->
+                                                <td>                                                    
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdHorasExtras']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                 </td>
                                             </tr>
@@ -76,13 +71,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 
 
         
-        
-
-
-
-
-        
-        <!-- data table JS
+ <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 

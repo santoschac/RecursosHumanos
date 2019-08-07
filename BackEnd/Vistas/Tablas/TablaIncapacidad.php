@@ -28,7 +28,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
 
-
 ?>
 
 <!-- normalize CSS
@@ -47,7 +46,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Descripción</th>
                                             <th>Día inicio</th>
                                             <th>Día final</th>
-                                            
                                             <th>Documento</th>                                                              
                                             <th>Descargar</th>
                                             <th>Configuración</th>
@@ -62,7 +60,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Descripcion'];?></td>
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['DiaInicio'])); ?></td>
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['DiaFinal'])); ?></td>
-                                                
                                                 <td><?php echo $dato['Documento']; ?></td>                                               
                                                 <td><a href="../VistasU/Documentos/Incapacidades/<?php echo $dato['Usuario']?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/descargaricono.png" width="60px" height="60px" alt=""><?php endif;?></a></td>
                                                 <td>
@@ -75,14 +72,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                     </table> <br>
                                 
 
-        
-        
-
-
-
-
-        
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 

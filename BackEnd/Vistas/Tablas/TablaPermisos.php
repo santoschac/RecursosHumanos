@@ -26,8 +26,6 @@ $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
-
-
 ?>
 
 <!-- normalize CSS
@@ -47,7 +45,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha solicitada</th>
                                             <th>Permiso</th>
                                             <th>Forma de devolución</th>
-                                            
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -61,7 +58,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Descripcion']; ?></td>
                                                 <td><?php echo $dato['Devolucion']; ?></td>
                                                 
-                                                
                                                <td>
                                                <a href="VEditar_Permiso.php?IdPermiso=<?php echo $dato['IdPermiso']; ?>"><button  title="Editar" class="pd-setting-ed"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                             <a id="Eliminar" data-id="<?php echo $dato['IdPermiso']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
@@ -71,9 +67,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                         </tbody>
                                     </table> <br>
   
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
+<script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 
     <!-- Exportar tabla
 		============================================ -->

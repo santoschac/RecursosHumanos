@@ -209,9 +209,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaViaje").html(data);
-                    // readPersonal();
                    }
                });
        });

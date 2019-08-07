@@ -135,10 +135,7 @@ include("../Modelo/Conexion.php");
 						</div>
         <!--fin modal agregar-->
 
-
-
-
-      
+  
 
 <?php
  include ("../Master/Footer.php");
@@ -175,8 +172,7 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				    //alert(data);
-					//$('#formulario')[0].reset();
+				    
 					if(data==1)
 					{
 						readPermisos();
@@ -223,7 +219,6 @@ $(document).ready(function(){
 			{
 				$('#ModalAgregar').modal('show');
 				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
 				$('#permiso_id').val(permiso_id);
 				$('#action').val("Actualizar");

@@ -26,7 +26,6 @@ $resultado=$sql1->fetchALL(PDO::FETCH_ASSOC);
                                             <th>No</th>
                                             <th>Nombres</th>
                                             <th>Apellidos</th>
-                                            
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -40,8 +39,7 @@ $resultado=$sql1->fetchALL(PDO::FETCH_ASSOC);
                                             <tr>
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
                                                 <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
-                                                
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>

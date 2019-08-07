@@ -9,13 +9,7 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Add")
 	{
 	
-		
-		// $Dia= $_POST['Dia'];
-		// $Descripcion = $_POST['Descripcion'];
-		// $Devolucion = $_POST['Devolucion'];	
-		// $IdPersonal = $_SESSION['IdPersonal'];
-
-		// $Estatus= "Espera";	
+	
 		
 		$statement = $pdo->prepare("INSERT INTO viaticos (Motivo, Monto, IdPoblacion, IdPersonal, Fecha) VALUES (:Motivo, :Monto, :IdPoblacion, :IdPersonal, :Fecha)");
 		$result = $statement->execute(

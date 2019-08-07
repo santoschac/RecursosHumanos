@@ -136,11 +136,6 @@ include("../Modelo/Conexion.php");
                         </div>
         <!--fin modal agregar-->
 
-
-
-
-      
-
 <?php
  include ("../Master/Footer.php");
 ?>
@@ -224,7 +219,7 @@ $(document).ready(function(){
 
     $(document).on('click', '.update', function(){
 		var poblacion_id = $(this).attr("id");
-		//alert(poblacion_id);
+
 		$.ajax({
 			url:"Editar/Editar_Poblacion.php",
 			method:"POST",

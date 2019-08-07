@@ -9,14 +9,7 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Add")
 	{
 	
-		// $sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
-    	// $sentencia = $pdo->prepare($sql);
-    	// $sentencia ->execute(array($_POST["NombrePuesto"]));
-    	// $resultado = $sentencia->fetch();
-
-		// if($resultado){
-		// 	echo 3;
-		// }else{
+		
 		$Dia= $_POST['Dia'];
 		$Descripcion = $_POST['Descripcion'];
 		if(isset($_POST['Devolucion'])){
@@ -47,7 +40,7 @@ if(isset($_POST["operation"]))
 			echo 3;
 		}
 
-		//}
+		
 		
 
     
@@ -55,14 +48,7 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Edit")
 	{
 	
-		// $sql = 'SELECT * FROM puestos WHERE NombrePuesto = ?';
-    	// $sentencia = $pdo->prepare($sql);
-    	// $sentencia ->execute(array($_POST["NombrePuesto"]));
-    	// $resultado = $sentencia->fetch();
-
-		// if($resultado){
-		// 	echo 3;
-		// }else{
+	
 			$statement = $pdo->prepare(
 			"UPDATE solicitudes 
 			SET NombrePuesto = :NombrePuesto
@@ -79,11 +65,9 @@ if(isset($_POST["operation"]))
 		{
 			echo 2;
 		}
-		//}
+		
 		
 	}
 }
 
 ?>
-
-

@@ -150,13 +150,9 @@ include("../Modelo/Conexion.php");
                         </div>
         <!--fin modal agregar-->
 
-
-
-		
 <?php
  include ("../Master/Footer.php");
 ?>
-
 
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
@@ -226,42 +222,40 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				   //alert(data);
-					//$('#formulario')[0].reset();
+				   
 					if(data==1)
 					{
-						//readSolicitudes();
+						
 						$('#ModalAgregar').modal('hide');
 						$("#exito").fadeIn();
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
 						readViatico();
-						//$('#NombrePuesto').val('');
+					
 					}
                     else if(data ==2)
                     {
-						//readSolicitudes();
+						
 						$('#ModalAgregar').modal('hide');
 						$("#actu").fadeIn();
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
 						readViatico();
-						//$('#NombrePuesto').val('');
+						
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-					//	$('#NombrePuesto').val('');
+				
 
                     }
 
 				}
 			});
-		
 		
 	});
 
@@ -276,7 +270,6 @@ $(document).ready(function(){
 			{
 				$('#ModalAgregar').modal('show');
 				$('#NombrePuesto').val(data.NombrePuesto);
-				//$('#last_name').val(data.last_name);
 				$('.modal-title').text("Actualizar puesto");
 				$('#puesto_id').val(puesto_id);
 				$('#action').val("Actualizar");
@@ -286,9 +279,6 @@ $(document).ready(function(){
 			}
 		})
 	});
-	
-	
-	
 	
 });
 </script>
@@ -353,4 +343,3 @@ $(document).ready(function(){
 	}
     
 </script> 
-

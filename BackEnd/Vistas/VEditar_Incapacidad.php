@@ -248,8 +248,7 @@ if(isset($_GET['IdPersonal'])){
                                             <tr>
                                             <th>No</th>
                                             <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            
+                                            <th>Apellidos</th>                                            
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -263,8 +262,7 @@ if(isset($_GET['IdPersonal'])){
                                             <tr>
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
                                                 <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
-                                                
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>

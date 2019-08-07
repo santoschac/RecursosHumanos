@@ -55,19 +55,13 @@ if(isset($_POST['todos'])){
                                 <button class="btn btn-success" type="submit">Ver todos</button>
                                 </div>
                                 </form>
-                                
-                               
-                                
-                            <!---->
+                                <!---->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
-
 
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
@@ -215,9 +209,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
                      $("#TablaIncapacidad").html(data);
-                    // readPersonal();
                    }
                });
        });

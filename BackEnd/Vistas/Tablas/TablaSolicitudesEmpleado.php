@@ -67,7 +67,4 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- data table JS
 		============================================ -->
-    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
- 
-
-    
+    <script src="../Recursos/js/data-table/bootstrap-table.js"></script>    

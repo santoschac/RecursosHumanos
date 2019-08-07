@@ -189,9 +189,7 @@ if(isset($_POST['todos'])){
                    processData:false,
                    success:function(data)
                    {
-                     //alert(data);
-                     $("#TablaSolicitudes").html(data);
-                    // readPersonal();
+                       $("#TablaSolicitudes").html(data);
                    }
                });
        });

@@ -135,11 +135,8 @@ if(isset($_GET['IdPersonal'])){
                                                         <div class="form-group">
                                                             <label>Sucursal</label>
                                                             <input name="SucursalAnterior" id="SucursalAnterior" value="<?php if(isset($_GET['IdComisionPorcentaje'])):?><?=$porcentajes->NombreSucursal?><?php endif;?>" type="text" class="form-control" placeholder="Sucursal anterior" readonly>
-                                                        </div>
+                                                        </div>                                                       
                                                         
-                                                        
-                                                               
-                                                            
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                        
@@ -151,10 +148,8 @@ if(isset($_GET['IdPersonal'])){
                                                             <label>Porcentaje(%)</label>
                                                             <input type="text" name="Porcentaje" id="Porcentaje"class="form-control" value="<?= $porcentajes->Porcentaje?>" required onkeypress="return numeros(event)"  maxlength="4">
                                                                 
-                                                        </div>
-                                                        
-                                                           
-                                                        </div>
+                                                        </div>                                                       
+                                                    </div>
                                                         
                                                     </div>
                                                     <div class="row">
@@ -212,8 +207,7 @@ if(isset($_GET['IdPersonal'])){
                                             <tr>
                                             <th>No</th>
                                             <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            
+                                            <th>Apellidos</th>                                            
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
                                             <th>Puesto</th>
@@ -227,8 +221,7 @@ if(isset($_GET['IdPersonal'])){
                                             <tr>
                                                 <td><?php echo $dato['IdPersonal']; ?></td>
                                                 <td><?php echo $dato['Nombre']; ?></td>
-                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>
-                                                
+                                                <td><?php echo $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno']; ?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>
                                                 <td><?php echo $dato['NombrePuesto']; ?></td>

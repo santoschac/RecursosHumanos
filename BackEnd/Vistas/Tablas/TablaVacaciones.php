@@ -33,8 +33,6 @@ $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 
-
-
 ?>
 
  
@@ -46,8 +44,6 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 		============================================ -->
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
-
-
 
                      
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true"
@@ -61,8 +57,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha final</th> 
                                             <th>Empresa</th>
                                             <th>Sucursal</th>
-                                            <th>Puesto</th>                                           
-                                                               
+                                            <th>Puesto</th>                                                                  
                                             <!-- <th>Configuración</th> -->
                                             </tr>
                                         </thead>
@@ -91,16 +86,9 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                 
 
         
-
-
-
-
-        
-        <!-- data table JS
+<!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
     
     <script src="../Recursos/js/data-table/tableExport.js"></script>
     <script src="../Recursos/js/data-table/bootstrap-table-export.js"></script>
-
-   

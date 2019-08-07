@@ -21,8 +21,12 @@ include("../../Modelo/Conexion.php");
 
         $sql = 'INSERT INTO cursos(Nombre, DescripcionCurso, Tipo, Fecha) values (:Nombre, :DescripcionCurso, :Tipo, :Fecha)';
         $sentencia = $pdo->prepare($sql);
-        $sentencia->execute([':Nombre'=>$Nombre, ':DescripcionCurso'=>$Descripcion, ':Tipo'=>$Tipo, ':Fecha'=>$Fecha]);
-        echo 2;
+        if($sentencia->execute([':Nombre'=>$Nombre, ':DescripcionCurso'=>$Descripcion, ':Tipo'=>$Tipo, ':Fecha'=>$Fecha])){
+            echo 2;
+        }else{
+            echo 3;
+        }
+        
         
     }
 

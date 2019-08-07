@@ -192,7 +192,6 @@ $(document).ready(function(){
 						$("#exito").fadeOut();
 						},2000);
 						readJornada();
-						//$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
                     {
@@ -203,16 +202,12 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
-						
-						//$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
                         $("#error").fadeIn();
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
-						
-					//	$('#NombrePuesto').val('');
 
                     }
 

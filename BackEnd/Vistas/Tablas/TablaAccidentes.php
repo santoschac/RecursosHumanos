@@ -47,8 +47,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Descripción</th>
                                             <th>Fecha</th>
                                             <th>Reporta</th>
-                                            <th>Accidentes</th>                                                              
-                                                                   
+                                            <th>Accidentes</th>
                                             <th>Configuración</th>
                                             </tr>
                                         </thead>
@@ -73,14 +72,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                     </table> <br>
                                 
 
-        
-        
-
-
-
-
-        
-        <!-- data table JS
+ <!-- data table JS
 		============================================ -->
     <script src="../Recursos/js/data-table/bootstrap-table.js"></script>
 <!-- Exportar tabla

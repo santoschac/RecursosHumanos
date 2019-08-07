@@ -184,9 +184,7 @@
   <!-- main JS
 		============================================ -->
   <script src="../Recursos/js/main.js"></script>
-  <!-- tawk chat JS
-		============================================ -->
-  <!-- <script src="../Recursos/js/tawk-chat.js"></script> -->
+
 </body>
 
 </html>
