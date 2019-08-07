@@ -8,7 +8,14 @@ include("../Modelo/Conexion.php");
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
+		<style>
+    #mdialTamanio{
+      width: 35% !important;
+      
+      }
+  </style>
 
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
          <br/>
@@ -61,12 +68,7 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-		<style>
-    #mdialTamanio{
-      width: 35% !important;
-      
-      }
-  </style>
+		
         
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
@@ -121,6 +123,7 @@ include("../Modelo/Conexion.php");
  include ("../Master/Footer.php");
 ?>
 
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
     
 <script type="text/javascript" language="javascript" >

@@ -3,6 +3,7 @@ include("../Master/Header.php");
 include("../Modelo/Conexion.php");
 ?>
 
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -125,7 +126,7 @@ include("../Modelo/Conexion.php");
 <?php
 include ("../Master/Footer.php");
 ?>
-
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
    

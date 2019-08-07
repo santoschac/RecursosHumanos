@@ -35,6 +35,14 @@ if(isset($_GET['IdComisionPorcentaje'])){
     <link rel="stylesheet" href="../Recursos/css/data-table/bootstrap-editable.css">
 
 
+    <style>
+    #mdialTamanio{
+      width: 70% !important;
+      
+      }
+  </style>
+
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -177,12 +185,7 @@ if(isset($_GET['IdComisionPorcentaje'])){
                 </div>
             </div>
         </div>
-   <style>
-    #mdialTamanio{
-      width: 70% !important;
-      
-      }
-  </style>
+   
 
  <!--Modal tabla-->
  <div id="ModalTablaPersonal" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
@@ -250,6 +253,8 @@ if(isset($_GET['IdComisionPorcentaje'])){
  include ("../Master/Footer.php");
 ?>
 
+
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
  <!-- data table JS
 		============================================ -->
         <script src="../Recursos/js/data-table/bootstrap-table.js"></script>

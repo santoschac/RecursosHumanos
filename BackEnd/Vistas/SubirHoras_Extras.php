@@ -6,8 +6,14 @@
     <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
+        <style>
+    #mdialTamanio{
+      width: 35% !important;
+      
+      }
+  </style>
 
-
+        <?php if($_SESSION['IdTipoUsuario']==1){ ?>
  <!-- Mobile Menu end -->
  <div class="breadcome-area">
                 <div class="container-fluid">
@@ -64,7 +70,7 @@
                                                         </label>
                                                         <div class="file-button">
                                                             Seleccionar 
-                                                            <input type="file" name="excel"  required onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                            <input type="file" name="excel" accept=".xls, .xlsx" required onchange="document.getElementById('prepend-big-btn').value = this.value;">
                                                         </div>
                                                         <input type="text" id="prepend-big-btn"
                                                             placeholder="          Ningún archivo seleccionado" readonly >
@@ -103,12 +109,7 @@
             </div>
         </div>
     </div> <br><br><br>
-    <style>
-    #mdialTamanio{
-      width: 35% !important;
-      
-      }
-  </style>
+
         
     <!-- Modal Cancelar -->
     <div id="Cancelar" class="modal modal-edu-general FullColor-popup-DangerModal fade" role="dialog">
@@ -131,6 +132,7 @@
     </div>
 
     <?php include "../Master/Footer.php"; ?>
+    <?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
     <script src="../Recursos/js/sweetalert2@8.js"></script>
 
     <script>

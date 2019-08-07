@@ -427,9 +427,9 @@ CREATE TABLE Viajes(
 CREATE TABLE Viaticos(
     IdViatico        INT               AUTO_INCREMENT,
     Motivo           VARCHAR(200),
-    Monto            DECIMAL(10, 0),
+    Monto            DECIMAL(10, 1),
     Comprobado       VARCHAR(30),
-    Cantidad         DECIMAL(10, 0),
+    Cantidad         DECIMAL(10, 1),
     Fecha            DATE,
     FechaAprobado    DATE,
     IdPoblacion      INT               NOT NULL,

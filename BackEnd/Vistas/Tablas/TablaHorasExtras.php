@@ -59,7 +59,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['IdHorasExtras']; ?></td>
                                                   
                                                 <td><?php echo $dato['Nombre'];?></td>    
-                                                <td><?php echo $dato['HorasTrabajadas']?></td>                                        
+                                                <td><?php echo $dato['HorasTrabajadas']?><?php if($dato['HorasTrabajadas']!=1){echo " hrs";}else{echo " hr";}?></td>                                        
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['Fecha'])); ?></td>
                                                 <td><?php echo $dato['HoraInicio'];?></td>
                                                 <td><?php echo $dato['HoraFinal']; ?></td>

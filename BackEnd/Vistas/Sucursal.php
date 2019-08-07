@@ -11,7 +11,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 		============================================ -->
 <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
-
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
     <br />
@@ -47,7 +47,7 @@ $result=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 
 <?php include ("../Master/Footer.php");?>
-
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
 <script type="text/javascript" language="javascript">

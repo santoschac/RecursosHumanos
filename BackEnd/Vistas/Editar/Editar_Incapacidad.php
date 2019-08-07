@@ -69,7 +69,7 @@ $IdPersonal = $_POST['IdPersonal'];
 		$NombreCarpeta = $result['Usuario'];
 		$NombreDocumento = $result['Documento'];
 		
-		unlink('../../VistasU/Documentos/'.$NombreCarpeta.'/'.$NombreDocumento);
+		unlink('../../VistasU/Documentos/Incapacidades/'.$NombreCarpeta.'/'.$NombreDocumento);
 
 		
                 $sql = 'UPDATE incapacidad SET DiaInicio=:DiaInicio, DiaFinal=:DiaFinal, Descripcion=:Descripcion, Documento=:Documento, IdPersonal=:IdPersonal where IdIncapacidad=:IdIncapacidad';

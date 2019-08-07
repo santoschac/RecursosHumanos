@@ -64,6 +64,7 @@ else
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
 
+		<?php if($_SESSION['IdTipoUsuario']==1){ ?>
 	<div class="breadcome-area">
                 <div class="container-fluid">
                     <div class="row">
@@ -253,6 +254,7 @@ else
     </div>
     <!-- /.container -->
 	<?php include"../Master/Footer.php";?>
+	<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 	<script src="../Recursos/js/sweetalert2@8.js"></script>
     <!-- jQuery Version 1.11.1 -->
 	<script src="../Recursos/js/jquery-3.2.1.min.js"></script>

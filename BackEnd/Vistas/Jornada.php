@@ -8,7 +8,14 @@ include("../Modelo/Conexion.php");
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
 
+		<style>
+    #mdialTamanio{
+      width: 45% !important;
+      
+      }
+  </style>
 
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
 <!-- Static Table Start -->
 <div class="data-table-area mg-b-15">
          <br/>
@@ -60,12 +67,7 @@ include("../Modelo/Conexion.php");
             </div>
         </div> <br>
         <!-- Static Table End -->
-		<style>
-    #mdialTamanio{
-      width: 45% !important;
-      
-      }
-  </style>
+
         
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
@@ -152,7 +154,7 @@ include("../Modelo/Conexion.php");
 <?php
  include ("../Master/Footer.php");
 ?>
-
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
 
@@ -179,26 +181,29 @@ $(document).ready(function(){
 				processData:false,
 				success:function(data)
 				{
-				    //alert(data);
+				   // alert(data);
 					//$('#formulario')[0].reset();
 					if(data==1)
 					{
-						readJornada();
+						
 						$('#ModalAgregar').modal('hide');
 						$("#exito").fadeIn();
 						setTimeout(function(){
 						$("#exito").fadeOut();
 						},2000);
+						readJornada();
 						//$('#NombrePuesto').val('');
 					}
                     else if(data ==2)
                     {
+												
 						readJornada();
 						$('#ModalAgregar').modal('hide');
 						$("#actu").fadeIn();
 						setTimeout(function(){
 						$("#actu").fadeOut();
 						},2000);
+						
 						//$('#NombrePuesto').val('');
 					}else if(data == 3){
 						$('#ModalAgregar').modal('hide');
@@ -206,6 +211,7 @@ $(document).ready(function(){
 						setTimeout(function(){
 						$("#error").fadeOut();
 						},2000);
+						
 					//	$('#NombrePuesto').val('');
 
                     }

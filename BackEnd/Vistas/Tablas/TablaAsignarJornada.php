@@ -69,7 +69,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['IdAsignarJornada']; ?></td>
                                                 <td><?php echo $dato['Nombre'] .' '. $dato['ApellidoPaterno'].' '. $dato['ApellidoMaterno']; ?></td>
                                                 <td><?php echo $dato['FechaInicioJornada']  ." a ". $dato['FechaFinJornada']." de ". $dato['HoraInicio'] ." a ". $dato['HoraFin']; ?></td>
-                                                <td><?php echo date("Y-m-d", strtotime($dato['FechaInicio']));?></td>
+                                                <td><?php echo date("d-m-Y", strtotime($dato['FechaInicio']));?></td>
                                                 
                                                 <td><?php echo date("d-m-Y", strtotime($dato['FechaFinal'])) ;?></td>
                                                 <td><?php echo $dato['NombreEmpresa'];?></td>

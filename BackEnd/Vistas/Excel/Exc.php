@@ -107,7 +107,7 @@
                 }
           
 
-                if ($sentencia_agregar){ unlink('../Excel/'.$archivo);?>
+                if ($sentencia_agregar){ ?>
                 
                     <script>
                         Swal.fire({

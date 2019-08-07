@@ -60,7 +60,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Porcentaje (%)</th>                                            
                                             <th>Monto comisión ($)</th>
                                             <th>Monto cobrado ($)</th>
-                                            <th>Fecha</th>                                                              
+                                            <th>Fecha  </th>                                                              
                                             <th>Empresa</th> 
                                             <th>Sucursal</th>             
                                             <th>Puesto</th>

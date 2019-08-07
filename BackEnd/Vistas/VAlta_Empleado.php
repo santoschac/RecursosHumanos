@@ -12,7 +12,7 @@ include("../Modelo/Conexion.php");
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/css/chosen/bootstrap-chosen.css">
         
-
+        <?php if($_SESSION['IdTipoUsuario']==1){ ?>
       <!-- Mobile Menu end -->
       <div class="breadcome-area">
                 <div class="container-fluid">
@@ -438,7 +438,7 @@ include("../Modelo/Conexion.php");
 <?php
  include ("../Master/Footer.php");
 ?>
-
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 
 
 
@@ -555,7 +555,7 @@ $(document).ready(function () {
                    processData:false,
                    success:function(data)
                    {
-                     alert(data);
+                     //alert(data);
                        if(data==1){
                        $("#exito").fadeIn();
                        setTimeout(function(){

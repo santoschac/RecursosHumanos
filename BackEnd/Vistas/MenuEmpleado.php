@@ -64,7 +64,7 @@ $sql10 -> execute();
 $CantidadComision= $sql10->fetch();
 ?>
 
-
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
 <!-- Mobile Menu end -->
 <div class="breadcome-area">
                 <div class="container-fluid">
@@ -457,3 +457,4 @@ $CantidadComision= $sql10->fetch();
 <?php
 include '../Master/Footer.php';
 ?>
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>

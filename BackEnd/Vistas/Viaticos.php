@@ -12,7 +12,14 @@ if(isset($_POST['todos'])){
    <!-- Sweet Alert
 		============================================ -->
         <link rel="stylesheet" href="../Recursos/sweetalert/sweetalert2.min.css" type="text/css" />
+        <style>
+    #mdialTamanio{
+      width: 47% !important;
+      
+      }
+  </style>
 
+<?php if($_SESSION['IdTipoUsuario']==1){ ?>
    <!-- Mobile Menu end -->
    <div class="breadcome-area">
                 <div class="container-fluid">
@@ -113,12 +120,7 @@ if(isset($_POST['todos'])){
             </div>
         </div> <br>
         <!-- Static Table End -->
-		<style>
-    #mdialTamanio{
-      width: 47% !important;
-      
-      }
-  </style>
+		
         
         <!--modal Agregar-->
         <div id="ModalAgregar" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
@@ -187,7 +189,7 @@ if(isset($_POST['todos'])){
 															   <div class="form-group">
                                                                 <label>Comprobar</label>
                                                                 <select name="Comprobado" id="Comprobado" class="form-control" required>
-                                                                    <option value="" selected="" disabled="" >Seleccionar</option>
+                                                                    <option selected="" disabled="" required value="">Seleccionar</option>
 																	<option value="Comprobado">Comprobado</option>
                                                                 </select>
                                                               </div>
@@ -232,12 +234,10 @@ if(isset($_POST['todos'])){
 ?>
 
 
+<?php }else{echo "<br/><h1>No se puede acceder a este sitio</h1>";}?>
 
 <script src="../Recursos/sweetalert/sweetalert2.min.js"></script>
 
-
-
-    
 <script type="text/javascript" language="javascript" >
 $(document).ready(function () {
         $("#IdEstado").change(function () {
@@ -333,7 +333,7 @@ $(document).ready(function(){
 				$('#Fecha').val(data.Fecha);
 				$('#IdPoblacion').val(data.IdPoblacion);
 				$('#IdEstado').val(data.IdEstado);
-				$('#Comprobado').val(data.Comprobado);
+				//$('#Comprobado').val(data.Comprobado);
 				$('#Cantidad').val(data.Cantidad);
 				$('.modal-title').text("Aprobar Viático");
 				$('#viatico_id').val(viatico_id);
@@ -350,8 +350,6 @@ $(document).ready(function(){
 	
 });
 </script>
-
-   
 
 <script >
 
@@ -453,4 +451,3 @@ $(document).ready(function(){
     });
     
 </script> 
-
