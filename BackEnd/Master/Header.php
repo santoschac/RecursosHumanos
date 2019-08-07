@@ -183,7 +183,7 @@ $CantidadViaticos = $sql2->fetch();
                             </ul>
                         </li>
                         <li>
-                            <a title="Extra" class="has-arrow" href="#" aria-expanded="false"><span
+                            <a title="Ubicación" class="has-arrow" href="#" aria-expanded="false"><span
                                     class="educate-icon educate-data-table icon-wrap"></span> <span
                                     class="mini-click-non">Ubicación</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
@@ -467,7 +467,7 @@ $CantidadViaticos = $sql2->fetch();
                             </ul>
                         </li>
                         <li>
-                            <a title="Extra" class="has-arrow" href="#" aria-expanded="false"><span
+                            <a title="Ubicación" class="has-arrow" href="#" aria-expanded="false"><span
                                     class="educate-icon educate-data-table icon-wrap"></span> <span
                                     class="mini-click-non">Ubicación</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
