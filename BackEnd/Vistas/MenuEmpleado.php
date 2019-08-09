@@ -54,9 +54,7 @@ $sql9 = $pdo->prepare("SELECT count(IdPersonal) as cantidad FROM viaticos where 
 $sql9 -> execute();
 $CantidadViaticos= $sql9->fetch();
 
-$sql10 = $pdo->prepare("SELECT c.IdComision, c.MontoCobrado, c.MontoComision, c.IdComisionPorcentaje, c.Fecha, c.Porcentaje, count(por.IdPersonal) as cantidad
-from comision c
-inner join comisionporcentaje por on c.IdComisionPorcentaje = por.IdComisionPorcentaje   where por.IdPersonal = $IdPersonal");
+$sql10 = $pdo->prepare("SELECT count(IdComision) as cantidad from comision where IdPersonal = $IdPersonal");
 $sql10 -> execute();
 $CantidadComision= $sql10->fetch();
 ?>

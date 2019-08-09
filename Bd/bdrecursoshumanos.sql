@@ -4,7 +4,7 @@
 -- Project :      BDRecursosH.DM1
 -- Author :       Lenovo
 --
--- Date Created : Tuesday, July 30, 2019 11:14:14
+-- Date Created : Thursday, August 08, 2019 22:33:40
 -- Target DBMS : MySQL 5.x
 --
 
@@ -90,26 +90,13 @@ CREATE TABLE Capacitacion(
 --
 
 CREATE TABLE Comision(
-    IdComision              INT               AUTO_INCREMENT,
-    Porcentaje              DECIMAL(10, 1),
-    MontoCobrado            DECIMAL(10, 1),
-    MontoComision           DECIMAL(10, 1),
-    Fecha                   DATETIME,
-    IdComisionPorcentaje    INT               NOT NULL,
+    IdComision       INT               AUTO_INCREMENT,
+    Porcentaje       DECIMAL(10, 1),
+    MontoCobranza    DECIMAL(10, 1),
+    MontoComision    DECIMAL(10, 1),
+    Fecha            DATETIME,
+    IdPersonal       INT               NOT NULL,
     PRIMARY KEY (IdComision)
-);
-
-
-
--- 
--- TABLE: ComisionPorcentaje 
---
-
-CREATE TABLE ComisionPorcentaje(
-    IdComisionPorcentaje    INT               AUTO_INCREMENT,
-    Porcentaje              DECIMAL(18, 1),
-    IdPersonal              INT               NOT NULL,
-    PRIMARY KEY (IdComisionPorcentaje)
 );
 
 
@@ -294,6 +281,7 @@ CREATE TABLE Personal(
     UltimaModificacion    DATETIME,
     TipoContrato          VARCHAR(70),
     Telefono              VARCHAR(15),
+    PorcentajeComision    DECIMAL(10, 1),
     IdPuesto              INT               NOT NULL,
     IdUsuario             INT               NOT NULL,
     IdSucursal            INT               NOT NULL,
@@ -325,7 +313,6 @@ CREATE TABLE Puestos(
     NombrePuesto    VARCHAR(70),
     PRIMARY KEY (IdPuesto)
 );
-
 
 
 -- 
@@ -513,17 +500,7 @@ ALTER TABLE Capacitacion ADD CONSTRAINT RefCursos10
 -- TABLE: Comision 
 --
 
-ALTER TABLE Comision ADD CONSTRAINT RefComisionPorcentaje31 
-    FOREIGN KEY (IdComisionPorcentaje)
-    REFERENCES ComisionPorcentaje(IdComisionPorcentaje)
-;
-
-
--- 
--- TABLE: ComisionPorcentaje 
---
-
-ALTER TABLE ComisionPorcentaje ADD CONSTRAINT RefPersonal30 
+ALTER TABLE Comision ADD CONSTRAINT RefPersonal35 
     FOREIGN KEY (IdPersonal)
     REFERENCES Personal(IdPersonal)
 ;

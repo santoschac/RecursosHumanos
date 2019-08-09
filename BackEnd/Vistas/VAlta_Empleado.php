@@ -311,7 +311,11 @@ include("../Modelo/Conexion.php");
                                                            
                                                                 <div class="form-group">
                                                                 <label>Departamento</label>
-                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60" required>
+                                                                    <input name="Departamento" id="Departamento" type="text" class="form-control" placeholder="Departamento" maxlength="60" required >
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Porcentaje Comisión</label>
+                                                                    <input name="PorcentajeComision" id="PorcentajeComision" type="text" class="form-control" placeholder="Ingrese el Porcentaje de la comision" maxlength="6" required onkeypress="return numeros(event)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                 <label>Sueldo Diario</label>
@@ -410,6 +414,15 @@ include("../Modelo/Conexion.php");
                                                                             <option value="Temporal">Temporal</option>
 
                                                                         </select>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                    <label><strong>Fecha de Antigüedad</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control"
+                                                                            value="<?= date("Y-m-d");?>">
+                                                                    </div>
                                                                     </div>
 
                                                                 </div>

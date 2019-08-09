@@ -4,10 +4,9 @@ include("../Modelo/Conexion.php");
 
 
 $IdComision = $_GET['IdComision'];
-$sql1 = 'SELECT c.IdComision, c.MontoCobrado, c.MontoComision, c.IdComisionPorcentaje, c.Fecha, c.Porcentaje, por.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+$sql1 = 'SELECT c.IdComision, c.Porcentaje, c.MontoCobranza, c.MontoComision, c.Fecha, c.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
 from comision c
-inner join comisionporcentaje por on c.IdComisionPorcentaje = por.IdComisionPorcentaje
-inner join personal p on por.IdPersonal = p.IdPersonal
+inner join personal p on c.IdPersonal = p.IdPersonal
 inner join sucursal s on p.IdSucursal = s.IdSucursal
 inner join empresa e on s.IdEmpresa = e.IdEmpresa
 inner join puestos pu on p.IdPuesto = pu.IdPuesto where IdComision = :IdComision';
@@ -161,12 +160,12 @@ if(isset($_GET['IdComisionPorcentaje'])){
                                                             <input name="Porcentaje" id="Porcenteje" value="<?php if(isset($_GET['IdComision'])):?><?=$comisiones->Porcentaje?><?php endif;?>" type="text" class="form-control" placeholder="Pocentaje (%)" readonly>
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
-                                                            <label><strong>Monto comisión ($)</strong></label>
-                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" value="<?= $comisiones->MontoComision?>" required required onkeypress="return numeros(event)" maxlength="10">
+                                                            <label><strong>Monto cobranza ($)</strong></label>
+                                                            <input type="text" name="MontoCobranza" id="MontoCobranza" class="form-control" value="<?= $comisiones->MontoCobranza?>" required required onkeypress="return numeros(event)" maxlength="10">
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
-                                                            <label><strong>Monto cobrado ($)</strong></label>
-                                                            <input type="text" name="MontoCobrado" id="MontoCobrado" class="form-control" value="<?=$comisiones->MontoCobrado?>" required readonly>
+                                                            <label><strong>Monto comisión ($)</strong></label>
+                                                            <input type="text" name="MontoComision" id="MontoComision" class="form-control" value="<?=$comisiones->MontoComision?>" required readonly>
                                                         </div>
                                                         <div class="chosen-select-single mg-b-20">
                                                             <!-- <label><strong>IdComisionPorcentaje</strong></label> -->

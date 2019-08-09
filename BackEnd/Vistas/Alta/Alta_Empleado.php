@@ -38,6 +38,7 @@ include("../../Modelo/Conexion.php");
     $IdSucursal = $_POST['IdSucursal'];
     $IdPoblacion = $_POST['IdPoblacion'];
   
+    $PorcentajeComision = $_POST['PorcentajeComision'];
     $Usuario = $_POST['Usuario'];
     $Contrasena = $_POST['Contrasena'];
     $Contrasena = password_hash($Contrasena, PASSWORD_DEFAULT);
@@ -59,12 +60,12 @@ include("../../Modelo/Conexion.php");
 
     $IdUsuario = $pdo->lastInsertId();
 
-    $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, Telefono, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
-           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :Telefono, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
+    $sql = 'INSERT INTO personal (Nombre, ApellidoPaterno, ApellidoMaterno, Curp, Tipo, Direccion, Colonia, Delegacion, CodigoPostal, Rfc, Imss, FechaNacimiento, NivelAcademico, Sexo, EstadoCivil, Hijos, Padre, Madre, Departamento, SueldoDiario, SueldoAnterior, SueldoActual, FechaBaja, ConceptoBaja, FechaAlta, FechaAntiguedad, UltimaModificacion, TipoContrato, Telefono, PorcentajeComision, IdPuesto, IdUsuario, IdSucursal, IdPoblacion )
+           VALUES (:Nombre, :ApellidoPaterno, :ApellidoMaterno, :Curp, :Tipo, :Direccion, :Colonia, :Delegacion, :CodigoPostal, :Rfc, :Imss, :FechaNacimiento, :NivelAcademico, :Sexo, :EstadoCivil, :Hijos,:Padre, :Madre, :Departamento, :SueldoDiario, :SueldoAnterior, :SueldoActual, :FechaBaja, :ConceptoBaja, :FechaAlta, :FechaAntiguedad, :UltimaModificacion, :TipoContrato, :Telefono, :PorcentajeComision, :IdPuesto, :IdUsuario, :IdSucursal, :IdPoblacion)';
    
     $statement = $pdo->prepare($sql);
     if($statement->execute([':Nombre'=> $Nombre, ':ApellidoPaterno'=>$ApellidoPaterno, ':ApellidoMaterno' => $ApellidoMaterno, ':Curp'=>$Curp, ':Tipo'=>$Tipo, ':Direccion'=>$Direccion, ':Colonia'=>$Colonia, ':Delegacion'=>$Delegacion,':CodigoPostal'=>$CodigoPostal, ':Rfc'=>$Rfc, ':Imss'=>$Imss, ':FechaNacimiento'=>$FechaNacimiento, ':NivelAcademico'=>$NivelAcademico, ':Sexo'=>$Sexo, ':EstadoCivil'=>$EstadoCivil, ':Hijos'=>$Hijos, ':Padre'=>$Padre, 
-        ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>NULL, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':Telefono'=>$Telefono, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
+        ':Madre'=>$Madre, ':Departamento'=>$Departamento, ':SueldoDiario'=>$SueldoDiario, ':SueldoAnterior'=>$SueldoAnterior, ':SueldoActual'=>$SueldoActual, ':FechaBaja'=>$FechaBaja, ':ConceptoBaja'=>$ConceptoBaja, ':FechaAlta'=>$FechaAlta, ':FechaAntiguedad'=>$FechaAntiguedad, ':UltimaModificacion'=>$UltimaModificacion, ':TipoContrato'=>$TipoContrato, ':Telefono'=>$Telefono, ':PorcentajeComision'=>$PorcentajeComision, ':IdPuesto'=>$IdPuesto, ':IdUsuario'=>$IdUsuario, ':IdSucursal'=>$IdSucursal, ':IdPoblacion'=>$IdPoblacion]))
         {
           echo 1;
 

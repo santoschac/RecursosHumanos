@@ -12,10 +12,9 @@ if(isset($_POST['IdSucursal'])){
 if(isset($_SESSION['IdSucursal'])){
     
         $IdSucursal= $_SESSION['IdSucursal'];
-        $sql= $pdo->prepare(" SELECT c.IdComision, c.MontoCobrado, c.MontoComision, c.IdComisionPorcentaje, c.Fecha, c.Porcentaje, por.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+        $sql= $pdo->prepare(" SELECT  c. IdComision, c.Porcentaje, c.MontoCobranza, c.MontoComision, c.Fecha, c.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
         from comision c
-        inner join comisionporcentaje por on c.IdComisionPorcentaje = por.IdComisionPorcentaje
-        inner join personal p on por.IdPersonal = p.IdPersonal
+        inner join personal p on p.IdPersonal = c.IdPersonal
         inner join sucursal s on p.IdSucursal = s.IdSucursal
         inner join empresa e on s.IdEmpresa = e.IdEmpresa
         inner join puestos pu on p.IdPuesto = pu.IdPuesto where s.IdSucursal = $IdSucursal");
@@ -23,13 +22,12 @@ if(isset($_SESSION['IdSucursal'])){
         $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
 }
 else{
-   $sql= $pdo->prepare("SELECT c.IdComision, c.MontoCobrado, c.MontoComision, c.IdComisionPorcentaje, c.Fecha, c.Porcentaje, por.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
-from comision c
-inner join comisionporcentaje por on c.IdComisionPorcentaje = por.IdComisionPorcentaje
-inner join personal p on por.IdPersonal = p.IdPersonal
-inner join sucursal s on p.IdSucursal = s.IdSucursal
-inner join empresa e on s.IdEmpresa = e.IdEmpresa
-inner join puestos pu on p.IdPuesto = pu.IdPuesto");
+   $sql= $pdo->prepare("SELECT  c. IdComision, c.Porcentaje, c.MontoCobranza, c.MontoComision, c.Fecha, c.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, s.IdSucursal, s.NombreSucursal, e.NombreEmpresa, pu.NombrePuesto
+   from comision c
+   inner join personal p on p.IdPersonal = c.IdPersonal
+   inner join sucursal s on p.IdSucursal = s.IdSucursal
+   inner join empresa e on s.IdEmpresa = e.IdEmpresa
+   inner join puestos pu on p.IdPuesto = pu.IdPuesto");
 $sql->execute();
 $resultado=$sql->fetchALL(PDO::FETCH_ASSOC); 
 }
@@ -54,8 +52,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>No</th>
                                             <th>Personal</th>
                                             <th>Porcentaje (%)</th>                                            
+                                            <th>Monto cobranza ($)</th>
                                             <th>Monto comisión ($)</th>
-                                            <th>Monto cobrado ($)</th>
                                             <th>Fecha  </th>                                                              
                                             <th>Empresa</th> 
                                             <th>Sucursal</th>             
@@ -70,8 +68,8 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['IdComision']; ?></td>
                                                 <td><?php echo $dato['Nombre'] ." ". $dato['ApellidoPaterno'] ." ". $dato['ApellidoMaterno'] ?></td>
                                                 <td><?php echo $dato['Porcentaje'];?>%</td>                                                
-                                                <td>$<?php echo $dato['MontoComision']; ?></td>
-                                                <td>$<?php echo $dato['MontoCobrado']; ?></td>                                                
+                                                <td>$<?php echo $dato['MontoCobranza']; ?></td>
+                                                <td>$<?php echo $dato['MontoComision']; ?></td>                                                
                                                 <td><?php echo date("d-m-Y", strtotime( $dato['Fecha'])); ?></td>                                                
                                                 <td><?php echo $dato['NombreEmpresa']; ?></td>
                                                 <td><?php echo $dato['NombreSucursal']; ?></td>

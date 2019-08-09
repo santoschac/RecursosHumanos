@@ -32,7 +32,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Monto</th>
                                             <th>Fecha</th>   
                                             <th>Comprobado</th>                         
-                                            <th>Configuración</th>
+                                            <!-- <th>Configuración</th> -->
                                     </tr>
                                         </thead>
                                        
@@ -47,12 +47,12 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo date("d-m-Y", strtotime($dato['Fecha'])) ;?></td>
                                                 <td><?php echo $dato['Comprobado'];?></td>
                                                 
-                                                <td>
+                                                <!-- <td>
                                                    <?php if($dato['Comprobado']=="Espera"){?>
                                                      <a id="Eliminar" data-id="<?php echo $dato['IdViatico']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                                  <?php }?>
                                                     
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                         </tbody>

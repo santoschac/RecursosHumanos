@@ -6,7 +6,7 @@ include("../Modelo/Conexion.php");
 $IdPersonal= $_GET['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, p.EstadoCivil, p.Hijos, p.Padre, p.Madre, 
-p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, po.NombrePoblacion, e.IdEstado, e.NombreEstado, pa.IDPais, pa.NombrePais, s.NombreSucursal, em.IdEmpresa, Em.NombreEmpresa,
+p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, p.Telefono, p.PorcentajeComision, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, po.NombrePoblacion, e.IdEstado, e.NombreEstado, pa.IDPais, pa.NombrePais, s.NombreSucursal, em.IdEmpresa, Em.NombreEmpresa,
 u.Usuario, u.Contrasena, u.IdTipoUsuario
 FROM personal p
 inner join usuario u on p.IdUsuario=u.IdUsuario
@@ -286,6 +286,10 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <input name="Departamento" id="Departamento" value="<?=$empleado->Departamento?>" type="text" class="form-control" placeholder="Departamento" maxlength="60" required>
                                                                 </div>
                                                                 <div class="form-group">
+                                                                <label>Porcentaje Comisión</label>
+                                                                    <input name="PorcentajeComision" id="PorcentajeComision" value="<?=$empleado->PorcentajeComision?>" type="text" class="form-control" placeholder="Ingrese el Porcentaje de la comision" maxlength="6" required onkeypress="return numeros(event)">
+                                                                </div>
+                                                                <div class="form-group">
                                                                 <label>Sueldo Diario</label>
                                                                     <input name="SueldoDiario" id="SueldoDiario" value="<?= $empleado->SueldoDiario?>" type="text" class="form-control" placeholder="Sueldo Diario" maxlength="10" required onkeypress="return numeros(event)">
                                                                 </div>
@@ -389,6 +393,14 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 
                                                                         </select>
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                    <label><strong>Fecha de Antigüedad</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control"
+                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>">
+                                                                    </div>
+                                                                </div>
 
                                                                 </div>
                                                         </div>

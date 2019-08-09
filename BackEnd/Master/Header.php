@@ -132,13 +132,10 @@ $CantidadViaticos = $sql2->fetch();
                                 <li><a title="Viajes" href="Viajes.php"><span class="mini-sub-pro">Viajes</span></a></li>
                                 <li><a title="Viáticos" href="Viaticos.php"><span class="mini-sub-pro">Viáticos</span></a></li>
                                 <li><a title="Vacaciones" href="Vacaciones.php"><span class="mini-sub-pro">Vacaciones</span></a></li>
+                                
+                                <li><a title="Comisiones" href="Comision.php"><span class="mini-sub-pro">Comisiones</span></a></li>
 
-                                <li><a title="Comisiones" class="has-arrow" aria-expanded="false" href="Comisiones.php"><span class="mini-sub-pro">Comisiones</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Porecentaje Comisiones" href="Porcentaje_Comision.php"><span class="mini-sub-pro">Porcentaje comisión</span></a></li>
-                                <li><a title="Comisión" href="Comision.php"><span class="mini-sub-pro">Comisión</span></a></li>
-                                </ul>
-                                </li>
+                                
                             </ul>
                         </li>
                         <li>
@@ -417,12 +414,7 @@ $CantidadViaticos = $sql2->fetch();
                                 <li><a title="Viáticos" href="Viaticos.php"><span class="mini-sub-pro">Viáticos</span></a></li>
                                 <li><a title="Vacaciones" href="Vacaciones.php"><span class="mini-sub-pro">Vacaciones</span></a></li>
 
-                                <li><a title="Comisiones" class="has-arrow" aria-expanded="false" href="Comisiones.php"><span class="mini-sub-pro">Comisiones</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Porecentaje Comisiones" href="Porcentaje_Comision.php"><span class="mini-sub-pro">Porcentaje comisión</span></a></li>
-                                <li><a title="Comisión" href="Comision.php"><span class="mini-sub-pro">Comisión</span></a></li>
-                                </ul>
-                                </li>
+                                <li><a title="Comisiones" href="Comision.php"><span class="mini-sub-pro">Comisiones</span></a></li>
                             </ul>
                         </li>
                         <li>

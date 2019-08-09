@@ -26,35 +26,53 @@
                         data-cookie-id-table="saveId" data-click-to-select="true" data-toolbar="#toolbar">
                         <tr>
                            
-                            <th>Nombre</th>
-                            <th>Horas</th>
-                            <th>Fecha</th>
-                            <th>HoraInicio</th>
-                            <th>HoraFinal</th>
                             <th>IdPersonal</th>
+                            <th>Nombre</th>
+                            <th>Porcentaje(%)</th>
+                            <th>Monto Cobranza($)</th>
+                            <th>Monto Comisión($)</th>
+                            <th>Fecha</th>
+                            
                             
                         </tr>
                     <?php
             
+                        
+                     $ArregloPorcentaje= array();
+                     $ArregloComision = array();
+                     $ArregloNombre = array();
+
                     for ($i=2; $i <= $numfilas ; $i++) { 
 
                         
-                        $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$nom=strtoupper($nom);
-                        $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$horas=strtoupper($horas);
+                        $id = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$id=strtoupper($id);                       
+                        $montocobra = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$montocobra=strtoupper($montocobra);                        
                         $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();$fecha=strtoupper($fecha);
-                        $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();$horainicio=strtoupper($horainicio);
-                        $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();$horafinal=strtoupper($horafinal);
-                        $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();$idpersonal=strtoupper($idpersonal);
+                       
+
+                        $sql1 = 'SELECT IdPersonal, Nombre, ApellidoPaterno, ApellidoMaterno, porcentajecomision from personal where IdPersonal = ?';
+                        $statement= $pdo->prepare($sql1);
+                        $statement ->execute(array($id));
+                        $resultado = $statement->fetch();
+
+                        $ArregloPorcentaje=$resultado['porcentajecomision'];
+
+                        $ArregloComision= ($ArregloPorcentaje * $montocobra)/100;
+
+                        $ArregloNombre = $resultado['Nombre'] ." ". $resultado['ApellidoPaterno'] ." ". $resultado['ApellidoMaterno'];
                         
                         ?>
                         <tr>
+
+                        
                             
-                            <td><?php echo $nom; ?></td>
-                            <td><?php echo $horas; ?></td>
-                            <td><?php echo $fecha ;?></td>
-                            <td><?php echo $horainicio; ?></td>
-                            <td><?php echo $horafinal; ?></td>
-                            <td><?php echo $idpersonal; ?></td>
+                            <td><?php echo $id; ?></td>
+                            <td><?php echo $ArregloNombre; ?></td>
+                            <td><?php echo $ArregloPorcentaje ." %"?></td>
+                            <td><?php echo "$ ". $montocobra ;?></td>
+                            <td><?php echo "$ ". $ArregloComision; ?></td>
+                            <td><?php echo $fecha; ?></td>
+                           
                            
                         </tr>
                     <?php
@@ -88,19 +106,30 @@
     
                 $numfilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
     
+
+                $ArregloPorcentaje= array();
+                $ArregloComision = array();
+
                 for ($i=2; $i <= $numfilas ; $i++) { 
 
                     
-                    $nom = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$nom=strtoupper($nom);
-                    $horas = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$horas=strtoupper($horas);
+                    $id = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();$id=strtoupper($id);                       
+                    $montocobra = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();$montocobra=strtoupper($montocobra);                        
                     $fecha = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();$fecha=strtoupper($fecha);
-                    $horainicio = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();$horainicio=strtoupper($horainicio);
-                    $horafinal = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();$horafinal=strtoupper($horafinal);
-                    $idpersonal = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();$idpersonal=strtoupper($idpersonal);
                    
 
-                    $sql_agregar = "INSERT INTO horasextras (Nombre, HorasTrabajadas, Fecha, HoraInicio, HoraFinal, IdPersonal) 
-                    VALUE ('$nom','$horas','$fecha','$horainicio','$horafinal', '$idpersonal')";
+                    $sql1 = 'SELECT IdPersonal, porcentajecomision from personal where IdPersonal = ?';
+                    $statement= $pdo->prepare($sql1);
+                    $statement ->execute(array($id));
+                    $resultado = $statement->fetch();
+
+                    $ArregloPorcentaje=$resultado['porcentajecomision'];
+
+                    $ArregloComision= ((binary)$ArregloPorcentaje * (binary)$montocobra)/100;
+                   
+
+                    $sql_agregar = "INSERT INTO comision (Porcentaje, MontoCobranza, MontoComision, Fecha, IdPersonal) 
+                    VALUE ('$ArregloPorcentaje','$montocobra','$ArregloComision','$fecha','$id')";
                     $sentencia_agregar = $pdo->prepare($sql_agregar);
                     $sentencia_agregar->execute(array($sql_agregar));
 

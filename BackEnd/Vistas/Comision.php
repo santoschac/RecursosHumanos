@@ -23,8 +23,8 @@ if(isset($_POST['todos'])){
                             <div class="row">
                                 <div class="col-md-3">
                                 <h4>Comisión</h4>
-                                <a href="VAlta_Comision.php"><button type="button" class="btn btn-primary" >Agregar</button></a>
-                            
+                                <!-- <a href="VAlta_Comision.php"><button type="button" class="btn btn-primary" >Agregar</button></a> -->
+                                <a href="Subir_Comision.php"><button type="button" class="btn btn-primary" >Subir archivo excel</button></a>
                              </div>
                                 <form method="post" action="#" id="formulariotabla">
                                 <div class="col-md-3">

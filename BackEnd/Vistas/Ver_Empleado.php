@@ -7,7 +7,7 @@ $IdPersonal= $_SESSION['IdPersonal'];
 
 $sql1 = 'SELECT p.IdPersonal, p.Nombre, p.ApellidoPaterno, p.ApellidoMaterno, p.Curp, p.Tipo, p.Direccion, p.Colonia, p.Delegacion, p.CodigoPostal, p.Rfc, p.Imss, p.FechaNacimiento, p.NivelAcademico, p.Sexo, 
 p.EstadoCivil, p.Hijos, p.Padre, p.Madre, p.Departamento, p.SueldoDiario, p.SueldoAnterior, p.SueldoActual, p.FechaBaja, p.ConceptoBaja, p.FechaAlta, p.FechaAntiguedad, p.UltimaModificacion, p.TipoContrato, 
-p.Telefono, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, u.Usuario, u.Contrasena, po.NombrePoblacion, e.NombreEstado, pa.NombrePais
+p.Telefono, p.PorcentajeComision, p.IdPuesto, p.IdUsuario, p.IdSucursal, p.IdPoblacion, u.Usuario, u.Contrasena, po.NombrePoblacion, e.NombreEstado, pa.NombrePais
 from personal p
 inner join usuario u on p.IdUsuario = u.IdUsuario
 inner join poblacion po on p.IdPoblacion = po.IdPoblacion
@@ -316,6 +316,10 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                     <input name="Departamento" id="Departamento" value="<?=$empleado->Departamento?>" type="text" class="form-control" placeholder="Departamento" maxlength="60" readonly>
                                                                 </div>
                                                                 <div class="form-group">
+                                                                <label>Porcentaje Comisión</label>
+                                                                    <input name="PorcentajeComision" id="PorcentajeComision" type="text" value="<?=$empleado->PorcentajeComision?>" class="form-control" readonly placeholder="Ingrese el Porcentaje de la comision" maxlength="6" required onkeypress="return numeros(event)">
+                                                                </div>
+                                                                <div class="form-group">
                                                                 <label>Sueldo Diario</label>
                                                                     <input name="SueldoDiario" id="SueldoDiario" value="<?= $empleado->SueldoDiario?>" type="text" class="form-control" placeholder="Sueldo Diario" maxlenght="10" readonly>
                                                                 </div>
@@ -393,13 +397,7 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
 
                                                             <div class="form-group">
 
-                                                                <div class="form-group">
-                                                                    <label><strong>Fecha de Antigüedad</strong></label>
-                                                                    <div class="input-group date">
-                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control"
-                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>" readonly>
-                                                                    </div>
+                                                                
 
                                                                     <div class="form-group">
                                                                         <label><strong>Tipo Contrato</strong></label>
@@ -407,6 +405,22 @@ $empleado = $sentencia->fetch(PDO::FETCH_OBJ);
                                                                         
                                                                     </div>
 
+                                                                    
+                                                                    <div class="form-group">
+                                                                    <label><strong>Fecha de Antigüedad</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAntiguedad" id="FechaAntiguedad" type="date" class="form-control"
+                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAntiguedad));?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label><strong>Fecha de alta</strong></label>
+                                                                    <div class="input-group date">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input name="FechaAlta" id="FechaAlta" type="date" class="form-control"
+                                                                            value="<?= date("Y-m-d", strtotime($empleado->FechaAlta));?>" readonly>
+                                                                    </div>
                                                                 </div>
                                                         </div>
                                 </div>

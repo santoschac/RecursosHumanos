@@ -41,7 +41,7 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                             <th>Fecha atención</th>
                                             <th>Documento</th> 
                                             <th>Descargar</th>                                           
-                                            <th>Configuración</th>
+                                            <!-- <th>Configuración</th> -->
                                     </tr>
                                         </thead>
                                        
@@ -58,10 +58,10 @@ $resultado=$sql->fetchALL(PDO::FETCH_ASSOC);
                                                 <td><?php echo $dato['Documento'];?></td>
                                                 <td><a href="../VistasU/Documentos/Solicitudes/<?php echo $NombreCarpeta?>/<?php echo $dato['Documento']?>" download="<?php $dato['Documento']?>"><?php if(isset($dato['Documento'])):?><img src="../VistasU/Documentos/iconodescargar.png" width="150" height="250" alt=""><?php endif;?></a></td>
                                                 
-                                                <td>
-                                                    <!--<button  title="Editar" class="pd-setting-ed update" name="update" id="?php echo $dato['IdSolicitudes']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
+                                                <!-- <td>
+                                                    <button  title="Editar" class="pd-setting-ed update" name="update" id="?php echo $dato['IdSolicitudes']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                                     <a id="Eliminar" data-id="<?php echo $dato['IdSolicitudes']; ?>" href="javascript:void(0)"><button data-toggle="tooltip" title="Eliminar" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                         </tbody>
